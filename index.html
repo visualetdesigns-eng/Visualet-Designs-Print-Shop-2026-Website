@@ -715,12 +715,16 @@ section{overflow-x:clip}
 }
 @media(max-width:560px){
   .grid{grid-template-columns:1fr}
-  .fan{--cw:min(210px,54vw);--fx:.54}
+  .fan{--cw:min(200px,52vw);--fx:.42}
+  .hero h1{font-size:clamp(38px,11.5vw,54px);text-wrap:wrap}
+  .sec-title{font-size:clamp(28px,7.5vw,36px);text-wrap:wrap}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{flex:none;width:100%}
+  .hero-stats{gap:22px}
+  .hstat b{font-size:30px}
   .car-card{border-radius:20px}
   .hero-visual{height:400px}
-  .hero-cta .btn{flex:1 1 160px}
   .co-labels{font-size:9.5px;letter-spacing:.5px}
-  .hero-stats{gap:24px}
   .pm-foot{flex-direction:column;align-items:stretch;text-align:center}
   .search input{width:100%}.search{width:100%}
   .co-nav{flex-direction:column-reverse}
@@ -1169,6 +1173,7 @@ const DEFAULT_PRODUCTS = [
 const CATS = ["All","Business Cards","Signage","Banners","Event & Trade Show","Marketing","Bundle & Save","Design Services"];
 const STATUSES = ["Received","In Design","In Production","Shipped","Delivered"];
 const DEFAULT_BACKEND="https://script.google.com/macros/s/AKfycbxD_vu6LwUwkK8rbk5DGdIdJqONidQebaeyFAwTo1iVMf8IFBCWfz-nKs1nFiWDEMe_5w/exec";
+const SYNC_SECRET="aXrA3PGDvca11ooAB8VudMoZH6CvkyjBvPXPzSgAxi4"; // must match WebsiteBackend.gs (same zip)
 const LS = {products:"vd_products_v1",cart:"vd_cart_v1",orders:"vd_orders_v1",pin:"vd_pin_v1",backend:"vd_backend_v1",deleted:"vd_deleted_ids_v1"};
 
 /* ================= HELPERS ================= */
@@ -1856,8 +1861,8 @@ function renderAdminProducts(){
   box.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Products (${products.length})</h3><button class="mini go" id="newProd">+ Add Product</button></div>${rows}<div id="pformWrap"></div>`;
   $("#newProd").onclick=()=>{editingId=null;renderPForm()};
   $$("#ap-products [data-edit]").forEach(b=>b.onclick=()=>{editingId=b.dataset.edit;renderPForm()});
-  $$("#ap-products [data-toggle]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.toggle);p.active=p.active===false?true:false;persistProducts();renderAdminProducts();renderGrid()});
-  $$("#ap-products [data-del]").forEach(b=>b.onclick=()=>{if(confirm("Delete this product?")){const delId=b.dataset.del;products=products.filter(x=>x.id!==delId);const dl=loadDeletedIds();if(!dl.includes(delId)){dl.push(delId);save(LS.deleted,dl)}persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();toast("Product deleted")}});
+  $$("#ap-products [data-toggle]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.toggle);p.active=p.active===false?true:false;persistProducts();renderAdminProducts();renderGrid();pushSync().then(live=>toast(live?"Product updated — live for everyone":"Saved on this device only"))});
+  $$("#ap-products [data-del]").forEach(b=>b.onclick=()=>{if(confirm("Delete this product?")){const delId=b.dataset.del;products=products.filter(x=>x.id!==delId);const dl=loadDeletedIds();if(!dl.includes(delId)){dl.push(delId);save(LS.deleted,dl)}persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();pushSync().then(live=>toast(live?"Product deleted — live for everyone":"Saved on this device only"))}});
 }
 function renderPForm(){
   const p=editingId?products.find(x=>x.id===editingId):{id:"p"+Date.now(),name:"",cat:"Business Cards",img:"",badge:"",turnaround:"3–7 business days",desc:"",includes:[],rungs:[{qty:"",price:0}],options:[],active:true};
@@ -1875,7 +1880,7 @@ function renderPForm(){
       <input type="file" id="pf_file" accept="image/*" multiple style="display:none"><button class="mini" id="pf_upload">Upload Photos</button>
       <input id="pf_imgurl" placeholder="…or paste image URL" style="flex:1;min-width:180px;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:999px;padding:8px 16px;color:var(--ink);font-size:13px">
       <button class="mini" id="pf_addurl">Add URL</button></div>
-      <p class="hint">Uploads are compressed automatically. Use ← → to reorder, ★ to set the cover. Keep photos small — product data lives in your browser's storage.</p></div>
+      <p class="hint">Uploads are compressed automatically. Use ← → to reorder, ★ to set the cover. Photos upload to your Drive and go live for every visitor when you save the product.</p></div>
     <div class="field full"><label>Quantities & prices — one per line, format: label : price</label><textarea id="pf_rungs" style="min-height:110px;font-family:monospace">${p.rungs.map(r=>`${r.qty} : ${r.price}${r.tag?` : ${r.tag}`:""}`).join("\n")}</textarea><p class="hint">Example:<br>250 cards : 75<br>1,000 cards : 105 : Most Popular<br>Add " : Badge" after the price for a highlight badge (e.g. Best Deal).</p></div>
     <div class="field full"><label>Options (optional) — format: Name: choice1, choice2</label><textarea id="pf_opts" style="min-height:64px;font-family:monospace">${(p.options||[]).map(o=>`${o.name}: ${o.choices.join(", ")}`).join("\n")}</textarea><p class="hint">Example: Finish: High Gloss UV, Matte</p></div>
     <div class="field full"><label>What's included — one per line</label><textarea id="pf_inc" style="min-height:90px">${(p.includes||[]).join("\n")}</textarea></div>
@@ -1913,11 +1918,91 @@ function renderPForm(){
       rungs,options:opts,includes:$("#pf_inc").value.split("\n").map(s=>s.trim()).filter(Boolean),active:p.active!==false};
     if(editingId){const i=products.findIndex(x=>x.id===editingId);products[i]=data}
     else products.push(data);
-    editingId=null;persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();toast("Product saved — live on the site now");
+    editingId=null;persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();pushSync().then(live=>toast(live?"Product saved — live for everyone":"Saved on this device only"));
   };
   w.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function persistProducts(){save(LS.products,products)}
+
+/* ============ LIVE SYNC — admin edits go live for every visitor ============ */
+const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1"};
+function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
+async function uploadSyncPhoto(dataUrl,name){
+  try{
+    const backend=load(LS.backend,DEFAULT_BACKEND);
+    if(!backend||!dataUrl||dataUrl.indexOf("data:")!==0) return null;
+    const r=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},
+      body:JSON.stringify({action:"uploadPhoto",secret:SYNC_SECRET,file:{data:dataUrl,type:"image/jpeg",name:name||"photo"}})});
+    const j=await r.json();
+    return (j&&j.ok&&j.url)?j.url:null;
+  }catch(e){return null}
+}
+async function materializeSyncPhotos(st){
+  let ok=true;
+  const fix=async(url,name)=>{
+    if(!url||url.indexOf("data:")!==0) return url;
+    const u=await uploadSyncPhoto(url,name);
+    if(!u) ok=false;
+    return u||url;
+  };
+  for(const p of st.products){
+    if(p.img) p.img=await fix(p.img,"product-"+p.id+"-cover");
+    if(Array.isArray(p.images)) for(let i=0;i<p.images.length;i++) p.images[i]=await fix(p.images[i],"product-"+p.id+"-"+i);
+  }
+  if(Array.isArray(st.covers)) for(let i=0;i<st.covers.length;i++) if(st.covers[i].img) st.covers[i].img=await fix(st.covers[i].img,"cover-"+i);
+  if(st.headshot) st.headshot=await fix(st.headshot,"headshot");
+  return ok;
+}
+async function pushSync(){
+  const backend=load(LS.backend,DEFAULT_BACKEND);
+  if(!backend){markSyncDirty();return false}
+  const st={updated:Date.now(),
+    products:JSON.parse(JSON.stringify(products)),
+    deletedIds:loadDeletedIds(),
+    payments:JSON.parse(JSON.stringify(paySettings)),
+    covers:JSON.parse(JSON.stringify(heroCovers)),
+    headshot:load(LS2.headshot,"")};
+  const photosOk=await materializeSyncPhotos(st);
+  if(!photosOk){markSyncDirty();return false}
+  try{
+    const r=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},
+      body:JSON.stringify({action:"saveSync",secret:SYNC_SECRET,state:st})});
+    const j=await r.json();
+    if(j&&j.ok){
+      products=st.products;persistProducts();
+      save(LS.deleted,st.deletedIds);
+      paySettings=st.payments;savePay();
+      heroCovers=st.covers;saveCovers();
+      save(LS2.headshot,st.headshot);
+      save(LS_SYNC.updated,st.updated);
+      try{localStorage.removeItem(LS_SYNC.dirty)}catch(e){}
+      return true;
+    }
+  }catch(e){}
+  markSyncDirty();
+  return false;
+}
+async function pullSync(){
+  try{
+    const backend=load(LS.backend,DEFAULT_BACKEND);
+    if(!backend) return;
+    if(load(LS_SYNC.dirty,0)) return;
+    const r=await fetch(backend+"?action=sync");
+    const j=await r.json();
+    const live=j&&j.ok&&j.state;
+    if(!live||!Array.isArray(live.products)||!live.products.length) return;
+    if((+live.updated||0)>load(LS_SYNC.updated,0)){
+      products=live.products;persistProducts();
+      if(Array.isArray(live.deletedIds)) save(LS.deleted,live.deletedIds);
+      if(live.payments){paySettings=Object.assign({},DEFAULT_PAY,live.payments);savePay()}
+      if(Array.isArray(live.covers)&&live.covers.length===3){heroCovers=live.covers;saveCovers()}
+      if(typeof live.headshot==="string") save(LS2.headshot,live.headshot);
+      save(LS_SYNC.updated,+live.updated||Date.now());
+      renderGrid();renderTiers();renderBundles();renderHeroCovers();renderHeadshot();
+    }
+  }catch(e){}
+}
+setTimeout(pullSync,1200);
 
 /* --- admin: orders --- */
 function payBadge(o){
@@ -1979,11 +2064,11 @@ function renderAdminSettings(){
   <p class="hint" style="margin-bottom:26px">Current PIN: <b>${esc(getPin())}</b> — change it if anyone else saw the default.</p>
   <h3 style="margin-bottom:16px;font-size:19px">Backup & Restore</h3>
   <div class="setrow"><button class="mini" id="set_export">Download Backup (JSON)</button><button class="mini" id="set_import">Restore from Backup</button><input type="file" id="set_file" accept=".json" style="display:none"><button class="mini danger" id="set_reset">Reset to Default Products</button></div>
-  <p class="hint">Your products, orders, and settings live in this browser. Download a backup before switching devices or clearing data.</p>`;
+  <p class="hint">Products, payments, covers and your profile photo sync live to every visitor through your backend. Orders live in your Google Sheet. Download a backup before clearing browser data.</p>`;
   $("#set_saveBackend").onclick=()=>{save(LS.backend,$("#set_backend").value.trim());toast("Backend URL saved")};
   $("#set_savePay").onclick=()=>{
     paySettings={enabled:$("#set_pay_enabled").checked,square_link:$("#set_square").value.trim(),cashapp_tag:$("#set_cashapp").value.trim(),zelle_number:$("#set_zelle").value.trim()};
-    savePay(); toast("Payment settings saved");
+    savePay();pushSync().then(live=>toast(live?"Payment settings saved — live for everyone":"Saved on this device only"));
     const pc=$("#phonePayCopy"); if(pc) pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere.";
   };
   const renderCoverSlots=()=>{
@@ -1993,16 +2078,16 @@ function renderAdminSettings(){
     heroCovers.forEach((c,i)=>{
       $("#covUp"+i).onclick=()=>$("#covFile"+i).click();
       $("#covFile"+i).onchange=e=>{const f=e.target.files[0];if(!f)return;
-        compressImage(f,1200,url=>{heroCovers[i].img=url;saveCovers();$("#covImg"+i).src=url;renderHeroCovers();toast("Cover photo updated — live now")});e.target.value=""};
-      $("#covTag"+i).onchange=e=>{heroCovers[i].tag=e.target.value;saveCovers();renderHeroCovers()};
+        compressImage(f,1200,url=>{heroCovers[i].img=url;saveCovers();$("#covImg"+i).src=url;renderHeroCovers();pushSync().then(live=>toast(live?"Cover photo updated — live for everyone":"Saved on this device only"))});e.target.value=""};
+      $("#covTag"+i).onchange=e=>{heroCovers[i].tag=e.target.value;saveCovers();renderHeroCovers();pushSync().then(live=>toast(live?"Caption updated — live for everyone":"Saved on this device only"))};
     });
   };
   renderCoverSlots();
-  $("#set_coversReset").onclick=()=>{if(confirm("Reset hero cover photos to the defaults?")){heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));saveCovers();renderCoverSlots();renderHeroCovers();toast("Cover photos reset")}};
+  $("#set_coversReset").onclick=()=>{if(confirm("Reset hero cover photos to the defaults?")){heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));saveCovers();renderCoverSlots();renderHeroCovers();pushSync().then(live=>toast(live?"Cover photos reset — live for everyone":"Saved on this device only"))}};
   $("#hsUp").onclick=()=>$("#hsFile").click();
   $("#hsFile").onchange=e=>{const f=e.target.files[0];if(!f)return;
-    compressImage(f,800,url=>{save(LS2.headshot,url);$("#hsPrev").src=url;renderHeadshot();toast("Profile photo updated — live now")});e.target.value=""};
-  $("#hsRemove").onclick=()=>{save(LS2.headshot,"");$("#hsPrev").src="logo.png";renderHeadshot();toast("Profile photo reset to the logo")};
+    compressImage(f,800,url=>{save(LS2.headshot,url);$("#hsPrev").src=url;renderHeadshot();pushSync().then(live=>toast(live?"Profile photo updated — live for everyone":"Saved on this device only"))});e.target.value=""};
+  $("#hsRemove").onclick=()=>{save(LS2.headshot,"");$("#hsPrev").src="logo.png";renderHeadshot();pushSync().then(live=>toast(live?"Profile photo reset — live for everyone":"Saved on this device only"))};
   $("#set_savePin").onclick=()=>{const v=$("#set_pin").value.trim();if(v.length<4){toast("PIN must be at least 4 characters");return}save(LS.pin,v);renderAdminSettings();toast("PIN changed")};
   $("#set_export").onclick=()=>{
     const data={products,orders,pin:getPin(),backend:load(LS.backend,DEFAULT_BACKEND),payments:paySettings,covers:heroCovers,headshot:load(LS2.headshot,""),exported:new Date().toISOString()};
@@ -2016,7 +2101,7 @@ function renderAdminSettings(){
       if(d.headshot!==undefined){save(LS2.headshot,d.headshot||"");renderHeadshot()}
       renderGrid();renderTiers();renderBundles();renderAdminProducts();renderAdminOrders();renderAdminSettings();renderCart();toast("Backup restored")}catch(err){toast("Invalid backup file")}};
     r.readAsText(f)};
-  $("#set_reset").onclick=()=>{if(confirm("Reset products to the original defaults? Your custom products will be replaced.")){products=JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));save(LS.deleted,[]);persistProducts();renderGrid();renderTiers();renderBundles();renderAdminProducts();toast("Products reset")}};
+  $("#set_reset").onclick=()=>{if(confirm("Reset products to the original defaults? Your custom products will be replaced.")){products=JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));save(LS.deleted,[]);persistProducts();renderGrid();renderTiers();renderBundles();renderAdminProducts();pushSync().then(live=>toast(live?"Products reset — live for everyone":"Saved on this device only"))}};
 }
 
 /* ================= EFFECTS ================= */
@@ -2081,7 +2166,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.3.13");
+console.log("Visualet Designs site v9.4.0");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 </body>
