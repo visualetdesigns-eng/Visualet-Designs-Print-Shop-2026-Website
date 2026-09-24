@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Visualet Designs site version 9.3.9 (2026-09-23) — verify with View Source -->
+<meta charset="UTF-8">
+<title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Visualet Designs online print shop — custom business cards, event canopies, banners, yard signs, door hangers & more. Design, print & ship in one package. Order online.">
+<meta name="theme-color" content="#040711">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ VISUALET PRINT SHOP — LIQUID GLASS SYSTEM ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --void:#030509; --navy-deep:#060a18; --navy-mid:#0b1226;
+  --navy-glass:rgba(9,14,32,.72);
+  --blue-electric:#1c4dff; --blue-bright:#4d9dff;
+  --purple-accent:#7b3bff; --magenta-neon:#ff2f9c;
+  --ink:#f2f5ff; --ink-soft:#cdd3e6; --ink-faint:#8891ac;
+  --glass-brd:rgba(77,157,255,.20);
+  --r-lg:28px; --r-md:20px;
+  --shadow-lg:0 30px 90px rgba(0,0,0,.55);
+  --grad:linear-gradient(120deg,var(--blue-bright),var(--blue-electric) 35%,var(--magenta-neon) 75%,var(--purple-accent));
+  --ease-premium:cubic-bezier(.2,.7,.25,1);
+}
+html,body{width:100%;max-width:100%;overflow-x:hidden;overflow-x:clip;overscroll-behavior:none}
+body{position:relative}
+body{background:var(--void);color:var(--ink);font-family:'Inter','Segoe UI',Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:'Space Grotesk','Segoe UI',sans-serif;line-height:1.15;letter-spacing:-.02em}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit}
+::selection{background:rgba(28,77,255,.45)}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:#05070f}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--blue-electric),var(--magenta-neon));border-radius:8px;border:2px solid #05070f}
+
+/* ambient background */
+.bg{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(ellipse 900px 600px at 12% 0%,rgba(28,77,255,.16),transparent 60%),
+  radial-gradient(ellipse 900px 700px at 100% 30%,rgba(255,47,156,.12),transparent 60%),
+  radial-gradient(ellipse 700px 500px at 50% 100%,rgba(123,59,255,.08),transparent 60%),
+  var(--void)}
+.blueprint{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.7;
+  background-image:linear-gradient(rgba(77,157,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(77,157,255,.045) 1px,transparent 1px);
+  background-size:52px 52px;
+  -webkit-mask-image:radial-gradient(ellipse 100% 55% at 50% 0%,black 30%,transparent 85%);
+  mask-image:radial-gradient(ellipse 100% 55% at 50% 0%,black 30%,transparent 85%)}
+.blob{position:fixed;border-radius:50%;filter:blur(110px);opacity:.5;z-index:-1;pointer-events:none;will-change:transform}
+.blob.b1{width:420px;height:420px;left:-150px;top:6%;background:radial-gradient(circle,var(--blue-electric),transparent 70%);animation:drift 14s ease-in-out infinite}
+.blob.b2{width:380px;height:380px;right:-140px;top:42%;background:radial-gradient(circle,var(--magenta-neon),transparent 70%);animation:drift 18s ease-in-out infinite reverse}
+.blob.b3{width:340px;height:340px;left:30%;bottom:-160px;background:radial-gradient(circle,var(--purple-accent),transparent 70%);animation:drift 20s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-46px)}}
+
+/* ============ NAV ============ */
+.skip{position:absolute;left:-999px;top:auto;background:var(--blue-electric);color:#fff;padding:12px 20px;border-radius:10px;z-index:9999}
+.skip:focus{left:16px;top:16px}
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(94%,1340px);z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 14px 10px 22px;border-radius:999px;
+  background:rgba(6,9,22,.62);backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);
+  border:1px solid var(--glass-brd);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 60px rgba(0,0,0,.6),0 0 90px rgba(28,77,255,.16);
+  transition:box-shadow .3s}
+nav::before{content:"";position:absolute;top:1px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand img{height:54px;width:auto;filter:drop-shadow(0 0 10px rgba(28,77,255,.55))}
+.brand b{font-family:'Space Grotesk';font-size:15px;letter-spacing:.2px;white-space:nowrap}
+.brand b span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{text-decoration:none;padding:9px 17px;border-radius:999px;font-weight:600;font-size:13.5px;color:var(--ink-soft);transition:.22s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(77,157,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-brd);background:rgba(77,157,255,.07);
+  color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.22s;backdrop-filter:blur(10px)}
+.icon-btn:hover{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#000;transform:translateY(-2px);box-shadow:0 10px 26px rgba(28,77,255,.5)}
+.icon-btn svg{width:20px;height:20px}
+.cart-count{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:linear-gradient(120deg,var(--magenta-neon),var(--purple-accent));
+  color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(255,47,156,.5)}
+.cart-count.hide{display:none}
+.burger{display:none}
+.mobile-menu{display:none}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 32px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;
+  text-decoration:none;border:1px solid transparent;white-space:nowrap;transition:transform .22s,box-shadow .22s,background .22s,color .22s;
+  background:linear-gradient(#070b16,#070b16) padding-box,linear-gradient(120deg,var(--blue-electric),var(--magenta-neon)) border-box;
+  color:var(--blue-bright);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 8px 26px rgba(0,0,0,.45)}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 44px rgba(28,77,255,.5);color:#fff}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.solid{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 34px rgba(28,77,255,.45)}
+.btn.solid:hover{color:#fff;box-shadow:0 16px 44px rgba(255,47,156,.45)}
+.btn.ghost{background:rgba(77,157,255,.06);border:1px solid var(--glass-brd);color:var(--ink-soft)}
+.btn.small{padding:10px 22px;font-size:13.5px}
+.btn.block{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn:focus-visible,.addbtn:focus-visible,.pill:focus-visible,.icon-btn:focus-visible,.mini:focus-visible,.atab:focus-visible,.seg button:focus-visible{outline:2px solid var(--blue-bright);outline-offset:3px}
+
+/* ============ LAYOUT ============ */
+.wrap{width:min(100%,1340px);margin:0 auto;padding-inline:clamp(20px,4vw,44px)}
+section{padding:112px 0;position:relative;scroll-margin-top:110px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--blue-bright);margin-bottom:16px;padding:9px 18px;border-radius:999px;background:rgba(77,157,255,.08);border:1px solid var(--glass-brd);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--magenta-neon);box-shadow:0 0 12px var(--magenta-neon)}
+.sec-title{font-size:clamp(32px,4.8vw,56px);font-weight:700;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance}
+.sec-title .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sec-sub{color:var(--ink-faint);max-width:680px;font-size:16.5px;margin-bottom:8px}
+.accent{width:104px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--blue-electric),var(--blue-bright),var(--magenta-neon));box-shadow:0 0 26px rgba(28,77,255,.7);margin:20px 0 44px;position:relative;overflow:hidden}
+.accent::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-110%);animation:accshimmer 5s ease-in-out infinite}
+@keyframes accshimmer{0%,55%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
+.center{text-align:center}.center .accent{margin-left:auto;margin-right:auto}.center .sec-sub{margin-left:auto;margin-right:auto}
+.wrap .sec-sub.center{text-align:center;margin-inline:auto}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(36px);filter:blur(8px);transition:opacity .85s ease,transform .85s var(--ease-premium),filter .85s ease}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* ============ HERO ============ */
+.hero{min-height:100svh;display:flex;align-items:center;padding:150px 0 70px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;width:100%}
+.hero h1{font-size:clamp(52px,7.2vw,96px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:10px 0 20px;text-wrap:balance}
+.hero h1 .grad{background:var(--grad);background-size:200% 200%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 30px rgba(28,77,255,.4));animation:gradshift 8s ease-in-out infinite}
+@keyframes gradshift{0%,100%{background-position:0% 45%}50%{background-position:100% 55%}}
+.hero p.lead{font-size:clamp(16px,2vw,19px);color:var(--ink-soft);max-width:560px;margin-bottom:14px}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 30px}
+/* infinite badge loop */
+.badge-loop{overflow:hidden;margin:22px 0 30px;max-width:640px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.badge-track{display:flex;width:max-content;animation:badgescroll 18s linear infinite}
+.badge-loop:hover .badge-track{animation-play-state:paused}
+.badge-set{display:flex;gap:10px;padding-right:10px;flex-shrink:0}
+@keyframes badgescroll{to{transform:translateX(-50%)}}
+.hbadge{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:600;
+  background:rgba(77,157,255,.07);border:1px solid var(--glass-brd);color:var(--ink-soft);backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 22px rgba(0,0,0,.35)}
+.hbadge svg{width:15px;height:15px;color:var(--blue-bright)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.hero-stats{display:flex;gap:38px;flex-wrap:wrap}
+.hstat b{display:block;font-family:'Space Grotesk';font-size:34px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px rgba(28,77,255,.35))}
+.hstat span{font-size:13px;color:var(--ink-faint);font-weight:500}
+
+/* hero visual — 3D rotating showcase */
+.hero-visual{position:relative;height:660px}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.hero-orb.o1{width:360px;height:360px;left:-70px;top:-50px;background:radial-gradient(circle,rgba(28,77,255,.5),transparent 70%);animation:drift 11s ease-in-out infinite}
+.hero-orb.o2{width:320px;height:320px;right:-50px;bottom:-40px;background:radial-gradient(circle,rgba(255,47,156,.42),transparent 70%);animation:drift 13s ease-in-out infinite reverse}
+.fan{position:absolute;inset:0;z-index:1;perspective:1600px;--cw:min(460px,74vw);--fx:.62}
+.fan-stage{position:absolute;inset:0;transform-style:preserve-3d}
+.fan-float{position:absolute;inset:0;transform-style:preserve-3d;animation:fanfloat 7s ease-in-out infinite}
+@keyframes fanfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.car-floor{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);width:min(560px,88%);height:110px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(28,77,255,.45),rgba(255,47,156,.16) 55%,transparent 72%);filter:blur(28px)}
+.car-card{position:absolute;left:50%;top:50%;translate:-50% -62%;width:var(--cw);aspect-ratio:1/1;border-radius:26px;overflow:hidden;cursor:pointer;
+  border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(135deg,#182350 0%,#0b1230 55%,#150f33 100%);
+  box-shadow:0 44px 120px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform 1.25s var(--ease-premium),filter 1.25s ease,box-shadow 1.25s ease;will-change:transform,filter}
+.car-card::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.18) 0%,transparent 40%)}
+.car-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.25s ease;background:linear-gradient(180deg,transparent 52%,rgba(4,7,17,.55))}
+.car-card.pos-0::after,.car-card.pos-2::after{opacity:1}
+.car-mono{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk';font-weight:700;font-size:calc(var(--cw)*.32);letter-spacing:-.02em;
+  background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.35}
+.car-card img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain}
+.car-blur{position:absolute;inset:-40px;z-index:0;background-size:cover;background-position:center;filter:blur(24px) brightness(.72) saturate(1.3);transform:scale(1.05);pointer-events:none}
+.car-blur.noblur{filter:none}
+.anim-paused .fan-float,.anim-paused .hero-orb,.marquee.anim-paused .marquee-track{animation-play-state:paused}
+.car-card .tag{position:absolute;left:12px;bottom:12px;z-index:3;padding:8px 15px;border-radius:999px;font-size:12.5px;font-weight:700;
+  background:rgba(4,7,17,.72);border:1px solid var(--glass-brd);backdrop-filter:blur(8px);color:#fff;
+  white-space:nowrap;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis}
+.car-card.pos-0{transform:translateX(calc(var(--cw)*var(--fx)*-1)) translateZ(-90px) rotateY(38deg) scale(.9);filter:blur(5px) brightness(.55) saturate(.85)}
+.car-card.pos-1{transform:translateX(0) translateZ(70px) rotateY(0deg) scale(1.03);filter:blur(0) brightness(1.02);
+  box-shadow:0 54px 130px rgba(0,0,0,.75),0 0 90px rgba(28,77,255,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.car-card.pos-2{transform:translateX(calc(var(--cw)*var(--fx))) translateZ(-90px) rotateY(-38deg) scale(.9);filter:blur(5px) brightness(.55) saturate(.85)}
+.car-card:focus-visible{outline:2px solid var(--blue-bright);outline-offset:4px}
+.fan-dots{position:absolute;left:50%;bottom:0;transform:translateX(-50%);display:flex;gap:8px;z-index:5}
+.fan-dots button{width:9px;height:9px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(10,16,34,.5);cursor:pointer;padding:0;transition:.3s}
+.fan-dots button.on{width:26px;background:#fff;box-shadow:0 0 12px rgba(77,157,255,.9)}
+.hero-glow{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(130px);opacity:.55;pointer-events:none;
+  background:radial-gradient(circle,var(--blue-electric),transparent 70%);right:-80px;top:60px;z-index:-1}
+
+/* ============ MARQUEE ============ */
+.marquee{overflow:hidden;border-top:1px solid rgba(77,157,255,.12);border-bottom:1px solid rgba(77,157,255,.12);
+  background:rgba(6,9,22,.5);backdrop-filter:blur(14px);padding:16px 0;position:relative;z-index:2}
+.marquee-track{display:flex;width:max-content;animation:scrollX 26s linear infinite}
+.marquee-track span{display:flex;align-items:center;gap:12px;font-weight:600;font-size:14px;letter-spacing:1.4px;color:var(--ink-soft);white-space:nowrap;text-transform:uppercase;margin-right:56px}
+.marquee-track svg{width:16px;height:16px;color:var(--magenta-neon)}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ============ SHOP ============ */
+.shop-bar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:34px}
+.pills{display:flex;gap:9px;flex-wrap:wrap}
+.pill{padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--ink-faint);
+  background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.16);transition:.22s}
+.pill:hover{color:#fff;border-color:rgba(77,157,255,.4)}
+.pill.on{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(28,77,255,.45)}
+.search{position:relative}
+.search input{background:rgba(8,12,26,.8);border:1px solid var(--glass-brd);border-radius:999px;padding:11px 18px 11px 42px;color:var(--ink);
+  font-size:14px;width:230px;outline:none;transition:.22s}
+.search input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px rgba(28,77,255,.25);width:270px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--ink-faint)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px}
+.pcard{border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;
+  background:linear-gradient(180deg,rgba(15,22,46,.88),rgba(8,12,26,.92));border:1px solid rgba(77,157,255,.14);
+  box-shadow:0 26px 70px rgba(0,0,0,.58),0 0 46px rgba(28,77,255,.08),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .3s,box-shadow .35s,border-color .3s;transform-style:preserve-3d;will-change:transform}
+.pcard:hover{box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 90px rgba(28,77,255,.28),inset 0 1px 0 rgba(255,255,255,.12);border-color:rgba(77,157,255,.4)}
+.pcard::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:linear-gradient(135deg,rgba(77,157,255,.65),rgba(255,47,156,.5) 60%,rgba(123,59,255,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.pcard:hover::after{opacity:1}
+.pimg{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--navy-mid)}
+.pimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.pcard:hover .pimg img{transform:scale(1.12);filter:saturate(1.1)}
+.pimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(4,7,17,.55) 72%,rgba(4,7,17,.88));pointer-events:none}
+.pbadge{position:absolute;top:14px;left:14px;z-index:2;padding:7px 15px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;box-shadow:0 8px 22px rgba(28,77,255,.5)}
+.pturn{position:absolute;top:14px;right:14px;z-index:2;padding:7px 13px;border-radius:999px;font-size:11.5px;font-weight:600;
+  background:rgba(4,7,17,.66);border:1px solid var(--glass-brd);backdrop-filter:blur(8px);color:var(--ink-soft)}
+.pbody{padding:22px 22px 24px}
+.pcat{font-size:11.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--blue-bright);margin-bottom:8px}
+.pname{font-size:19px;font-weight:700;margin-bottom:8px;font-family:'Space Grotesk'}
+.pdesc{font-size:13.5px;color:var(--ink-faint);margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price{font-family:'Space Grotesk';font-size:24px;font-weight:700;letter-spacing:-.01em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 14px rgba(28,77,255,.3))}
+.price small{font-size:12.5px;font-weight:500;font-family:'Inter';-webkit-text-fill-color:var(--ink-faint);color:var(--ink-faint)}
+.addbtn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;font-size:13.5px;font-weight:700;cursor:pointer;border:none;
+  background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;transition:.22s;position:relative;overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 28px rgba(28,77,255,.45)}
+.addbtn::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .55s ease}
+.addbtn:hover::after{left:140%}
+.addbtn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 14px 34px rgba(255,47,156,.45)}
+.addbtn svg{width:15px;height:15px}
+.empty-shop{text-align:center;padding:70px 20px;color:var(--ink-faint);grid-column:1/-1}
+
+/* ============ HOW IT WORKS ============ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
+.step{border-radius:var(--r-lg);padding:38px 32px;position:relative;overflow:hidden;
+  background:rgba(8,12,26,.7);border:1px solid rgba(77,157,255,.13);backdrop-filter:blur(20px);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);transition:.3s}
+.step:hover{transform:translateY(-6px);border-color:rgba(77,157,255,.32);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(28,77,255,.18)}
+.step .num{position:absolute;top:14px;right:22px;font-family:'Space Grotesk';font-size:64px;font-weight:700;opacity:.09}
+.step .sic{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  background:linear-gradient(135deg,rgba(28,77,255,.2),rgba(255,47,156,.16));border:1px solid var(--glass-brd)}
+.step .sic svg{width:24px;height:24px;color:var(--blue-bright)}
+.step h3{font-size:20px;margin-bottom:10px}
+.step p{font-size:14.5px;color:var(--ink-faint)}
+
+/* ============ SPOTLIGHT BUNDLE ============ */
+.spot{border-radius:36px;padding:3px;background:linear-gradient(120deg,var(--blue-electric),var(--purple-accent),var(--magenta-neon));
+  box-shadow:0 40px 130px rgba(0,0,0,.6),0 0 140px rgba(28,77,255,.22);margin-top:14px}
+.spot-in{border-radius:34px;background:linear-gradient(180deg,rgba(7,10,22,.97),rgba(7,10,22,.99));padding:clamp(28px,5vw,60px);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;position:relative;overflow:hidden}
+.spot-in::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(77,157,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(77,157,255,.05) 1px,transparent 1px);background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 20% 40%,black,transparent 75%);mask-image:radial-gradient(ellipse 70% 70% at 20% 40%,black,transparent 75%)}
+.spot-media{position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(77,157,255,.22);box-shadow:var(--shadow-lg)}
+.spot-media img{width:100%;height:auto;max-height:82svh;object-fit:contain;display:block;background:#070b1c}
+.spot-list{list-style:none;display:grid;gap:11px;margin:24px 0 30px}
+.spot-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-soft)}
+.spot-list svg{width:17px;height:17px;color:var(--blue-bright);flex-shrink:0;margin-top:4px}
+.big-price{font-family:'Space Grotesk';font-size:52px;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.big-price small{font-size:15px;color:var(--ink-faint);font-family:'Inter';font-weight:500;-webkit-text-fill-color:var(--ink-faint)}
+
+/* ============ DESIGN SERVICES ============ */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tier{border-radius:var(--r-lg);padding:40px 34px;position:relative;overflow:hidden;text-align:center;
+  background:rgba(8,12,26,.72);border:1px solid rgba(77,157,255,.14);backdrop-filter:blur(20px);transition:.3s}
+.tier:hover{transform:translateY(-8px)}
+.tier::before{content:"";position:absolute;top:0;left:0;right:0;height:4px}
+.tier.silver::before{background:linear-gradient(90deg,#cfd9df,#9bb8ff)}
+.tier.gold::before{background:linear-gradient(90deg,#ffd36a,#ff9f2e);box-shadow:0 0 22px rgba(255,200,80,.6)}
+.tier.diamond::before{background:linear-gradient(90deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 0 26px rgba(255,47,156,.6)}
+.tier.gold{border-color:rgba(255,200,80,.3);box-shadow:0 24px 80px rgba(0,0,0,.55),0 0 70px rgba(255,180,60,.12)}
+.tier h3{font-size:24px;margin-bottom:6px}
+.tier .tprice{font-family:'Space Grotesk';font-size:44px;font-weight:700;margin:10px 0 4px}
+.tier ul{list-style:none;text-align:left;display:grid;gap:10px;margin:24px 0 30px;font-size:14.5px;color:var(--ink-soft)}
+.tier ul li{display:flex;gap:10px;align-items:flex-start}
+.tier ul svg{width:16px;height:16px;color:var(--blue-bright);flex-shrink:0;margin-top:4px}
+
+/* ============ REVIEWS ============ */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.rev{border-radius:var(--r-lg);padding:34px 30px;background:rgba(8,12,26,.7);border:1px solid rgba(77,157,255,.13);backdrop-filter:blur(20px);position:relative;transition:.3s}
+.rev:hover{transform:translateY(-5px);border-color:rgba(255,47,156,.3)}
+.rev .stars{color:#ffc94d;letter-spacing:3px;margin-bottom:16px;font-size:15px}
+.rev p{font-size:15px;color:var(--ink-soft);font-style:italic;margin-bottom:18px}
+.rev b{color:var(--blue-bright);font-size:14px}
+
+/* ============ TRACK ORDER ============ */
+.track-card{max-width:640px;margin:0 auto;border-radius:32px;padding:clamp(28px,4vw,48px);text-align:center;
+  background:rgba(8,12,26,.78);border:1px solid rgba(77,157,255,.16);backdrop-filter:blur(24px);box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.track-card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.07),transparent 45%);pointer-events:none}
+.tform{display:flex;gap:10px;margin:26px 0 8px;flex-wrap:wrap}
+.tform input{flex:1;min-width:180px;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:14px;padding:14px 18px;color:var(--ink);font-size:15px;outline:none;transition:.2s}
+.tform input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px rgba(28,77,255,.22)}
+.timeline{margin-top:30px;text-align:left;display:none}
+.timeline.show{display:block;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.tl-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(77,157,255,.14)}
+.tl-head b{font-family:'Space Grotesk';font-size:19px}
+.tl-status{padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:700;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff}
+.tl-step{display:flex;gap:16px;position:relative;padding-bottom:26px}
+.tl-step::before{content:"";position:absolute;left:15px;top:34px;bottom:0;width:2px;background:rgba(77,157,255,.18)}
+.tl-step:last-child::before{display:none}
+.tl-dot{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(77,157,255,.08);border:1px solid var(--glass-brd);color:var(--ink-faint);z-index:1}
+.tl-dot svg{width:15px;height:15px}
+.tl-step.done .tl-dot{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border:none;box-shadow:0 6px 18px rgba(28,77,255,.5)}
+.tl-step.now .tl-dot{border-color:var(--magenta-neon);color:var(--magenta-neon);box-shadow:0 0 0 5px rgba(255,47,156,.15)}
+.tl-step b{display:block;font-size:15px}
+.tl-step.done b{color:#fff}.tl-step:not(.done):not(.now) b{color:var(--ink-faint)}
+.tl-step small{color:var(--ink-faint);font-size:13px}
+.tl-items{margin-top:20px;padding-top:18px;border-top:1px solid rgba(77,157,255,.14);font-size:14px;color:var(--ink-soft)}
+.tl-items div{display:flex;justify-content:space-between;padding:6px 0}
+.track-err{display:none;color:#ff8fa8;font-size:14px;margin-top:14px}
+.track-err.show{display:block}
+
+/* ============ ABOUT / CONTACT / FOOTER ============ */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.about-grid p{color:var(--ink-soft);margin-bottom:16px;font-size:16px}
+.about-photo{border-radius:32px;overflow:hidden;border:1px solid rgba(77,157,255,.2);box-shadow:var(--shadow-lg);aspect-ratio:1;max-width:380px;margin:0 auto;background:var(--navy-mid);display:flex;align-items:center;justify-content:center;color:var(--ink-faint)}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-photo.is-logo{background:#0a1030;padding:30px}
+.about-photo.is-logo img{object-fit:contain}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.c-card{border-radius:var(--r-lg);padding:36px 32px;background:rgba(8,12,26,.72);border:1px solid rgba(77,157,255,.14);backdrop-filter:blur(20px);transition:.3s;text-decoration:none;display:block}
+.c-card:hover{transform:translateY(-5px);border-color:rgba(77,157,255,.35)}
+.c-card .sic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;background:rgba(77,157,255,.09);border:1px solid var(--glass-brd)}
+.c-card .sic svg{width:23px;height:23px;color:var(--blue-bright)}
+.c-card h3{margin-bottom:8px}.c-card p{color:var(--ink-faint);font-size:14.5px}
+footer{padding:70px 0 46px;text-align:center;color:var(--ink-faint);font-size:13.5px;background:linear-gradient(180deg,transparent,rgba(3,5,11,.92));position:relative}
+footer::before{content:"";position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(77,157,255,.55),rgba(255,47,156,.4),transparent)}
+footer img{height:58px;margin:0 auto 16px;opacity:.98;filter:drop-shadow(0 0 18px rgba(28,77,255,.5))}
+.foot-brand{color:var(--ink-soft)}
+.foot-tag{font-size:11.5px;letter-spacing:3px;text-transform:uppercase;margin-top:8px}
+.foot-text{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:14px 30px;border-radius:999px;font-weight:700;font-size:15px;color:#fff;text-decoration:none;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 14px 38px rgba(28,77,255,.5);transition:.25s}
+.foot-text:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 20px 50px rgba(255,47,156,.5)}
+.foot-text svg{width:17px;height:17px}
+
+/* ============ MODALS ============ */
+.overlay{position:fixed;inset:0;background:rgba(2,4,10,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.show{opacity:1;pointer-events:auto}
+.modal{position:fixed;inset:0;z-index:2100;display:flex;align-items:center;justify-content:center;padding:18px;pointer-events:none}
+.modal.show{pointer-events:auto}
+.sheet{width:100%;max-width:920px;max-height:92svh;overflow-y:auto;border-radius:30px;position:relative;
+  background:rgba(7,10,22,.92);border:1px solid rgba(77,157,255,.2);backdrop-filter:blur(30px) saturate(160%);-webkit-backdrop-filter:blur(30px) saturate(160%);
+  box-shadow:0 50px 140px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.1);
+  opacity:0;transform:translateY(40px) scale(.97);transition:.38s cubic-bezier(.2,.8,.3,1)}
+.modal.show .sheet{opacity:1;transform:none}
+.sheet::before{content:"";position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(130,185,255,.65),transparent);z-index:6;pointer-events:none}
+.sheet::-webkit-scrollbar{width:8px}.sheet::-webkit-scrollbar-thumb{background:rgba(77,157,255,.3);border-radius:8px}
+.x{position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:50%;border:1px solid var(--glass-brd);background:rgba(6,9,22,.6);
+  color:#fff;font-size:20px;cursor:pointer;z-index:5;transition:.22s;display:flex;align-items:center;justify-content:center}
+.x:hover{background:var(--magenta-neon);color:#fff;transform:rotate(90deg)}
+
+/* product modal */
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
+.pm-media{position:relative;min-height:320px;background:var(--navy-mid)}
+.pm-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pm-body{padding:clamp(26px,4vw,44px)}
+.pm-body .pcat{margin-bottom:6px}
+.pm-body h2{font-size:clamp(24px,3vw,32px);margin-bottom:10px;padding-right:30px}
+.pm-desc{color:var(--ink-soft);font-size:14.5px;margin-bottom:18px}
+.pm-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.pm-meta span{font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;background:rgba(77,157,255,.08);border:1px solid var(--glass-brd);color:var(--ink-soft)}
+.opt-label{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-faint);margin:20px 0 10px}
+.rungs{display:grid;gap:9px}
+.rung{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-radius:16px;cursor:pointer;
+  background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.16);transition:.2s;font-size:14.5px}
+.rung:hover{border-color:rgba(77,157,255,.45)}
+.rung.on{background:linear-gradient(120deg,rgba(28,77,255,.28),rgba(255,47,156,.2));border-color:var(--blue-bright);box-shadow:0 8px 26px rgba(28,77,255,.3)}
+.rung b{font-family:'Space Grotesk';font-size:17px}
+.rung .save{font-size:11px;font-weight:700;color:#7dffb0;margin-left:8px}
+.seg{display:flex;gap:9px;flex-wrap:wrap}
+.seg button{padding:11px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--ink-soft);
+  background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.16);transition:.2s}
+.seg button.on{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-color:transparent}
+.pm-includes{list-style:none;display:grid;gap:8px;margin-top:6px;font-size:13.5px;color:var(--ink-soft)}
+.pm-includes li{display:flex;gap:10px;align-items:flex-start}
+.pm-includes svg{width:15px;height:15px;color:var(--blue-bright);flex-shrink:0;margin-top:4px}
+#pModal .sheet{display:flex;flex-direction:column;overflow:hidden}
+#pModal .pm-grid{flex:1 1 auto;min-height:0;overflow-y:auto}
+.pm-foot{position:static;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px clamp(26px,4vw,44px);
+  background:rgba(5,8,18,.9);backdrop-filter:blur(20px);border-top:1px solid rgba(77,157,255,.14);border-radius:0 0 30px 30px}
+.pm-total small{display:block;font-size:12px;color:var(--ink-faint);font-weight:500}
+.pm-total b{font-family:'Space Grotesk';font-size:32px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ============ CART DRAWER ============ */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);z-index:2200;display:flex;flex-direction:column;
+  background:rgba(7,10,22,.94);border-left:1px solid rgba(77,157,255,.2);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  transform:translateX(105%);transition:transform .42s cubic-bezier(.2,.8,.25,1);box-shadow:-40px 0 100px rgba(0,0,0,.6)}
+.drawer.show{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:24px 26px;border-bottom:1px solid rgba(77,157,255,.14)}
+.drawer-head h3{font-size:20px}
+.drawer-items{flex:1;overflow-y:auto;padding:20px 26px;display:flex;flex-direction:column;gap:16px}
+.citem{display:grid;grid-template-columns:76px 1fr;gap:14px;padding:14px;border-radius:18px;background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.13)}
+.citem img{width:76px;height:76px;object-fit:cover;border-radius:12px}
+.citem .cn{font-size:14px;font-weight:700;font-family:'Space Grotesk';margin-bottom:3px}
+.citem .cd{font-size:12px;color:var(--ink-faint);margin-bottom:8px}
+.citem .cr{display:flex;align-items:center;justify-content:space-between}
+.qty{display:inline-flex;align-items:center;gap:10px;background:rgba(4,7,17,.6);border:1px solid var(--glass-brd);border-radius:999px;padding:4px 10px}
+.qty button{width:26px;height:26px;border-radius:50%;border:none;background:rgba(77,157,255,.14);color:#fff;font-size:15px;cursor:pointer;line-height:1}
+.qty button:hover{background:var(--blue-electric)}
+.qty b{font-size:13.5px;min-width:18px;text-align:center}
+.citem .cp{font-family:'Space Grotesk';font-weight:700}
+.citem .rm{background:none;border:none;color:var(--ink-faint);font-size:12px;cursor:pointer;text-decoration:underline;margin-top:6px}
+.citem .rm:hover{color:var(--magenta-neon)}
+.cart-empty{text-align:center;color:var(--ink-faint);padding:60px 10px;font-size:14.5px}
+.drawer-foot{padding:22px 26px 28px;border-top:1px solid rgba(77,157,255,.14);background:rgba(5,8,18,.7)}
+.trow{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-soft);margin-bottom:8px}
+.trow.grand{font-size:19px;color:#fff;font-weight:700;font-family:'Space Grotesk';margin:12px 0 18px}
+.trow.grand span:last-child{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ============ CHECKOUT ============ */
+.co-steps{display:flex;gap:8px;margin:26px clamp(26px,4vw,44px) 0}
+.co-dot{flex:1;height:5px;border-radius:5px;background:rgba(77,157,255,.15);overflow:hidden;position:relative}
+.co-dot.on::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--blue-electric),var(--magenta-neon));animation:fill .5s ease}
+@keyframes fill{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}
+.co-body{padding:30px clamp(26px,4vw,44px) 40px}
+.co-body h2{font-size:27px;margin-bottom:6px;padding-right:30px}
+.co-sub{color:var(--ink-faint);font-size:14px;margin-bottom:24px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-faint)}
+.field input,.field textarea,.field select{background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:14px;padding:13px 16px;color:var(--ink);font-size:15px;outline:none;transition:.2s;font-family:inherit;width:100%;box-shadow:inset 0 2px 10px rgba(0,0,0,.4)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px rgba(28,77,255,.22)}
+.field textarea{resize:vertical;min-height:88px}
+.checkline{display:flex;gap:12px;align-items:flex-start;margin-top:16px;padding:16px;border-radius:16px;background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.15);cursor:pointer;font-size:14px;color:var(--ink-soft)}
+.checkline input{width:19px;height:19px;margin-top:2px;accent-color:var(--blue-electric);flex-shrink:0}
+.co-nav{display:flex;gap:12px;margin-top:28px}
+.review-box{border-radius:18px;border:1px solid rgba(77,157,255,.15);overflow:hidden;margin-bottom:18px}
+.review-box .rh{padding:14px 20px;background:rgba(77,157,255,.07);font-weight:700;font-size:14px;font-family:'Space Grotesk'}
+.review-box .rb{padding:16px 20px;font-size:14px;color:var(--ink-soft)}
+.review-box .rb div{display:flex;justify-content:space-between;padding:5px 0;gap:12px}
+.confirm{text-align:center;padding:20px 0}
+.confirm .big-check{width:96px;height:96px;margin:0 auto 24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 20px 60px rgba(28,77,255,.55);animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.confirm .big-check svg{width:44px;height:44px;color:#fff}
+.confirm h2{margin-bottom:10px}
+.order-num{display:inline-block;margin:14px 0 20px;padding:12px 28px;border-radius:999px;font-family:'Space Grotesk';font-size:21px;font-weight:700;letter-spacing:1px;
+  background:rgba(77,157,255,.1);border:1px dashed rgba(77,157,255,.5);color:var(--blue-bright)}
+.confirm p{color:var(--ink-soft);font-size:14.5px;max-width:440px;margin:0 auto 8px}
+
+/* ============ ADMIN ============ */
+.admin-tabs{display:flex;gap:8px;padding:0 clamp(26px,4vw,44px);margin-top:20px;flex-wrap:wrap}
+.atab{padding:11px 22px;border-radius:999px;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink-faint);background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.15);transition:.2s}
+.atab.on{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-color:transparent}
+.admin-body{padding:26px clamp(26px,4vw,44px) 44px}
+.apanel{display:none}.apanel.on{display:block;animation:fadeUp .4s ease}
+.arow{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:16px;background:rgba(77,157,255,.045);border:1px solid rgba(77,157,255,.12);margin-bottom:10px;flex-wrap:wrap}
+.arow .ai{display:flex;gap:13px;align-items:center}
+.arow img{width:52px;height:52px;object-fit:cover;border-radius:10px}
+.arow b{font-size:14.5px;display:block}
+.arow small{color:var(--ink-faint);font-size:12.5px}
+.abtns{display:flex;gap:8px}
+.mini{padding:8px 16px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;border:1px solid var(--glass-brd);background:rgba(77,157,255,.07);color:var(--ink);transition:.2s}
+.mini:hover{background:rgba(77,157,255,.18)}
+.mini.danger:hover{background:rgba(255,47,120,.25);border-color:rgba(255,47,120,.5)}
+.mini.go{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));border:none;color:#fff}
+.pform{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.imgprev{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;background:var(--navy-mid);border:1px dashed rgba(77,157,255,.3)}
+.ord-detail{font-size:13.5px;color:var(--ink-soft);background:rgba(4,7,17,.55);border-radius:12px;padding:14px 16px;margin-top:10px;display:none}
+.ord-detail.show{display:block}
+.ord-detail div{display:flex;justify-content:space-between;padding:4px 0;gap:10px}
+select.statsel{background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:600}
+.setrow{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:18px}
+.setrow .field{flex:1;min-width:220px}
+.hint{font-size:12.5px;color:var(--ink-faint);margin-top:6px;line-height:1.5}
+
+/* toast */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);z-index:4000;opacity:0;transition:.4s cubic-bezier(.2,.8,.3,1);
+  background:rgba(8,12,28,.92);border:1px solid rgba(77,157,255,.3);backdrop-filter:blur(20px);color:#fff;
+  padding:15px 26px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:0 20px 60px rgba(0,0,0,.6);display:flex;gap:10px;align-items:center;max-width:92vw}
+.toast.show{transform:translateX(-50%);opacity:1}
+.toast svg{width:18px;height:18px;color:#7dffb0;flex-shrink:0}
+
+/* svg icon defaults */
+svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.15em}
+
+/* product modal gallery thumbs */
+.pm-thumbs{position:absolute;left:14px;bottom:14px;display:flex;gap:8px;z-index:2}
+.pm-thumbs img{width:56px;height:56px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid transparent;opacity:.75;transition:.2s;position:static}
+.pm-thumbs img.on,.pm-thumbs img:hover{border-color:var(--blue-bright);opacity:1}
+
+/* ============ V2: LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:5000;background:rgba(2,4,10,.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lb.show{opacity:1;pointer-events:auto}
+.lb-stage{position:relative;display:flex;align-items:center;justify-content:center;touch-action:none;max-width:100vw;max-height:100svh}
+.lb-stage img{max-width:94vw;max-height:80svh;object-fit:contain;border-radius:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 120px rgba(0,0,0,.7);
+  cursor:zoom-in;transition:transform .25s ease;will-change:transform}
+.lb-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;z-index:2}
+.lb-count{font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--ink-soft);letter-spacing:1px}
+.lb-tools{display:flex;gap:8px}
+.lb-btn{min-width:44px;height:44px;padding:0 12px;border-radius:50%;border:1px solid var(--glass-brd);background:rgba(6,9,22,.7);
+  color:#fff;font-size:17px;font-weight:700;cursor:pointer;transition:.2s;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center}
+.lb-btn:hover{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon))}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:52px;height:52px;border-radius:50%;font-size:28px;line-height:1;
+  border:1px solid var(--glass-brd);background:rgba(6,9,22,.7);color:#fff;cursor:pointer;transition:.2s;backdrop-filter:blur(8px)}
+.lb-nav:hover{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon))}
+.lb-prev{left:14px}.lb-next{right:14px}
+.lb-cap{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);max-width:90vw;padding:9px 22px;border-radius:999px;
+  background:rgba(4,7,17,.72);border:1px solid var(--glass-brd);backdrop-filter:blur(8px);color:#fff;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ============ V2: CHECKOUT — ARTWORK + PAYMENT ============ */
+.co-labels{display:flex;gap:8px;margin:10px clamp(26px,4vw,44px) 0;font-size:10.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--ink-faint)}
+.co-labels span{flex:1;text-align:center;transition:color .25s}
+.co-labels span.on{color:var(--blue-bright)}
+.drop{border:1.5px dashed rgba(77,157,255,.35);border-radius:18px;padding:26px 20px;text-align:center;cursor:pointer;transition:.2s;background:rgba(77,157,255,.04)}
+.drop:hover,.drop:focus{border-color:var(--blue-bright);background:rgba(77,157,255,.09);outline:none}
+.drop svg{width:34px;height:34px;color:var(--blue-bright);margin-bottom:10px}
+.drop b{display:block;font-size:15px;margin-bottom:4px}
+.artlist{display:grid;gap:8px;margin-top:12px}
+.artitem{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:rgba(77,157,255,.06);border:1px solid rgba(77,157,255,.14);font-size:13.5px}
+.artitem svg{width:18px;height:18px;color:var(--blue-bright);flex-shrink:0}
+.artitem .an{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.artitem small{color:var(--ink-faint);flex-shrink:0}
+.artitem .rm{margin-left:auto;background:none;border:none;color:var(--ink-faint);font-size:16px;cursor:pointer;padding:4px 8px;flex-shrink:0}
+.artitem .rm:hover{color:var(--magenta-neon)}
+.paygrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.paycard{border:1px solid rgba(77,157,255,.16);border-radius:18px;padding:18px 16px;cursor:pointer;background:rgba(77,157,255,.045);transition:.2s;position:relative;display:flex;gap:14px;align-items:flex-start}
+.paycard:hover{border-color:rgba(77,157,255,.45);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.paycard.on{border-color:var(--blue-bright);background:linear-gradient(120deg,rgba(28,77,255,.25),rgba(255,47,156,.18));box-shadow:0 10px 30px rgba(28,77,255,.3)}
+.paycard .ptxt{flex:1;min-width:0}
+.paycard b{display:block;font-size:15px;margin-bottom:4px;padding-right:24px}
+.paycard p{font-size:12.5px;color:var(--ink-faint);line-height:1.5}
+.paycard .radio{position:absolute;top:16px;right:14px;width:22px;height:22px;border-radius:50%;border:2px solid rgba(77,157,255,.4);transition:.2s}
+.paycard.on .radio{border-color:var(--blue-bright);background:radial-gradient(circle,var(--blue-bright) 0 5px,transparent 6px)}
+.pay-ic{width:46px;height:46px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);position:relative;overflow:hidden}
+.pay-ic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pay-ic svg{width:24px;height:24px;fill:currentColor;display:block}
+.pay-ic.sq{color:#0d0d12;background:#fff;border-color:rgba(255,255,255,.9);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.pay-ic.ze{color:#fff;background:#6d1ed4;border-color:#9a55f5;box-shadow:0 4px 16px rgba(109,30,212,.5)}
+.pay-ic.ca{color:#fff;background:#00d632;border-color:#5bf27f;box-shadow:0 4px 16px rgba(0,214,50,.45)}
+.pay-ic.lt{color:var(--blue-bright);background:rgba(77,157,255,.10)}
+.pay-ic.lt svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pay-panel h3{display:flex;align-items:center;justify-content:center;gap:12px}
+.pay-panel .pay-ic{width:40px;height:40px;border-radius:12px}
+.pay-panel .pay-ic svg{width:21px;height:21px}
+/* print-ready artwork upload (business cards) */
+.artup{margin-top:18px;border:1px dashed rgba(77,157,255,.4);border-radius:18px;padding:18px;background:rgba(77,157,255,.045)}
+.artup h4{font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.artup h4 .ic{color:var(--blue-bright)}
+.reward-tag{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#06130b;background:linear-gradient(120deg,#5cf79a,#2fe36b);padding:5px 12px;border-radius:999px;box-shadow:0 4px 16px rgba(47,227,107,.4)}
+.art-slots{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.art-slot{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:132px;border-radius:14px;border:1px dashed rgba(255,255,255,.18);background:rgba(4,7,17,.5);cursor:pointer;overflow:hidden;transition:.2s;font-size:13.5px;font-weight:700;color:var(--ink-soft);text-align:center;padding:10px}
+.art-slot small{font-weight:400;color:var(--ink-faint);font-size:11px}
+.art-slot:hover{border-color:var(--blue-bright);background:rgba(77,157,255,.08)}
+.art-slot .art-plus{font-size:30px;font-weight:300;color:var(--blue-bright);line-height:1}
+.art-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.art-slot.done{border-style:solid;border-color:rgba(47,227,107,.6);cursor:default}
+.art-ok{position:absolute;left:8px;bottom:8px;z-index:2;font-size:11px;font-weight:800;color:#06130b;background:#2fe36b;padding:4px 10px;border-radius:999px}
+.art-rm{position:absolute;right:8px;top:8px;z-index:2;font-size:11px;font-weight:700;color:#ffb3c6;background:rgba(10,5,12,.75);border:1px solid rgba(255,143,168,.4);padding:4px 10px;border-radius:999px;cursor:pointer}
+.reward-mini{display:inline-block;font-size:11px;font-weight:800;color:#06130b;background:linear-gradient(120deg,#5cf79a,#2fe36b);padding:3px 10px;border-radius:999px;vertical-align:middle;margin-left:6px}
+/* reward popup */
+.reward-pop{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(3,5,11,.6);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s}
+.reward-pop.show{opacity:1;pointer-events:auto}
+.reward-card{position:relative;text-align:center;max-width:380px;width:100%;padding:52px 34px 38px;border-radius:28px;background:linear-gradient(160deg,#101a3f,#070b1c 70%);border:1px solid rgba(47,227,107,.4);box-shadow:0 0 0 1px rgba(255,255,255,.06),0 30px 90px rgba(0,0,0,.7),0 0 70px rgba(47,227,107,.25);transform:scale(.6) rotate(-4deg);transition:transform .45s cubic-bezier(.2,1.6,.35,1)}
+.reward-pop.show .reward-card{transform:scale(1) rotate(0)}
+.reward-badge{position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:30px;font-weight:800;color:#06130b;background:linear-gradient(120deg,#5cf79a,#2fe36b);padding:10px 26px;border-radius:999px;box-shadow:0 10px 30px rgba(47,227,107,.55);animation:rewardbob 2.2s ease-in-out infinite}
+@keyframes rewardbob{0%,100%{transform:translateX(-50%) translateY(0) rotate(-2deg)}50%{transform:translateX(-50%) translateY(-8px) rotate(2deg)}}
+.reward-check{width:74px;height:74px;margin:6px auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(47,227,107,.14);border:2px solid #2fe36b;box-shadow:0 0 34px rgba(47,227,107,.5);animation:rewardpop .5s cubic-bezier(.2,1.8,.35,1) .15s backwards}
+.reward-check svg{width:34px;height:34px;stroke:#2fe36b;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+@keyframes rewardpop{from{transform:scale(0)}to{transform:scale(1)}}
+.reward-card h3{font-size:23px;margin-bottom:10px;background:linear-gradient(120deg,#5cf79a,#2fe36b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.reward-card p{color:var(--ink-soft);font-size:14.5px;line-height:1.55}
+.reward-card p b{color:#5cf79a}
+.reward-spark{position:absolute;width:8px;height:8px;border-radius:50%;background:#5cf79a;box-shadow:0 0 12px #2fe36b;animation:sparkfly 1.1s ease-out forwards;pointer-events:none}
+@keyframes sparkfly{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}}
+.pay-amt{font-family:'Space Grotesk';font-size:26px;font-weight:700;margin:20px 0 6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pay-panel{border-radius:20px;padding:26px 24px;margin:18px 0;background:rgba(77,157,255,.06);border:1px solid rgba(77,157,255,.2);text-align:center}
+.pay-panel h3{font-size:19px;margin-bottom:10px}
+.pay-panel p{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
+.copyrow{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.copyval{font-family:'Space Grotesk';font-size:22px;font-weight:700;letter-spacing:.5px;padding:12px 24px;border-radius:14px;background:rgba(4,7,17,.7);border:1px dashed rgba(77,157,255,.5);color:var(--blue-bright)}
+
+/* ============ V2: PRODUCT CARD DOTS / QA ============ */
+.pcard{display:flex;flex-direction:column}
+.pbody{flex:1;display:flex;flex-direction:column}
+.pimg{cursor:zoom-in}
+.pdots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:7px;justify-content:center;z-index:2}
+.pdots button{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(10,16,34,.5);backdrop-filter:blur(4px);cursor:pointer;padding:0;transition:.25s}
+.pdots button.on{background:#fff;transform:scale(1.4);box-shadow:0 0 12px rgba(77,157,255,.9)}
+.pname{line-height:1.25}
+.pdesc{min-height:3.2em}
+.prow{margin-top:auto;padding-top:14px}
+section{overflow-x:clip}
+
+/* ============ V2: ADMIN — PHOTO MANAGER / COVERS / PAY BADGES ============ */
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-top:4px}
+.ph{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(77,157,255,.22);aspect-ratio:1;background:var(--navy-mid)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .cover-tag{position:absolute;top:6px;left:6px;padding:4px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff}
+.ph .ph-tools{position:absolute;bottom:6px;left:6px;right:6px;display:flex;gap:4px;justify-content:center}
+.ph .ph-tools .mini{padding:5px 9px;font-size:11px;background:rgba(4,7,17,.8)}
+.coverslots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.coverslot{border-radius:18px;overflow:hidden;border:1px solid rgba(77,157,255,.16);background:rgba(77,157,255,.045);padding:12px;display:flex;flex-direction:column;gap:10px}
+.coverslot img{width:100%;aspect-ratio:4/4.6;object-fit:cover;border-radius:12px;background:var(--navy-mid)}
+.coverslot input[type=text]{background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:10px;padding:9px 12px;color:var(--ink);font-size:13px;width:100%}
+.paybadge{display:inline-block;font-size:11px;font-weight:700;padding:5px 13px;border-radius:999px;margin-left:8px;white-space:nowrap;vertical-align:middle}
+.paybadge.paid{background:rgba(60,220,130,.14);color:#7dffb0;border:1px solid rgba(60,220,130,.4)}
+.paybadge.wait{background:rgba(255,190,80,.13);color:#ffcf7d;border:1px solid rgba(255,190,80,.42)}
+.paybadge.later{background:rgba(77,157,255,.09);color:var(--ink-faint);border:1px solid var(--glass-brd)}
+
+/* ============ PHONE BAND (iPhone mockup) ============ */
+.phone-band{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;border-radius:var(--r-lg);padding:64px 60px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(28,77,255,.12),rgba(255,79,168,.09)),rgba(8,12,26,.72);border:1px solid rgba(77,157,255,.18);
+  box-shadow:0 30px 90px rgba(0,0,0,.5),0 0 80px rgba(28,77,255,.12),inset 0 1px 0 rgba(255,255,255,.08)}
+.phone-band::before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(28,77,255,.28),transparent 70%);filter:blur(40px);pointer-events:none}
+.phone-feats{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 28px}
+.phone-feats span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);padding:9px 16px;border-radius:999px;border:1px solid var(--glass-brd);background:rgba(255,255,255,.03)}
+.phone-feats svg{color:var(--blue-bright)}
+.iphone{width:252px;height:524px;margin:8px auto;border-radius:54px;position:relative;flex-shrink:0;
+  background:linear-gradient(155deg,#3b4266 0%,#141a33 34%,#05070f 100%);
+  border:1px solid rgba(255,255,255,.18);transform:rotate(-4deg);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 2px rgba(0,0,0,.6),
+    0 0 0 2px #04060d,0 0 0 3px rgba(255,255,255,.07),
+    0 44px 110px rgba(0,0,0,.7),0 0 90px rgba(28,77,255,.28);
+  animation:iphonefloat 7s ease-in-out infinite}
+@keyframes iphonefloat{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-14px)}}
+.iphone::before{content:"";position:absolute;inset:2px;border-radius:52px;background:#000;pointer-events:none}
+.iphone-btn{position:absolute;width:3px;border-radius:2px;background:linear-gradient(180deg,#4a5480,#141a33);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.iphone-btn.b1{left:-4px;top:108px;height:26px}
+.iphone-btn.b2{left:-4px;top:148px;height:52px}
+.iphone-btn.b3{left:-4px;top:208px;height:52px}
+.iphone-btn.b4{right:-4px;top:168px;height:88px}
+.iphone-notch{position:absolute;top:23px;left:50%;transform:translateX(-50%);width:86px;height:24px;background:#000;border-radius:999px;z-index:8;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.iphone-notch::after{content:"";position:absolute;right:11px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 35% 32%,#2b3a6e 0%,#0a1030 45%,#000 75%);box-shadow:0 0 4px rgba(77,157,255,.5)}
+.iphone-screen{position:absolute;inset:12px;border-radius:42px;overflow:hidden;padding:44px 14px 12px;display:flex;flex-direction:column;gap:10px;background:#000;
+  background:radial-gradient(120% 80% at 50% 0%,rgba(28,77,255,.24),transparent 60%),#070b18}
+.iphone-screen::before{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;border-radius:42px;
+  background:linear-gradient(115deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.02) 28%,transparent 42%)}
+.iphone-screen::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:46%;z-index:7;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.10),transparent);
+  transform:translateX(-160%) skewX(-12deg);animation:sheen 9s ease-in-out infinite}
+@keyframes sheen{0%{transform:translateX(-160%) skewX(-12deg)}55%,100%{transform:translateX(420%) skewX(-12deg)}}
+.ms-status{display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:11.5px;font-weight:700;padding:0 8px}
+.ms-sicons{display:flex;align-items:center;gap:6px}
+.ms-sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.ms-sig i{width:3px;border-radius:1px;background:#fff}
+.ms-sig i:nth-child(1){height:4px}.ms-sig i:nth-child(2){height:7px}.ms-sig i:nth-child(3){height:9px}.ms-sig i:nth-child(4){height:11px}
+.ms-wifi .ic{width:14px;height:14px;color:#fff}
+.ms-batt{width:22px;height:11px;border:1.5px solid rgba(255,255,255,.85);border-radius:3.5px;position:relative;padding:1.5px}
+.ms-batt i{display:block;height:100%;width:72%;border-radius:1.5px;background:#37e08b}
+.ms-appbar{display:flex;align-items:center;gap:9px}
+.ms-appbar b{font-size:14px;color:#fff;letter-spacing:.2px;flex:1}
+.ms-brand{width:28px;height:28px;border-radius:9px;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;box-shadow:0 4px 14px rgba(28,77,255,.5)}
+.ms-cart{position:relative;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.ms-cart .ic{width:15px;height:15px;color:#fff}
+.ms-cart em{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:8px;background:var(--magenta-neon);color:#fff;font-size:10px;font-weight:800;font-style:normal;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.ms-search{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-faint);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:8px 11px}
+.ms-search .ic{width:13px;height:13px}
+.ms-card{border-radius:16px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);padding:9px;display:flex;gap:10px;align-items:center}
+.ms-img{width:62px;height:62px;border-radius:11px;overflow:hidden;flex-shrink:0;background:linear-gradient(120deg,#1C4DFF,#7a2bff)}
+.ms-img img{width:100%;height:100%;object-fit:cover}
+.ms-info{flex:1;min-width:0}
+.ms-info b{display:block;font-size:12.5px;color:#fff}
+.ms-info small{color:var(--ink-faint);font-size:11px}
+.ms-btn{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;color:#fff;padding:6px 13px;border-radius:999px;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 4px 14px rgba(28,77,255,.45)}
+.ms-pay{display:flex;align-items:center;justify-content:space-between;border-radius:14px;padding:10px 12px;
+  background:linear-gradient(120deg,rgba(28,77,255,.22),rgba(255,79,168,.16));border:1px solid rgba(77,157,255,.3)}
+.ms-pay small{display:block;font-size:9.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:1px}
+.ms-pay b{font-size:15px;color:#fff}
+.ms-paybtn{font-size:11px;font-weight:800;color:#fff;padding:9px 14px;border-radius:999px;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 6px 18px rgba(28,77,255,.5);white-space:nowrap}
+.ms-tabs{margin-top:auto;display:flex;justify-content:space-around;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:9px 6px}
+.ms-tabs span{width:34px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--ink-faint)}
+.ms-tabs span .ic{width:17px;height:17px}
+.ms-tabs span.on{color:#fff;background:rgba(28,77,255,.25)}
+.ms-homebar{width:110px;height:4.5px;border-radius:3px;background:rgba(255,255,255,.35);margin:2px auto 0}
+.ms-track{font-size:11px;color:var(--ink-soft);background:rgba(28,77,255,.12);border:1px solid rgba(77,157,255,.25);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:8px}
+.ms-dot{width:8px;height:8px;border-radius:50%;background:#37e08b;box-shadow:0 0 10px #37e08b;animation:mspulse 2s infinite}
+@keyframes mspulse{50%{opacity:.35}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-visual{height:470px;max-width:560px;margin:0 auto}
+  .fan{--cw:min(240px,52vw)}
+  .spot-in{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr;gap:36px}
+  .pm-grid{grid-template-columns:1fr}
+  .pm-media{min-height:240px;position:relative;height:260px}
+  .pm-media img{position:absolute}
+}
+@media(max-width:860px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .mobile-menu{position:fixed;top:86px;left:50%;transform:translateX(-50%) translateY(-16px);width:min(94%,420px);z-index:999;
+    background:rgba(7,10,22,.94);border:1px solid var(--glass-brd);border-radius:24px;backdrop-filter:blur(28px);
+    padding:14px;flex-direction:column;gap:4px;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--shadow-lg)}
+  .mobile-menu.show{display:flex;opacity:1;pointer-events:auto;transform:translateX(-50%)}
+  .mobile-menu a{text-decoration:none;padding:14px 18px;border-radius:14px;font-weight:600;font-size:15px;color:var(--ink-soft)}
+  .mobile-menu a:hover,.mobile-menu a.active{background:rgba(77,157,255,.12);color:#fff}
+  .steps{grid-template-columns:1fr}
+  .phone-band{grid-template-columns:1fr;padding:44px 28px;gap:36px}
+  .iphone{transform:none;width:232px;height:484px;animation:none}
+  .contact-grid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .pform{grid-template-columns:1fr}
+  section{padding:70px 0}
+  .hero{padding-top:130px}
+  .tform{flex-direction:column}
+  .tform .btn{width:100%}
+  .brand b{display:none}
+}
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+  .fan{--cw:min(210px,54vw);--fx:.54}
+  .car-card{border-radius:20px}
+  .hero-visual{height:400px}
+  .hero-cta .btn{flex:1 1 160px}
+  .co-labels{font-size:9.5px;letter-spacing:.5px}
+  .hero-stats{gap:24px}
+  .pm-foot{flex-direction:column;align-items:stretch;text-align:center}
+  .search input{width:100%}.search{width:100%}
+  .co-nav{flex-direction:column-reverse}
+  .co-nav .btn{width:100%}
+  .paygrid{grid-template-columns:1fr}
+  .coverslots{grid-template-columns:1fr;max-width:340px}
+  .lb-prev{left:6px}.lb-next{right:6px}
+  .lb-nav{width:44px;height:44px;font-size:24px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+  /* hero fan keeps a gentle cycle even in reduced-motion (owner request) */
+  .fan-float{animation:none!important}
+}
+</style>
+</head>
+<body>
+<a href="#shop" class="skip">Skip to shop</a>
+
+<!-- SVG ICON SPRITE -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.5a1 1 0 0 0 1 .5h8.7a1 1 0 0 0 1-.8L20.5 8H6"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.64 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.09A1.7 1.7 0 0 0 10.1 3V3a2 2 0 1 1 4 0v.09c0 .68.4 1.3 1.01 1.56a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.09c.26.61.88 1.01 1.56 1.01H21a2 2 0 1 1 0 4h-.09c-.68 0-1.3.4-1.51 1z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+<symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 5h13v11H1zM14 9h4l4 4v3h-8"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3.5v5.5c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5.5L12 2z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-design" viewBox="0 0 24 24"><path d="M17.5 3.5a2.1 2.1 0 0 1 3 3L8 19 3 20.5 4.5 15.5 17.5 3.5z"/><path d="M15 6l3 3"/></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="7" rx="1.5"/><path d="M8 16h8v5H8z"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8L12 3 3 8v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.2h2.8l1.6 4.8-2 1.5a12.6 12.6 0 0 0 5.5 5.5l1.5-2 4.8 1.6v2.8a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.4a2 2 0 0 1 2-2.2z"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-square" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="9.2" y="9.2" width="5.6" height="5.6" rx="1.2" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-zelle" viewBox="0 0 24 24"><path d="M4.5 5.5h15v3.4l-9.9 9.6h9.9v3H4.5v-3.4l9.9-9.6H4.5V5.5z" fill="currentColor"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4m0 0L7 9m5-5l5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+<symbol id="i-cashapp" viewBox="0 0 24 24"><path d="M12 2.6v18.8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M16.9 7.3C16.1 5.5 14.3 4.5 12 4.5c-2.9 0-4.8 1.4-4.8 3.5 0 4.7 9.9 2.4 9.9 7.3 0 2.1-1.9 3.5-4.7 3.5-2.3 0-4.1-1-4.9-2.8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+
+<div class="bg"></div><div class="blueprint"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="brand" href="#home"><img src="logo.png" alt="Visualet Designs logo"></a>
+  <div class="nav-links">
+    <a href="#shop">Shop</a>
+    <a href="#how">How It Works</a>
+    <a href="#bundles">Bundles</a>
+    <a href="#design">Design</a>
+    <a href="#track">Track Order</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn burger" id="burger" aria-label="Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+    <button class="icon-btn" id="adminGear" aria-label="Admin panel" title="Admin"><svg class="ic"><use href="#i-gear"/></svg></button>
+    <button class="icon-btn" id="cartBtn" aria-label="Open cart"><svg class="ic"><use href="#i-cart"/></svg><span class="cart-count hide" id="cartCount">0</span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#shop">Shop</a><a href="#how">How It Works</a><a href="#bundles">Bundles</a>
+  <a href="#design">Design</a><a href="#track">Track Order</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow reveal in"><span class="dot"></span>Online Print Shop — Inland Empire, CA</div>
+      <h1 class="reveal in">Your Brand,<br><span class="grad">Designed. Printed.<br>Delivered.</span></h1>
+      <p class="lead reveal in">Custom business cards, event canopies, banners, yard signs &amp; more — designed for you, professionally printed, and shipped to your door. Pick your product, choose your quantity, and order online in minutes.</p>
+      <div class="badge-loop reveal in" aria-label="Why order with Visualet">
+        <div class="badge-track">
+          <div class="badge-set">
+            <span class="hbadge"><svg class="ic"><use href="#i-check"/></svg>Design Included</span>
+            <span class="hbadge"><svg class="ic"><use href="#i-check"/></svg>Professional Printing</span>
+            <span class="hbadge"><svg class="ic"><use href="#i-check"/></svg>Free Shipping</span>
+            <span class="hbadge"><svg class="ic"><use href="#i-bolt"/></svg>2–7 Day Turnaround</span>
+          </div>
+          <div class="badge-set" aria-hidden="true">
+            <span class="hbadge"><svg class="ic"><use href="#i-check"/></svg>Design Included</span>
+            <span class="hbadge"><svg class="ic"><use href="#i-check"/></svg>Professional Printing</span>
+            <span class="hbadge"><svg class="ic"><use href="#i-check"/></svg>Free Shipping</span>
+            <span class="hbadge"><svg class="ic"><use href="#i-bolt"/></svg>2–7 Day Turnaround</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-cta reveal in">
+        <a href="#shop" class="btn solid">Shop Print Products</a>
+        <a href="#track" class="btn">Track My Order</a>
+      </div>
+      <div class="hero-stats reveal in">
+        <div class="hstat"><b data-count="12">0</b><span>Print Products</span></div>
+        <div class="hstat"><b data-count="2500" data-suffix="+">0</b><span>Cards Printed</span></div>
+        <div class="hstat"><b data-count="7" data-prefix="~" data-suffix=" days">0</b><span>Max Turnaround</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal in" id="heroVisual">
+      <div class="hero-glow"></div>
+      <div class="hero-orb o1"></div>
+      <div class="hero-orb o2"></div>
+      <div class="fan" id="heroFan" aria-label="Featured print products">
+        <div class="fan-stage"><div class="fan-float" id="fanCards"></div></div>
+        <div class="fan-dots" id="fanDots" aria-label="Featured covers"></div>
+      </div>
+      <div class="car-floor"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="wrap">
+    <div class="reveal"><div class="eyebrow"><span class="dot"></span>The Print Shop</div></div>
+    <h2 class="sec-title reveal">Shop <span class="grad">Print Products</span></h2>
+    <p class="sec-sub reveal">Every package includes custom design service, professional full-color printing, and free shipping. Choose your quantity — the price updates instantly.</p>
+    <div class="accent reveal"></div>
+    <div class="shop-bar reveal">
+      <div class="pills" id="catPills"></div>
+      <div class="search"><svg class="ic"><use href="#i-search"/></svg><input id="searchInput" type="search" placeholder="Search products…" aria-label="Search products"></div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal center"><div class="eyebrow"><span class="dot"></span>Simple Process</div></div>
+    <h2 class="sec-title reveal center">How <span class="grad">Ordering Works</span></h2>
+    <div class="accent reveal" style="margin-left:auto;margin-right:auto"></div>
+    <div class="steps">
+      <div class="step reveal"><span class="num">01</span><div class="sic"><svg class="ic"><use href="#i-cart"/></svg></div><h3>Configure &amp; Order</h3><p>Pick your product, choose a quantity and finish, and check out online in under two minutes. No DMs, no waiting on quotes.</p></div>
+      <div class="step reveal d1"><span class="num">02</span><div class="sic"><svg class="ic"><use href="#i-eye"/></svg></div><h3>Approve Your Proof</h3><p>We design it (or use your print-ready art) and send a digital proof. Nothing goes to press until you approve it — 100% satisfaction.</p></div>
+      <div class="step reveal d2"><span class="num">03</span><div class="sic"><svg class="ic"><use href="#i-truck"/></svg></div><h3>Printed &amp; Shipped</h3><p>Your order hits the press and ships free. Track every stage — design, production, shipped, delivered — right here on the site.</p></div>
+    </div>
+
+  </div>
+</section>
+<!-- ORDER FROM YOUR PHONE -->
+<section id="mobile" style="padding-top:40px">
+  <div class="wrap">
+    <div class="phone-band reveal">
+      <div class="phone-copy">
+        <div class="eyebrow"><span class="dot"></span>Mobile Ready</div>
+        <h2 class="sec-title">Order Right <span class="grad">From Your Phone</span></h2>
+        <p class="sec-sub" style="margin-left:0;max-width:480px" id="phonePayCopy">The full print shop fits in your pocket — browse products, upload art, pay with Square or Zelle, and track your order from anywhere.</p>
+        <div class="phone-feats">
+          <span><svg class="ic"><use href="#i-check"/></svg>Upload art on the go</span>
+          <span><svg class="ic"><use href="#i-check"/></svg>Pay your way</span>
+          <span><svg class="ic"><use href="#i-check"/></svg>Live order tracking</span>
+        </div>
+        <a class="btn solid" href="#shop">Start an Order</a>
+      </div>
+      <div class="iphone" aria-hidden="true">
+        <span class="iphone-btn b1"></span><span class="iphone-btn b2"></span><span class="iphone-btn b3"></span><span class="iphone-btn b4"></span>
+        <div class="iphone-notch"></div>
+        <div class="iphone-screen">
+          <div class="ms-status"><span>9:41</span><span class="ms-sicons"><span class="ms-sig"><i></i><i></i><i></i><i></i></span><span class="ms-wifi"><svg class="ic" viewBox="0 0 24 24"><path d="M2 9c6-6 14-6 20 0M5 12.5c4-4 10-4 14 0M8.5 16c2-2 5-2 7 0" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="12" cy="19" r="1.6" fill="currentColor"/></svg></span><span class="ms-batt"><i></i></span></span></div>
+          <div class="ms-appbar"><span class="ms-brand">VD</span><b>Print Shop</b><span class="ms-cart"><svg class="ic"><use href="#i-cart"/></svg><em>1</em></span></div>
+          <div class="ms-search"><svg class="ic"><use href="#i-search"/></svg>Search products…</div>
+          <div class="ms-card"><div class="ms-img"><img src="images/business-cards-gsweets.jpg" alt="Business cards"></div><div class="ms-info"><b>Business Cards</b><small>250 from $75</small><br><span class="ms-btn">Customize</span></div></div>
+          <div class="ms-card"><div class="ms-img"><img src="images/yard-signs.jpg" alt="Yard signs"></div><div class="ms-info"><b>Yard Signs</b><small>from $85</small><br><span class="ms-btn">Customize</span></div></div>
+          <div class="ms-pay"><span><small>Total due</small><b>$160.00</b></span><span class="ms-paybtn"><svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#fff;vertical-align:-2px;margin-right:2px" aria-hidden="true"><use href="#i-square"/></svg>Pay with Square</span></div>
+          <div class="ms-tabs"><span class="on"><svg class="ic"><use href="#i-box"/></svg></span><span><svg class="ic"><use href="#i-search"/></svg></span><span><svg class="ic"><use href="#i-cart"/></svg></span><span><svg class="ic"><use href="#i-truck"/></svg></span></div>
+          <div class="ms-homebar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BUNDLES -->
+<section id="bundles" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal"><div class="eyebrow"><span class="dot"></span>Bundle &amp; Save</div></div>
+    <h2 class="sec-title reveal">Bundle &amp; <span class="grad">Save</span></h2>
+    <p class="sec-sub reveal">One package. Your entire street-level marketing handled — designed, printed, and shipped.</p>
+    <div class="accent reveal"></div>
+    <div id="bundlesGrid"></div>
+  </div>
+</section>
+
+<!-- DESIGN SERVICES -->
+<section id="design" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal center"><div class="eyebrow"><span class="dot"></span>Design-Only Services</div></div>
+    <h2 class="sec-title reveal center">Logo <span class="grad">Packages</span></h2>
+    <p class="sec-sub reveal center">No templates — custom logo work built around your brand. Add any package to your cart.</p>
+    <div class="accent reveal" style="margin-left:auto;margin-right:auto"></div>
+    <div class="tiers" id="logoTiers"></div>
+  </div>
+</section>
+
+<!-- TRACK ORDER -->
+<section id="track" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal center"><div class="eyebrow"><span class="dot"></span>Client Portal</div></div>
+    <h2 class="sec-title reveal center">Track <span class="grad">Your Order</span></h2>
+    <p class="sec-sub reveal center">Enter your order number and email to see exactly where your job stands — from design to delivered.</p>
+    <div class="accent reveal" style="margin-left:auto;margin-right:auto"></div>
+    <div class="track-card reveal">
+      <div class="tform">
+        <input id="trackNum" placeholder="Order number (e.g. VD-8K2P4Q)" autocomplete="off">
+        <input id="trackEmail" type="email" placeholder="Email used at checkout" autocomplete="email">
+        <button class="btn solid" id="trackBtn">Track</button>
+      </div>
+      <div class="track-err" id="trackErr">We couldn't find that order. Double-check the order number and email from your confirmation.</div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal"><div class="eyebrow"><span class="dot"></span>Client Love</div></div>
+    <h2 class="sec-title reveal">What Clients <span class="grad">Say</span></h2>
+    <div class="accent reveal"></div>
+    <div class="rev-grid">
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>"Visualet Designs completely transformed our brand. The logo and visuals instantly made us look professional."</p><b>— Aqualifts Founder</b></div>
+      <div class="rev reveal d1"><div class="stars">★★★★★</div><p>"Fast delivery, amazing communication, and designs that actually convert."</p><b>— Looma Candles</b></div>
+      <div class="rev reveal d2"><div class="stars">★★★★★</div><p>"Awesome! We love them. Good quality."</p><b>— Business Card Client</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding-top:40px">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span>About</div>
+      <h2 class="sec-title">Meet <span class="grad">Nathan</span></h2>
+      <div class="accent"></div>
+      <p>I'm Nathan Salamanca, founder of Visualet Designs — an Adobe Certified Professional running a full design-to-print studio out of the Inland Empire.</p>
+      <p>What started as logo and branding work grew into a complete print shop: every product on this site is custom-designed, professionally printed in full color, and shipped free — one package, zero hassle.</p>
+      <p>Local businesses — detailers, restaurants, realtors, contractors, salons — trust Visualet to make them look like the biggest brand on the block.</p>
+    </div>
+    <div class="reveal d1"><div class="about-photo" id="aboutPhoto"></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal center"><div class="eyebrow"><span class="dot"></span>Get In Touch</div></div>
+    <h2 class="sec-title reveal center">Let's Work <span class="grad">Together</span></h2>
+    <p class="sec-sub reveal center">Questions about a product, bulk pricing, or something custom? I usually respond within 24 hours.</p>
+    <div class="accent reveal" style="margin-left:auto;margin-right:auto"></div>
+    <div class="contact-grid">
+      <a class="c-card reveal" href="mailto:visualetdesigns@gmail.com"><div class="sic"><svg class="ic"><use href="#i-mail"/></svg></div><h3>Email</h3><p>visualetdesigns@gmail.com</p></a>
+      <a class="c-card reveal d1" href="https://instagram.com/visualetdesigns" target="_blank" rel="noopener"><div class="sic"><svg class="ic"><use href="#i-ig"/></svg></div><h3>Instagram</h3><p>@visualetdesigns — see latest work &amp; drops</p></a>
+      <a class="c-card reveal d2" href="sms:+19518061586"><div class="sic"><svg class="ic"><use href="#i-phone"/></svg></div><h3>Text Us</h3><p>951-806-1586 — fastest reply, 7 days a week</p></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><img src="logo.png" alt="Visualet Designs"><div class="foot-brand">© 2026 Visualet Designs — Designed by Nathan Salamanca</div><div class="foot-tag">Design • Print • Branding</div><a class="foot-text" href="sms:+19518061586"><svg class="ic"><use href="#i-phone"/></svg>Text us: 951-806-1586</a></div></footer>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay"></div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="pModal" role="dialog" aria-modal="true" aria-label="Product details"><div class="sheet">
+  <button class="x" data-close="pModal" aria-label="Close">✕</button>
+  <div class="pm-grid">
+    <div class="pm-media"><img id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div></div>
+    <div class="pm-body">
+      <div class="pcat" id="pmCat"></div><h2 id="pmName"></h2>
+      <p class="pm-desc" id="pmDesc"></p>
+      <div class="pm-meta" id="pmMeta"></div>
+      <div class="opt-label">Choose quantity</div><div class="rungs" id="pmRungs"></div>
+      <div id="pmOpts"></div>
+      <div id="pmArt"></div>
+      <div class="opt-label">What's included</div><ul class="pm-includes" id="pmIncludes"></ul>
+      <p class="hint" style="margin-top:16px">Have print-ready art? You'll be able to upload it at checkout. No files? No problem — design service is included.</p>
+    </div>
+  </div>
+  <div class="pm-foot">
+    <div class="pm-total"><small>Total</small><b id="pmPrice">$0</b></div>
+    <button class="btn solid" id="pmAdd"><svg class="ic"><use href="#i-cart"/></svg>Add to Cart</button>
+  </div>
+</div></div>
+
+<!-- CART DRAWER -->
+<aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="drawer-head"><h3>Your Cart <span id="drawerCount" style="color:var(--ink-faint);font-size:15px"></span></h3><button class="x" style="position:static" data-close="cartDrawer" aria-label="Close cart">✕</button></div>
+  <div class="drawer-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="trow"><span>Subtotal</span><span id="cartSub">$0.00</span></div>
+    <div class="trow"><span>Shipping</span><span style="color:#7dffb0">FREE</span></div>
+    <div class="trow grand"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    <button class="btn solid block" id="checkoutBtn">Checkout</button>
+  </div>
+</aside>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal" id="coModal" role="dialog" aria-modal="true" aria-label="Checkout"><div class="sheet" style="max-width:760px">
+  <button class="x" data-close="coModal" aria-label="Close">✕</button>
+  <div class="co-steps"><div class="co-dot on" id="coD1"></div><div class="co-dot" id="coD2"></div><div class="co-dot" id="coD3"></div><div class="co-dot" id="coD4"></div></div>
+  <div class="co-labels"><span class="on" id="coL1">Details</span><span id="coL2">Artwork &amp; Payment</span><span id="coL3">Review</span><span id="coL4">Done</span></div>
+  <div class="co-body" id="coBody"></div>
+</div></div>
+
+<!-- ADMIN LOGIN -->
+<div class="modal" id="adminLogin" role="dialog" aria-modal="true" aria-label="Admin login"><div class="sheet" style="max-width:420px">
+  <button class="x" data-close="adminLogin" aria-label="Close">✕</button>
+  <div style="padding:44px 38px;text-align:center">
+    <div class="sic" style="width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;background:rgba(77,157,255,.09);border:1px solid var(--glass-brd)"><svg class="ic" style="width:26px;height:26px;color:var(--blue-bright)"><use href="#i-gear"/></svg></div>
+    <h2 style="margin-bottom:8px">Admin Access</h2>
+    <p class="co-sub">This area is for Nathan only.</p>
+    <div class="field" style="text-align:left;margin-bottom:18px"><label>Admin PIN</label><input type="password" id="adminPin" placeholder="Enter PIN" inputmode="numeric"></div>
+    <button class="btn solid block" id="adminLoginBtn">Unlock Panel</button>
+    <p class="hint" id="adminPinErr" style="color:#ff8fa8;display:none;margin-top:10px">Wrong PIN. Try again.</p>
+  </div>
+</div></div>
+
+<!-- ADMIN PANEL -->
+<div class="modal" id="adminPanel" role="dialog" aria-modal="true" aria-label="Admin panel"><div class="sheet" style="max-width:1020px">
+  <button class="x" data-close="adminPanel" aria-label="Close">✕</button>
+  <div style="padding:40px clamp(26px,4vw,44px) 0"><div class="eyebrow"><span class="dot"></span>Owner Only</div>
+  <h2 style="font-size:30px">Site <span class="grad" style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Control Panel</span></h2>
+  <p class="co-sub">Add products, update prices, change photos, and manage orders — changes go live instantly.</p></div>
+  <div class="admin-tabs">
+    <button class="atab on" data-atab="products">Products</button>
+    <button class="atab" data-atab="orders">Orders <span id="ordBadge"></span></button>
+    <button class="atab" data-atab="settings">Settings</button>
+  </div>
+  <div class="admin-body">
+    <div class="apanel on" id="ap-products"></div>
+    <div class="apanel" id="ap-orders"></div>
+    <div class="apanel" id="ap-settings"></div>
+  </div>
+</div></div>
+
+<div class="toast" id="toast"><svg class="ic"><use href="#i-circle-check"/></svg><span id="toastMsg"></span></div>
+
+<!-- REWARD POPUP -->
+<div class="reward-pop" id="rewardPop" aria-hidden="true"><div class="reward-card" id="rewardCard">
+  <div class="reward-badge">−$20</div>
+  <div class="reward-check"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></svg></div>
+  <h3>Print-Ready Reward Unlocked!</h3>
+  <p>Your front &amp; back artwork is attached — <b>$20 off</b> applied to this item.</p>
+</div></div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lb-top">
+    <span class="lb-count" id="lbCount"></span>
+    <div class="lb-tools">
+      <button class="lb-btn" id="lbZoomOut" aria-label="Zoom out">−</button>
+      <button class="lb-btn" id="lbZoomReset" aria-label="Reset zoom" style="font-size:13px">1:1</button>
+      <button class="lb-btn" id="lbZoomIn" aria-label="Zoom in">+</button>
+      <button class="lb-btn" id="lbClose" aria-label="Close viewer">✕</button>
+    </div>
+  </div>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
+  <div class="lb-stage"><img id="lbImg" src="" alt="Product photo"></div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+<script>
+/* ================= DATA ================= */
+const DEFAULT_PRODUCTS = [
+{id:"bc-standard",name:"Business Cards — Standard",cat:"Business Cards",img:"images/business-cards-gsweets.jpg",
+ gallery:["images/business-cards-gsweets.jpg","images/business-cards-variety.jpg","images/business-cards-qr.jpg","images/business-cards-before-after.jpg"],
+ badge:"Best Seller",turnaround:"2–5 business days",active:true,
+ desc:"2\" × 3.5\" full-color business cards on thick 16pt stock. Your card is more than paper — it's your brand.",
+ includes:["16pt premium cardstock","Full-color double-sided print","High gloss UV or matte coating","Custom design included","$20 off with print-ready art","Free shipping"],
+ rungs:[{qty:"250 cards",price:75},{qty:"500 cards",price:95},{qty:"1,000 cards",price:105,tag:"Most Popular"},{qty:"2,500 cards",price:160,tag:"Best Deal"}],
+ options:[{name:"Finish",choices:["High Gloss UV","Matte"]}]},
+{id:"bc-rounded",name:"Rounded Business Cards",cat:"Business Cards",img:"images/rounded-business-cards.jpg",badge:"Stand Out",turnaround:"3–5 business days",active:true,
+ desc:"2\" × 3.5\" cards with smooth 1/8\" rounded corners. A small detail that makes a big first impression.",
+ includes:["1/8\" rounded corners","16pt premium stock","Full-color double-sided print","UV gloss or matte finish","Custom design included","Free shipping"],
+ rungs:[{qty:"250 cards",price:95},{qty:"500 cards",price:125,tag:"Best Value"},{qty:"1,000 cards",price:150},{qty:"2,500 cards",price:195,tag:"Best Deal"}],
+ options:[{name:"Finish",choices:["High Gloss UV","Matte"]}]},
+{id:"door-hangers",name:"Door Hangers",cat:"Marketing",img:"images/door-hangers-750.jpg",
+ gallery:["images/door-hangers-750.jpg","images/door-hangers-1000.jpg"],
+ badge:"",turnaround:"3–7 business days",active:true,
+ desc:"8.5\" × 3.5\" double-sided door hangers. Perfect for detailers, realtors, cleaners, landscapers & contractors.",
+ includes:["Double-sided full-color print","UV gloss finish front & back","Custom design service","Digital PDF design file included","Free shipping"],
+ rungs:[{qty:"750 hangers",price:150},{qty:"1,000 hangers",price:180,tag:"Best Deal"}],
+ options:[]},
+{id:"canopy",name:"10' × 10' Event Canopy",cat:"Event & Trade Show",img:"images/canopy-10x10.jpg",badge:"Sale",was:750,turnaround:"3–7 business days",active:true,
+ desc:"Complete design + print package. Your brand on a full-color canopy — ready for your next event.",
+ includes:["Full custom design service","10' × 10' heavy-duty aluminum frame","Weather-resistant full-color print","Professional file preparation","Free shipping"],
+ rungs:[{qty:"1 canopy package",price:600}],
+ options:[]},
+{id:"aframe",name:"24\" × 36\" A-Frame Signs",cat:"Signage",img:"images/frame-signs-24x36.jpg",badge:"",turnaround:"3–7 business days",active:true,
+ desc:"Double-sided sidewalk signs that stop foot traffic. Salons, shops, restaurants — get noticed.",
+ includes:["24\" × 36\" double-sided sign","Full-color UV ink printing","Scratch & weather resistant","Black or white plastic frame","Free shipping"],
+ rungs:[{qty:"1 sign",price:225}],
+ options:[{name:"Frame Color",choices:["Black","White"]}]},
+{id:"table-cover",name:"6FT Fitted Table Cover",cat:"Event & Trade Show",img:"images/table-cover-6ft.jpg",badge:"",turnaround:"3–7 business days",active:true,
+ desc:"Full-color dye-sublimation stretch cover, custom fitted for 6ft tables. Wrinkle-resistant and reusable.",
+ includes:["Full-color dye-sub print","Premium stretch fabric","Wrinkle-resistant, machine-washable","Custom fitted 6FT cover","Free shipping"],
+ rungs:[{qty:"1 cover",price:160}],
+ options:[]},
+{id:"retractable",name:"Retractable Banner",cat:"Event & Trade Show",img:"images/retractable-banner.jpg",badge:"",turnaround:"3–7 business days",active:true,
+ desc:"33\" × 81\" pull-up banner with aluminum stand and carrying bag. Trade shows, lobbies, events.",
+ includes:["33\" × 81\" full-color banner","Retractable aluminum stand","Carrying bag included","Custom design service","Free shipping"],
+ rungs:[{qty:"1 banner + stand",price:175}],
+ options:[]},
+{id:"banner-duo",name:"Vinyl Banner Duo",cat:"Banners",img:"images/banner-duo-24x48.jpg",badge:"Limited Time",turnaround:"4 business days",active:true,
+ desc:"Two 24\" × 48\" gloss vinyl banners. Loud, durable, and ready to hang anywhere.",
+ includes:["Two 24\" × 48\" banners","Full-color gloss vinyl","4 grommets for hanging","Custom design service","Free shipping"],
+ rungs:[{qty:"2 banners",price:95}],
+ options:[]},
+{id:"yard-signs",name:"Yard Signs — 18\" × 24\"",cat:"Signage",img:"images/yard-signs.jpg",badge:"",turnaround:"3–7 business days",active:true,
+ desc:"Double-sided yard signs with a FREE metal stake. Maximum visibility for listings, promos & events.",
+ includes:["18\" × 24\" double-sided print","Full-color custom design","FREE metal stake included","Weather-resistant","Free shipping"],
+ rungs:[{qty:"1 sign",price:85}],
+ options:[]},
+{id:"magnets",name:"Vehicle Magnets — 18\" × 24\"",cat:"Signage",img:"images/vehicle-magnets.jpg",badge:"",turnaround:"3–7 business days",active:true,
+ desc:"Thick 30mil vehicle magnets that turn your car into a billboard. Construction, salons, car wash, real estate.",
+ includes:["18\" × 24\" 30mil thick magnets","Full-color custom design","Weather & car-wash resistant","Free shipping"],
+ rungs:[{qty:"1 magnet",price:85}],
+ options:[]},
+{id:"roofing-bundle",name:"Roofing Marketing Bundle",cat:"Bundle & Save",img:"images/roofing-bundle.jpg",badge:"Best Value",turnaround:"5–7 business days",active:true,
+ desc:"500 flyers + 4 yard signs + 1,000 business cards + 1,000 door hangers. Your entire street marketing, handled.",
+ includes:["500 custom flyers","4 custom yard signs + stakes","1,000 full-color business cards","1,000 double-sided door hangers","Everything designed, printed & shipped"],
+ rungs:[{qty:"1 complete bundle",price:585}],
+ options:[]},
+{id:"logo-pack",name:"Logo Design Packages",cat:"Design Services",img:"images/logo-packages.jpg",badge:"",turnaround:"3–7 business days",active:true,
+ desc:"Custom logo design — no templates. Pick the package that fits your launch.",
+ includes:["100% custom concepts","Revisions included","Print + digital file pack","Brand-styled presentation"],
+ rungs:[{qty:"Silver — 1 logo, 2 revisions, PNG+JPG",price:50},{qty:"Gold — 2 concepts, 3 revisions, +mockup",price:75,tag:"Most Popular"},{qty:"Diamond — full brand kit + bonuses",price:200,tag:"Best Value"}],
+ options:[]}
+];
+const CATS = ["All","Business Cards","Signage","Banners","Event & Trade Show","Marketing","Bundle & Save","Design Services"];
+const STATUSES = ["Received","In Design","In Production","Shipped","Delivered"];
+const DEFAULT_BACKEND="https://script.google.com/macros/s/AKfycbxD_vu6LwUwkK8rbk5DGdIdJqONidQebaeyFAwTo1iVMf8IFBCWfz-nKs1nFiWDEMe_5w/exec";
+const LS = {products:"vd_products_v1",cart:"vd_cart_v1",orders:"vd_orders_v1",pin:"vd_pin_v1",backend:"vd_backend_v1",deleted:"vd_deleted_ids_v1"};
+
+/* ================= HELPERS ================= */
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const money = n => "$" + Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const money0 = n => "$" + Number(n).toLocaleString("en-US");
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function load(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let toastT;
+function toast(msg){$("#toastMsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2600)}
+function openModal(id){$("#overlay").classList.add("show");$("#"+id).classList.add("show");document.body.style.overflow="hidden"}
+function closeModal(id){$("#"+id).classList.remove("show");if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")&&!$("#lightbox").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}}
+function closeAll(){$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show")}
+const fmtSize=b=>{if(b==null||isNaN(b))return"";const kb=b/1024;return kb>=1024?(kb/1024).toFixed(1)+" MB":Math.max(1,Math.round(kb))+" KB"};
+function copyText(t,msg){
+  const done=()=>toast(msg||"Copied to clipboard");
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(()=>fallbackCopy())}else fallbackCopy();
+  function fallbackCopy(){const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){toast("Copy failed — long-press to copy")}ta.remove()}
+}
+function compressImage(file,maxDim,cb){
+  const rd=new FileReader();
+  rd.onload=()=>{const img=new Image();
+    img.onload=()=>{const cv=document.createElement("canvas");let ww=img.width,hh=img.height;
+      if(ww>maxDim){hh=Math.round(hh*maxDim/ww);ww=maxDim}
+      cv.width=ww;cv.height=hh;cv.getContext("2d").drawImage(img,0,0,ww,hh);
+      cb(cv.toDataURL("image/jpeg",.8))};
+    img.onerror=()=>toast("Couldn't read that image");
+    img.src=rd.result};
+  rd.onerror=()=>toast("Couldn't read that file");
+  rd.readAsDataURL(file);
+}
+function fileToDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
+async function dataURLtoFile(url,name){const r=await fetch(url);const b=await r.blob();return new File([b],name||"artwork.jpg",{type:b.type||"image/jpeg"})}
+
+/* ================= STATE ================= */
+function loadDeletedIds(){ const d=load(LS.deleted,[]); return Array.isArray(d)?d:[]; }
+function healProducts(saved){
+  // keep the browser-saved catalog in sync with the shipped defaults:
+  // - restore rung highlight badges ("Most Popular", "Best Deal", ...) dropped by older saves
+  // - re-add default catalog items missing from the saved list (e.g. Roofing Marketing Bundle)
+  // never touches the user's own edits, and never resurrects products deliberately deleted in admin
+  const byId = {};
+  DEFAULT_PRODUCTS.forEach(dp=>{ byId[dp.id]=dp; });
+  const delIds = new Set(loadDeletedIds());
+  let changed = 0;
+  saved.forEach(p=>{
+    const dp = p && byId[p.id];
+    if(!dp || delIds.has(p.id)) return;
+    if(Array.isArray(p.rungs) && Array.isArray(dp.rungs)){
+      const dTags = {};
+      dp.rungs.forEach(r=>{ if(r && r.tag) dTags[r.qty]=r.tag; });
+      p.rungs.forEach(r=>{ if(r && !r.tag && dTags[r.qty]){ r.tag=dTags[r.qty]; changed++; } });
+    }
+  });
+  const ids = new Set(saved.map(p=>p && p.id));
+  DEFAULT_PRODUCTS.forEach(dp=>{
+    if(!ids.has(dp.id) && !delIds.has(dp.id)){ saved.push(JSON.parse(JSON.stringify(dp))); changed++; }
+  });
+  return changed;
+}
+let products = load(LS.products, null);
+if(Array.isArray(products) && products.length){
+  if(healProducts(products)) persistProducts(); // heal silently, keep the user's edits
+}else{
+  products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+}
+let cart = load(LS.cart, []);
+let orders = load(LS.orders, []);
+let activeCat = "All", searchQ = "";
+let pmState = null; // {product, rungIdx, opts:{}, gi:0}
+
+/* ================= V2: SETTINGS + DATA MIGRATION ================= */
+const LS2 = {pay:"vd_payments_v1", covers:"vd_hero_covers_v1", headshot:"vd_headshot_v1"};
+// v1 -> v2: migrate img/gallery to images[] (first entry = cover)
+products.forEach(p=>{
+  if(!Array.isArray(p.images)||!p.images.length){
+    const gal=(p.gallery&&p.gallery.length?p.gallery:[]).slice();
+    if(p.img&&!gal.includes(p.img)) gal.unshift(p.img);
+    p.images=gal.length?gal:(p.img?[p.img]:[]);
+  }
+  p.img=p.images[0]||p.img||"";
+  delete p.gallery;
+});
+save(LS.products,products);
+const DEFAULT_COVERS=[
+  {img:"images/canopy-10x10.jpg",tag:"10'×10' Canopy — $600"},
+  {img:"images/business-cards-gsweets.jpg",tag:"Cards from $75"},
+  {img:"images/yard-signs.jpg",tag:"Yard Signs — $85"}];
+let heroCovers=load(LS2.covers,null);
+if(!Array.isArray(heroCovers)||heroCovers.length!==3||!heroCovers.every(c=>c&&c.img)) heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));
+function saveCovers(){save(LS2.covers,heroCovers)}
+const DEFAULT_PAY={enabled:true,square_link:"https://square.link/u/bPcUC2Wh",cashapp_tag:"",zelle_number:"951-806-1586"};
+let paySettings=Object.assign({},DEFAULT_PAY,load(LS2.pay,{}));
+if(!paySettings.square_link) paySettings.square_link=DEFAULT_PAY.square_link;
+function savePay(){save(LS2.pay,paySettings)}
+const PAY_LABELS={square:"Square — card online",zelle:"Zelle",cashapp:"Cash App",later:"Pay later / proof-first"};
+function openSquareCheckout(url){
+  try{
+    const topW=window.top||window;
+    const dsl=topW.screenLeft!==undefined?topW.screenLeft:topW.screenX;
+    const dst=topW.screenTop!==undefined?topW.screenTop:topW.screenY;
+    const vw=topW.innerWidth||document.documentElement.clientWidth||screen.width;
+    const vh=topW.innerHeight||document.documentElement.clientHeight||screen.height;
+    const w=520,h=Math.round(vh*0.8),zoom=vw/((topW.screen&&topW.screen.availWidth)||vw)||1;
+    const left=(vw-w)/2/zoom+dsl,top=(vh-h)/2/zoom+dst;
+    const win=window.open(url,"Square Payment Links","scrollbars=yes,width="+Math.round(w/zoom)+",height="+Math.round(h/zoom)+",top="+Math.round(top)+",left="+Math.round(left));
+    if(win){if(win.focus)win.focus();return;}
+  }catch(e){}
+  window.open(url,"_blank","noopener");
+}
+const ART_EXT=/\.(pdf|ai|eps|png|jpe?g|tiff?|svg)$/i;
+const ART_MAX=25*1024*1024, ART_MAX_COUNT=10;
+
+/* ================= ABOUT HEADSHOT ================= */
+function renderHeadshot(){
+  const w=$("#aboutPhoto"); if(!w) return;
+  const custom=(load(LS2.headshot,"")||"").trim();
+  const src=custom||"logo.png";
+  w.classList.toggle("is-logo",!custom);
+  w.innerHTML=`<img src="${esc(src)}" alt="Nathan Salamanca, founder of Visualet Designs" loading="lazy" onerror="this.parentElement.classList.remove('is-logo');this.parentElement.innerHTML='VD'">`;
+}
+
+/* ================= MARQUEE ================= */
+(function(){
+  const items = ["Design Included","Professional Printing","Free Shipping","2–7 Day Turnaround","Full-Color Everything","Custom Work — No Templates","No AI — No Artificial Intelligence"];
+  const half = items.map(t=>`<span><svg class="ic"><use href="#i-bolt"/></svg>${t}</span>`).join("");
+  $("#marqueeTrack").innerHTML = half + half;
+})();
+
+/* ================= SHOP ================= */
+function renderPills(){
+  $("#catPills").innerHTML = CATS.map(c=>`<button class="pill${c===activeCat?" on":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+  $$("#catPills .pill").forEach(p=>p.onclick=()=>{activeCat=p.dataset.cat;renderPills();renderGrid()});
+}
+function productCard(p){
+  const from = Math.min(...p.rungs.map(r=>r.price));
+  const imgs = (p.images&&p.images.length?p.images:[p.img]).filter(Boolean);
+  const dots = imgs.length>1 ? `<div class="pdots">${imgs.map((_,i)=>`<button data-dot="${i}" class="${i===0?"on":""}" aria-label="View photo ${i+1} of ${imgs.length}"></button>`).join("")}</div>` : "";
+  return `<article class="pcard tilt reveal" data-id="${p.id}" tabindex="0" role="button" aria-label="View ${esc(p.name)}">
+    <div class="pimg" data-pimg="${p.id}"><img src="${esc(imgs[0]||"")}" alt="${esc(p.name)}" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      ${p.badge?`<span class="pbadge">${esc(p.badge)}</span>`:""}
+      <span class="pturn">${esc(p.turnaround)}</span>${dots}</div>
+    <div class="pbody"><div class="pcat">${esc(p.cat)}</div><h3 class="pname">${esc(p.name)}</h3>
+      <p class="pdesc">${esc(p.desc)}</p>
+      <div class="prow"><div class="price">${p.was?`<small style="text-decoration:line-through;color:var(--ink-faint)">${money0(p.was)}</small> `:""}${money0(from)}<small> starting</small></div>
+      <button class="addbtn" data-view="${p.id}"><svg class="ic"><use href="#i-eye"/></svg>Customize</button></div>
+    </div></article>`;
+}
+function renderGrid(){
+  const list = products.filter(p=>p.active!==false)
+    .filter(p=>activeCat==="All"||p.cat===activeCat)
+    .filter(p=>(p.name+" "+p.desc+" "+p.cat).toLowerCase().includes(searchQ));
+  $("#productGrid").innerHTML = list.length ? list.map(productCard).join("") :
+    `<div class="empty-shop"><h3 style="margin-bottom:8px;color:var(--ink-soft)">No products found</h3><p>Try a different search or category.</p></div>`;
+  $$("#productGrid .pcard").forEach(card=>{
+    const p=products.find(x=>x.id===card.dataset.id);
+    const imgs=((p.images&&p.images.length?p.images:[p.img])||[]).filter(Boolean);
+    const imgEl=card.querySelector(".pimg img");
+    const dots=Array.from(card.querySelectorAll(".pdots button"));
+    const setIdx=i=>{card.dataset.gi=i;if(imgEl&&imgs[i])imgEl.src=imgs[i];dots.forEach((d,j)=>d.classList.toggle("on",j===i))};
+    dots.forEach(d=>d.addEventListener("click",e=>{e.stopPropagation();setIdx(+d.dataset.dot)}));
+    const pimg=card.querySelector("[data-pimg]");
+    if(pimg) pimg.addEventListener("click",e=>{if(e.target.closest(".pdots"))return;openLightbox(imgs,+(card.dataset.gi||0),p.name)});
+    const open=()=>openProduct(card.dataset.id);
+    card.addEventListener("click",e=>{if(!e.target.closest("[data-view]")&&!e.target.closest("[data-pimg]"))open()});
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
+    const vb=card.querySelector("[data-view]"); if(vb) vb.addEventListener("click",e=>{e.stopPropagation();openProduct(vb.dataset.view)});
+  });
+  initReveals(); initTilt();
+}
+$("#searchInput").addEventListener("input",e=>{searchQ=e.target.value.trim().toLowerCase();renderGrid()});
+
+/* bundles — rendered from products in the "Bundle & Save" category so the admin can update/add anytime */
+function renderBundles(){
+  const g=$("#bundlesGrid"); if(!g) return;
+  const bs=products.filter(p=>p.active!==false&&p.cat==="Bundle & Save");
+  g.innerHTML=bs.length?bs.map(p=>{
+    const r=(p.rungs&&p.rungs[0])||{price:0};
+    return `<div class="spot reveal in"><div class="spot-in">
+      <div class="spot-media"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none'"></div>
+      <div>
+        <div class="eyebrow"><span class="dot"></span>${esc(p.badge||"Bundle & Save")}</div>
+        <h3 style="font-size:clamp(24px,3vw,34px);margin-bottom:8px">${esc(p.name)}</h3>
+        ${p.desc?`<p style="color:var(--ink-faint);font-size:15px">${esc(p.desc)}</p>`:""}
+        <div style="margin:16px 0 4px"><span class="big-price">${money0(r.price)} <small>complete package</small></span></div>
+        ${(p.includes&&p.includes.length)?`<ul class="spot-list">${p.includes.map(i=>`<li><svg class="ic"><use href="#i-circle-check"/></svg>${esc(i)}</li>`).join("")}</ul>`:""}
+        <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn solid" data-add-bundle="${esc(p.id)}">Add Bundle to Cart</button><a class="btn ghost" href="#contact">Ask a Question</a></div>
+      </div>
+    </div></div>`}).join("")
+    :`<p class="hint" style="text-align:center;padding:24px">New bundles are on the way — check back soon.</p>`;
+  g.querySelectorAll("[data-add-bundle]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.addBundle);if(p){addToCart(p.id,0,{},1);openCart()}});
+}
+
+/* logo tiers */
+function renderTiers(){
+  const lp = products.find(p=>p.id==="logo-pack");
+  const tiers = lp?lp.rungs:[
+    {qty:"Silver — 1 logo, 2 revisions, PNG+JPG",price:50},
+    {qty:"Gold — 2 concepts, 3 revisions, +mockup",price:75,tag:"Most Popular"},
+    {qty:"Diamond — full brand kit + bonuses",price:200,tag:"Best Value"}];
+  const meta=[["silver","Silver","Clean. Simple. Perfect for fast launches."],["gold","Gold","More concepts. More polish. Growing brands."],["diamond","Diamond","The full brand starter kit. Launch like a pro."]];
+  $("#logoTiers").innerHTML = tiers.map((t,i)=>{
+    const cls=meta[i]?meta[i][0]:"silver", nm=meta[i]?meta[i][1]:"Package", sub=meta[i]?meta[i][2]:"";
+    const feats=t.qty.split("—")[1]?t.qty.split("—")[1].split(",").map(s=>s.trim()):[t.qty];
+    return `<div class="tier ${cls} reveal"><h3>${nm}</h3><p style="color:var(--ink-faint);font-size:14px">${sub}</p>
+      <div class="tprice">${money0(t.price)}</div>
+      ${t.tag?`<span class="pbadge" style="position:static;display:inline-block;margin-bottom:6px">${esc(t.tag)}</span>`:""}
+      <ul>${feats.map(f=>`<li><svg class="ic"><use href="#i-circle-check"/></svg>${esc(f)}</li>`).join("")}</ul>
+      <button class="btn ${cls==="gold"?"solid":""} block" data-tier="${i}">Choose ${nm}</button></div>`;
+  }).join("");
+  $$("#logoTiers [data-tier]").forEach(b=>b.onclick=()=>{addToCart("logo-pack",parseInt(b.dataset.tier),{},1);openCart()});
+  initReveals();
+}
+
+/* ================= PRODUCT MODAL ================= */
+function openProduct(id){
+  const p = products.find(x=>x.id===id); if(!p) return;
+  pmState = {product:p, rungIdx: p.rungs.findIndex(r=>r.tag)||0, opts:{}, gi:0, art:{front:null,back:null}, reward:false};
+  if(pmState.rungIdx<0) pmState.rungIdx=0;
+  (p.options||[]).forEach(o=>pmState.opts[o.name]=o.choices[0]);
+  $("#pmImg").src=p.img; $("#pmImg").alt=p.name;
+  const gal=((p.images&&p.images.length?p.images:[p.img])||[]).filter(Boolean);
+  $("#pmThumbs").innerHTML=gal.length>1?gal.map((g,i)=>`<img src="${esc(g)}" data-gi="${i}" class="${i===0?"on":""}" alt="View ${i+1}" loading="lazy">`).join(""):"";
+  $$("#pmThumbs img").forEach(t=>t.onclick=e=>{e.stopPropagation();pmState.gi=+t.dataset.gi;$("#pmImg").src=gal[pmState.gi];$$("#pmThumbs img").forEach(x=>x.classList.remove("on"));t.classList.add("on")});
+  $("#pmImg").style.cursor="zoom-in";
+  $("#pmImg").onclick=()=>openLightbox(gal,pmState.gi,p.name);
+  $("#pmCat").textContent=p.cat; $("#pmName").textContent=p.name; $("#pmDesc").textContent=p.desc;
+  $("#pmMeta").innerHTML=`<span>${esc(p.turnaround)}</span>${p.badge?`<span>${esc(p.badge)}</span>`:""}<span>Free shipping</span>`;
+  $("#pmIncludes").innerHTML=(p.includes||[]).map(i=>`<li><svg class="ic"><use href="#i-circle-check"/></svg>${esc(i)}</li>`).join("");
+  renderPmRungs(); renderPmOpts(); renderPmArt(); updatePmPrice();
+  openModal("pModal");
+}
+function renderPmRungs(){
+  const p=pmState.product;
+  $("#pmRungs").innerHTML=p.rungs.map((r,i)=>
+    `<div class="rung${i===pmState.rungIdx?" on":""}" data-rung="${i}" role="button" tabindex="0"><span>${esc(r.qty)}${r.tag?`<span class="save">${esc(r.tag)}</span>`:""}</span><b>${money0(r.price)}</b></div>`).join("");
+  $$("#pmRungs .rung").forEach(el=>{
+    const pick=()=>{pmState.rungIdx=parseInt(el.dataset.rung);renderPmRungs();updatePmPrice()};
+    el.onclick=pick; el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}};
+  });
+}
+function renderPmOpts(){
+  const p=pmState.product;
+  $("#pmOpts").innerHTML=(p.options||[]).map(o=>
+    `<div class="opt-label">${esc(o.name)}</div><div class="seg" data-opt="${esc(o.name)}">${o.choices.map(c=>
+      `<button class="${pmState.opts[o.name]===c?"on":""}" data-val="${esc(c)}">${esc(c)}</button>`).join("")}</div>`).join("");
+  $$("#pmOpts .seg").forEach(seg=>{
+    seg.querySelectorAll("button").forEach(b=>b.onclick=()=>{pmState.opts[seg.dataset.opt]=b.dataset.val;renderPmOpts()});
+  });
+}
+function updatePmPrice(){
+  const base=pmState.product.rungs[pmState.rungIdx].price;
+  const disc=pmState.reward?Math.min(20,base):0;
+  $("#pmPrice").innerHTML=disc?`<s style="opacity:.45;font-weight:400">${money0(base)}</s> ${money0(base-disc)}`:money0(base);
+}
+/* print-ready artwork upload — business cards only, $20 reward */
+function isBizCard(p){return /business[\s-]*cards?/i.test((p.name||"")+" "+(p.cat||""))}
+function renderPmArt(){
+  const box=$("#pmArt"); if(!box) return;
+  const p=pmState.product;
+  if(!isBizCard(p)){box.innerHTML="";return}
+  const a=pmState.art;
+  const slot=s=>{
+    const f=a[s];
+    const inner=f
+      ? `${f.kind==="pdf"?`<span class="art-plus" style="font-size:22px">PDF</span>`:`<img src="${f.url}" alt="${s} artwork">`}<span class="art-ok">✓ ${s} attached</span><span class="art-rm" data-unart="${s}">remove</span>`
+      : `<input type="file" accept="image/*,.pdf" data-art="${s}" hidden><span class="art-plus">+</span><span>Upload ${s}</span><small>JPG, PNG or PDF</small>`;
+    return `<label class="art-slot${f?" done":""}">${inner}</label>`;
+  };
+  box.innerHTML=`<div class="artup">
+    <h4><svg class="ic"><use href="#i-upload"/></svg>Have your own print-ready artwork? <span class="reward-tag">get $20 off</span></h4>
+    <p class="hint" style="margin:6px 0 0">No artwork? No problem — <b>every package includes a custom design</b>, we'll design one for you. Upload both sides of print-ready art and we'll take <b style="color:#7dffb0">$20 off</b> this item instantly.</p>
+    <div class="art-slots">${slot("front")}${slot("back")}</div></div>`;
+  box.querySelectorAll("[data-art]").forEach(inp=>inp.onchange=()=>{
+    const f=inp.files[0]; if(!f) return; const side=inp.dataset.art;
+    const done=(url,name,kind)=>{pmState.art[side]={name:name||f.name,url,kind:kind||"img"};renderPmArt();checkArtReward()};
+    if(f.type==="application/pdf"){fileToDataURL(f).then(url=>done(url,f.name,"pdf")).catch(()=>toast("Couldn't read that file"))}
+    else compressImage(f,1400,url=>done(url));
+    inp.value="";
+  });
+  box.querySelectorAll("[data-unart]").forEach(b=>b.onclick=e=>{e.preventDefault();pmState.art[b.dataset.unart]=null;pmState.reward=false;renderPmArt();updatePmPrice()});
+}
+function checkArtReward(){
+  const a=pmState.art;
+  if(a.front&&a.back&&!pmState.reward){pmState.reward=true;updatePmPrice();showRewardPop()}
+  else updatePmPrice();
+}
+let rewardTimer=null;
+function showRewardPop(){
+  const pop=$("#rewardPop"),card=$("#rewardCard"); if(!pop) return;
+  card.querySelectorAll(".reward-spark").forEach(s=>s.remove());
+  for(let i=0;i<14;i++){const s=document.createElement("span");s.className="reward-spark";
+    const ang=Math.random()*Math.PI*2,d=90+Math.random()*130;
+    s.style.setProperty("--sx",Math.cos(ang)*d+"px");s.style.setProperty("--sy",Math.sin(ang)*d+"px");
+    s.style.left="50%";s.style.top="38%";card.appendChild(s)}
+  pop.classList.add("show");
+  pop.onclick=()=>{pop.classList.remove("show");if(rewardTimer){clearTimeout(rewardTimer);rewardTimer=null}};
+  if(rewardTimer)clearTimeout(rewardTimer);
+  rewardTimer=setTimeout(()=>pop.classList.remove("show"),3400);
+}
+$("#pmAdd").onclick=()=>{ const s=pmState; const base=s.product.rungs[s.rungIdx].price; const disc=s.reward?Math.min(20,base):0;
+  addToCart(s.product.id, s.rungIdx, {...s.opts}, 1, disc, s.reward?{front:s.art.front,back:s.art.back}:null);
+  closeModal("pModal"); openCart(); };
+</script>
+<script>
+/* ================= CART ================= */
+function cartQty(){return cart.reduce((a,c)=>a+c.qty,0)}
+function cartSubtotal(){return cart.reduce((a,c)=>{const p=products.find(x=>x.id===c.pid);if(!p)return a;const r=p.rungs[c.rung]||p.rungs[0];return a+Math.max(0,r.price-(c.disc||0))*c.qty},0)}
+function addToCart(pid,rungIdx,opts,qty,disc,art){
+  disc=disc||0;
+  const key=pid+"|"+rungIdx+"|"+JSON.stringify(opts||{})+"|"+disc;
+  const ex=cart.find(c=>c.key===key);
+  if(ex) ex.qty+=qty; else cart.push({key,pid,rung:rungIdx,opts:opts||{},qty,disc,art:art||null});
+  save(LS.cart,cart); renderCart();
+  const p=products.find(x=>x.id===pid);
+  toast(`${p?p.name:"Product"} added to cart`);
+}
+function renderCart(){
+  const n=cartQty(), cc=$("#cartCount");
+  cc.textContent=n; cc.classList.toggle("hide",n===0);
+  $("#drawerCount").textContent=n?`(${n})`:"";
+  const box=$("#cartItems");
+  if(!cart.length){box.innerHTML=`<div class="cart-empty"><svg class="ic" style="width:44px;height:44px;opacity:.35;margin-bottom:14px"><use href="#i-cart"/></svg><br>Your cart is empty.<br>Let's fix that — <a href="#shop" style="color:var(--blue-bright)" onclick="closeAll()">browse the shop</a>.</div>`}
+  else box.innerHTML=cart.map((c,i)=>{
+    const p=products.find(x=>x.id===c.pid); if(!p) return "";
+    const r=p.rungs[c.rung]||p.rungs[0];
+    const optStr=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(" • ");
+    return `<div class="citem"><img src="${esc(p.img)}" alt="" onerror="this.style.display='none'">
+      <div><div class="cn">${esc(p.name)}</div><div class="cd">${esc(r.qty)}${optStr?" • "+esc(optStr):""}</div>
+      ${c.disc?`<div class="cd" style="color:#7dffb0">✓ Print-ready art attached — ${money(c.disc)} reward</div>`:""}
+      <div class="cr"><span class="qty"><button data-dec="${i}" aria-label="Decrease">−</button><b>${c.qty}</b><button data-inc="${i}" aria-label="Increase">+</button></span>
+      <span class="cp">${money(Math.max(0,r.price-(c.disc||0))*c.qty)}</span></div>
+      <button class="rm" data-rm="${i}">Remove</button></div></div>`;
+  }).join("");
+  $$("#cartItems [data-inc]").forEach(b=>b.onclick=()=>{cart[+b.dataset.inc].qty++;save(LS.cart,cart);renderCart()});
+  $$("#cartItems [data-dec]").forEach(b=>b.onclick=()=>{const c=cart[+b.dataset.dec];c.qty--;if(c.qty<1)cart.splice(+b.dataset.dec,1);save(LS.cart,cart);renderCart()});
+  $$("#cartItems [data-rm]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.rm,1);save(LS.cart,cart);renderCart()});
+  const st=cartSubtotal();
+  $("#cartSub").textContent=money(st); $("#cartTotal").textContent=money(st);
+  $("#checkoutBtn").disabled=!cart.length;
+}
+function openCart(){closeAll();$("#overlay").classList.add("show");$("#cartDrawer").classList.add("show");document.body.style.overflow="hidden"}
+$("#cartBtn").onclick=openCart;
+$("#checkoutBtn").onclick=()=>{if(!cart.length)return;$("#cartDrawer").classList.remove("show");startCheckout()};
+
+/* ================= CHECKOUT ================= */
+let coStep=1, coData={};
+function startCheckout(){coStep=1;coData={orderNumber:genOrderNum(),payMethod:null,artFiles:[]};
+  cart.forEach(c=>{if(c.art){const p=products.find(x=>x.id===c.pid);["front","back"].forEach(s=>{const f=c.art[s];
+    if(f&&f.url)coData.artFiles.push({name:`${p?p.name:"artwork"}-${s}-${f.name}`,size:0,type:f.kind==="pdf"?"application/pdf":"image/jpeg",url:f.url,file:null})})}});
+  renderCheckout();openModal("coModal")}
+function genOrderNum(){return "VD-"+Date.now().toString(36).toUpperCase().slice(-6).padStart(6,"0")}
+function setCoStep(n){coStep=n;[1,2,3,4].forEach(i=>{const d=$("#coD"+i);if(d)d.classList.toggle("on",i<=n);const l=$("#coL"+i);if(l)l.classList.toggle("on",i===n)});renderCheckout()}
+function renderCheckout(){
+  const box=$("#coBody"), st=cartSubtotal();
+  if(coStep===1){
+    box.innerHTML=`<h2>Your Details</h2><p class="co-sub">Where should we send proofs and ship your order?</p>
+    <div class="fgrid">
+      <div class="field"><label>Full name *</label><input id="f_name" value="${esc(coData.name||"")}" placeholder="Jane Smith"></div>
+      <div class="field"><label>Email *</label><input id="f_email" type="email" value="${esc(coData.email||"")}" placeholder="you@email.com"></div>
+      <div class="field"><label>Phone *</label><input id="f_phone" type="tel" value="${esc(coData.phone||"")}" placeholder="(909) 555-1234"></div>
+      <div class="field"><label>Company (optional)</label><input id="f_co" value="${esc(coData.co||"")}" placeholder="Business name"></div>
+      <div class="field full"><label>Street address *</label><input id="f_addr" value="${esc(coData.addr||"")}" placeholder="123 Main St"></div>
+      <div class="field"><label>City *</label><input id="f_city" value="${esc(coData.city||"")}"></div>
+      <div class="field"><label>ZIP *</label><input id="f_zip" value="${esc(coData.zip||"")}" inputmode="numeric"></div>
+      <div class="field full"><label>Order notes (optional)</label><textarea id="f_notes" placeholder="Colors, ideas, deadlines, or 'please design it for me'…">${esc(coData.notes||"")}</textarea></div>
+    </div>
+    <label class="checkline"><input type="checkbox" id="f_design" ${coData.design?"checked":""}><span><b>I need design service</b><br>Check this if you don't have print-ready art — Nathan will design it and send a proof for approval before printing.</span></label>
+    <div class="co-nav"><button class="btn ghost" data-close="coModal">Back to Cart</button><button class="btn solid" id="toStep2" style="flex:1">Artwork &amp; Payment →</button></div>`;
+    $("#toStep2").onclick=()=>{
+      coData=Object.assign(coData,{name:$("#f_name").value.trim(),email:$("#f_email").value.trim(),phone:$("#f_phone").value.trim(),co:$("#f_co").value.trim(),addr:$("#f_addr").value.trim(),city:$("#f_city").value.trim(),zip:$("#f_zip").value.trim(),notes:$("#f_notes").value.trim(),design:$("#f_design").checked});
+      if(!coData.name||!coData.email||!coData.phone||!coData.addr||!coData.city||!coData.zip){toast("Please fill in the required fields");return}
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(coData.email)){toast("Please enter a valid email");return}
+      setCoStep(2);
+    };
+  }
+  if(coStep===2){
+    const pay=paySettings;
+    const methods=[];
+    if(pay.enabled&&pay.square_link) methods.push({id:"square",icon:"i-square",cls:"sq",img:"images/pay-square.png",t:"Pay by Card — Square",d:"Secure online card payment through Square."});
+    if(pay.enabled&&pay.zelle_number) methods.push({id:"zelle",icon:"i-zelle",cls:"ze",img:"images/pay-zelle.jpg",t:"Zelle",d:"Send from your bank app to "+pay.zelle_number+" (Nathan Salamanca)."});
+    if(pay.enabled&&pay.cashapp_tag) methods.push({id:"cashapp",icon:"i-cashapp",cls:"ca",t:"Cash App",d:"Send to "+pay.cashapp_tag+"."});
+    methods.push({id:"later",icon:"i-clock",cls:"lt",t:"Pay later — proof first",d:"No payment today. Approve your proof first, then pay."});
+    if(!methods.some(m=>m.id===coData.payMethod)) coData.payMethod=methods[0].id;
+    box.innerHTML=`<h2>Artwork &amp; Payment</h2><p class="co-sub">Order <b>${esc(coData.orderNumber)}</b> — upload print-ready files and choose how to pay.</p>
+    <div class="opt-label" style="margin-top:0">Upload print-ready art (optional)</div>
+    <div class="drop" id="artDrop" role="button" tabindex="0" aria-label="Upload artwork files">
+      <svg class="ic"><use href="#i-plus"/></svg><b>Tap to choose files</b>
+      <p class="hint">PDF, AI, EPS, PNG, JPG, TIFF, SVG — up to 25MB each, ${ART_MAX_COUNT} files max</p>
+      <input type="file" id="artInput" multiple accept=".pdf,.ai,.eps,.png,.jpg,.jpeg,.tif,.tiff,.svg" style="display:none"></div>
+    <div class="artlist" id="artList"></div>
+    <div class="opt-label">Payment method</div>
+    <div class="paygrid">${methods.map(m=>`<div class="paycard${coData.payMethod===m.id?" on":""}" data-pay="${m.id}" role="button" tabindex="0" aria-label="${esc(m.t)}"><span class="radio"></span>${payIcon(m.icon,m.cls,m.img)}<span class="ptxt"><b>${esc(m.t)}</b><p>${esc(m.d)}</p></span></div>`).join("")}</div>
+    <div class="pay-amt">Total due: ${money(st)}</div>
+    <p class="hint" id="payHint"></p>
+    <div class="co-nav"><button class="btn ghost" id="back1">← Back</button><button class="btn solid" id="toStep3" style="flex:1">Review Order →</button></div>`;
+    const hints={
+      square:`After placing your order you'll get a secure Square checkout — enter <b>${money(st)}</b> as the amount.`,
+      zelle:`After placing your order, send <b>${money(st)}</b> via Zelle to <b>${esc(pay.zelle_number)}</b> — account name <b>Nathan Salamanca</b>. Put order <b>${esc(coData.orderNumber)}</b> in the memo, then text <b>"ZELLE#VD${esc(coData.orderNumber)}"</b> plus your Zelle payment screenshot confirmation to <b>${esc(pay.zelle_number)}</b>.`,
+      cashapp:`After placing your order, send <b>${money(st)}</b> on Cash App to <b>${esc(pay.cashapp_tag)}</b> — put order <b>${esc(coData.orderNumber)}</b> in the note.`,
+      later:`No payment due today. After you place your order, you'll get a digital proof to approve — payment is collected once you're 100% satisfied with the design.`};
+    const setHint=()=>{$("#payHint").innerHTML=hints[coData.payMethod]||""};
+    setHint();
+    $$("#coBody .paycard").forEach(c=>{
+      const pick=()=>{coData.payMethod=c.dataset.pay;$$("#coBody .paycard").forEach(x=>x.classList.toggle("on",x===c));setHint()};
+      c.onclick=pick; c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}};
+    });
+    const renderArtList=()=>{
+      $("#artList").innerHTML=coData.artFiles.map((f,i)=>`<div class="artitem"><svg class="ic"><use href="#i-box"/></svg><span class="an">${esc(f.name)}</span><small>${fmtSize(f.size)}</small><button class="rm" data-rmart="${i}" aria-label="Remove ${esc(f.name)}">✕</button></div>`).join("");
+      $$("#artList [data-rmart]").forEach(b=>b.onclick=e=>{e.stopPropagation();coData.artFiles.splice(+b.dataset.rmart,1);renderArtList()});
+    };
+    renderArtList();
+    $("#artDrop").onclick=()=>$("#artInput").click();
+    $("#artDrop").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#artInput").click()}};
+    $("#artInput").onchange=e=>{
+      for(const f of e.target.files){
+        if(!ART_EXT.test(f.name)){toast(`"${f.name}" isn't a supported file type`);continue}
+        if(f.size>ART_MAX){toast(`"${f.name}" is over 25MB — please compress it and try again`);continue}
+        if(coData.artFiles.length>=ART_MAX_COUNT){toast(`Up to ${ART_MAX_COUNT} files per order`);break}
+        if(coData.artFiles.some(x=>x.name===f.name&&x.size===f.size))continue;
+        coData.artFiles.push({file:f,name:f.name,size:f.size,type:f.type});
+      }
+      e.target.value=""; renderArtList();
+    };
+    $("#back1").onclick=()=>setCoStep(1);
+    $("#toStep3").onclick=()=>setCoStep(3);
+  }
+  if(coStep===3){
+    const rows=cart.map(c=>{const p=products.find(x=>x.id===c.pid);const r=p.rungs[c.rung]||p.rungs[0];const disc=c.disc||0;
+      const o=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(", ");
+      return `<div><span>${c.qty} × ${esc(p.name)}<br><small style="color:var(--ink-faint)">${esc(r.qty)}${o?", "+esc(o):""}${disc?` <b style="color:#7dffb0">−${money(disc)} reward</b>`:""}</small></span><b>${money(Math.max(0,r.price-disc)*c.qty)}</b></div>`}).join("");
+    const payLabel=PAY_LABELS[coData.payMethod]||PAY_LABELS.later;
+    const artRow=coData.artFiles.length
+      ? `<div><span>Artwork (${coData.artFiles.length})</span><b style="text-align:right;max-width:58%">${esc(coData.artFiles.map(f=>f.name).join(", "))}</b></div>`
+      : `<div><span>Artwork</span><b>None — design service / email later</b></div>`;
+    box.innerHTML=`<h2>Review Order</h2><p class="co-sub">Order <b>${esc(coData.orderNumber)}</b> — one last look before it goes to the studio.</p>
+    <div class="review-box"><div class="rh">Items (${cartQty()})</div><div class="rb">${rows}
+      <div style="border-top:1px solid rgba(77,157,255,.14);margin-top:8px;padding-top:10px"><span>Shipping</span><b style="color:#7dffb0">FREE</b></div>
+      <div><span><b>Total due</b></span><b style="font-size:18px">${money(st)}</b></div></div></div>
+    <div class="review-box"><div class="rh">Ship To</div><div class="rb">${esc(coData.name)}${coData.co?" — "+esc(coData.co):""}<br>${esc(coData.addr)}, ${esc(coData.city)} ${esc(coData.zip)}<br>${esc(coData.email)} • ${esc(coData.phone)}${coData.design?'<br><b style="color:var(--blue-bright)">Design service requested</b>':""}${coData.notes?`<br><span style="color:var(--ink-faint)">Notes: ${esc(coData.notes)}</span>`:""}</div></div>
+    <div class="review-box"><div class="rh">Payment &amp; Artwork</div><div class="rb">
+      <div><span>Payment method</span><b>${esc(payLabel)}</b></div>${artRow}</div></div>
+    <p class="hint">${coData.payMethod==="later"?"No payment due today — you'll approve a proof first.":"You'll complete payment right after placing the order."}${coData.artFiles.length?` ${coData.artFiles.length} art file(s) will be attached to your order.`:""}</p>
+    <div class="co-nav"><button class="btn ghost" id="back2">← Back</button><button class="btn solid" id="placeOrder" style="flex:1">Place Order — ${money(st)}</button></div>`;
+    $("#back2").onclick=()=>setCoStep(2);
+    $("#placeOrder").onclick=placeOrder;
+  }
+  if(coStep===4){
+    const o=coData.order, pm=o.paymentMethodKey;
+    let payPanel="";
+    if(pm==="square"&&paySettings.square_link){
+      payPanel=`<div class="pay-panel"><h3>${payIcon("i-square","sq","images/pay-square.png")}Complete your payment</h3><p>Pay <b>${money(o.total)}</b> securely by card with Square:</p>
+      <button class="btn solid block" id="sqPay">Pay ${money(o.total)} with Square</button>
+      <p class="hint">A secure Square window will open — enter <b>${money(o.total)}</b> as the amount. Add your order # <b>${esc(o.number)}</b> in the payment note if there's a field for it. Your job enters the studio queue as soon as payment is confirmed.</p></div>`;
+    }else if(pm==="zelle"&&paySettings.zelle_number){
+      payPanel=`<div class="pay-panel"><h3>${payIcon("i-zelle","ze","images/pay-zelle.jpg")}Complete your payment</h3><p>Send <b>${money(o.total)}</b> via Zelle to <b>Nathan Salamanca</b>:</p>
+      <div class="copyrow"><span class="copyval">${esc(paySettings.zelle_number)}</span><button class="btn small" id="copyZ">Copy</button></div>
+      <p class="hint">Look for the account name <b>Nathan Salamanca</b> when sending. Then text <b>"ZELLE#VD${esc(o.number)}"</b> plus your Zelle payment screenshot confirmation to <b>${esc(paySettings.zelle_number)}</b>. Your job enters the studio queue as soon as payment is confirmed.</p></div>`;
+    }else if(pm==="cashapp"&&paySettings.cashapp_tag){
+      payPanel=`<div class="pay-panel"><h3>${payIcon("i-cashapp","ca")}Complete your payment</h3><p>Send <b>${money(o.total)}</b> on Cash App to:</p>
+      <div class="copyrow"><span class="copyval">${esc(paySettings.cashapp_tag)}</span><button class="btn small" id="copyC">Copy</button></div>
+      <p class="hint">Put order # <b>${esc(o.number)}</b> in the Cash App note. Your job enters the studio queue as soon as payment arrives.</p></div>`;
+    }else{
+      payPanel=`<div class="pay-panel"><h3 style="justify-content:flex-start">${payIcon("i-clock","lt")}No payment due today</h3><p>${coData.design?"You'll get a design proof by email to approve before printing — payment is collected once you're 100% satisfied with the design.":"Proof-first: we'll confirm your artwork, then collect payment before anything goes to press."}</p></div>`;
+    }
+    const artNote=(!load(LS.backend,DEFAULT_BACKEND)&&o.artwork&&o.artwork.length)
+      ? `<p>Please email your ${o.artwork.length} art file(s) to <b>visualetdesigns@gmail.com</b> with the subject <b>"Artwork — ${esc(o.number)}"</b>.</p>` : "";
+    box.innerHTML=`<div class="confirm"><div class="big-check"><svg class="ic"><use href="#i-check"/></svg></div>
+    <h2>Order Received!</h2><p>Thanks ${esc(coData.name.split(" ")[0])} — your order is in the studio queue.</p>
+    <div class="order-num">${esc(o.number)}</div>
+    ${payPanel}
+    ${artNote}
+    <p>Save this order number. Track your order anytime below.</p>
+    <div class="co-nav" style="justify-content:center"><button class="btn solid" id="goTrack">Track My Order</button><button class="btn ghost" data-close="coModal">Continue Shopping</button></div></div>`;
+    const cz=$("#copyZ"); if(cz) cz.onclick=()=>copyText(paySettings.zelle_number,"Zelle number copied");
+    const cc=$("#copyC"); if(cc) cc.onclick=()=>copyText(paySettings.cashapp_tag,"Cash App tag copied");
+    const sqb=$("#sqPay"); if(sqb) sqb.onclick=()=>openSquareCheckout(paySettings.square_link);
+    $("#goTrack").onclick=()=>{closeAll();document.querySelector("#track").scrollIntoView({behavior:"smooth"});$("#trackNum").value=o.number;$("#trackEmail").value=o.email;doTrack()};
+  }
+  $$("#coBody [data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+}
+async function placeOrder(){
+  const btn=$("#placeOrder"); btn.disabled=true; btn.textContent="Placing order…";
+  const items=cart.map(c=>{const p=products.find(x=>x.id===c.pid);const r=p.rungs[c.rung]||p.rungs[0];const disc=c.disc||0;
+    return {pid:c.pid,name:p.name,rung:r.qty,opts:c.opts,qty:c.qty,discount:disc,unit:Math.max(0,r.price-disc),line:Math.max(0,r.price-disc)*c.qty}});
+  const pmKey=coData.payMethod||"later";
+  const order={number:coData.orderNumber,date:new Date().toISOString(),name:coData.name,email:coData.email.toLowerCase(),phone:coData.phone,co:coData.co,addr:`${coData.addr}, ${coData.city} ${coData.zip}`,notes:coData.notes,design:coData.design,items,total:cartSubtotal(),status:"Received",
+    paymentMethod:PAY_LABELS[pmKey]||PAY_LABELS.later,paymentMethodKey:pmKey,paid:false,awaitingPayment:pmKey!=="later",
+    artwork:coData.artFiles.map(f=>({name:f.name,size:f.size,type:f.type}))};
+  // try backend
+  const backend=load(LS.backend,DEFAULT_BACKEND);
+  if(backend){
+    try{
+      btn.textContent="Saving order…";
+      const res=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"createOrder",order})});
+      const j=await res.json(); if(j&&j.number) order.number=j.number;
+      if(coData.artFiles.length){
+        btn.textContent="Uploading artwork…";
+        const files=[];
+        for(const f of coData.artFiles){const file=f.file||(f.url?await dataURLtoFile(f.url,f.name):null);if(!file)continue;files.push({name:f.name,type:f.type||"application/octet-stream",data:await fileToDataURL(file)})}
+        const ur=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"uploadArtwork",orderNumber:order.number,files})});
+        const uj=await ur.json();
+        if(uj&&Array.isArray(uj.urls)){uj.urls.forEach((u,i)=>{if(order.artwork[i]&&u)order.artwork[i].url=u})}
+      }
+    }catch(e){/* fall back to local */}
+  }
+  orders.unshift(order); save(LS.orders,orders);
+  cart=[]; save(LS.cart,cart); renderCart();
+  coData.order=order; coData.artFiles=[]; setCoStep(4);
+  toast("Order placed — "+order.number);
+}
+</script>
+<script>
+/* ================= TRACK ORDER ================= */
+function tlHTML(o){
+  const idx=STATUSES.indexOf(o.status);
+  const descs=["We've got your order and it's in the studio queue.","Nathan is designing your artwork / prepping files.","Your job is on the press.","Your order left the studio — on its way!","Delivered. Enjoy!"];
+  const steps=STATUSES.map((s,i)=>{
+    const cls=i<idx?"done":(i===idx?(idx===4?"done":"now"):"");
+    return `<div class="tl-step ${cls}"><div class="tl-dot"><svg class="ic"><use href="#i-${i<idx?"check":(i===idx&&idx<4?"clock":"check")}"/></svg></div>
+    <div><b>${s}</b><small>${i<=idx?descs[i]:"Pending"}</small></div></div>`;
+  }).join("");
+  const items=o.items.map(it=>`<div><span>${it.qty} × ${esc(it.name)} <small style="color:var(--ink-faint)">(${esc(it.rung)})</small></span><b>${money(it.line)}</b></div>`).join("");
+  const payLine=o.paid?`<span style="color:#7dffb0">Paid ✓</span>`:o.awaitingPayment?`<span style="color:#ffcf7d">Awaiting payment${o.paymentMethod?" — "+esc(o.paymentMethod):""}</span>`:`<span>Proof-first — pay on approval</span>`;
+  return `<div class="tl-head"><b>Order ${esc(o.number)}</b><span class="tl-status">${esc(o.status)}</span></div>
+  <div style="font-size:13.5px;color:var(--ink-faint);margin-bottom:6px">Placed ${new Date(o.date).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})} • Total ${money(o.total)} • ${payLine}</div>${steps}
+  <div class="tl-items"><b style="font-size:14px">Items</b>${items}</div>`;
+}
+async function doTrack(){
+  const num=$("#trackNum").value.trim().toUpperCase(), email=$("#trackEmail").value.trim().toLowerCase();
+  const err=$("#trackErr"), tl=$("#timeline");
+  err.classList.remove("show"); tl.classList.remove("show");
+  if(!num||!email){err.textContent="Enter your order number and email.";err.classList.add("show");return}
+  let order=orders.find(o=>o.number.toUpperCase()===num&&o.email===email);
+  const backend=load(LS.backend,DEFAULT_BACKEND);
+  if(!order&&backend){
+    try{
+      const r=await fetch(backend+"?action=track&number="+encodeURIComponent(num)+"&email="+encodeURIComponent(email));
+      const j=await r.json(); if(j&&j.order) order=j.order;
+    }catch(e){}
+  }
+  if(order){tl.innerHTML=tlHTML(order);tl.classList.add("show")}
+  else{err.textContent="We couldn't find that order. Double-check the order number and email from your confirmation.";err.classList.add("show")}
+}
+$("#trackBtn").onclick=doTrack;
+$("#trackEmail").addEventListener("keydown",e=>{if(e.key==="Enter")doTrack()});
+$("#trackNum").addEventListener("keydown",e=>{if(e.key==="Enter")doTrack()});
+
+/* ================= LIGHTBOX ================= */
+let lbImgs=[],lbIdx=0,lbScale=1,lbTX=0,lbTY=0;
+const lbEl=$("#lightbox"),lbImg=$("#lbImg");
+function openLightbox(imgs,idx,cap){
+  lbImgs=(imgs||[]).filter(Boolean); if(!lbImgs.length)return;
+  lbIdx=Math.max(0,Math.min(idx||0,lbImgs.length-1));
+  lbEl.dataset.cap=cap||"";
+  lbShow(); lbEl.classList.add("show"); document.body.style.overflow="hidden";
+}
+function lbShow(){
+  lbScale=1;lbTX=0;lbTY=0;lbApply();
+  lbImg.src=lbImgs[lbIdx]; lbImg.alt=lbEl.dataset.cap?lbEl.dataset.cap+` (photo ${lbIdx+1})`:`Photo ${lbIdx+1}`;
+  $("#lbCount").textContent=lbImgs.length>1?`${lbIdx+1} / ${lbImgs.length}`:"";
+  $("#lbCap").textContent=lbEl.dataset.cap||"";
+  const multi=lbImgs.length>1;
+  $("#lbPrev").style.display=multi?"":"none";
+  $("#lbNext").style.display=multi?"":"none";
+}
+function lbApply(){lbImg.style.transform=`translate(${lbTX}px,${lbTY}px) scale(${lbScale})`;lbImg.style.cursor=lbScale>1?"grab":"zoom-in"}
+function lbClose(){lbEl.classList.remove("show");if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}}
+function lbNav(d){lbIdx=(lbIdx+d+lbImgs.length)%lbImgs.length;lbShow()}
+function lbZoom(f){lbScale=Math.min(4,Math.max(1,lbScale*f));if(lbScale===1){lbTX=0;lbTY=0}lbApply()}
+$("#lbClose").onclick=lbClose;
+$("#lbPrev").onclick=()=>lbNav(-1);
+$("#lbNext").onclick=()=>lbNav(1);
+$("#lbZoomIn").onclick=()=>lbZoom(1.4);
+$("#lbZoomOut").onclick=()=>lbZoom(1/1.4);
+$("#lbZoomReset").onclick=()=>{lbScale=1;lbTX=0;lbTY=0;lbApply()};
+lbImg.addEventListener("wheel",e=>{e.preventDefault();lbZoom(e.deltaY<0?1.15:1/1.15)},{passive:false});
+document.addEventListener("keydown",e=>{
+  if(!lbEl.classList.contains("show"))return;
+  if(e.key==="ArrowRight")lbNav(1);
+  else if(e.key==="ArrowLeft")lbNav(-1);
+  else if(e.key==="Escape")lbClose();
+  else if(e.key==="+"||e.key==="=")lbZoom(1.25);
+  else if(e.key==="-"||e.key==="_")lbZoom(1/1.25);
+});
+lbEl.addEventListener("click",e=>{if(e.target===lbEl)lbClose()});
+(function(){
+  const stage=lbEl.querySelector(".lb-stage");
+  let sx=0,sy=0,pinch=0,drag=null;
+  stage.addEventListener("touchstart",e=>{
+    if(e.touches.length===1){sx=e.touches[0].clientX;sy=e.touches[0].clientY}
+    else if(e.touches.length===2){pinch=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY)}
+  },{passive:true});
+  stage.addEventListener("touchmove",e=>{
+    if(e.touches.length===2){e.preventDefault();const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);if(pinch>0)lbZoom(d/pinch);pinch=d}
+  },{passive:false});
+  stage.addEventListener("touchend",e=>{
+    if(e.changedTouches.length&&lbScale===1){
+      const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+      if(Math.abs(dx)>60&&Math.abs(dy)<90&&lbImgs.length>1)lbNav(dx<0?1:-1);
+    }
+  });
+  lbImg.addEventListener("pointerdown",e=>{if(lbScale>1){drag={x:e.clientX-lbTX,y:e.clientY-lbTY};try{lbImg.setPointerCapture(e.pointerId)}catch(_){}}});
+  lbImg.addEventListener("pointermove",e=>{if(drag){lbTX=e.clientX-drag.x;lbTY=e.clientY-drag.y;lbApply()}});
+  lbImg.addEventListener("pointerup",()=>{drag=null});
+  lbImg.addEventListener("pointercancel",()=>{drag=null});
+})();
+
+/* ================= HERO 3D FAN CAROUSEL ================= */
+const fanReduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let fanIdx=1,fanTimer=null,fanCards=[];
+function payIcon(id,cls,img){return `<span class="pay-ic ${cls||""}" aria-hidden="true">${img?`<img src="${img}" alt="" loading="lazy" onerror="this.remove()">`:""}<svg viewBox="0 0 24 24"><use href="#${id}"/></svg></span>`}
+function renderHeroCovers(){
+  const stage=$("#fanCards"); if(!stage)return;
+  fanCards=heroCovers.slice(0,3);
+  stage.innerHTML=fanCards.map((c,i)=>{
+    const mono=(c.tag||"VD").trim().replace(/[^A-Za-z0-9&'’\- ]/g," ").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"VD";
+    const blurSrc=/^data:/.test(c.img)?"":c.img.replace(/(\.[a-z0-9]+)$/i,"-blur$1");
+    return `<div class="car-card pos-${i}" data-pos="${i}" role="button" tabindex="0" aria-label="${esc(c.tag)} — featured cover ${i+1} of ${fanCards.length}"><span class="car-mono" aria-hidden="true">${esc(mono)}</span><span class="car-blur" aria-hidden="true" style="background-image:url('${esc(c.img)}')"${blurSrc?` data-blur="${esc(blurSrc)}"`:""}></span><img src="${esc(c.img)}" alt="${esc(c.tag)}"${i>0?' loading="lazy"':""} onerror="this.style.display='none';if(this.previousElementSibling)this.previousElementSibling.style.display='none'"><span class="tag">${esc(c.tag)}</span></div>`
+  }).join("");
+  /* perf: swap in pre-blurred backdrops when available (no per-frame CSS blur cost);
+     admin-uploaded covers keep the live CSS blur fallback */
+  stage.querySelectorAll(".car-blur[data-blur]").forEach(sp=>{
+    const t=new Image();
+    t.onload=()=>{sp.style.backgroundImage=`url('${sp.dataset.blur}')`;sp.classList.add("noblur")};
+    t.src=sp.dataset.blur;
+  });
+  stage.querySelectorAll(".car-card").forEach(card=>{
+    card.addEventListener("click",()=>{const p=+card.dataset.pos;if(p!==1)fanGo(p<1?"prev":"next");});
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();const p=+card.dataset.pos;if(p!==1)fanGo(p<1?"prev":"next");}});
+  });
+  renderFanDots();fanLayout(true);restartFan();
+}
+function renderFanDots(){
+  const dots=$("#fanDots");if(!dots)return;
+  dots.innerHTML=fanCards.map((_,i)=>`<button type="button" data-i="${i}" aria-label="Show cover ${i+1}"${i===fanIdx?" class=\"on\"":""}></button>`).join("");
+  dots.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{fanIdx=+b.dataset.i;fanLayout();restartFan();}));
+}
+function fanLayout(instant){
+  const fan=$("#heroFan");if(!fan)return;
+  const order=fanCards.map((_,i)=>(i-fanIdx+1+fanCards.length)%fanCards.length);
+  fan.querySelectorAll(".car-card").forEach((card,i)=>{card.classList.remove("pos-0","pos-1","pos-2");card.dataset.pos=order[i];card.classList.add("pos-"+order[i])});
+  const dots=$("#fanDots");if(dots)dots.querySelectorAll("button").forEach((b,i)=>b.classList.toggle("on",i===fanIdx));
+}
+function fanGo(dir){
+  const n=fanCards.length;if(!n)return;
+  fanIdx=dir==="next"?(fanIdx+1)%n:(fanIdx-1+n)%n;fanLayout();
+}
+function restartFan(){
+  const fan=$("#heroFan");if(!fan)return;
+  if(fanTimer){clearInterval(fanTimer);fanTimer=null}
+  if(fanReduced)return;
+  fanTimer=setInterval(()=>fanGo("next"),4200);
+  fan.onmouseenter=()=>{if(fanTimer){clearInterval(fanTimer);fanTimer=null}};
+  fan.onmouseleave=()=>restartFan();
+  fan.onfocusin=()=>{if(fanTimer){clearInterval(fanTimer);fanTimer=null}};
+  fan.onfocusout=()=>restartFan();
+}
+(function(){
+  const fan=$("#heroFan");if(!fan)return;
+  let sx=0;
+  fan.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
+  fan.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>34){fanGo(dx<0?"next":"prev");restartFan()}},{passive:true});
+})();
+
+/* ================= ADMIN ================= */
+const getPin=()=>load(LS.pin,"visualet");
+$("#adminGear").onclick=()=>{openModal("adminLogin");setTimeout(()=>$("#adminPin").focus(),350)};
+$("#adminPin").addEventListener("keydown",e=>{if(e.key==="Enter")$("#adminLoginBtn").click()});
+$("#adminLoginBtn").onclick=()=>{
+  if($("#adminPin").value===getPin()){$("#adminPin").value="";$("#adminPinErr").style.display="none";closeModal("adminLogin");openAdmin()}
+  else{$("#adminPinErr").style.display="block"}
+};
+function openAdmin(){renderAdminProducts();renderAdminOrders();renderAdminSettings();openModal("adminPanel")}
+$$(".atab").forEach(t=>t.onclick=()=>{$$(".atab").forEach(x=>x.classList.remove("on"));t.classList.add("on");$$(".apanel").forEach(p=>p.classList.remove("on"));$("#ap-"+t.dataset.atab).classList.add("on")});
+
+/* --- admin: products --- */
+let editingId=null;
+function renderAdminProducts(){
+  const box=$("#ap-products");
+  const rows=products.map(p=>`<div class="arow"><div class="ai"><img src="${esc(p.img)}" onerror="this.style.display='none'"><div><b>${esc(p.name)} ${p.active===false?'<small style="color:#ff8fa8">(hidden)</small>':""}</b><small>${esc(p.cat)} • from ${money0(Math.min(...p.rungs.map(r=>r.price)))}</small></div></div>
+    <div class="abtns"><button class="mini" data-edit="${p.id}">Edit</button><button class="mini" data-toggle="${p.id}">${p.active===false?"Show":"Hide"}</button><button class="mini danger" data-del="${p.id}">Delete</button></div></div>`).join("");
+  box.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Products (${products.length})</h3><button class="mini go" id="newProd">+ Add Product</button></div>${rows}<div id="pformWrap"></div>`;
+  $("#newProd").onclick=()=>{editingId=null;renderPForm()};
+  $$("#ap-products [data-edit]").forEach(b=>b.onclick=()=>{editingId=b.dataset.edit;renderPForm()});
+  $$("#ap-products [data-toggle]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.toggle);p.active=p.active===false?true:false;persistProducts();renderAdminProducts();renderGrid()});
+  $$("#ap-products [data-del]").forEach(b=>b.onclick=()=>{if(confirm("Delete this product?")){const delId=b.dataset.del;products=products.filter(x=>x.id!==delId);const dl=loadDeletedIds();if(!dl.includes(delId)){dl.push(delId);save(LS.deleted,dl)}persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();toast("Product deleted")}});
+}
+function renderPForm(){
+  const p=editingId?products.find(x=>x.id===editingId):{id:"p"+Date.now(),name:"",cat:"Business Cards",img:"",badge:"",turnaround:"3–7 business days",desc:"",includes:[],rungs:[{qty:"",price:0}],options:[],active:true};
+  const w=$("#pformWrap");
+  w.innerHTML=`<div style="margin-top:20px;padding:24px;border-radius:20px;background:rgba(4,7,17,.6);border:1px solid rgba(77,157,255,.2)">
+  <h3 style="margin-bottom:18px">${editingId?"Edit":"New"} Product</h3><div class="pform">
+    <div class="field"><label>Name *</label><input id="pf_name" value="${esc(p.name)}"></div>
+    <div class="field"><label>Category *</label><select id="pf_cat">${CATS.filter(c=>c!=="All").map(c=>`<option ${p.cat===c?"selected":""}>${c}</option>`).join("")}</select></div>
+    <div class="field"><label>Badge (optional)</label><input id="pf_badge" value="${esc(p.badge||"")}" placeholder="Best Seller, Sale…"></div>
+    <div class="field"><label>Turnaround</label><input id="pf_turn" value="${esc(p.turnaround||"")}"></div>
+    <div class="field full"><label>Description</label><textarea id="pf_desc">${esc(p.desc||"")}</textarea></div>
+    <div class="field full"><label>Photos — first photo is the cover</label>
+      <div class="ph-grid" id="pf_photos"></div>
+      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <input type="file" id="pf_file" accept="image/*" multiple style="display:none"><button class="mini" id="pf_upload">Upload Photos</button>
+      <input id="pf_imgurl" placeholder="…or paste image URL" style="flex:1;min-width:180px;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:999px;padding:8px 16px;color:var(--ink);font-size:13px">
+      <button class="mini" id="pf_addurl">Add URL</button></div>
+      <p class="hint">Uploads are compressed automatically. Use ← → to reorder, ★ to set the cover. Keep photos small — product data lives in your browser's storage.</p></div>
+    <div class="field full"><label>Quantities & prices — one per line, format: label : price</label><textarea id="pf_rungs" style="min-height:110px;font-family:monospace">${p.rungs.map(r=>`${r.qty} : ${r.price}${r.tag?` : ${r.tag}`:""}`).join("\n")}</textarea><p class="hint">Example:<br>250 cards : 75<br>1,000 cards : 105 : Most Popular<br>Add " : Badge" after the price for a highlight badge (e.g. Best Deal).</p></div>
+    <div class="field full"><label>Options (optional) — format: Name: choice1, choice2</label><textarea id="pf_opts" style="min-height:64px;font-family:monospace">${(p.options||[]).map(o=>`${o.name}: ${o.choices.join(", ")}`).join("\n")}</textarea><p class="hint">Example: Finish: High Gloss UV, Matte</p></div>
+    <div class="field full"><label>What's included — one per line</label><textarea id="pf_inc" style="min-height:90px">${(p.includes||[]).join("\n")}</textarea></div>
+  </div>
+  <div class="co-nav"><button class="mini go" id="pf_save" style="padding:12px 30px;font-size:14px">Save Product</button><button class="mini" id="pf_cancel">Cancel</button></div></div>`;
+  let pfImages=(p.images&&p.images.length?p.images.slice():(p.img?[p.img]:[])).filter(Boolean);
+  const renderPfPhotos=()=>{
+    $("#pf_photos").innerHTML=pfImages.length?pfImages.map((src,i)=>`<div class="ph"><img src="${esc(src)}" alt="Photo ${i+1}">
+      ${i===0?'<span class="cover-tag">Cover</span>':""}
+      <div class="ph-tools">${i!==0?`<button class="mini" data-ph="cover" data-i="${i}" title="Set as cover">★</button>`:""}${i>0?`<button class="mini" data-ph="left" data-i="${i}" title="Move left">←</button>`:""}${i<pfImages.length-1?`<button class="mini" data-ph="right" data-i="${i}" title="Move right">→</button>`:""}<button class="mini danger" data-ph="del" data-i="${i}" title="Remove">✕</button></div></div>`).join("")
+      :'<p class="hint">No photos yet — upload or add a URL.</p>';
+    $$("#pf_photos [data-ph]").forEach(b=>b.onclick=()=>{const i=+b.dataset.i,a=b.dataset.ph;
+      if(a==="del")pfImages.splice(i,1);
+      else if(a==="cover"){const x=pfImages.splice(i,1)[0];pfImages.unshift(x)}
+      else if(a==="left"){const t=pfImages[i-1];pfImages[i-1]=pfImages[i];pfImages[i]=t}
+      else if(a==="right"){const t=pfImages[i+1];pfImages[i+1]=pfImages[i];pfImages[i]=t}
+      renderPfPhotos()});
+  };
+  renderPfPhotos();
+  $("#pf_cancel").onclick=()=>{w.innerHTML=""};
+  $("#pf_upload").onclick=()=>$("#pf_file").click();
+  $("#pf_file").onchange=e=>{
+    const fs=Array.from(e.target.files); if(!fs.length)return;
+    let done=0;
+    fs.forEach(f=>compressImage(f,1000,url=>{pfImages.push(url);renderPfPhotos();if(++done===fs.length)toast("Photo(s) ready — save the product")}));
+    e.target.value="";
+  };
+  $("#pf_addurl").onclick=()=>{const v=$("#pf_imgurl").value.trim();if(!v){toast("Paste an image URL first");return}pfImages.push(v);$("#pf_imgurl").value="";renderPfPhotos()};
+  $("#pf_save").onclick=()=>{
+    const rungs=$("#pf_rungs").value.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const m=l.match(/^(.*?):\s*([\d.]+)(?:\s*:\s*(.+))?$/);if(!m)return null;const ru={qty:m[1].trim(),price:parseFloat(m[2])};if(m[3]&&m[3].trim())ru.tag=m[3].trim();return ru}).filter(Boolean);
+    if(!$("#pf_name").value.trim()||!rungs.length){toast("Name and at least one quantity/price are required");return}
+    const opts=$("#pf_opts").value.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const i=l.indexOf(":");return i>0?{name:l.slice(0,i).trim(),choices:l.slice(i+1).split(",").map(s=>s.trim()).filter(Boolean)}:null}).filter(Boolean);
+    const data={id:p.id,name:$("#pf_name").value.trim(),cat:$("#pf_cat").value,badge:$("#pf_badge").value.trim(),turnaround:$("#pf_turn").value.trim()||"3–7 business days",
+      desc:$("#pf_desc").value.trim(),images:pfImages,img:pfImages[0]||"",
+      rungs,options:opts,includes:$("#pf_inc").value.split("\n").map(s=>s.trim()).filter(Boolean),active:p.active!==false};
+    if(editingId){const i=products.findIndex(x=>x.id===editingId);products[i]=data}
+    else products.push(data);
+    editingId=null;persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();toast("Product saved — live on the site now");
+  };
+  w.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function persistProducts(){save(LS.products,products)}
+
+/* --- admin: orders --- */
+function payBadge(o){
+  if(o.paid) return `<span class="paybadge paid">Paid ✓</span>`;
+  if(o.awaitingPayment) return `<span class="paybadge wait">Awaiting payment</span>`;
+  return `<span class="paybadge later">${esc(o.paymentMethod||"Proof-first")}</span>`;
+}
+function renderAdminOrders(){
+  const box=$("#ap-orders");
+  $("#ordBadge").textContent=orders.filter(o=>o.status==="Received").length||"";
+  if(!orders.length){box.innerHTML=`<div class="cart-empty">No orders yet.<br>Orders placed on this device will appear here.</div>`;return}
+  box.innerHTML=orders.map((o,i)=>`<div class="arow"><div class="ai"><div><b>${esc(o.number)} — ${esc(o.name)}${payBadge(o)}</b><small>${new Date(o.date).toLocaleDateString()} • ${o.items.reduce((a,it)=>a+it.qty,0)} items • ${money(o.total)}${o.design?' • <span style="color:var(--blue-bright)">design requested</span>':""}${o.artwork&&o.artwork.length?` • <span style="color:var(--blue-bright)">${o.artwork.length} art file(s)</span>`:""}</small></div></div>
+    <div class="abtns"><select class="statsel" data-stat="${i}">${STATUSES.map(s=>`<option ${o.status===s?"selected":""}>${s}</option>`).join("")}</select>
+    ${(!o.paid&&o.awaitingPayment)?`<button class="mini go" data-paid="${i}">Mark paid</button>`:""}
+    <button class="mini" data-odetail="${i}">Details</button><button class="mini danger" data-odel="${i}">Delete</button></div>
+    <div class="ord-detail" id="od-${i}"><div><span><b>Contact</b></span><span>${esc(o.email)} • ${esc(o.phone)}</span></div>
+    <div><span><b>Ship to</b></span><span>${esc(o.addr)}</span></div>
+    <div><span><b>Payment</b></span><span>${esc(o.paymentMethod||"Proof-first")} — ${o.paid?'<b style="color:#7dffb0">PAID</b>':o.awaitingPayment?'<b style="color:#ffcf7d">awaiting payment</b>':"no payment due yet"}</span></div>
+    ${o.notes?`<div><span><b>Notes</b></span><span>${esc(o.notes)}</span></div>`:""}
+    ${o.artwork&&o.artwork.length?`<div style="display:block;margin-top:8px"><b>Artwork (${o.artwork.length})</b>${o.artwork.map(a=>`<div><span>${a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener" style="color:var(--blue-bright)">${esc(a.name)}</a>`:esc(a.name)}${a.size?` <small style="color:var(--ink-faint)">(${fmtSize(a.size)})</small>`:""}</span></div>`).join("")}</div>`:""}
+    <div style="display:block;margin-top:8px"><b>Items</b>${o.items.map(it=>`<div><span>${it.qty} × ${esc(it.name)} (${esc(it.rung)})</span><b>${money(it.line)}</b></div>`).join("")}</div></div></div>`).join("");
+  $$("#ap-orders [data-stat]").forEach(s=>s.onchange=()=>{orders[+s.dataset.stat].status=s.value;save(LS.orders,orders);renderAdminOrders();toast("Order "+orders[+s.dataset.stat].number+" → "+s.value)});
+  $$("#ap-orders [data-odetail]").forEach(b=>b.onclick=()=>$("#od-"+b.dataset.odetail).classList.toggle("show"));
+  $$("#ap-orders [data-paid]").forEach(b=>b.onclick=()=>{orders[+b.dataset.paid].paid=true;save(LS.orders,orders);renderAdminOrders();toast("Order "+orders[+b.dataset.paid].number+" marked as paid")});
+  $$("#ap-orders [data-odel]").forEach(b=>b.onclick=()=>{if(confirm("Delete this order?")){orders.splice(+b.dataset.odel,1);save(LS.orders,orders);renderAdminOrders()}});
+}
+
+/* --- admin: settings --- */
+function renderAdminSettings(){
+  const box=$("#ap-settings");
+  box.innerHTML=`
+  <h3 style="margin-bottom:16px;font-size:19px">Website Backend (optional)</h3>
+  <div class="setrow"><div class="field"><label>Google Apps Script web-app URL</label><input id="set_backend" placeholder="https://script.google.com/macros/s/…/exec" value="${esc(load(LS.backend,DEFAULT_BACKEND))}"></div><button class="mini go" id="set_saveBackend">Save</button></div>
+  <p class="hint" style="margin-bottom:26px">Without this, orders are stored in each customer's browser and tracking works on the same device. Connect the backend script (WebsiteBackend.gs) and orders flow into your Google Sheet + tracking works everywhere. Deploy the script as a web app with "Anyone" access, then paste the /exec URL here.</p>
+  <h3 style="margin-bottom:16px;font-size:19px">Online Payments</h3>
+  <div class="setrow"><label class="checkline" style="margin:0;flex:1;min-width:260px"><input type="checkbox" id="set_pay_enabled" ${paySettings.enabled?"checked":""}><span><b>Accept online payments at checkout</b><br>Uncheck to run proof-first only (no payment options shown).</span></label></div>
+  <div class="setrow">
+    <div class="field"><label>Square payment link</label><input id="set_square" placeholder="https://square.link/u/…" value="${esc(paySettings.square_link)}"><p class="hint">Square Dashboard → Payment Links → create a link set to "customer enters the amount". Shown at checkout only when set.</p></div>
+    <div class="field"><label>Cash App tag</label><input id="set_cashapp" placeholder="$YourTag" value="${esc(paySettings.cashapp_tag)}"></div>
+  </div>
+  <div class="setrow"><div class="field"><label>Zelle number</label><input id="set_zelle" value="${esc(paySettings.zelle_number)}" inputmode="tel"></div><button class="mini go" id="set_savePay">Save Payments</button></div>
+  <p class="hint" style="margin-bottom:26px">Customers pick a method at checkout and pay <b>after</b> placing the order (so their order # goes in the memo). Orders show an "Awaiting payment" badge until you mark them paid in the Orders tab.</p>
+  <h3 style="margin-bottom:16px;font-size:19px">Homepage Cover Photos</h3>
+  <p class="hint" style="margin-bottom:14px">The 3 photos in the rotating hero showcase. Upload to replace, edit the caption, or reset to the defaults.</p>
+  <div class="coverslots" id="coverSlots"></div>
+  <div class="setrow" style="margin-top:14px;margin-bottom:26px"><button class="mini" id="set_coversReset">Reset to defaults</button></div>
+  <h3 style="margin-bottom:16px;font-size:19px">Profile Photo</h3>
+  <p class="hint" style="margin-bottom:14px">The photo shown in the About section. The site logo is used until you upload a headshot.</p>
+  <div class="setrow" style="align-items:center;margin-bottom:26px">
+    <img id="hsPrev" src="${esc(load(LS2.headshot,"")||"logo.png")}" alt="Profile photo preview" style="width:88px;height:88px;object-fit:cover;border-radius:20px;border:1px solid rgba(77,157,255,.25);background:#0a1030">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <input type="file" id="hsFile" accept="image/*" style="display:none">
+      <button class="mini" id="hsUp">Upload photo</button>
+      <button class="mini" id="hsRemove">Reset to logo</button>
+    </div>
+  </div>
+  <h3 style="margin-bottom:16px;font-size:19px">Change Admin PIN</h3>
+  <div class="setrow"><div class="field"><label>New PIN</label><input id="set_pin" type="password" placeholder="New PIN"></div><button class="mini go" id="set_savePin">Change PIN</button></div>
+  <p class="hint" style="margin-bottom:26px">Current PIN: <b>${esc(getPin())}</b> — change it if anyone else saw the default.</p>
+  <h3 style="margin-bottom:16px;font-size:19px">Backup & Restore</h3>
+  <div class="setrow"><button class="mini" id="set_export">Download Backup (JSON)</button><button class="mini" id="set_import">Restore from Backup</button><input type="file" id="set_file" accept=".json" style="display:none"><button class="mini danger" id="set_reset">Reset to Default Products</button></div>
+  <p class="hint">Your products, orders, and settings live in this browser. Download a backup before switching devices or clearing data.</p>`;
+  $("#set_saveBackend").onclick=()=>{save(LS.backend,$("#set_backend").value.trim());toast("Backend URL saved")};
+  $("#set_savePay").onclick=()=>{
+    paySettings={enabled:$("#set_pay_enabled").checked,square_link:$("#set_square").value.trim(),cashapp_tag:$("#set_cashapp").value.trim(),zelle_number:$("#set_zelle").value.trim()};
+    savePay(); toast("Payment settings saved");
+    const pc=$("#phonePayCopy"); if(pc) pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere.";
+  };
+  const renderCoverSlots=()=>{
+    $("#coverSlots").innerHTML=heroCovers.map((c,i)=>`<div class="coverslot"><img id="covImg${i}" src="${esc(c.img)}" alt="Cover photo ${i+1}">
+      <input type="text" id="covTag${i}" value="${esc(c.tag)}" placeholder="Caption (e.g. Cards from $75)" aria-label="Cover ${i+1} caption">
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="file" id="covFile${i}" accept="image/*" style="display:none"><button class="mini" id="covUp${i}">Upload photo</button></div></div>`).join("");
+    heroCovers.forEach((c,i)=>{
+      $("#covUp"+i).onclick=()=>$("#covFile"+i).click();
+      $("#covFile"+i).onchange=e=>{const f=e.target.files[0];if(!f)return;
+        compressImage(f,1200,url=>{heroCovers[i].img=url;saveCovers();$("#covImg"+i).src=url;renderHeroCovers();toast("Cover photo updated — live now")});e.target.value=""};
+      $("#covTag"+i).onchange=e=>{heroCovers[i].tag=e.target.value;saveCovers();renderHeroCovers()};
+    });
+  };
+  renderCoverSlots();
+  $("#set_coversReset").onclick=()=>{if(confirm("Reset hero cover photos to the defaults?")){heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));saveCovers();renderCoverSlots();renderHeroCovers();toast("Cover photos reset")}};
+  $("#hsUp").onclick=()=>$("#hsFile").click();
+  $("#hsFile").onchange=e=>{const f=e.target.files[0];if(!f)return;
+    compressImage(f,800,url=>{save(LS2.headshot,url);$("#hsPrev").src=url;renderHeadshot();toast("Profile photo updated — live now")});e.target.value=""};
+  $("#hsRemove").onclick=()=>{save(LS2.headshot,"");$("#hsPrev").src="logo.png";renderHeadshot();toast("Profile photo reset to the logo")};
+  $("#set_savePin").onclick=()=>{const v=$("#set_pin").value.trim();if(v.length<4){toast("PIN must be at least 4 characters");return}save(LS.pin,v);renderAdminSettings();toast("PIN changed")};
+  $("#set_export").onclick=()=>{
+    const data={products,orders,pin:getPin(),backend:load(LS.backend,DEFAULT_BACKEND),payments:paySettings,covers:heroCovers,headshot:load(LS2.headshot,""),exported:new Date().toISOString()};
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data)],{type:"application/json"}));a.download="visualet-website-backup.json";a.click();
+  };
+  $("#set_import").onclick=()=>$("#set_file").click();
+  $("#set_file").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
+    r.onload=()=>{try{const d=JSON.parse(r.result);if(d.products){products=d.products;persistProducts()}if(d.orders){orders=d.orders;save(LS.orders,orders)}if(d.pin)save(LS.pin,d.pin);if(d.backend!==undefined)save(LS.backend,d.backend);
+      if(d.payments){paySettings=Object.assign({},DEFAULT_PAY,d.payments);savePay()}
+      if(Array.isArray(d.covers)&&d.covers.length===3){heroCovers=d.covers;saveCovers();renderHeroCovers()}
+      if(d.headshot!==undefined){save(LS2.headshot,d.headshot||"");renderHeadshot()}
+      renderGrid();renderTiers();renderBundles();renderAdminProducts();renderAdminOrders();renderAdminSettings();renderCart();toast("Backup restored")}catch(err){toast("Invalid backup file")}};
+    r.readAsText(f)};
+  $("#set_reset").onclick=()=>{if(confirm("Reset products to the original defaults? Your custom products will be replaced.")){products=JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));save(LS.deleted,[]);persistProducts();renderGrid();renderTiers();renderBundles();renderAdminProducts();toast("Products reset")}};
+}
+
+/* ================= EFFECTS ================= */
+let revealObs;
+function initReveals(){
+  if(!revealObs) revealObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");revealObs.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+  $$(".reveal:not(.in)").forEach(el=>revealObs.observe(el));
+}
+function initTilt(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches||matchMedia("(hover: none)").matches) return;
+  $$(".tilt").forEach(card=>{
+    if(card.dataset.tiltBound) return; card.dataset.tiltBound="1";
+    card.style.willChange="transform";
+    card.addEventListener("mouseenter",()=>{card.style.transition="transform .12s ease-out, box-shadow .3s ease, border-color .3s ease"});
+    card.addEventListener("mousemove",e=>{
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(900px) rotateY(${(x*12).toFixed(2)}deg) rotateX(${(-y*12).toFixed(2)}deg) translateY(-8px) scale(1.02)`;
+    });
+    card.addEventListener("mouseleave",()=>{card.style.transition="";card.style.transform=""});
+  });
+}
+/* counters */
+(function(){
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return; obs.unobserve(e.target);
+    const el=e.target,target=+el.dataset.count,pre=el.dataset.prefix||"",suf=el.dataset.suffix||"";
+    const t0=performance.now(),dur=1400;
+    (function tick(t){const p=Math.min((t-t0)/dur,1),v=Math.round(target*(1-Math.pow(1-p,3)));
+      el.textContent=pre+v.toLocaleString()+suf; if(p<1)requestAnimationFrame(tick)})(t0);
+  }),{threshold:.5});
+  $$("[data-count]").forEach(el=>obs.observe(el));
+})();
+/* nav active link */
+(function(){
+  const links=$$(".nav-links a");
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}
+  }),{rootMargin:"-40% 0px -55% 0px"});
+  ["shop","how","bundles","design","track","reviews","contact"].forEach(id=>{const s=document.getElementById(id);if(s)obs.observe(s)});
+})();
+/* hero parallax */
+(function(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const hv=$("#heroVisual"); let ticking=false;
+  addEventListener("scroll",()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{
+    const y=scrollY; if(y<900) hv.style.transform=`translateY(${y*.08}px)`; ticking=false})},{passive:true});
+})();
+/* perf: pause infinite hero/marquee animations while off-screen */
+(function(){
+  if(!("IntersectionObserver" in window)) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("anim-paused",!e.isIntersecting)),{threshold:0});
+  ["#heroVisual",".marquee"].forEach(s=>{const el=$(s);if(el)io.observe(el)});
+})();
+
+/* ================= GLOBAL WIRING ================= */
+$("#burger").onclick=e=>{e.stopPropagation();$("#mobileMenu").classList.toggle("show")};
+$$("#mobileMenu a").forEach(a=>a.onclick=()=>$("#mobileMenu").classList.remove("show"));
+document.addEventListener("click",e=>{if(!e.target.closest("#mobileMenu")&&!e.target.closest("#burger"))$("#mobileMenu").classList.remove("show")});
+$("#overlay").onclick=closeAll;
+$$("[data-close]").forEach(b=>{if(!b.closest("#coBody"))b.addEventListener("click",()=>closeModal(b.dataset.close))});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+
+/* ================= INIT ================= */
+renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
+console.log("Visualet Designs site v9.3.13");
+(function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
+</script>
+</body>
+</html>
