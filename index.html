@@ -618,7 +618,7 @@ section{overflow-x:clip}
 .phone-feats{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 28px}
 .phone-feats span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);padding:9px 16px;border-radius:999px;border:1px solid var(--glass-brd);background:rgba(255,255,255,.03)}
 .phone-feats svg{color:var(--blue-bright)}
-.iphone{width:252px;height:524px;margin:8px auto;border-radius:54px;position:relative;flex-shrink:0;
+.iphone{width:252px;height:548px;margin:8px auto;border-radius:54px;position:relative;flex-shrink:0;
   background:linear-gradient(155deg,#3b4266 0%,#141a33 34%,#05070f 100%);
   border:1px solid rgba(255,255,255,.18);transform:rotate(-4deg);
   box-shadow:inset 0 1px 1px rgba(255,255,255,.35),inset 0 -1px 2px rgba(0,0,0,.6),
@@ -666,11 +666,11 @@ section{overflow-x:clip}
 .ms-info b{display:block;font-size:12.5px;color:#fff}
 .ms-info small{color:var(--ink-faint);font-size:11px}
 .ms-btn{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;color:#fff;padding:6px 13px;border-radius:999px;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 4px 14px rgba(28,77,255,.45)}
-.ms-pay{display:flex;align-items:center;justify-content:space-between;border-radius:14px;padding:10px 12px;
+.ms-pay{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:14px;padding:10px 12px;
   background:linear-gradient(120deg,rgba(28,77,255,.22),rgba(255,79,168,.16));border:1px solid rgba(77,157,255,.3)}
 .ms-pay small{display:block;font-size:9.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:1px}
 .ms-pay b{font-size:15px;color:#fff}
-.ms-paybtn{font-size:11px;font-weight:800;color:#fff;padding:9px 14px;border-radius:999px;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 6px 18px rgba(28,77,255,.5);white-space:nowrap}
+.ms-paybtn{font-size:11px;font-weight:800;color:#fff;padding:9px 14px;border-radius:999px;flex-shrink:0;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 6px 18px rgba(28,77,255,.5);white-space:nowrap}
 .ms-tabs{margin-top:auto;display:flex;justify-content:space-around;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:9px 6px}
 .ms-tabs span{width:34px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--ink-faint)}
 .ms-tabs span .ic{width:17px;height:17px}
@@ -681,6 +681,12 @@ section{overflow-x:clip}
 @keyframes mspulse{50%{opacity:.35}}
 
 /* ============ RESPONSIVE ============ */
+@media(min-width:561px){
+  #shop,#how,#mobile,#bundles,#design,#track,#reviews,#about,#contact{content-visibility:auto;contain-intrinsic-size:auto 900px}
+}
+@media(max-width:560px){
+  #shop,#how,#mobile,#bundles,#design,#track,#reviews,#about,#contact{content-visibility:auto;contain-intrinsic-size:auto 700px}
+}
 @media(max-width:1020px){
   .hero-grid{grid-template-columns:1fr;gap:44px}
   .hero-grid>*{min-width:0;max-width:100%}
@@ -704,7 +710,7 @@ section{overflow-x:clip}
   .mobile-menu a:hover,.mobile-menu a.active{background:rgba(77,157,255,.12);color:#fff}
   .steps{grid-template-columns:1fr}
   .phone-band{grid-template-columns:1fr;padding:44px 28px;gap:36px}
-  .iphone{transform:none;width:232px;height:484px;animation:none}
+  .iphone{transform:none;width:232px;height:508px;animation:none}
   .contact-grid{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr}
   .pform{grid-template-columns:1fr}
@@ -716,7 +722,8 @@ section{overflow-x:clip}
 }
 @media(max-width:560px){
   .grid{grid-template-columns:1fr}
-  .fan{--cw:min(190px,50vw);--fx:.40}
+  .fan{--cw:min(280px,72vw);--fx:.34}
+  .hero-visual{height:470px;overflow:clip}
   .hero h1{font-size:clamp(34px,10.5vw,52px);text-wrap:wrap}
   .badge-loop{max-width:100%}
   .sec-title{font-size:clamp(28px,7.5vw,36px);text-wrap:wrap}
@@ -904,8 +911,8 @@ section{overflow-x:clip}
           <div class="ms-status"><span>9:41</span><span class="ms-sicons"><span class="ms-sig"><i></i><i></i><i></i><i></i></span><span class="ms-wifi"><svg class="ic" viewBox="0 0 24 24"><path d="M2 9c6-6 14-6 20 0M5 12.5c4-4 10-4 14 0M8.5 16c2-2 5-2 7 0" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="12" cy="19" r="1.6" fill="currentColor"/></svg></span><span class="ms-batt"><i></i></span></span></div>
           <div class="ms-appbar"><span class="ms-brand">VD</span><b>Print Shop</b><span class="ms-cart"><svg class="ic"><use href="#i-cart"/></svg><em>1</em></span></div>
           <div class="ms-search"><svg class="ic"><use href="#i-search"/></svg>Search products…</div>
-          <div class="ms-card"><div class="ms-img"><img src="images/business-cards-gsweets.jpg" alt="Business cards"></div><div class="ms-info"><b>Business Cards</b><small>250 from $75</small><br><span class="ms-btn">Customize</span></div></div>
-          <div class="ms-card"><div class="ms-img"><img src="images/yard-signs.jpg" alt="Yard signs"></div><div class="ms-info"><b>Yard Signs</b><small>from $85</small><br><span class="ms-btn">Customize</span></div></div>
+          <div class="ms-card"><div class="ms-img"><img src="images/business-cards-gsweets.jpg" alt="Business cards" loading="lazy" decoding="async"></div><div class="ms-info"><b>Business Cards</b><small>250 from $75</small><br><span class="ms-btn">Customize</span></div></div>
+          <div class="ms-card"><div class="ms-img"><img src="images/yard-signs.jpg" alt="Yard signs" loading="lazy" decoding="async"></div><div class="ms-info"><b>Yard Signs</b><small>from $85</small><br><span class="ms-btn">Customize</span></div></div>
           <div class="ms-pay"><span><small>Total due</small><b>$160.00</b></span><span class="ms-paybtn"><svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#fff;vertical-align:-2px;margin-right:2px" aria-hidden="true"><use href="#i-square"/></svg>Pay with Square</span></div>
           <div class="ms-tabs"><span class="on"><svg class="ic"><use href="#i-box"/></svg></span><span><svg class="ic"><use href="#i-search"/></svg></span><span><svg class="ic"><use href="#i-cart"/></svg></span><span><svg class="ic"><use href="#i-truck"/></svg></span></div>
           <div class="ms-homebar"></div>
@@ -1000,7 +1007,7 @@ section{overflow-x:clip}
 </section>
 </main>
 
-<footer><div class="wrap"><img src="logo.png" alt="Visualet Designs"><div class="foot-brand">© 2026 Visualet Designs — Designed by Nathan Salamanca</div><div class="foot-tag">Design • Print • Branding</div><a class="foot-text" href="sms:+19518061586"><svg class="ic"><use href="#i-phone"/></svg>Text us: 951-806-1586</a></div></footer>
+<footer><div class="wrap"><img src="logo.png" alt="Visualet Designs" loading="lazy" decoding="async"><div class="foot-brand">© 2026 Visualet Designs — Designed by Nathan Salamanca</div><div class="foot-tag">Design • Print • Branding</div><a class="foot-text" href="sms:+19518061586"><svg class="ic"><use href="#i-phone"/></svg>Text us: 951-806-1586</a></div></footer>
 
 <!-- OVERLAY -->
 <div class="overlay" id="overlay"></div>
@@ -1175,7 +1182,10 @@ const DEFAULT_PRODUCTS = [
 const CATS = ["All","Business Cards","Signage","Banners","Event & Trade Show","Marketing","Bundle & Save","Design Services"];
 const STATUSES = ["Received","In Design","In Production","Shipped","Delivered"];
 const DEFAULT_BACKEND="https://script.google.com/macros/s/AKfycbxD_vu6LwUwkK8rbk5DGdIdJqONidQebaeyFAwTo1iVMf8IFBCWfz-nKs1nFiWDEMe_5w/exec";
-const SYNC_SECRET="aXrA3PGDvca11ooAB8VudMoZH6CvkyjBvPXPzSgAxi4"; // must match WebsiteBackend.gs (same zip)
+/* Admin sync passphrase: entered once per device in Admin -> Settings and kept in that
+   browser's local storage (like the admin PIN). It is NEVER baked into this public file,
+   so reading the page source reveals nothing that can push catalog changes. */
+function syncPassphrase(){try{return localStorage.getItem(LS_SYNC.pass)||""}catch(e){return""}}
 const LS = {products:"vd_products_v1",cart:"vd_cart_v1",orders:"vd_orders_v1",pin:"vd_pin_v1",backend:"vd_backend_v1",deleted:"vd_deleted_ids_v1"};
 
 /* ================= HELPERS ================= */
@@ -1505,7 +1515,7 @@ function renderCart(){
     const p=products.find(x=>x.id===c.pid); if(!p) return "";
     const r=p.rungs[c.rung]||p.rungs[0];
     const optStr=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(" • ");
-    return `<div class="citem"><img src="${esc(p.img)}" alt="" onerror="this.style.display='none'">
+    return `<div class="citem"><img src="${esc(p.img)}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div><div class="cn">${esc(p.name)}</div><div class="cd">${esc(r.qty)}${optStr?" • "+esc(optStr):""}</div>
       ${c.disc?`<div class="cd" style="color:#7dffb0">✓ Print-ready art attached — ${money(c.disc)} reward</div>`:""}
       <div class="cr"><span class="qty"><button data-dec="${i}" aria-label="Decrease">−</button><b>${c.qty}</b><button data-inc="${i}" aria-label="Increase">+</button></span>
@@ -1669,25 +1679,25 @@ async function placeOrder(){
     artwork:coData.artFiles.map(f=>({name:f.name,size:f.size,type:f.type}))};
   // try backend
   const backend=load(LS.backend,DEFAULT_BACKEND);
+  let backendOk=false;
   if(backend){
     try{
       btn.textContent="Saving order…";
-      const res=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"createOrder",order})});
-      const j=await res.json(); if(j&&j.number) order.number=j.number;
+      const j=await postBackend(backend,{action:"createOrder",order});
+      if(j&&j.number){order.number=j.number;backendOk=true;}
       if(coData.artFiles.length){
         btn.textContent="Uploading artwork…";
         const files=[];
         for(const f of coData.artFiles){const file=f.file||(f.url?await dataURLtoFile(f.url,f.name):null);if(!file)continue;files.push({name:f.name,type:f.type||"application/octet-stream",data:await fileToDataURL(file)})}
-        const ur=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({action:"uploadArtwork",orderNumber:order.number,files})});
-        const uj=await ur.json();
-        if(uj&&Array.isArray(uj.urls)){uj.urls.forEach((u,i)=>{if(order.artwork[i]&&u)order.artwork[i].url=u})}
+        const uj=await postBackend(backend,{action:"uploadArtwork",orderNumber:order.number,files});
+        if(uj&&Array.isArray(uj.urls)){uj.urls.forEach((u,i)=>{if(order.artwork[i]&&u)order.artwork[i].url=u});backendOk=true;}
       }
-    }catch(e){/* fall back to local */}
+    }catch(e){backendOk=false;}
   }
   orders.unshift(order); save(LS.orders,orders);
   cart=[]; save(LS.cart,cart); renderCart();
   coData.order=order; coData.artFiles=[]; setCoStep(4);
-  toast("Order placed — "+order.number);
+  toast(backendOk||!backend?("Order placed — "+order.number):("Order "+order.number+" saved on this device — please contact the studio to confirm it was received"));
 }
 </script>
 <script>
@@ -1863,8 +1873,8 @@ function renderAdminProducts(){
   box.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Products (${products.length})</h3><button class="mini go" id="newProd">+ Add Product</button></div>${rows}<div id="pformWrap"></div>`;
   $("#newProd").onclick=()=>{editingId=null;renderPForm()};
   $$("#ap-products [data-edit]").forEach(b=>b.onclick=()=>{editingId=b.dataset.edit;renderPForm()});
-  $$("#ap-products [data-toggle]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.toggle);p.active=p.active===false?true:false;persistProducts();renderAdminProducts();renderGrid();pushSync().then(live=>toast(live?"Product updated — live for everyone":"Saved on this device only"))});
-  $$("#ap-products [data-del]").forEach(b=>b.onclick=()=>{if(confirm("Delete this product?")){const delId=b.dataset.del;products=products.filter(x=>x.id!==delId);const dl=loadDeletedIds();if(!dl.includes(delId)){dl.push(delId);save(LS.deleted,dl)}persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();pushSync().then(live=>toast(live?"Product deleted — live for everyone":"Saved on this device only"))}});
+  $$("#ap-products [data-toggle]").forEach(b=>b.onclick=()=>{const p=products.find(x=>x.id===b.dataset.toggle);p.active=p.active===false?true:false;persistProducts();renderAdminProducts();renderGrid();pushSync().then(live=>syncToast(live,"Product updated — live for everyone"))});
+  $$("#ap-products [data-del]").forEach(b=>b.onclick=()=>{if(confirm("Delete this product?")){const delId=b.dataset.del;products=products.filter(x=>x.id!==delId);const dl=loadDeletedIds();if(!dl.includes(delId)){dl.push(delId);save(LS.deleted,dl)}persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();pushSync().then(live=>syncToast(live,"Product deleted — live for everyone"))}});
 }
 function renderPForm(){
   const p=editingId?products.find(x=>x.id===editingId):{id:"p"+Date.now(),name:"",cat:"Business Cards",img:"",badge:"",turnaround:"3–7 business days",desc:"",includes:[],rungs:[{qty:"",price:0}],options:[],active:true};
@@ -1920,25 +1930,44 @@ function renderPForm(){
       rungs,options:opts,includes:$("#pf_inc").value.split("\n").map(s=>s.trim()).filter(Boolean),active:p.active!==false};
     if(editingId){const i=products.findIndex(x=>x.id===editingId);products[i]=data}
     else products.push(data);
-    editingId=null;persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();pushSync().then(live=>toast(live?"Product saved — live for everyone":"Saved on this device only"));
+    editingId=null;persistProducts();renderAdminProducts();renderGrid();renderTiers();renderBundles();pushSync().then(live=>syncToast(live,"Product saved — live for everyone"));
   };
   w.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function persistProducts(){save(LS.products,products)}
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
-const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1"};
+const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
+const EXPECTED_BACKEND="2026-09-27-C"; /* WebsiteBackend.gs version this page was built for */
 function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
+function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringify({msg:String(msg).slice(0,220),at:Date.now()}))}catch(e){}}
+function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
+function lastSyncError(){try{const r=JSON.parse(localStorage.getItem(LS_SYNC.err)||"null");return r&&r.msg?r:null}catch(e){return null}}
+/* Plain POST to the /exec URL. Verified 2026-09-28 in real Chrome: the request
+   reaches doPost and the JSON body arrives intact. One retry on network failure. */
+async function postBackend(backend,payload){
+  const body=JSON.stringify(payload);
+  const opts={method:"POST",headers:{"Content-Type":"text/plain"},body};
+  try{
+    const r=await fetch(backend,opts);
+    return await r.json();
+  }catch(e){
+    await new Promise(res=>setTimeout(res,2500));
+    const r2=await fetch(backend,opts);
+    return await r2.json();
+  }
+}
 async function uploadSyncPhoto(dataUrl,name){
   try{
     const backend=load(LS.backend,DEFAULT_BACKEND);
     if(!backend||!dataUrl||dataUrl.indexOf("data:")!==0) return null;
-    const r=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},
-      body:JSON.stringify({action:"uploadPhoto",secret:SYNC_SECRET,file:{data:dataUrl,type:"image/jpeg",name:name||"photo"}})});
-    const j=await r.json();
+    const j=await postBackend(backend,{action:"uploadPhoto",secret:syncPassphrase(),file:{data:dataUrl,type:"image/jpeg",name:name||"photo"}});
     return (j&&j.ok&&j.url)?j.url:null;
   }catch(e){return null}
 }
+/* Upload data-URL photos to Drive. A failed upload no longer vetoes the whole
+   sync — the data URL stays in place, the catalog still syncs, and the failure
+   is reported so it can be retried. Returns true only if every upload worked. */
 async function materializeSyncPhotos(st){
   let ok=true;
   const fix=async(url,name)=>{
@@ -1955,9 +1984,17 @@ async function materializeSyncPhotos(st){
   if(st.headshot) st.headshot=await fix(st.headshot,"headshot");
   return ok;
 }
+function syncErrorHint(j,ex){
+  if(ex) return "Network error reaching the backend ("+String(ex.message||ex).slice(0,90)+"). Check your connection and tap Retry.";
+  if(j&&j.error==="bad secret") return "Wrong sync passphrase for this backend. Re-enter it in Admin -> Settings (copy SYNC_SECRET from the top of WebsiteBackend.gs).";
+  if(j&&j.error==="unknown action") return "The backend did not recognize this update. The WebsiteBackend.gs code deployed in your Google account is outdated — replace it with the copy from this update and redeploy as a new version.";
+  if(j&&j.error) return "Backend refused the update: "+String(j.error).slice(0,120);
+  return "The backend did not confirm the update. Tap Retry, or check the backend URL in Settings.";
+}
 async function pushSync(){
   const backend=load(LS.backend,DEFAULT_BACKEND);
-  if(!backend){markSyncDirty();return false}
+  if(!backend){markSyncDirty();recordSyncError("No backend URL set. Add your Apps Script /exec URL in Settings.");return false}
+  if(!syncPassphrase()){markSyncDirty();recordSyncError("Sync passphrase not set on this device. Open the admin panel (gear icon) -> Settings and enter it.");return false}
   const st={updated:Date.now(),
     products:JSON.parse(JSON.stringify(products)),
     deletedIds:loadDeletedIds(),
@@ -1965,24 +2002,44 @@ async function pushSync(){
     covers:JSON.parse(JSON.stringify(heroCovers)),
     headshot:load(LS2.headshot,"")};
   const photosOk=await materializeSyncPhotos(st);
-  if(!photosOk){markSyncDirty();return false}
+  let j=null,ex=null;
   try{
-    const r=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},
-      body:JSON.stringify({action:"saveSync",secret:SYNC_SECRET,state:st})});
-    const j=await r.json();
-    if(j&&j.ok){
-      products=st.products;persistProducts();
-      save(LS.deleted,st.deletedIds);
-      paySettings=st.payments;savePay();
-      heroCovers=st.covers;saveCovers();
-      save(LS2.headshot,st.headshot);
-      save(LS_SYNC.updated,st.updated);
-      try{localStorage.removeItem(LS_SYNC.dirty)}catch(e){}
-      return true;
-    }
-  }catch(e){}
+    j=await postBackend(backend,{action:"saveSync",secret:syncPassphrase(),state:st});
+  }catch(e){ex=e}
+  if(j&&j.ok){
+    products=st.products;persistProducts();
+    save(LS.deleted,st.deletedIds);
+    paySettings=st.payments;savePay();
+    heroCovers=st.covers;saveCovers();
+    save(LS2.headshot,st.headshot);
+    save(LS_SYNC.updated,st.updated);
+    try{localStorage.removeItem(LS_SYNC.dirty)}catch(e){}
+    if(photosOk) clearSyncError();
+    else recordSyncError("Catalog synced, but a photo upload failed and was kept on this device only. Tap Retry to try the upload again.");
+    return true;
+  }
   markSyncDirty();
+  recordSyncError(syncErrorHint(j,ex));
   return false;
+}
+
+/* Toast helper: success message, or the real recorded reason when a push fails. */
+function syncToast(ok,okMsg){
+  if(ok){toast(okMsg);return}
+  const e=lastSyncError();
+  toast(e?("Not synced: "+e.msg):"Saved on this device only");
+}
+/* Compare the deployed backend's version against the one this page expects.
+   Returns {version, match} — used by Admin → Settings to warn about stale code. */
+async function checkBackendVersion(){
+  try{
+    const backend=load(LS.backend,DEFAULT_BACKEND);
+    if(!backend) return {version:"",match:false};
+    const r=await fetch(backend,{method:"GET"});
+    const j=await r.json();
+    const v=(j&&j.version)||"";
+    return {version:v,match:v===EXPECTED_BACKEND};
+  }catch(e){return {version:"",match:false}}
 }
 async function pullSync(){
   try{
@@ -2038,6 +2095,9 @@ function renderAdminSettings(){
   box.innerHTML=`
   <h3 style="margin-bottom:16px;font-size:19px">Website Backend (optional)</h3>
   <div class="setrow"><div class="field"><label>Google Apps Script web-app URL</label><input id="set_backend" placeholder="https://script.google.com/macros/s/…/exec" value="${esc(load(LS.backend,DEFAULT_BACKEND))}"></div><button class="mini go" id="set_saveBackend">Save</button></div>
+    <div class="setrow"><div class="field"><label>Sync passphrase (per device)</label><input id="set_syncpass" type="password" placeholder="Paste from WebsiteBackend.gs" autocomplete="new-password"></div><button class="mini go" id="set_saveSyncPass">Save</button></div>
+  <p class="hint" style="margin-bottom:26px">Private admin credential. Copy <b>SYNC_SECRET</b> from the top of your <b>WebsiteBackend.gs</b> and paste it here &#8212; once per device/browser. It is stored only in this browser (like the admin PIN) and is never part of the public website, so nobody reading the page source can push changes to your catalog.</p>
+<div id="syncStatusBox" style="margin:0 0 26px;padding:14px 16px;border-radius:14px;border:1px solid rgba(77,157,255,.25);background:rgba(28,77,255,.07);font-size:13px;color:var(--ink-soft)"><span style="opacity:.7">Checking live sync&#8230;</span></div>
   <p class="hint" style="margin-bottom:26px">Without this, orders are stored in each customer's browser and tracking works on the same device. Connect the backend script (WebsiteBackend.gs) and orders flow into your Google Sheet + tracking works everywhere. Deploy the script as a web app with "Anyone" access, then paste the /exec URL here.</p>
   <h3 style="margin-bottom:16px;font-size:19px">Online Payments</h3>
   <div class="setrow"><label class="checkline" style="margin:0;flex:1;min-width:260px"><input type="checkbox" id="set_pay_enabled" ${paySettings.enabled?"checked":""}><span><b>Accept online payments at checkout</b><br>Uncheck to run proof-first only (no payment options shown).</span></label></div>
@@ -2067,10 +2127,28 @@ function renderAdminSettings(){
   <h3 style="margin-bottom:16px;font-size:19px">Backup & Restore</h3>
   <div class="setrow"><button class="mini" id="set_export">Download Backup (JSON)</button><button class="mini" id="set_import">Restore from Backup</button><input type="file" id="set_file" accept=".json" style="display:none"><button class="mini danger" id="set_reset">Reset to Default Products</button></div>
   <p class="hint">Products, payments, covers and your profile photo sync live to every visitor through your backend. Orders live in your Google Sheet. Download a backup before clearing browser data.</p>`;
-  $("#set_saveBackend").onclick=()=>{save(LS.backend,$("#set_backend").value.trim());toast("Backend URL saved")};
+  $("#set_saveBackend").onclick=()=>{save(LS.backend,$("#set_backend").value.trim());toast("Backend URL saved");renderSyncStatus()};
+  try{$("#set_syncpass").value=syncPassphrase()}catch(e){}
+  $("#set_saveSyncPass").onclick=()=>{try{localStorage.setItem(LS_SYNC.pass,$("#set_syncpass").value.trim())}catch(e){}toast("Sync passphrase saved on this device");renderSyncStatus()};
+  async function renderSyncStatus(){
+    const box=$("#syncStatusBox");if(!box) return;
+    const err=lastSyncError();
+    const v=await checkBackendVersion();
+    let html='<b style="color:#fff">Live sync status</b><br>';
+    if(!v.version) html+='Backend: <b style="color:#ffb020">unreachable</b> &#8212; check the URL above and your connection.<br>';
+    else if(!v.match) html+='Backend code: <b style="color:#ffb020">'+esc(v.version)+' &#8212; OUTDATED</b> (this page expects '+EXPECTED_BACKEND+'). Replace WebsiteBackend.gs in your Apps Script project and redeploy as a new version, or sync will keep failing.<br>';
+    else html+='Backend code: <b style="color:#37e08b">'+esc(v.version)+' &#10003; up to date</b><br>';
+    if(load(LS_SYNC.dirty,0)) html+='Unsaved changes are waiting on this device.<br>';
+    if(err) html+='<span style="color:#ff8a8a">Last sync problem: '+esc(err.msg)+'</span><br>';
+    else if(!load(LS_SYNC.dirty,0)&&v.match) html+='<span style="color:#37e08b">Everything is synced.</span><br>';
+    html+='<button class="mini go" id="set_retrySync" style="margin-top:10px">Retry sync now</button>';
+    box.innerHTML=html;
+    $("#set_retrySync").onclick=async()=>{box.innerHTML='<span style="opacity:.7">Syncing&#8230;</span>';const ok=await pushSync();await renderSyncStatus();syncToast(ok,"Synced &#8212; live for everyone")};
+  }
+  renderSyncStatus();
   $("#set_savePay").onclick=()=>{
     paySettings={enabled:$("#set_pay_enabled").checked,square_link:$("#set_square").value.trim(),cashapp_tag:$("#set_cashapp").value.trim(),zelle_number:$("#set_zelle").value.trim()};
-    savePay();pushSync().then(live=>toast(live?"Payment settings saved — live for everyone":"Saved on this device only"));
+    savePay();pushSync().then(live=>syncToast(live,"Payment settings saved — live for everyone"));
     const pc=$("#phonePayCopy"); if(pc) pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere.";
   };
   const renderCoverSlots=()=>{
@@ -2080,16 +2158,16 @@ function renderAdminSettings(){
     heroCovers.forEach((c,i)=>{
       $("#covUp"+i).onclick=()=>$("#covFile"+i).click();
       $("#covFile"+i).onchange=e=>{const f=e.target.files[0];if(!f)return;
-        compressImage(f,1200,url=>{heroCovers[i].img=url;saveCovers();$("#covImg"+i).src=url;renderHeroCovers();pushSync().then(live=>toast(live?"Cover photo updated — live for everyone":"Saved on this device only"))});e.target.value=""};
-      $("#covTag"+i).onchange=e=>{heroCovers[i].tag=e.target.value;saveCovers();renderHeroCovers();pushSync().then(live=>toast(live?"Caption updated — live for everyone":"Saved on this device only"))};
+        compressImage(f,1200,url=>{heroCovers[i].img=url;saveCovers();$("#covImg"+i).src=url;renderHeroCovers();pushSync().then(live=>syncToast(live,"Cover photo updated — live for everyone"))});e.target.value=""};
+      $("#covTag"+i).onchange=e=>{heroCovers[i].tag=e.target.value;saveCovers();renderHeroCovers();pushSync().then(live=>syncToast(live,"Caption updated — live for everyone"))};
     });
   };
   renderCoverSlots();
-  $("#set_coversReset").onclick=()=>{if(confirm("Reset hero cover photos to the defaults?")){heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));saveCovers();renderCoverSlots();renderHeroCovers();pushSync().then(live=>toast(live?"Cover photos reset — live for everyone":"Saved on this device only"))}};
+  $("#set_coversReset").onclick=()=>{if(confirm("Reset hero cover photos to the defaults?")){heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));saveCovers();renderCoverSlots();renderHeroCovers();pushSync().then(live=>syncToast(live,"Cover photos reset — live for everyone"))}};
   $("#hsUp").onclick=()=>$("#hsFile").click();
   $("#hsFile").onchange=e=>{const f=e.target.files[0];if(!f)return;
-    compressImage(f,800,url=>{save(LS2.headshot,url);$("#hsPrev").src=url;renderHeadshot();pushSync().then(live=>toast(live?"Profile photo updated — live for everyone":"Saved on this device only"))});e.target.value=""};
-  $("#hsRemove").onclick=()=>{save(LS2.headshot,"");$("#hsPrev").src="logo.png";renderHeadshot();pushSync().then(live=>toast(live?"Profile photo reset — live for everyone":"Saved on this device only"))};
+    compressImage(f,800,url=>{save(LS2.headshot,url);$("#hsPrev").src=url;renderHeadshot();pushSync().then(live=>syncToast(live,"Profile photo updated — live for everyone"))});e.target.value=""};
+  $("#hsRemove").onclick=()=>{save(LS2.headshot,"");$("#hsPrev").src="logo.png";renderHeadshot();pushSync().then(live=>syncToast(live,"Profile photo reset — live for everyone"))};
   $("#set_savePin").onclick=()=>{const v=$("#set_pin").value.trim();if(v.length<4){toast("PIN must be at least 4 characters");return}save(LS.pin,v);renderAdminSettings();toast("PIN changed")};
   $("#set_export").onclick=()=>{
     const data={products,orders,pin:getPin(),backend:load(LS.backend,DEFAULT_BACKEND),payments:paySettings,covers:heroCovers,headshot:load(LS2.headshot,""),exported:new Date().toISOString()};
@@ -2103,7 +2181,7 @@ function renderAdminSettings(){
       if(d.headshot!==undefined){save(LS2.headshot,d.headshot||"");renderHeadshot()}
       renderGrid();renderTiers();renderBundles();renderAdminProducts();renderAdminOrders();renderAdminSettings();renderCart();toast("Backup restored")}catch(err){toast("Invalid backup file")}};
     r.readAsText(f)};
-  $("#set_reset").onclick=()=>{if(confirm("Reset products to the original defaults? Your custom products will be replaced.")){products=JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));save(LS.deleted,[]);persistProducts();renderGrid();renderTiers();renderBundles();renderAdminProducts();pushSync().then(live=>toast(live?"Products reset — live for everyone":"Saved on this device only"))}};
+  $("#set_reset").onclick=()=>{if(confirm("Reset products to the original defaults? Your custom products will be replaced.")){products=JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));save(LS.deleted,[]);persistProducts();renderGrid();renderTiers();renderBundles();renderAdminProducts();pushSync().then(live=>syncToast(live,"Products reset — live for everyone"))}};
 }
 
 /* ================= EFFECTS ================= */
@@ -2168,7 +2246,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.4.1");
+console.log("Visualet Designs site v9.4.2");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 </body>
