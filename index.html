@@ -319,6 +319,60 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 .tl-items div{display:flex;justify-content:space-between;padding:6px 0}
 .track-err{display:none;color:#ff8fa8;font-size:14px;margin-top:14px}
 .track-err.show{display:block}
+/* v9.4.6: loading state for the Track button while the order lookup is in flight */
+#trackBtn:disabled{opacity:.8;cursor:wait}
+.btn-spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:btnspin .7s linear infinite;vertical-align:-3px;margin-right:8px}
+@keyframes btnspin{to{transform:rotate(360deg)}}
+
+/* ============ ASK VISUALET CHAT ============ */
+#chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 34px rgba(28,77,255,.45),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .22s}
+#chatFab:hover{transform:scale(1.07)}
+#chatFab:active{transform:scale(.96)}
+#chatFab .ic{width:26px;height:26px}
+#chatFab .chat-dot{position:absolute;top:1px;right:1px;width:14px;height:14px;border-radius:50%;background:#ff3b5c;border:2.5px solid #070b18}
+#chatFab .chat-dot.hide{display:none}
+#chatPanel{position:fixed;right:22px;bottom:94px;z-index:1500;width:min(382px,calc(100vw - 32px));height:min(560px,calc(100dvh - 140px));min-height:380px;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
+#chatPanel.show{transform:none;opacity:1;pointer-events:auto}
+.chat-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(120deg,rgba(28,77,255,.28),rgba(255,47,156,.22));border-bottom:1px solid rgba(255,255,255,.08);flex:none}
+.chat-ava{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.25);background:#0a1030;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.chat-ava img{width:100%;height:100%;object-fit:contain;padding:5px}
+.chat-t{flex:1;min-width:0}
+.chat-t b{display:block;font-size:15.5px}
+.chat-t span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft)}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84;animation:opulse 2s ease-in-out infinite}
+@keyframes opulse{0%,100%{box-shadow:0 0 4px #3ddc84}50%{box-shadow:0 0 12px #3ddc84}}
+#chatClose{background:none;border:none;color:var(--ink-soft);font-size:24px;cursor:pointer;line-height:1;padding:4px 8px}
+.chat-promo{flex:none;margin:12px 12px 0;padding:10px 14px;border-radius:14px;background:linear-gradient(120deg,rgba(28,77,255,.22),rgba(255,47,156,.18));border:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--ink);display:none}
+.chat-promo.show{display:block}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
+.cmsg{max-width:82%;padding:11px 15px;border-radius:18px;font-size:14px;line-height:1.5;animation:fadeUp .3s ease}
+.cmsg.bot{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-bottom-left-radius:6px;color:var(--ink)}
+.cmsg.user{align-self:flex-end;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-bottom-right-radius:6px}
+.cstat{align-self:flex-end;font-size:11px;color:var(--ink-faint);margin:-7px 6px 2px;display:flex;align-items:center;gap:3px}
+.cstat.read{color:#5eb2ff}
+.cmsg a{color:#8fb8ff;text-decoration:underline}
+.cmsg.user a{color:#fff}
+.cmsg a.cagent{display:inline-block;margin-top:10px;padding:10px 18px;border-radius:999px;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff!important;text-decoration:none!important;font-weight:600;font-size:13.5px;box-shadow:0 8px 22px rgba(28,77,255,.4);transition:transform .2s}
+.cmsg a.cagent:hover{transform:scale(1.04)}
+.ctyping{display:inline-flex;gap:5px;padding:15px 17px;align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:18px;border-bottom-left-radius:6px}
+.ctyping i{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);animation:cbounce 1.2s infinite}
+.ctyping i:nth-child(2){animation-delay:.15s}
+.ctyping i:nth-child(3){animation-delay:.3s}
+@keyframes cbounce{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-5px);opacity:1}}
+.chat-quick{flex:none;display:flex;gap:8px;padding:0 14px 10px;flex-wrap:wrap}
+.cchip{border:1px solid rgba(77,157,255,.4);background:rgba(28,77,255,.1);color:var(--ink);font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.2s}
+.cchip:hover{background:rgba(28,77,255,.25)}
+.chat-inputrow{flex:none;display:flex;gap:8px;padding:12px 14px 14px;border-top:1px solid rgba(255,255,255,.08)}
+.chat-inputrow input{flex:1;min-width:0;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:14px;padding:12px 15px;color:var(--ink);font-size:14px;outline:none}
+.chat-inputrow input:focus{border-color:var(--blue-bright)}
+#chatSend{flex:none;width:46px;height:46px;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;display:flex;align-items:center;justify-content:center}
+#chatSend .ic{width:19px;height:19px}
+@media(max-width:560px){
+  #chatFab{right:16px;bottom:16px}
+  #chatPanel{right:16px;left:16px;width:auto;bottom:88px}
+  .chat-inputrow input{font-size:16px} /* v9.4.7: stops iOS auto-zoom on focus */
+  .cmsg{font-size:14.5px}
+}
 
 /* ============ ABOUT / CONTACT / FOOTER ============ */
 .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
@@ -486,7 +540,7 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 
 /* product modal gallery thumbs */
 .pm-thumbs{position:absolute;left:14px;bottom:14px;display:flex;gap:8px;z-index:2}
-.pm-thumbs img{width:56px;height:56px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid transparent;opacity:.75;transition:.2s;position:static}
+.pm-thumbs img{width:56px;height:56px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid transparent;opacity:.75;transition:.2s;position:static;flex:0 0 auto;max-width:none} /* v9.4.7: never let flex shrink thumbs into a sliver on mobile */
 .pm-thumbs img.on,.pm-thumbs img:hover{border-color:var(--blue-bright);opacity:1}
 
 /* ============ V2: LIGHTBOX ============ */
@@ -725,6 +779,8 @@ section{overflow-x:clip}
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></symbol>
 <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 5h13v11H1zM14 9h4l4 4v3h-8"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/></symbol>
 <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="9" cy="12" r="1.3"/><circle cx="13" cy="12" r="1.3"/><circle cx="17" cy="12" r="1.3"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3.5v5.5c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5.5L12 2z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
 <symbol id="i-design" viewBox="0 0 24 24"><path d="M17.5 3.5a2.1 2.1 0 0 1 3 3L8 19 3 20.5 4.5 15.5 17.5 3.5z"/><path d="M15 6l3 3"/></symbol>
 <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="7" rx="1.5"/><path d="M8 16h8v5H8z"/></symbol>
@@ -1159,8 +1215,13 @@ function compressImage(file,maxDim,cb){
   rd.onload=()=>{const img=new Image();
     img.onload=()=>{const cv=document.createElement("canvas");let ww=img.width,hh=img.height;
       if(ww>maxDim){hh=Math.round(hh*maxDim/ww);ww=maxDim}
-      cv.width=ww;cv.height=hh;cv.getContext("2d").drawImage(img,0,0,ww,hh);
-      cb(cv.toDataURL("image/jpeg",.8))};
+      cv.width=ww;cv.height=hh;const cx=cv.getContext("2d");cx.drawImage(img,0,0,ww,hh);
+      /* v9.4.6: keep transparency — a transparent PNG mockup must not be flattened to JPEG.
+         Scan the alpha channel; only images that actually have see-through pixels stay PNG,
+         everything else keeps the small-file JPEG path. */
+      let hasAlpha=false;
+      try{const d=cx.getImageData(0,0,ww,hh).data;for(let i=3;i<d.length;i+=4){if(d[i]<250){hasAlpha=true;break}}}catch(e){}
+      cb(hasAlpha?cv.toDataURL("image/png"):cv.toDataURL("image/jpeg",.8))};
     img.onerror=()=>toast("Couldn't read that image");
     img.src=rd.result};
   rd.onerror=()=>toast("Couldn't read that file");
@@ -1207,7 +1268,7 @@ let activeCat = "All", searchQ = "";
 let pmState = null; // {product, rungIdx, opts:{}, gi:0}
 
 /* ================= V2: SETTINGS + DATA MIGRATION ================= */
-const LS2 = {pay:"vd_payments_v1", covers:"vd_hero_covers_v1", headshot:"vd_headshot_v1"};
+const LS2 = {pay:"vd_payments_v1", covers:"vd_hero_covers_v1", headshot:"vd_headshot_v1", chat:"vd_chatpromo_v1"};
 // v1 -> v2: migrate img/gallery to images[] (first entry = cover)
 products.forEach(p=>{
   if(!Array.isArray(p.images)||!p.images.length){
@@ -1488,6 +1549,11 @@ function startCheckout(){coStep=1;coData={orderNumber:genOrderNum(),payMethod:nu
   renderCheckout();openModal("coModal")}
 function genOrderNum(){return "VD-"+Date.now().toString(36).toUpperCase().slice(-6).padStart(6,"0")}
 function setCoStep(n){coStep=n;[1,2,3,4].forEach(i=>{const d=$("#coD"+i);if(d)d.classList.toggle("on",i<=n);const l=$("#coL"+i);if(l)l.classList.toggle("on",i===n)});renderCheckout()}
+/* v9.4.7: logo packages get a design-contact preference (email or text) */
+function cartHasLogo(){try{return cart.some(c=>{const p=products.find(x=>x.id===c.pid);return c.pid==="logo-pack"||/logo/i.test(p?p.name:"")})}catch(e){return false}}
+/* v9.4.7: shared artwork helpers — uploads from any step land in coData.artFiles, script files them to Drive */
+function artItemHTML(f,i){return `<div class="artitem"><svg class="ic"><use href="#i-box"/></svg><span class="an">${esc(f.name)}</span><small>${fmtSize(f.size)}</small><button class="rm" data-rmart="${i}" aria-label="Remove ${esc(f.name)}">✕</button></div>`}
+function addArtFiles(list){for(const f of list){if(!ART_EXT.test(f.name)){toast(`"${f.name}" isn't a supported file type`);continue}if(f.size>ART_MAX){toast(`"${f.name}" is over 25MB — please compress it and try again`);continue}if(coData.artFiles.length>=ART_MAX_COUNT){toast(`Up to ${ART_MAX_COUNT} files per order`);break}if(coData.artFiles.some(x=>x.name===f.name&&x.size===f.size))continue;coData.artFiles.push({file:f,name:f.name,size:f.size,type:f.type})}}
 function renderCheckout(){
   const box=$("#coBody"), st=cartSubtotal();
   if(coStep===1){
@@ -1543,22 +1609,13 @@ function renderCheckout(){
       c.onclick=pick; c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}};
     });
     const renderArtList=()=>{
-      $("#artList").innerHTML=coData.artFiles.map((f,i)=>`<div class="artitem"><svg class="ic"><use href="#i-box"/></svg><span class="an">${esc(f.name)}</span><small>${fmtSize(f.size)}</small><button class="rm" data-rmart="${i}" aria-label="Remove ${esc(f.name)}">✕</button></div>`).join("");
+      $("#artList").innerHTML=coData.artFiles.map((f,i)=>artItemHTML(f,i)).join("");
       $$("#artList [data-rmart]").forEach(b=>b.onclick=e=>{e.stopPropagation();coData.artFiles.splice(+b.dataset.rmart,1);renderArtList()});
     };
     renderArtList();
     $("#artDrop").onclick=()=>$("#artInput").click();
     $("#artDrop").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#artInput").click()}};
-    $("#artInput").onchange=e=>{
-      for(const f of e.target.files){
-        if(!ART_EXT.test(f.name)){toast(`"${f.name}" isn't a supported file type`);continue}
-        if(f.size>ART_MAX){toast(`"${f.name}" is over 25MB — please compress it and try again`);continue}
-        if(coData.artFiles.length>=ART_MAX_COUNT){toast(`Up to ${ART_MAX_COUNT} files per order`);break}
-        if(coData.artFiles.some(x=>x.name===f.name&&x.size===f.size))continue;
-        coData.artFiles.push({file:f,name:f.name,size:f.size,type:f.type});
-      }
-      e.target.value=""; renderArtList();
-    };
+    $("#artInput").onchange=e=>{addArtFiles(e.target.files);renderArtList();e.target.value=""};
     $("#back1").onclick=()=>setCoStep(1);
     $("#toStep3").onclick=()=>setCoStep(3);
   }
@@ -1567,6 +1624,23 @@ function renderCheckout(){
       const o=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(", ");
       return `<div><span>${c.qty} × ${esc(p.name)}<br><small style="color:var(--ink-faint)">${esc(r.qty)}${o?", "+esc(o):""}${disc?` <b style="color:#7dffb0">−${money(disc)} reward</b>`:""}</small></span><b>${money(Math.max(0,r.price-disc)*c.qty)}</b></div>`}).join("");
     const payLabel=PAY_LABELS[coData.payMethod]||PAY_LABELS.later;
+    /* v9.4.7: logo packages only — show contact info + preferred contact method */
+    let contactBox="";
+    if(cartHasLogo()){
+      if(!coData.contactPref) coData.contactPref="text";
+      const cp=coData.contactPref;
+      contactBox=`<div class="review-box"><div class="rh">Design Contact 🎨</div><div class="rb">
+      <div><span>Name</span><b>${esc(coData.name)}</b></div>
+      <div><span>Email</span><b>${esc(coData.email)}</b></div>
+      <div><span>Phone</span><b>${esc(coData.phone)}</b></div>
+      <div class="opt-label" style="margin:10px 0 8px">Preferred contact method</div>
+      <div class="paygrid" style="grid-template-columns:1fr 1fr;gap:10px">
+        <div class="paycard${cp==="email"?" on":""}" data-cpref="email" role="button" tabindex="0" aria-label="Contact by email"><span class="radio"></span><span class="ptxt"><b>📧 Email</b><p>We'll email you</p></span></div>
+        <div class="paycard${cp==="text"?" on":""}" data-cpref="text" role="button" tabindex="0" aria-label="Contact by text"><span class="radio"></span><span class="ptxt"><b>💬 Text</b><p>We'll text you</p></span></div>
+      </div>
+      <p class="hint" style="margin:8px 0 0">Once payment is complete, our design team will reach out by ${cp==="email"?"<b>email</b>":"<b>text</b>"} to confirm details.</p>
+      </div></div>`;
+    }
     const artRow=coData.artFiles.length
       ? `<div><span>Artwork (${coData.artFiles.length})</span><b style="text-align:right;max-width:58%">${esc(coData.artFiles.map(f=>f.name).join(", "))}</b></div>`
       : `<div><span>Artwork</span><b>None — design service / email later</b></div>`;
@@ -1577,10 +1651,34 @@ function renderCheckout(){
     <div class="review-box"><div class="rh">Ship To</div><div class="rb">${esc(coData.name)}${coData.co?" — "+esc(coData.co):""}<br>${esc(coData.addr)}, ${esc(coData.city)} ${esc(coData.zip)}<br>${esc(coData.email)} • ${esc(coData.phone)}${coData.design?'<br><b style="color:var(--blue-bright)">Design service requested</b>':""}${coData.notes?`<br><span style="color:var(--ink-faint)">Notes: ${esc(coData.notes)}</span>`:""}</div></div>
     <div class="review-box"><div class="rh">Payment &amp; Artwork</div><div class="rb">
       <div><span>Payment method</span><b>${esc(payLabel)}</b></div>${artRow}</div></div>
+    ${contactBox}
+    <div class="review-box"><div class="rh">📁 Design Images</div><div class="rb">
+      <p style="margin:0 0 10px;line-height:1.55">Upload any images you'd like included in your design <b>right here</b> — they're saved automatically to a Google Drive folder named with your order number <b>${esc(coData.orderNumber)}</b>. No need to make your own Drive folder.</p>
+      <div class="drop" id="artDrop3" role="button" tabindex="0" aria-label="Upload design images" style="padding:16px 12px">
+        <svg class="ic"><use href="#i-plus"/></svg><b>Tap to choose files</b>
+        <p class="hint">PDF, AI, EPS, PNG, JPG, TIFF, SVG — up to 25MB each, ${ART_MAX_COUNT} files max</p>
+        <input type="file" id="artInput3" multiple accept=".pdf,.ai,.eps,.png,.jpg,.jpeg,.tif,.tiff,.svg" style="display:none"></div>
+      <div class="artlist" id="artList3" style="margin-top:10px"></div>
+      <label class="checkline" style="margin:10px 0 0"><input type="checkbox" id="f_drive" ${coData.driveOk?"checked":""}><span><b>I've uploaded my design images</b><br>Or I have no images to submit.</span></label>
+    </div></div>
     <p class="hint">${coData.payMethod==="later"?"No payment due today — you'll approve a proof first.":"You'll complete payment right after placing the order."}${coData.artFiles.length?` ${coData.artFiles.length} art file(s) will be attached to your order.`:""}</p>
     <div class="co-nav"><button class="btn ghost" id="back2">← Back</button><button class="btn solid" id="placeOrder" style="flex:1">Place Order — ${money(st)}</button></div>`;
     $("#back2").onclick=()=>setCoStep(2);
     $("#placeOrder").onclick=placeOrder;
+    $$("#coBody [data-cpref]").forEach(el=>{
+      const pick=()=>{coData.contactPref=el.dataset.cpref;renderCheckout()};
+      el.onclick=pick; el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pick()}};
+    });
+    const fdr=$("#f_drive"); if(fdr) fdr.onchange=()=>{coData.driveOk=fdr.checked};
+    /* v9.4.7: design-image uploader right in Review — same files as the Artwork step */
+    const renderArtList3=()=>{
+      const al=$("#artList3"); if(!al) return;
+      al.innerHTML=coData.artFiles.map((f,i)=>artItemHTML(f,i)).join("");
+      $$("#artList3 [data-rmart]").forEach(b=>b.onclick=e=>{e.stopPropagation();coData.artFiles.splice(+b.dataset.rmart,1);renderArtList3()});
+    };
+    renderArtList3();
+    const ad3=$("#artDrop3"), ai3=$("#artInput3");
+    if(ad3&&ai3){ad3.onclick=()=>ai3.click();ad3.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();ai3.click()}};ai3.onchange=e=>{addArtFiles(e.target.files);renderArtList3();e.target.value=""}};
   }
   if(coStep===4){
     const o=coData.order, pm=o.paymentMethodKey;
@@ -1602,11 +1700,16 @@ function renderCheckout(){
     }
     const artNote=(!load(LS.backend,DEFAULT_BACKEND)&&o.artwork&&o.artwork.length)
       ? `<p>Please email your ${o.artwork.length} art file(s) to <b>visualetdesigns@gmail.com</b> with the subject <b>"Artwork — ${esc(o.number)}"</b>.</p>` : "";
+    /* v9.4.7: logo packages only — design team reaches out after payment */
+    const hasLogo=(o.items||[]).some(it=>it.pid==="logo-pack"||/logo/i.test(it.name||""));
+    const logoNote=hasLogo?`<p class="hint">🎨 <b>Logo package:</b> once payment is complete, our design team will reach out to you by ${o.contactPref==="email"?"<b>email</b>":"<b>text</b>"} to confirm details.</p>`:"";
     box.innerHTML=`<div class="confirm"><div class="big-check"><svg class="ic"><use href="#i-check"/></svg></div>
     <h2>Order Received!</h2><p>Thanks ${esc(coData.name.split(" ")[0])} — your order is in the studio queue.</p>
     <div class="order-num">${esc(o.number)}</div>
     ${payPanel}
     ${artNote}
+    ${logoNote}
+    ${(o.artwork&&o.artwork.length)?`<p class="hint">📁 Your ${o.artwork.length} design image file(s) are saved to a Google Drive folder named <b>${esc(o.number)}</b> — our team has them.</p>`:""}
     <p>Save this order number. Track your order anytime below.</p>
     <div class="co-nav" style="justify-content:center"><button class="btn solid" id="goTrack">Track My Order</button><button class="btn ghost" data-close="coModal">Continue Shopping</button></div></div>`;
     const cz=$("#copyZ"); if(cz) cz.onclick=()=>copyText(paySettings.zelle_number,"Zelle number copied");
@@ -1617,6 +1720,8 @@ function renderCheckout(){
   $$("#coBody [data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
 }
 async function placeOrder(){
+  /* v9.4.7: design-image acknowledgment is mandatory for every order */
+  if(!coData.driveOk){toast("Please confirm the design-images step before placing your order.");if(coStep!==3)setCoStep(3);const el=$("#f_drive");if(el)el.scrollIntoView({behavior:"smooth",block:"center"});return}
   const btn=$("#placeOrder"); btn.disabled=true; btn.textContent="Placing order…";
   const items=cart.map(c=>{const p=products.find(x=>x.id===c.pid);const r=p.rungs[c.rung]||p.rungs[0];const disc=c.disc||0;
     return {pid:c.pid,name:p.name,rung:r.qty,opts:c.opts,qty:c.qty,discount:disc,unit:Math.max(0,r.price-disc),line:Math.max(0,r.price-disc)*c.qty}});
@@ -1624,6 +1729,12 @@ async function placeOrder(){
   const order={number:coData.orderNumber,date:new Date().toISOString(),name:coData.name,email:coData.email.toLowerCase(),phone:coData.phone,co:coData.co,addr:`${coData.addr}, ${coData.city} ${coData.zip}`,notes:coData.notes,design:coData.design,items,total:cartSubtotal(),status:"Received",
     paymentMethod:PAY_LABELS[pmKey]||PAY_LABELS.later,paymentMethodKey:pmKey,paid:false,awaitingPayment:pmKey!=="later",
     artwork:coData.artFiles.map(f=>({name:f.name,size:f.size,type:f.type}))};
+  /* v9.4.7: logo-package contact preference rides on the order + in Notes so the sheet shows it */
+  if(cartHasLogo()&&coData.contactPref){
+    order.contactPref=coData.contactPref;
+    const tag="[Preferred contact: "+(coData.contactPref==="email"?"Email":"Text")+"]";
+    order.notes=((order.notes||"")+" "+tag).trim();
+  }
   // try backend
   const backend=load(LS.backend,DEFAULT_BACKEND);
   let backendOk=false, orderError="";
@@ -1667,19 +1778,26 @@ function tlHTML(o){
 }
 async function doTrack(){
   const num=$("#trackNum").value.trim().toUpperCase(), email=$("#trackEmail").value.trim().toLowerCase();
-  const err=$("#trackErr"), tl=$("#timeline");
+  const err=$("#trackErr"), tl=$("#timeline"), btn=$("#trackBtn");
   err.classList.remove("show"); tl.classList.remove("show");
   if(!num||!email){err.textContent="Enter your order number and email.";err.classList.add("show");return}
-  let order=orders.find(o=>o.number.toUpperCase()===num&&o.email===email);
-  const backend=load(LS.backend,DEFAULT_BACKEND);
-  if(!order&&backend){
-    try{
-      const r=await fetch(backend+"?action=track&number="+encodeURIComponent(num)+"&email="+encodeURIComponent(email));
-      const j=await r.json(); if(j&&j.order) order=j.order;
-    }catch(e){}
+  /* v9.4.6: loading state — the sheet lookup takes a couple of seconds, show it */
+  const origBtn=btn.innerHTML; btn.disabled=true;
+  btn.innerHTML='<span class="btn-spin" aria-hidden="true"></span>Checking&hellip;';
+  try{
+    let order=orders.find(o=>o.number.toUpperCase()===num&&o.email===email);
+    const backend=load(LS.backend,DEFAULT_BACKEND);
+    if(!order&&backend){
+      try{
+        const r=await fetch(backend+"?action=track&number="+encodeURIComponent(num)+"&email="+encodeURIComponent(email));
+        const j=await r.json(); if(j&&j.order) order=j.order;
+      }catch(e){}
+    }
+    if(order){tl.innerHTML=tlHTML(order);tl.classList.add("show")}
+    else{err.textContent="We couldn't find that order. Double-check the order number and email from your confirmation.";err.classList.add("show")}
+  }finally{
+    btn.disabled=false; btn.innerHTML=origBtn;
   }
-  if(order){tl.innerHTML=tlHTML(order);tl.classList.add("show")}
-  else{err.textContent="We couldn't find that order. Double-check the order number and email from your confirmation.";err.classList.add("show")}
 }
 $("#trackBtn").onclick=doTrack;
 $("#trackEmail").addEventListener("keydown",e=>{if(e.key==="Enter")doTrack()});
@@ -1889,7 +2007,7 @@ function persistProducts(){save(LS.products,products)}
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
 const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
-const EXPECTED_BACKEND="2026-09-28-B"; /* WebsiteBackend.gs version this page was built for */
+const EXPECTED_BACKEND="2026-09-28-C"; /* WebsiteBackend.gs version this page was built for */
 function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
 function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringify({msg:String(msg).slice(0,220),at:Date.now()}))}catch(e){}}
 function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
@@ -1912,7 +2030,9 @@ async function uploadSyncPhoto(dataUrl,name){
   try{
     const backend=load(LS.backend,DEFAULT_BACKEND);
     if(!backend||!dataUrl||dataUrl.indexOf("data:")!==0) return null;
-    const j=await postBackend(backend,{action:"uploadPhoto",secret:syncPassphrase(),file:{data:dataUrl,type:"image/jpeg",name:name||"photo"}});
+    /* v9.4.6: send the real mime type so a transparent PNG stays a PNG on Drive */
+    const mime=(dataUrl.match(/^data:(image\/[a-z0-9+.-]+);/i)||[])[1]||"image/jpeg";
+    const j=await postBackend(backend,{action:"uploadPhoto",secret:syncPassphrase(),file:{data:dataUrl,type:mime,name:name||"photo"}});
     return (j&&j.ok&&j.url)?j.url:null;
   }catch(e){return null}
 }
@@ -1951,7 +2071,9 @@ async function pushSync(){
     deletedIds:loadDeletedIds(),
     payments:JSON.parse(JSON.stringify(paySettings)),
     covers:JSON.parse(JSON.stringify(heroCovers)),
-    headshot:load(LS2.headshot,"")};
+    headshot:load(LS2.headshot,""),
+    /* v9.4.7: never push "" for a promo the admin never touched — send the default so other devices don't hide it */
+    chat:load(LS2.chat,null)===null?CHAT_DEFAULT_PROMO:load(LS2.chat,"")};
   const photosOk=await materializeSyncPhotos(st);
   let j=null,ex=null;
   try{
@@ -2007,6 +2129,7 @@ async function pullSync(){
       if(live.payments){paySettings=Object.assign({},DEFAULT_PAY,live.payments);savePay()}
       if(Array.isArray(live.covers)&&live.covers.length===3){heroCovers=live.covers;saveCovers()}
       if(typeof live.headshot==="string") save(LS2.headshot,live.headshot);
+      if(typeof live.chat==="string"){save(LS2.chat,live.chat);try{renderChatPromo()}catch(e){}}
       save(LS_SYNC.updated,+live.updated||Date.now());
       renderGrid();renderTiers();renderBundles();renderHeroCovers();renderHeadshot();
     }
@@ -2061,7 +2184,7 @@ function renderAdminOrders(){
     return `<div class="arow"><div class="ai"><div><b>${num} — ${esc(o.name)}${payBadge(o)}${liveTag}</b><small>${dateStr}${itemsLine?" • "+itemsLine:""} • ${money(o.total)}${o.design?' • <span style="color:var(--blue-bright)">design requested</span>':""}${art.length?` • <span style="color:var(--blue-bright)">${art.length} art file(s)</span>`:""}</small></div></div>
     <div class="abtns"><select class="statsel" data-stat="${num}">${STATUSES.map(s=>`<option ${o.status===s?"selected":""}>${s}</option>`).join("")}</select>
     ${(!o.paid&&o.awaitingPayment)?`<button class="mini go" data-paid="${num}">Mark paid</button>`:""}
-    <button class="mini" data-odetail="${ri}">Details</button><button class="mini danger" data-odel="${num}">Delete</button></div>
+    <button class="mini" data-odetail="${ri}">Details</button><button class="mini" data-odrive="${num}" title="Open this order's Google Drive folder">📁 Drive</button><button class="mini danger" data-odel="${num}">Delete</button></div>
     <div class="ord-detail" id="od-${ri}"><div><span><b>Contact</b></span><span>${esc(o.email)} • ${esc(o.phone)}</span></div>
     <div><span><b>Ship to</b></span><span>${esc(o.addr)}</span></div>
     <div><span><b>Payment</b></span><span>${esc(o.paymentMethod||"Proof-first")} — ${o.paid?'<b style="color:#7dffb0">PAID</b>':o.awaitingPayment?'<b style="color:#ffcf7d">awaiting payment</b>':"no payment due yet"}</span></div>
@@ -2074,7 +2197,17 @@ function renderAdminOrders(){
   $$("#ap-orders [data-stat]").forEach(s=>s.onchange=()=>setOrderStatus(s.dataset.stat,s.value));
   $$("#ap-orders [data-odetail]").forEach(b=>b.onclick=()=>$("#od-"+b.dataset.odetail).classList.toggle("show"));
   $$("#ap-orders [data-paid]").forEach(b=>b.onclick=()=>setOrderPaid(b.dataset.paid));
-  $$("#ap-orders [data-odel]").forEach(b=>b.onclick=()=>deleteLiveOrder(b.dataset.odel));
+  $$("#ap-orders [data-odrive]").forEach(b=>b.onclick=()=>openOrderDrive(b.dataset.odrive,b));
+}
+async function openOrderDrive(num,btn){
+  const backend=load(LS.backend,DEFAULT_BACKEND);
+  if(btn){btn.disabled=true;btn.textContent="…"}
+  try{
+    const j=await postBackend(backend,{action:"driveFolder",secret:syncPassphrase(),number:num});
+    if(j&&j.ok&&j.url){window.open(j.url,"_blank","noopener");toast("Opening Drive folder for "+num)}
+    else toast("No design files uploaded for "+num+" yet");
+  }catch(e){toast("Couldn't reach the backend — check Settings")}
+  renderAdminOrders();
 }
 async function setOrderStatus(num,st){
   const o=findOrd(num), backend=load(LS.backend,DEFAULT_BACKEND);
@@ -2135,6 +2268,9 @@ function renderAdminSettings(){
   </div>
   <div class="setrow"><div class="field"><label>Zelle number</label><input id="set_zelle" value="${esc(paySettings.zelle_number)}" inputmode="tel"></div><button class="mini go" id="set_savePay">Save Payments</button></div>
   <p class="hint" style="margin-bottom:26px">Customers pick a method at checkout and pay <b>after</b> placing the order (so their order # goes in the memo). Orders show an "Awaiting payment" badge until you mark them paid in the Orders tab.</p>
+  <h3 style="margin-bottom:16px;font-size:19px">Chat Bot</h3>
+  <div class="setrow"><div class="field"><label>Promo banner text (top of the Ask Visualet chat)</label><input id="set_chatpromo" placeholder="Leave empty to hide the banner" value="${esc(load(LS2.chat,"")||CHAT_DEFAULT_PROMO)}"></div><button class="mini go" id="set_saveChat">Save</button></div>
+  <p class="hint" style="margin-bottom:26px">Shown to every visitor at the top of the chat. Saved on this device and synced live through your backend.</p>
   <h3 style="margin-bottom:16px;font-size:19px">Homepage Cover Photos</h3>
   <p class="hint" style="margin-bottom:14px">The 3 photos in the rotating hero showcase. Upload to replace, edit the caption, or reset to the defaults.</p>
   <div class="coverslots" id="coverSlots"></div>
@@ -2193,6 +2329,11 @@ function renderAdminSettings(){
     paySettings={enabled:$("#set_pay_enabled").checked,square_link:$("#set_square").value.trim(),cashapp_tag:$("#set_cashapp").value.trim(),zelle_number:$("#set_zelle").value.trim()};
     savePay();pushSync().then(live=>syncToast(live,"Payment settings saved — live for everyone"));
     const pc=$("#phonePayCopy"); if(pc) pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere.";
+  };
+  $("#set_saveChat").onclick=()=>{
+    save(LS2.chat,$("#set_chatpromo").value.trim());
+    renderChatPromo();
+    pushSync().then(live=>syncToast(live,"Chat promo saved — live for everyone"));
   };
   const renderCoverSlots=()=>{
     $("#coverSlots").innerHTML=heroCovers.map((c,i)=>`<div class="coverslot"><img id="covImg${i}" src="${esc(c.img)}" alt="Cover photo ${i+1}">
@@ -2308,8 +2449,158 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.4.5");
+console.log("Visualet Designs site v9.4.7");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
+</script>
+<!-- ASK VISUALET CHAT -->
+<button id="chatFab" aria-label="Chat with Ask Visualet"><svg class="ic"><use href="#i-chat"/></svg><span class="chat-dot" id="chatDot"></span></button>
+<div id="chatPanel" role="dialog" aria-label="Ask Visualet chat" aria-hidden="true">
+  <div class="chat-head">
+    <span class="chat-ava"><img src="logo.png" alt="Visualet Designs logo"></span>
+    <div class="chat-t"><b>Ask Visualet 👋</b><span><span class="online-dot"></span>Online — replies instantly</span></div>
+    <button id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="chat-promo" id="chatPromo"></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <div class="chat-inputrow">
+    <input id="chatText" placeholder="Ask about pricing, tracking…" autocomplete="off" maxlength="300" aria-label="Type your message">
+    <button id="chatSend" aria-label="Send message"><svg class="ic"><use href="#i-send"/></svg></button>
+  </div>
+</div>
+<script>
+/* ================= ASK VISUALET CHAT v9.4.7 ================= */
+const CHAT_DEFAULT_PROMO="🎉 Bundle & Save is live — package your street-level marketing and save big.";
+function renderChatPromo(){
+  const saved=load(LS2.chat,null);
+  const txt=saved===null?CHAT_DEFAULT_PROMO:saved;
+  const el=$("#chatPromo");
+  el.innerHTML=esc(txt); el.classList.toggle("show",!!txt.trim());
+}
+let chatOpened=false, chatState="idle", chatTmp={};
+function chatScroll(){const m=$("#chatMsgs");m.scrollTop=m.scrollHeight}
+function chatAdd(html,who){
+  const d=document.createElement("div");d.className="cmsg "+who;d.innerHTML=html;
+  $("#chatMsgs").appendChild(d);
+  if(who==="user"){
+    const st=document.createElement("div");st.className="cstat";st.textContent="Delivered ✓";
+    $("#chatMsgs").appendChild(st);
+  }
+  chatScroll();return d;
+}
+/* When the bot starts typing it has "read" everything so far */
+function markChatRead(){
+  $$("#chatMsgs .cstat:not(.read)").forEach(s=>{s.classList.add("read");s.textContent="Read ✓✓"});
+}
+function chatTyping(){
+  const d=document.createElement("div");d.className="ctyping";d.setAttribute("aria-label","Ask Visualet is typing");
+  d.innerHTML="<i></i><i></i><i></i>";$("#chatMsgs").appendChild(d);chatScroll();return d;
+}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function botSay(html,thinkMs){
+  markChatRead();
+  const t=chatTyping();
+  await sleep(thinkMs!=null?thinkMs:650+Math.random()*650);
+  t.remove();chatAdd(html,"bot");
+}
+const SMS_LINK='sms:+19518061586?body=Hi!%20I%27d%20like%20to%20ask%20about%20a%20print%20order%20from%20Visualet%20Designs.'; /* v9.4.7: live-agent text line */
+/* Reassurance button shown whenever the bot can't deliver an answer */
+const AGENT_BTN=`<br><a class="cagent" href="${SMS_LINK}">💬 Connect with a live agent — text 951-806-1586</a>`;
+function chatBrain(input){
+  const s=input.toLowerCase();
+  if(/^(hi|hey|hello|yo|sup|good (morning|afternoon|evening))\b/.test(s)&&s.length<24)
+    return "Hey! 👋 I'm <b>Ask Visualet</b>. Ask me about <b>pricing</b>, <b>turnaround</b>, <b>tracking your order</b>, or how ordering works.";
+  if(/track|status of|where.*(my |the )?order|order.*(status|where|arrive)/.test(s)) return {flow:"track"};
+  if(/price|cost|how much|pricing|expensive|cheap/.test(s))
+    return 'Business cards start at <b>$75 for 250</b>, logo packages from <b>$50</b> — and every product page lists exact quantity pricing. Tap <a href="#shop"><b>Shop</b></a> to browse. 💳';
+  if(/how long|turnaround|how fast|when.*(ready|done|ship)|delivery time|rush/.test(s))
+    return 'Most jobs are done in <b>2–7 days</b> — each product shows its exact turnaround on the page. Every order includes a digital proof for your approval before anything prints.';
+  if(/how.*(order|work)|process|start.*order|get started|steps/.test(s))
+    return '<b>1.</b> Pick a product &amp; check out online (2 minutes)<br><b>2.</b> Approve your digital proof — nothing prints until you say go<br><b>3.</b> We print &amp; ship free, and you track it all right here 🚚';
+  if(/pay|square|zelle|cash app|deposit|card/.test(s))
+    return 'We take <b>Square</b> (card), <b>Zelle</b>, and <b>Cash App</b> — or choose <b>pay later</b> at checkout and pay after you approve your proof.';
+  if(/art|artwork|design|logo|file|upload|pdf/.test(s))
+    return 'Upload your print-ready art at checkout, or <b>we design it for you</b> — every package includes a custom design. Upload both sides of business-card art and get <b>$20 off</b> instantly. ✨';
+  if(/bundle|deal|discount|promo|sale|coupon|save/.test(s))
+    return 'Check out <a href="#bundles"><b>Bundle &amp; Save</b></a> — your whole street-level marketing handled: designed, printed, and shipped in one package.';
+  if(/human|person|real|contact|text|call|phone|talk|speak/.test(s))
+    return `You got it — <a href="${SMS_LINK}"><b>text us at 951-806-1586</b></a> and we'll pick it up from there. 📱`;
+  if(/thank|thanks|thx/.test(s)) return "Anytime! 🙌 Anything else I can help with?";
+  if(/hour|open|close|location|where are you|address/.test(s))
+    return `The shop runs online <b>24/7</b> — order anytime. For a human, <a href="${SMS_LINK}"><b>text 951-806-1586</b></a>.`;
+  if(/bye|goodbye|see you/.test(s)) return "See you soon! 👋 Your prints are in good hands.";
+  return 'I can help with <b>pricing</b>, <b>turnaround</b>, <b>tracking</b>, or <b>how ordering works</b> — or connect with a human:'+AGENT_BTN;
+}
+/* Shared order lookup: this browser's orders first, then the live sheet. */
+async function lookupOrder(num,email){
+  let order=orders.find(o=>String(o.number).toUpperCase()===num&&String(o.email).toLowerCase()===email);
+  const backend=load(LS.backend,DEFAULT_BACKEND);
+  if(!order&&backend){
+    try{
+      const r=await fetch(backend+"?action=track&number="+encodeURIComponent(num)+"&email="+encodeURIComponent(email));
+      const j=await r.json(); if(j&&j.order) order=j.order;
+    }catch(e){}
+  }
+  return order||null;
+}
+function chatOrderCard(o){
+  const d=new Date(o.date).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+  const pay=o.paid?'<span style="color:#7dffb0">Paid ✓</span>':(o.awaitingPayment?'<span style="color:#ffcf7d">Awaiting payment</span>':'Proof-first');
+  return `<b>Order ${esc(o.number)}</b> — ${esc(o.status)}<br><span style="font-size:13px;opacity:.8">Placed ${d} • ${money(o.total)} • ${pay}</span><br><a href="#track" data-gotrack><b>See the full timeline →</b></a>`;
+}
+const CHAT_QUICK=["Track my order","Pricing","Turnaround","Text us"];
+function renderChatQuick(){
+  $("#chatQuick").innerHTML=CHAT_QUICK.map(q=>`<button class="cchip">${esc(q)}</button>`).join("");
+  $$("#chatQuick .cchip").forEach(c=>c.onclick=()=>chatSend(c.textContent));
+}
+async function chatSend(raw){
+  const text=(raw!=null?raw:$("#chatText").value).trim();
+  if(!text) return;
+  $("#chatText").value="";
+  chatAdd(esc(text),"user");
+  if(chatState==="awaitNum"){
+    chatTmp.num=text.toUpperCase();chatState="awaitEmail";
+    await botSay("And the <b>email</b> you used at checkout?");
+    return;
+  }
+  if(chatState==="awaitEmail"){
+    chatTmp.email=text.toLowerCase();chatState="idle";
+    markChatRead();
+    const t=chatTyping();
+    const o=await lookupOrder(chatTmp.num,chatTmp.email);
+    await sleep(600);t.remove();
+    if(o) chatAdd(chatOrderCard(o),"bot");
+    else chatAdd(`Hmm, I couldn't find <b>${esc(chatTmp.num)}</b> with that email. Double-check both from your confirmation — or connect with a human and we'll look it up together. 🔍${AGENT_BTN}`,"bot");
+    chatScroll();return;
+  }
+  const r=chatBrain(text);
+  if(r&&r.flow==="track"){
+    chatState="awaitNum";chatTmp={};
+    await botSay("Sure — what's your <b>order number</b>? It's on your confirmation (looks like VD-8K2P4Q).");
+  }else{
+    await botSay(r);
+  }
+}
+function openChat(){
+  const p=$("#chatPanel"),was=p.classList.contains("show");
+  p.classList.toggle("show",!was);p.setAttribute("aria-hidden",was?"true":"false");
+  if(!was){
+    $("#chatDot").classList.add("hide");
+    if(!chatOpened){chatOpened=true;
+      renderChatPromo();renderChatQuick();
+      botSay("Hey! 👋 I'm <b>Ask Visualet</b> — ask me about pricing, turnaround, or tracking your order.",900);
+    }
+  }
+}
+$("#chatFab").onclick=openChat;
+$("#chatClose").onclick=()=>{$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true")};
+$("#chatSend").onclick=()=>chatSend();
+$("#chatText").addEventListener("keydown",e=>{if(e.key==="Enter")chatSend()});
+$("#chatMsgs").addEventListener("click",e=>{
+  const a=e.target.closest("[data-gotrack]");
+  if(a){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");
+    const t=$("#track");if(t)t.scrollIntoView({behavior:"smooth"});}
+});
 </script>
 </body>
 </html>
