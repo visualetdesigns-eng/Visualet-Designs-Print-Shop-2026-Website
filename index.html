@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site version 9.4.8 (2026-09-29) — verify with View Source -->
+<!-- Visualet Designs site version 9.5.0 (2026-09-29) — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -326,13 +326,18 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 @keyframes btnspin{to{transform:rotate(360deg)}}
 
 /* ============ ASK VISUALET CHAT ============ */
-#chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:62px;height:62px;border-radius:50%;border:1px solid rgba(255,255,255,.28);cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(140deg,#16215c 0%,#3b1157 58%,#7a1049 100%);box-shadow:0 14px 36px rgba(28,77,255,.5),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -10px 20px rgba(0,0,0,.4);transition:transform .22s ease,opacity .25s ease}
+#chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:62px;height:62px;border-radius:50%;border:none;background:none;padding:0;cursor:pointer;overflow:visible;display:block;transition:transform .22s ease,opacity .25s ease} /* v9.5.0: wrapper stays overflow:visible so the Online dot is never cropped */
 #chatFab:hover{transform:scale(1.07)}
 #chatFab:active{transform:scale(.94)}
-#chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* v9.4.9: bubble tucks away while the panel is open */
-#chatFab .fab-logo{position:absolute;inset:0;background:url('logo.png') center/74% no-repeat;opacity:.34;filter:saturate(1.3) brightness(1.12);pointer-events:none}
-#chatFab .ic{position:relative;z-index:1;width:27px;height:27px;filter:drop-shadow(0 2px 5px rgba(0,0,0,.6))}
-#chatFab .chat-dot{position:absolute;z-index:2;top:-1px;right:-1px;width:23px;height:23px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9dffb9,#22c55e 58%,#15803d);border:2px solid #070b18;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(34,197,94,.85);animation:fabdot 2.4s ease-in-out infinite}
+#chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* bubble tucks away while the panel is open */
+#chatFab .fab-glass{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  border:1px solid transparent; /* v9.5.0: Apple liquid glass — thin luminous outline, true frosted center */
+  background:linear-gradient(rgba(14,20,48,.30),rgba(14,20,48,.30)) padding-box,linear-gradient(140deg,rgba(255,255,255,.95),rgba(150,175,255,.5) 38%,rgba(255,150,205,.5) 62%,rgba(255,255,255,.95)) border-box;
+  backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
+  box-shadow:0 12px 32px rgba(28,77,255,.4),inset 0 1px 1px rgba(255,255,255,.7),inset 0 -8px 16px rgba(0,0,0,.22),0 0 26px rgba(130,160,255,.22)}
+#chatFab .fab-logo{position:absolute;inset:0;background:url('logo.png') center/72% no-repeat;opacity:.32;filter:saturate(1.3) brightness(1.12);pointer-events:none}
+#chatFab .fab-ic{position:relative;z-index:1;width:30px;height:30px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.65))}
+#chatFab .chat-dot{position:absolute;z-index:2;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9dffb9,#22c55e 58%,#15803d);border:2px solid #070b18;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(34,197,94,.9);animation:fabdot 2.4s ease-in-out infinite} /* v9.5.0: sits OUTSIDE the circle, always visible + animated */
 #chatFab .chat-dot svg{width:12px;height:12px;fill:#052b12}
 #chatFab .chat-dot.hide{display:none}
 @keyframes fabdot{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
@@ -700,16 +705,21 @@ section{overflow-x:clip}
   .menu-veil{display:block;position:fixed;inset:0;z-index:998;background:rgba(3,6,14,.52);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);opacity:0;pointer-events:none;transition:opacity .35s ease} /* v9.4.9: heavier blur — unmistakable on phones */
   .menu-veil.show{opacity:1;pointer-events:auto}
   .mobile-menu{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-18px) scale(.98);width:min(92%,400px);z-index:999;
-    background:linear-gradient(160deg,rgba(26,34,76,.78),rgba(52,18,76,.74));border:1px solid rgba(255,255,255,.18);border-radius:28px;
-    backdrop-filter:blur(32px) saturate(1.5);-webkit-backdrop-filter:blur(32px) saturate(1.5);
+    border:1px solid transparent;border-radius:28px; /* v9.5.0: Apple-style liquid glass — thin luminous outline, true frosted center */
+    background:linear-gradient(rgba(14,20,48,.30),rgba(14,20,48,.30)) padding-box,linear-gradient(165deg,rgba(255,255,255,.95),rgba(150,175,255,.5) 38%,rgba(255,150,205,.5) 62%,rgba(255,255,255,.95)) border-box;
+    backdrop-filter:blur(34px) saturate(1.7);-webkit-backdrop-filter:blur(34px) saturate(1.7);
     padding:14px;flex-direction:column;gap:8px;opacity:0;pointer-events:none;
     transition:opacity .32s ease,transform .32s cubic-bezier(.2,.9,.3,1.2);
-    box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18)}
+    box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.6),0 0 34px rgba(130,160,255,.16)}
   .mobile-menu.show{display:flex;opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
-  .mobile-menu a{display:block;text-decoration:none;text-align:center;padding:15px 18px;border-radius:18px;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.45);
-    background:linear-gradient(135deg,rgba(43,107,255,.68),rgba(123,47,247,.62) 52%,rgba(255,47,156,.62));border:1px solid rgba(255,255,255,.24);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -8px 16px rgba(0,0,0,.28),0 8px 24px rgba(43,107,255,.32);transition:transform .15s ease,filter .2s ease}
-  .mobile-menu a:active{transform:scale(.96);filter:brightness(1.18)}
+  .mobile-menu a{display:block;text-decoration:none;text-align:center;padding:15px 18px;border-radius:18px;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55);
+    border:1px solid transparent; /* Apple liquid glass: thin luminous outline, frosted center, white label */
+    background:linear-gradient(rgba(16,22,52,.30),rgba(16,22,52,.30)) padding-box,linear-gradient(135deg,rgba(255,255,255,.95),rgba(150,175,255,.5) 38%,rgba(255,150,205,.5) 62%,rgba(255,255,255,.95)) border-box;
+    backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -10px 20px rgba(0,0,0,.25),0 10px 26px rgba(0,0,0,.35),0 0 26px rgba(130,160,255,.18);
+    transition:transform .15s ease,filter .2s ease}
+  .mobile-menu a span{color:#fff}
+  .mobile-menu a:active{transform:scale(.96);filter:brightness(1.25)}
   .mobile-menu.show a{animation:menuPill .5s cubic-bezier(.2,.9,.3,1.15) both}
   .mobile-menu.show a:nth-child(2){animation-delay:.05s}.mobile-menu.show a:nth-child(3){animation-delay:.1s}
   .mobile-menu.show a:nth-child(4){animation-delay:.15s}.mobile-menu.show a:nth-child(5){animation-delay:.2s}
@@ -789,15 +799,36 @@ section{overflow-x:clip}
   .car-card.pos-2{transform:translateX(calc(var(--cw)*var(--fx))) translateZ(-90px) rotateY(-38deg) scale(.8)}
   .car-card.pos-1{filter:blur(0) brightness(1.02)} /* active card stays tack-sharp */
   .car-blur{display:none} /* v9.4.9: halo removed on phones — it rendered as a hard square, the radial floor glow carries the depth now */
-.pm-dots{display:none} /* v9.4.9: mobile photo switcher — dots replace the thumbnail strip */
+  .car-floor{display:none} /* v9.5.0: blurred glow boxes removed entirely on phones — they kept reading as a sharp square; the glow now lives on the card itself */
+  .car-card.is-active{box-shadow:0 26px 80px rgba(88,60,255,.38),0 6px 26px rgba(255,47,156,.20),inset 0 1px 0 rgba(255,255,255,.22)} /* v9.5.0: rounded glow follows the card radius — no square edge possible */
+} /* v9.5.0: close the carousel phone query — the arrow/expand base rule below must stay global */
+.pm-arrow,.pm-expand{display:none} /* v9.5.0: mobile-only gallery controls */
 @media(max-width:860px){
-  .pm-media{display:flex;flex-direction:column;height:auto;min-height:0}
-  .pm-media img{position:relative;inset:auto;width:100%;height:248px;object-fit:cover;flex:0 0 auto}
+  /* v9.5.0: mobile modal layout rebuilt — single column, no overlap, no cropping into the body */
+  #pModal .pm-grid{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow-y:auto}
+  .pm-media{position:relative;display:block;flex:0 0 auto;height:auto;min-height:0;background:#050814}
+  .pm-media img{position:relative;inset:auto;display:block;width:100%;height:250px;object-fit:cover}
   .pm-thumbs{display:none} /* strip removed on phones: it crowded the description */
-  .pm-dots{display:flex;flex:0 0 auto;justify-content:center;align-items:center;gap:10px;padding:13px 16px;background:rgba(5,8,20,.9);border-top:1px solid rgba(255,255,255,.09)}
-  .pm-dots button{width:10px;height:10px;border-radius:50%;border:none;padding:0;cursor:pointer;background:rgba(255,255,255,.28);transition:transform .25s,background .25s,box-shadow .25s}
-  .pm-dots button.on{background:linear-gradient(135deg,var(--blue-electric),var(--magenta-neon));transform:scale(1.35);box-shadow:0 0 10px rgba(77,157,255,.8)}
-}
+  .pm-arrow{position:absolute;top:92px;z-index:3;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;padding:0;
+    border:1px solid transparent; /* v9.5.0: Apple liquid glass chevrons — thin luminous outline */
+    background:linear-gradient(rgba(14,20,48,.32),rgba(14,20,48,.32)) padding-box,linear-gradient(135deg,rgba(255,255,255,.95),rgba(150,175,255,.55) 40%,rgba(255,150,205,.55) 60%,rgba(255,255,255,.95)) border-box;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 6px 18px rgba(0,0,0,.45);transition:transform .15s ease}
+  .pm-arrow:active{transform:scale(.9)}
+  .pm-arrow.prev{left:12px}
+  .pm-arrow.next{right:12px}
+  .pm-arrow svg{width:20px;height:20px}
+  .pm-arrow.solo{display:none}
+  .pm-expand{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:center;padding:12px 12px 14px;
+    background:rgba(5,8,20,.28);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);
+    border-top:1px solid rgba(255,255,255,.16)} /* frosted glass band over the photo */
+  .pm-expand button{display:flex;align-items:center;gap:9px;padding:10px 22px;border-radius:999px;cursor:pointer;font-weight:700;font-size:13.5px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);
+    border:1px solid transparent; /* v9.5.0: outlined CTA — thin luminous outline, frosted center */
+    background:linear-gradient(rgba(14,20,48,.34),rgba(14,20,48,.34)) padding-box,linear-gradient(135deg,rgba(255,255,255,.95),rgba(150,175,255,.55) 40%,rgba(255,150,205,.55) 60%,rgba(255,255,255,.95)) border-box;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 18px rgba(0,0,0,.4);transition:transform .15s ease}
+  .pm-expand button:active{transform:scale(.96)}
+  .pm-expand svg{width:17px;height:17px}
+  .pm-body{flex:1 1 auto}
 }
 </style>
 </head>
@@ -858,8 +889,8 @@ section{overflow-x:clip}
 </nav>
 <div class="menu-veil" id="menuVeil" aria-hidden="true"></div>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#shop">Shop</a><a href="#how">How It Works</a><a href="#bundles">Bundles</a>
-  <a href="#design">Design</a><a href="#track">Track Order</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+  <a href="#shop"><span>Shop</span></a><a href="#how"><span>How It Works</span></a><a href="#bundles"><span>Bundles</span></a>
+  <a href="#design"><span>Design</span></a><a href="#track"><span>Track Order</span></a><a href="#reviews"><span>Reviews</span></a><a href="#contact"><span>Contact</span></a>
 </div>
 
 <main>
@@ -1055,7 +1086,7 @@ section{overflow-x:clip}
 <div class="modal" id="pModal" role="dialog" aria-modal="true" aria-label="Product details"><div class="sheet">
   <button class="x" data-close="pModal" aria-label="Close">✕</button>
   <div class="pm-grid">
-    <div class="pm-media"><img id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div><div class="pm-dots" id="pmDots" role="tablist" aria-label="Product photos"></div></div>
+    <div class="pm-media"><img id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div><button class="pm-arrow prev" id="pmPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button class="pm-arrow next" id="pmNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><div class="pm-expand" id="pmExpand"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Click to expand images</button></div></div>
     <div class="pm-body">
       <div class="pcat" id="pmCat"></div><h2 id="pmName"></h2>
       <p class="pm-desc" id="pmDesc"></p>
@@ -1455,10 +1486,14 @@ function openProduct(id){
   $("#pmImg").src=p.img; $("#pmImg").alt=p.name;
   const gal=((p.images&&p.images.length?p.images:[p.img])||[]).filter(Boolean);
   $("#pmThumbs").innerHTML=gal.length>1?gal.map((g,i)=>`<img src="${esc(g)}" data-gi="${i}" class="${i===0?"on":""}" alt="View ${i+1}" loading="lazy">`).join(""):"";
-  $("#pmDots").innerHTML=gal.length>1?gal.map((g,i)=>`<button type="button" data-gi="${i}" class="${i===0?"on":""}" aria-label="Photo ${i+1} of ${gal.length}"></button>`).join(""):""; /* v9.4.9: dots drive the same gallery on phones */
-  const pmGo=i=>{pmState.gi=i;$("#pmImg").src=gal[i];$$("#pmThumbs img").forEach(x=>x.classList.toggle("on",+x.dataset.gi===i));$$("#pmDots button").forEach(x=>x.classList.toggle("on",+x.dataset.gi===i))};
+  pmState.gal=gal;pmState.gi=0;
+  const pmGo=i=>{pmState.gi=(i+gal.length)%gal.length;$("#pmImg").src=gal[pmState.gi];$$("#pmThumbs img").forEach(x=>x.classList.toggle("on",+x.dataset.gi===pmState.gi))};
   $$("#pmThumbs img").forEach(t=>t.onclick=e=>{e.stopPropagation();pmGo(+t.dataset.gi)});
-  $$("#pmDots button").forEach(d=>d.onclick=e=>{e.stopPropagation();pmGo(+d.dataset.gi)});
+  const solo=gal.length<2; /* v9.5.0: glass arrows cycle the gallery; frosted band opens the lightbox */
+  $("#pmPrev").classList.toggle("solo",solo);$("#pmNext").classList.toggle("solo",solo);
+  $("#pmPrev").onclick=e=>{e.stopPropagation();pmGo(pmState.gi-1)};
+  $("#pmNext").onclick=e=>{e.stopPropagation();pmGo(pmState.gi+1)};
+  $("#pmExpand").onclick=()=>openLightbox(gal,pmState.gi,p.name);
   $("#pmImg").style.cursor="zoom-in";
   $("#pmImg").onclick=()=>openLightbox(gal,pmState.gi,p.name);
   $("#pmCat").textContent=p.cat; $("#pmName").textContent=p.name; $("#pmDesc").textContent=p.desc;
@@ -2492,7 +2527,7 @@ console.log("Visualet Designs site v9.4.7");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
-<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-logo" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
+<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-glass"><span class="fab-logo" aria-hidden="true"></span><svg class="fab-ic" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="5" width="34" height="30" rx="10" opacity=".42"/><path d="M22 24h26a9 9 0 0 1 9 9v9a9 9 0 0 1-9 9H36l-9 8v-8h-4a9 9 0 0 1-9-9v-9a9 9 0 0 1 9-9z"/></svg></span><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
 <div id="chatPanel" role="dialog" aria-label="Ask Visualet chat" aria-hidden="true">
   <div class="chat-head">
     <span class="chat-ava"><img src="logo.png" alt="Visualet Designs logo"></span>
