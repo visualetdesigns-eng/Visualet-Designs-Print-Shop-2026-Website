@@ -59,7 +59,7 @@ button{font-family:inherit}
 
 /* ============ NAV ============ */
 .skip{position:absolute;left:-999px;top:auto;background:var(--blue-electric);color:#fff;padding:12px 20px;border-radius:10px;z-index:9999}
-.menu-veil{display:none} /* v9.4.8: mobile-only menu backdrop; enabled inside the phone media query */
+.menu-veil{display:none} /* v9.4.9: mobile-only menu backdrop; enabled inside the phone media query */
 .skip:focus{left:16px;top:16px}
 nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(94%,1340px);z-index:1000;
   display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 14px 10px 22px;border-radius:999px;
@@ -329,7 +329,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:62px;height:62px;border-radius:50%;border:1px solid rgba(255,255,255,.28);cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(140deg,#16215c 0%,#3b1157 58%,#7a1049 100%);box-shadow:0 14px 36px rgba(28,77,255,.5),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -10px 20px rgba(0,0,0,.4);transition:transform .22s ease,opacity .25s ease}
 #chatFab:hover{transform:scale(1.07)}
 #chatFab:active{transform:scale(.94)}
-#chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* v9.4.8: bubble tucks away while the panel is open */
+#chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* v9.4.9: bubble tucks away while the panel is open */
 #chatFab .fab-logo{position:absolute;inset:0;background:url('logo.png') center/74% no-repeat;opacity:.34;filter:saturate(1.3) brightness(1.12);pointer-events:none}
 #chatFab .ic{position:relative;z-index:1;width:27px;height:27px;filter:drop-shadow(0 2px 5px rgba(0,0,0,.6))}
 #chatFab .chat-dot{position:absolute;z-index:2;top:-1px;right:-1px;width:23px;height:23px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9dffb9,#22c55e 58%,#15803d);border:2px solid #070b18;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(34,197,94,.85);animation:fabdot 2.4s ease-in-out infinite}
@@ -374,7 +374,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatSend .ic{width:19px;height:19px}
 @media(max-width:560px){
   #chatFab{right:16px;bottom:16px}
-  #chatPanel{right:16px;left:16px;width:auto;bottom:88px}
+  #chatPanel{right:16px;left:16px;width:auto;bottom:88px;top:102px;height:auto;min-height:0} /* v9.4.9: locked between the site bar and the bubble — can never ride over the nav */
   .chat-inputrow input{font-size:16px} /* v9.4.7: stops iOS auto-zoom on focus */
   .cmsg{font-size:14.5px}
 }
@@ -697,19 +697,19 @@ section{overflow-x:clip}
 @media(max-width:860px){
   .nav-links{display:none}
   .burger{display:flex}
-  .menu-veil{display:block;position:fixed;inset:0;z-index:998;background:rgba(3,6,14,.42);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);opacity:0;pointer-events:none;transition:opacity .35s ease} /* v9.4.8: liquid-glass veil — header (1000) + chat (1500) stay above it */
+  .menu-veil{display:block;position:fixed;inset:0;z-index:998;background:rgba(3,6,14,.52);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);opacity:0;pointer-events:none;transition:opacity .35s ease} /* v9.4.9: heavier blur — unmistakable on phones */
   .menu-veil.show{opacity:1;pointer-events:auto}
   .mobile-menu{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-18px) scale(.98);width:min(92%,400px);z-index:999;
-    background:rgba(15,21,44,.62);border:1px solid rgba(255,255,255,.16);border-radius:28px;
+    background:linear-gradient(160deg,rgba(26,34,76,.78),rgba(52,18,76,.74));border:1px solid rgba(255,255,255,.18);border-radius:28px;
     backdrop-filter:blur(32px) saturate(1.5);-webkit-backdrop-filter:blur(32px) saturate(1.5);
     padding:14px;flex-direction:column;gap:8px;opacity:0;pointer-events:none;
     transition:opacity .32s ease,transform .32s cubic-bezier(.2,.9,.3,1.2);
     box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18)}
   .mobile-menu.show{display:flex;opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
-  .mobile-menu a{display:block;text-decoration:none;text-align:center;padding:15px 18px;border-radius:18px;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff;
-    background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.13);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 18px rgba(0,0,0,.28);transition:transform .15s ease,background .2s ease}
-  .mobile-menu a:active{transform:scale(.96);background:rgba(77,157,255,.24)}
+  .mobile-menu a{display:block;text-decoration:none;text-align:center;padding:15px 18px;border-radius:18px;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.45);
+    background:linear-gradient(135deg,rgba(43,107,255,.68),rgba(123,47,247,.62) 52%,rgba(255,47,156,.62));border:1px solid rgba(255,255,255,.24);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -8px 16px rgba(0,0,0,.28),0 8px 24px rgba(43,107,255,.32);transition:transform .15s ease,filter .2s ease}
+  .mobile-menu a:active{transform:scale(.96);filter:brightness(1.18)}
   .mobile-menu.show a{animation:menuPill .5s cubic-bezier(.2,.9,.3,1.15) both}
   .mobile-menu.show a:nth-child(2){animation-delay:.05s}.mobile-menu.show a:nth-child(3){animation-delay:.1s}
   .mobile-menu.show a:nth-child(4){animation-delay:.15s}.mobile-menu.show a:nth-child(5){animation-delay:.2s}
@@ -781,19 +781,23 @@ section{overflow-x:clip}
   /* hero fan keeps a gentle cycle even in reduced-motion (owner request) */
   .fan-float{animation:none!important}
 }
-/* ============ v9.4.8 — mobile UI redesign (phone-first; desktop untouched) ============ */
+/* ============ v9.4.9 — mobile UI redesign (phone-first; desktop untouched) ============ */
 @media(max-width:860px){
   /* hero carousel: side cards lose the muddy blur — clean dim + settle-back depth instead */
   .car-card.pos-0,.car-card.pos-2{filter:brightness(.52) saturate(.65);opacity:.62}
   .car-card.pos-0{transform:translateX(calc(var(--cw)*var(--fx)*-1)) translateZ(-90px) rotateY(38deg) scale(.8)}
   .car-card.pos-2{transform:translateX(calc(var(--cw)*var(--fx))) translateZ(-90px) rotateY(-38deg) scale(.8)}
   .car-card.pos-1{filter:blur(0) brightness(1.02)} /* active card stays tack-sharp */
-  .car-blur{filter:blur(12px) brightness(.6) saturate(1.1);opacity:.65} /* lighter halo: faster + cleaner on phones */
-  /* product modal: thumbnails become a real strip under the photo — never over the text */
+  .car-blur{display:none} /* v9.4.9: halo removed on phones — it rendered as a hard square, the radial floor glow carries the depth now */
+.pm-dots{display:none} /* v9.4.9: mobile photo switcher — dots replace the thumbnail strip */
+@media(max-width:860px){
   .pm-media{display:flex;flex-direction:column;height:auto;min-height:0}
   .pm-media img{position:relative;inset:auto;width:100%;height:248px;object-fit:cover;flex:0 0 auto}
-  .pm-thumbs{position:static;flex:0 0 auto;display:flex;gap:10px;padding:12px 16px;background:rgba(5,8,20,.72);border-top:1px solid rgba(255,255,255,.08);overflow-x:auto}
-  .pm-thumbs img{width:60px;height:60px}
+  .pm-thumbs{display:none} /* strip removed on phones: it crowded the description */
+  .pm-dots{display:flex;flex:0 0 auto;justify-content:center;align-items:center;gap:10px;padding:13px 16px;background:rgba(5,8,20,.9);border-top:1px solid rgba(255,255,255,.09)}
+  .pm-dots button{width:10px;height:10px;border-radius:50%;border:none;padding:0;cursor:pointer;background:rgba(255,255,255,.28);transition:transform .25s,background .25s,box-shadow .25s}
+  .pm-dots button.on{background:linear-gradient(135deg,var(--blue-electric),var(--magenta-neon));transform:scale(1.35);box-shadow:0 0 10px rgba(77,157,255,.8)}
+}
 }
 </style>
 </head>
@@ -1051,7 +1055,7 @@ section{overflow-x:clip}
 <div class="modal" id="pModal" role="dialog" aria-modal="true" aria-label="Product details"><div class="sheet">
   <button class="x" data-close="pModal" aria-label="Close">✕</button>
   <div class="pm-grid">
-    <div class="pm-media"><img id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div></div>
+    <div class="pm-media"><img id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div><div class="pm-dots" id="pmDots" role="tablist" aria-label="Product photos"></div></div>
     <div class="pm-body">
       <div class="pcat" id="pmCat"></div><h2 id="pmName"></h2>
       <p class="pm-desc" id="pmDesc"></p>
@@ -1451,7 +1455,10 @@ function openProduct(id){
   $("#pmImg").src=p.img; $("#pmImg").alt=p.name;
   const gal=((p.images&&p.images.length?p.images:[p.img])||[]).filter(Boolean);
   $("#pmThumbs").innerHTML=gal.length>1?gal.map((g,i)=>`<img src="${esc(g)}" data-gi="${i}" class="${i===0?"on":""}" alt="View ${i+1}" loading="lazy">`).join(""):"";
-  $$("#pmThumbs img").forEach(t=>t.onclick=e=>{e.stopPropagation();pmState.gi=+t.dataset.gi;$("#pmImg").src=gal[pmState.gi];$$("#pmThumbs img").forEach(x=>x.classList.remove("on"));t.classList.add("on")});
+  $("#pmDots").innerHTML=gal.length>1?gal.map((g,i)=>`<button type="button" data-gi="${i}" class="${i===0?"on":""}" aria-label="Photo ${i+1} of ${gal.length}"></button>`).join(""):""; /* v9.4.9: dots drive the same gallery on phones */
+  const pmGo=i=>{pmState.gi=i;$("#pmImg").src=gal[i];$$("#pmThumbs img").forEach(x=>x.classList.toggle("on",+x.dataset.gi===i));$$("#pmDots button").forEach(x=>x.classList.toggle("on",+x.dataset.gi===i))};
+  $$("#pmThumbs img").forEach(t=>t.onclick=e=>{e.stopPropagation();pmGo(+t.dataset.gi)});
+  $$("#pmDots button").forEach(d=>d.onclick=e=>{e.stopPropagation();pmGo(+d.dataset.gi)});
   $("#pmImg").style.cursor="zoom-in";
   $("#pmImg").onclick=()=>openLightbox(gal,pmState.gi,p.name);
   $("#pmCat").textContent=p.cat; $("#pmName").textContent=p.name; $("#pmDesc").textContent=p.desc;
@@ -2472,7 +2479,7 @@ function initTilt(){
 })();
 
 /* ================= GLOBAL WIRING ================= */
-$("#burger").onclick=e=>{e.stopPropagation();const on=$("#mobileMenu").classList.toggle("show");$("#menuVeil").classList.toggle("show",on)}; /* v9.4.8: veil follows the menu */
+$("#burger").onclick=e=>{e.stopPropagation();const on=$("#mobileMenu").classList.toggle("show");$("#menuVeil").classList.toggle("show",on)}; /* v9.4.9: veil follows the menu */
 $$("#mobileMenu a").forEach(a=>a.onclick=()=>{$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show")});
 document.addEventListener("click",e=>{if(!e.target.closest("#mobileMenu")&&!e.target.closest("#burger")){$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show")}});
 $("#overlay").onclick=closeAll;
@@ -2538,38 +2545,48 @@ async function botSay(html,thinkMs){
 const SMS_LINK='sms:+19518061586?body=Hi!%20I%27d%20like%20to%20ask%20about%20a%20print%20order%20from%20Visualet%20Designs.'; /* v9.4.7: live-agent text line */
 /* Reassurance button shown whenever the bot can't deliver an answer */
 const AGENT_BTN=`<br><a class="cagent" href="${SMS_LINK}">💬 Connect with a live agent — text 951-806-1586</a>`;
-/* v9.4.8: product-aware answers — the bot recognizes what we sell and explains the purchase */
+/* v9.4.9: product-aware answers — the bot recognizes what we sell and explains the purchase */
 function chatProductMatch(s){
   if(/upload|send|attach|artwork|\bfile\b|files/.test(s)) return null; /* artwork intent belongs to the art branch */
   if(/human|real person|talk to|speak to|call me|contact/.test(s)) return null; /* human intent belongs to the agent branch */
   const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false);
   if(!act.length) return null;
+  const ALIAS={tent:"canopy",tents:"canopy",tablecloth:"table cover",tablecloths:"table cover",aframe:"a-frame",sandwich:"a-frame"};
+  let m=s; for(const k in ALIAS){ if(s.includes(k)) m+=" "+ALIAS[k]; } /* v9.4.9: speak the customer's words */
   const STOP=new Set(["with","and","the","for","from","standard","custom","premium","deluxe","design","package","packages","service","services"]);
   let best=null,bs=0;
   for(const p of act){
     const name=String(p.name||"").toLowerCase(),cat=String(p.cat||"").toLowerCase();
     let sc=0;
     const base=name.split("—")[0].trim();
-    if(base.length>4&&s.includes(base)) sc+=6;
+    if(base.length>4&&m.includes(base)) sc+=6;
     const keys=new Set((name+" "+cat).replace(/—/g," ").split(/[^a-z0-9'\/]+/).filter(w=>w.length>3&&!STOP.has(w)));
-    keys.forEach(k=>{if(s.includes(k)) sc+=2});
+    keys.forEach(k=>{if(m.includes(k)) sc+=2});
     if(sc>bs){bs=sc;best=p}
   }
   if(!best||bs<2) return null;
   const rungs=(best.rungs||[]).filter(r=>r&&r.price!=null);
   if(!rungs.length) return null;
   const from=Math.min(...rungs.map(r=>+r.price));
-  const top=rungs.slice(0,3).map(r=>`${esc(r.qty)} — <b>${money0(+r.price)}</b>`).join("<br>");
-  return `<b>${esc(best.name)}</b><br><span style="opacity:.85">${esc(best.desc||"")}</span><br><br>${top}`+
-    `<br><span style="font-size:13px;opacity:.78">From <b>${money0(from)}</b> • ${esc(best.turnaround||"2–7 days")} turnaround • custom design included</span><br><br>`+
-    `Here's how you get it:<br><b>1.</b> Tap it in the <a href="#shop"><b>shop</b></a> &nbsp;<b>2.</b> Pick your quantity → <b>Add to Cart</b> &nbsp;<b>3.</b> Check out — nothing prints until you approve your proof ✅`;
+  const wasLine=best.was&&+best.was>+from?` <s style="opacity:.55">${money0(+best.was)}</s> <span style="color:#7dffb0">sale</span>`:"";
+  const lines=rungs.slice(0,4).map(r=>{
+    const tag=r.tag?` <span style="color:#7dffb0">• ${esc(r.tag)}</span>`:"";
+    return `${esc(r.qty)} — <b>${money0(+r.price)}</b>${tag}`;
+  }).join("<br>");
+  const inc=(best.includes||[]).map(i=>`✓ ${esc(i)}`).join("<br>"); /* v9.4.9: full includes list, word-for-word */
+  const badge=best.badge?`<br><span style="color:#ff9ecf">★ ${esc(best.badge)}</span>`:"";
+  return `<b>${esc(best.name)}</b>${badge}${wasLine?`<br><span style="font-size:13px">Now <b>${money0(from)}</b>${wasLine}</span>`:""}<br><span style="opacity:.85">${esc(best.desc||"")}</span><br><br>${lines}`+
+    (inc?`<br><br><span style="font-size:13px"><b>What's included:</b><br>${inc}</span>`:"")+
+    `<br><br><span style="font-size:13px;opacity:.78">${esc(best.cat||"")} • ${esc(best.turnaround||"2–7 days")} turnaround • custom design included</span><br><br>`+
+    `🚚 <b>Free shipping</b> on every order &nbsp;•&nbsp; ✅ <b>Nothing prints until you approve your proof</b> — you see exactly what you're getting first<br><br>`+
+    `Here's how you get it:<br><b>1.</b> Tap it in the <a href="#shop"><b>shop</b></a> &nbsp;<b>2.</b> Pick your quantity → <b>Add to Cart</b> &nbsp;<b>3.</b> Check out — our design team takes it from there 🎨`;
 }
 function chatBrain(input){
   const s=input.toLowerCase();
   if(/^(hi|hey|hello|yo|sup|good (morning|afternoon|evening))\b/.test(s)&&s.length<24)
     return "Hey! 👋 I'm <b>Ask Visualet</b>. Ask me about <b>pricing</b>, <b>turnaround</b>, <b>tracking your order</b>, or how ordering works.";
   if(/track|status of|where.*(my |the )?order|order.*(status|where|arrive)/.test(s)) return {flow:"track"};
-  const pm=chatProductMatch(s); /* v9.4.8: product questions get a summary + how to buy */
+  const pm=chatProductMatch(s); /* v9.4.9: product questions get a summary + how to buy */
   if(pm) return pm;
   if(/price|cost|how much|pricing|expensive|cheap/.test(s))
     return 'Business cards start at <b>$75 for 250</b>, logo packages from <b>$50</b> — and every product page lists exact quantity pricing. Tap <a href="#shop"><b>Shop</b></a> to browse. 💳';
@@ -2644,7 +2661,7 @@ async function chatSend(raw){
 function openChat(){
   const p=$("#chatPanel"),was=p.classList.contains("show");
   p.classList.toggle("show",!was);p.setAttribute("aria-hidden",was?"true":"false");
-  $("#chatFab").classList.toggle("hidefab",!was); /* v9.4.8: lock — bubble tucks away while panel is open */
+  $("#chatFab").classList.toggle("hidefab",!was); /* v9.4.9: lock — bubble tucks away while panel is open */
   if(!was){
     $("#chatDot").classList.add("hide");
     if(!chatOpened){chatOpened=true;
@@ -2654,7 +2671,7 @@ function openChat(){
   }
 }
 $("#chatFab").onclick=openChat;
-function closeChat(){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");$("#chatFab").classList.remove("hidefab")} /* v9.4.8 */
+function closeChat(){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");$("#chatFab").classList.remove("hidefab")} /* v9.4.9 */
 $("#chatClose").onclick=closeChat;
 $("#chatSend").onclick=()=>chatSend();
 $("#chatText").addEventListener("keydown",e=>{if(e.key==="Enter")chatSend()});
