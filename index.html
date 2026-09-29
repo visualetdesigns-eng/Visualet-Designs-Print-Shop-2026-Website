@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site version 9.4.5 (2026-09-28) — verify with View Source -->
+<!-- Visualet Designs site version 9.4.8 (2026-09-29) — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -59,6 +59,7 @@ button{font-family:inherit}
 
 /* ============ NAV ============ */
 .skip{position:absolute;left:-999px;top:auto;background:var(--blue-electric);color:#fff;padding:12px 20px;border-radius:10px;z-index:9999}
+.menu-veil{display:none} /* v9.4.8: mobile-only menu backdrop; enabled inside the phone media query */
 .skip:focus{left:16px;top:16px}
 nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(94%,1340px);z-index:1000;
   display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 14px 10px 22px;border-radius:999px;
@@ -325,13 +326,17 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 @keyframes btnspin{to{transform:rotate(360deg)}}
 
 /* ============ ASK VISUALET CHAT ============ */
-#chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 34px rgba(28,77,255,.45),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .22s}
+#chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:62px;height:62px;border-radius:50%;border:1px solid rgba(255,255,255,.28);cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(140deg,#16215c 0%,#3b1157 58%,#7a1049 100%);box-shadow:0 14px 36px rgba(28,77,255,.5),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -10px 20px rgba(0,0,0,.4);transition:transform .22s ease,opacity .25s ease}
 #chatFab:hover{transform:scale(1.07)}
-#chatFab:active{transform:scale(.96)}
-#chatFab .ic{width:26px;height:26px}
-#chatFab .chat-dot{position:absolute;top:1px;right:1px;width:14px;height:14px;border-radius:50%;background:#ff3b5c;border:2.5px solid #070b18}
+#chatFab:active{transform:scale(.94)}
+#chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* v9.4.8: bubble tucks away while the panel is open */
+#chatFab .fab-logo{position:absolute;inset:0;background:url('logo.png') center/74% no-repeat;opacity:.34;filter:saturate(1.3) brightness(1.12);pointer-events:none}
+#chatFab .ic{position:relative;z-index:1;width:27px;height:27px;filter:drop-shadow(0 2px 5px rgba(0,0,0,.6))}
+#chatFab .chat-dot{position:absolute;z-index:2;top:-1px;right:-1px;width:23px;height:23px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9dffb9,#22c55e 58%,#15803d);border:2px solid #070b18;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(34,197,94,.85);animation:fabdot 2.4s ease-in-out infinite}
+#chatFab .chat-dot svg{width:12px;height:12px;fill:#052b12}
 #chatFab .chat-dot.hide{display:none}
-#chatPanel{position:fixed;right:22px;bottom:94px;z-index:1500;width:min(382px,calc(100vw - 32px));height:min(560px,calc(100dvh - 140px));min-height:380px;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
+@keyframes fabdot{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+#chatPanel{position:fixed;right:22px;bottom:94px;z-index:1500;width:min(382px,calc(100vw - 32px));height:min(560px,calc(100dvh - 140px));min-height:380px;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;overscroll-behavior:contain;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
 #chatPanel.show{transform:none;opacity:1;pointer-events:auto}
 .chat-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(120deg,rgba(28,77,255,.28),rgba(255,47,156,.22));border-bottom:1px solid rgba(255,255,255,.08);flex:none}
 .chat-ava{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.25);background:#0a1030;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
@@ -692,12 +697,24 @@ section{overflow-x:clip}
 @media(max-width:860px){
   .nav-links{display:none}
   .burger{display:flex}
-  .mobile-menu{position:fixed;top:86px;left:50%;transform:translateX(-50%) translateY(-16px);width:min(94%,420px);z-index:999;
-    background:rgba(7,10,22,.94);border:1px solid var(--glass-brd);border-radius:24px;backdrop-filter:blur(28px);
-    padding:14px;flex-direction:column;gap:4px;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--shadow-lg)}
-  .mobile-menu.show{display:flex;opacity:1;pointer-events:auto;transform:translateX(-50%)}
-  .mobile-menu a{text-decoration:none;padding:14px 18px;border-radius:14px;font-weight:600;font-size:15px;color:var(--ink-soft)}
-  .mobile-menu a:hover,.mobile-menu a.active{background:rgba(77,157,255,.12);color:#fff}
+  .menu-veil{display:block;position:fixed;inset:0;z-index:998;background:rgba(3,6,14,.42);backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);opacity:0;pointer-events:none;transition:opacity .35s ease} /* v9.4.8: liquid-glass veil — header (1000) + chat (1500) stay above it */
+  .menu-veil.show{opacity:1;pointer-events:auto}
+  .mobile-menu{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-18px) scale(.98);width:min(92%,400px);z-index:999;
+    background:rgba(15,21,44,.62);border:1px solid rgba(255,255,255,.16);border-radius:28px;
+    backdrop-filter:blur(32px) saturate(1.5);-webkit-backdrop-filter:blur(32px) saturate(1.5);
+    padding:14px;flex-direction:column;gap:8px;opacity:0;pointer-events:none;
+    transition:opacity .32s ease,transform .32s cubic-bezier(.2,.9,.3,1.2);
+    box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.18)}
+  .mobile-menu.show{display:flex;opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
+  .mobile-menu a{display:block;text-decoration:none;text-align:center;padding:15px 18px;border-radius:18px;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff;
+    background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.13);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 18px rgba(0,0,0,.28);transition:transform .15s ease,background .2s ease}
+  .mobile-menu a:active{transform:scale(.96);background:rgba(77,157,255,.24)}
+  .mobile-menu.show a{animation:menuPill .5s cubic-bezier(.2,.9,.3,1.15) both}
+  .mobile-menu.show a:nth-child(2){animation-delay:.05s}.mobile-menu.show a:nth-child(3){animation-delay:.1s}
+  .mobile-menu.show a:nth-child(4){animation-delay:.15s}.mobile-menu.show a:nth-child(5){animation-delay:.2s}
+  .mobile-menu.show a:nth-child(6){animation-delay:.25s}.mobile-menu.show a:nth-child(7){animation-delay:.3s}
+  @keyframes menuPill{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
   .steps{grid-template-columns:1fr}
   .phone-band{grid-template-columns:1fr;padding:44px 28px;gap:36px}
   .contact-grid{grid-template-columns:1fr}
@@ -764,6 +781,20 @@ section{overflow-x:clip}
   /* hero fan keeps a gentle cycle even in reduced-motion (owner request) */
   .fan-float{animation:none!important}
 }
+/* ============ v9.4.8 — mobile UI redesign (phone-first; desktop untouched) ============ */
+@media(max-width:860px){
+  /* hero carousel: side cards lose the muddy blur — clean dim + settle-back depth instead */
+  .car-card.pos-0,.car-card.pos-2{filter:brightness(.52) saturate(.65);opacity:.62}
+  .car-card.pos-0{transform:translateX(calc(var(--cw)*var(--fx)*-1)) translateZ(-90px) rotateY(38deg) scale(.8)}
+  .car-card.pos-2{transform:translateX(calc(var(--cw)*var(--fx))) translateZ(-90px) rotateY(-38deg) scale(.8)}
+  .car-card.pos-1{filter:blur(0) brightness(1.02)} /* active card stays tack-sharp */
+  .car-blur{filter:blur(12px) brightness(.6) saturate(1.1);opacity:.65} /* lighter halo: faster + cleaner on phones */
+  /* product modal: thumbnails become a real strip under the photo — never over the text */
+  .pm-media{display:flex;flex-direction:column;height:auto;min-height:0}
+  .pm-media img{position:relative;inset:auto;width:100%;height:248px;object-fit:cover;flex:0 0 auto}
+  .pm-thumbs{position:static;flex:0 0 auto;display:flex;gap:10px;padding:12px 16px;background:rgba(5,8,20,.72);border-top:1px solid rgba(255,255,255,.08);overflow-x:auto}
+  .pm-thumbs img{width:60px;height:60px}
+}
 </style>
 </head>
 <body>
@@ -821,6 +852,7 @@ section{overflow-x:clip}
     <button class="icon-btn" id="cartBtn" aria-label="Open cart"><svg class="ic"><use href="#i-cart"/></svg><span class="cart-count hide" id="cartCount">0</span></button>
   </div>
 </nav>
+<div class="menu-veil" id="menuVeil" aria-hidden="true"></div>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#shop">Shop</a><a href="#how">How It Works</a><a href="#bundles">Bundles</a>
   <a href="#design">Design</a><a href="#track">Track Order</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
@@ -1203,7 +1235,7 @@ let toastT;
 function toast(msg){$("#toastMsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2600)}
 function openModal(id){$("#overlay").classList.add("show");$("#"+id).classList.add("show");document.body.style.overflow="hidden"}
 function closeModal(id){$("#"+id).classList.remove("show");if(id==="adminPanel"){try{stopLiveOrdersPolling()}catch(e){}}if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")&&!$("#lightbox").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}}
-function closeAll(){$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show")}
+function closeAll(){$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show")}
 const fmtSize=b=>{if(b==null||isNaN(b))return"";const kb=b/1024;return kb>=1024?(kb/1024).toFixed(1)+" MB":Math.max(1,Math.round(kb))+" KB"};
 function copyText(t,msg){
   const done=()=>toast(msg||"Copied to clipboard");
@@ -2440,9 +2472,9 @@ function initTilt(){
 })();
 
 /* ================= GLOBAL WIRING ================= */
-$("#burger").onclick=e=>{e.stopPropagation();$("#mobileMenu").classList.toggle("show")};
-$$("#mobileMenu a").forEach(a=>a.onclick=()=>$("#mobileMenu").classList.remove("show"));
-document.addEventListener("click",e=>{if(!e.target.closest("#mobileMenu")&&!e.target.closest("#burger"))$("#mobileMenu").classList.remove("show")});
+$("#burger").onclick=e=>{e.stopPropagation();const on=$("#mobileMenu").classList.toggle("show");$("#menuVeil").classList.toggle("show",on)}; /* v9.4.8: veil follows the menu */
+$$("#mobileMenu a").forEach(a=>a.onclick=()=>{$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show")});
+document.addEventListener("click",e=>{if(!e.target.closest("#mobileMenu")&&!e.target.closest("#burger")){$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show")}});
 $("#overlay").onclick=closeAll;
 $$("[data-close]").forEach(b=>{if(!b.closest("#coBody"))b.addEventListener("click",()=>closeModal(b.dataset.close))});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
@@ -2453,7 +2485,7 @@ console.log("Visualet Designs site v9.4.7");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
-<button id="chatFab" aria-label="Chat with Ask Visualet"><svg class="ic"><use href="#i-chat"/></svg><span class="chat-dot" id="chatDot"></span></button>
+<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-logo" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
 <div id="chatPanel" role="dialog" aria-label="Ask Visualet chat" aria-hidden="true">
   <div class="chat-head">
     <span class="chat-ava"><img src="logo.png" alt="Visualet Designs logo"></span>
@@ -2506,11 +2538,39 @@ async function botSay(html,thinkMs){
 const SMS_LINK='sms:+19518061586?body=Hi!%20I%27d%20like%20to%20ask%20about%20a%20print%20order%20from%20Visualet%20Designs.'; /* v9.4.7: live-agent text line */
 /* Reassurance button shown whenever the bot can't deliver an answer */
 const AGENT_BTN=`<br><a class="cagent" href="${SMS_LINK}">💬 Connect with a live agent — text 951-806-1586</a>`;
+/* v9.4.8: product-aware answers — the bot recognizes what we sell and explains the purchase */
+function chatProductMatch(s){
+  if(/upload|send|attach|artwork|\bfile\b|files/.test(s)) return null; /* artwork intent belongs to the art branch */
+  if(/human|real person|talk to|speak to|call me|contact/.test(s)) return null; /* human intent belongs to the agent branch */
+  const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false);
+  if(!act.length) return null;
+  const STOP=new Set(["with","and","the","for","from","standard","custom","premium","deluxe","design","package","packages","service","services"]);
+  let best=null,bs=0;
+  for(const p of act){
+    const name=String(p.name||"").toLowerCase(),cat=String(p.cat||"").toLowerCase();
+    let sc=0;
+    const base=name.split("—")[0].trim();
+    if(base.length>4&&s.includes(base)) sc+=6;
+    const keys=new Set((name+" "+cat).replace(/—/g," ").split(/[^a-z0-9'\/]+/).filter(w=>w.length>3&&!STOP.has(w)));
+    keys.forEach(k=>{if(s.includes(k)) sc+=2});
+    if(sc>bs){bs=sc;best=p}
+  }
+  if(!best||bs<2) return null;
+  const rungs=(best.rungs||[]).filter(r=>r&&r.price!=null);
+  if(!rungs.length) return null;
+  const from=Math.min(...rungs.map(r=>+r.price));
+  const top=rungs.slice(0,3).map(r=>`${esc(r.qty)} — <b>${money0(+r.price)}</b>`).join("<br>");
+  return `<b>${esc(best.name)}</b><br><span style="opacity:.85">${esc(best.desc||"")}</span><br><br>${top}`+
+    `<br><span style="font-size:13px;opacity:.78">From <b>${money0(from)}</b> • ${esc(best.turnaround||"2–7 days")} turnaround • custom design included</span><br><br>`+
+    `Here's how you get it:<br><b>1.</b> Tap it in the <a href="#shop"><b>shop</b></a> &nbsp;<b>2.</b> Pick your quantity → <b>Add to Cart</b> &nbsp;<b>3.</b> Check out — nothing prints until you approve your proof ✅`;
+}
 function chatBrain(input){
   const s=input.toLowerCase();
   if(/^(hi|hey|hello|yo|sup|good (morning|afternoon|evening))\b/.test(s)&&s.length<24)
     return "Hey! 👋 I'm <b>Ask Visualet</b>. Ask me about <b>pricing</b>, <b>turnaround</b>, <b>tracking your order</b>, or how ordering works.";
   if(/track|status of|where.*(my |the )?order|order.*(status|where|arrive)/.test(s)) return {flow:"track"};
+  const pm=chatProductMatch(s); /* v9.4.8: product questions get a summary + how to buy */
+  if(pm) return pm;
   if(/price|cost|how much|pricing|expensive|cheap/.test(s))
     return 'Business cards start at <b>$75 for 250</b>, logo packages from <b>$50</b> — and every product page lists exact quantity pricing. Tap <a href="#shop"><b>Shop</b></a> to browse. 💳';
   if(/how long|turnaround|how fast|when.*(ready|done|ship)|delivery time|rush/.test(s))
@@ -2584,6 +2644,7 @@ async function chatSend(raw){
 function openChat(){
   const p=$("#chatPanel"),was=p.classList.contains("show");
   p.classList.toggle("show",!was);p.setAttribute("aria-hidden",was?"true":"false");
+  $("#chatFab").classList.toggle("hidefab",!was); /* v9.4.8: lock — bubble tucks away while panel is open */
   if(!was){
     $("#chatDot").classList.add("hide");
     if(!chatOpened){chatOpened=true;
@@ -2593,12 +2654,13 @@ function openChat(){
   }
 }
 $("#chatFab").onclick=openChat;
-$("#chatClose").onclick=()=>{$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true")};
+function closeChat(){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");$("#chatFab").classList.remove("hidefab")} /* v9.4.8 */
+$("#chatClose").onclick=closeChat;
 $("#chatSend").onclick=()=>chatSend();
 $("#chatText").addEventListener("keydown",e=>{if(e.key==="Enter")chatSend()});
 $("#chatMsgs").addEventListener("click",e=>{
   const a=e.target.closest("[data-gotrack]");
-  if(a){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");
+  if(a){closeChat();
     const t=$("#track");if(t)t.scrollIntoView({behavior:"smooth"});}
 });
 </script>
