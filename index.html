@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site version 9.5.0 (2026-09-29) — verify with View Source -->
+<!-- Visualet Designs site version 9.5.1 (2026-09-29) — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -331,12 +331,11 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatFab:active{transform:scale(.94)}
 #chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* bubble tucks away while the panel is open */
 #chatFab .fab-glass{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;
-  border:1px solid transparent; /* v9.5.0: Apple liquid glass — thin luminous outline, true frosted center */
-  background:linear-gradient(rgba(14,20,48,.30),rgba(14,20,48,.30)) padding-box,linear-gradient(140deg,rgba(255,255,255,.95),rgba(150,175,255,.5) 38%,rgba(255,150,205,.5) 62%,rgba(255,255,255,.95)) border-box;
-  backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
-  box-shadow:0 12px 32px rgba(28,77,255,.4),inset 0 1px 1px rgba(255,255,255,.7),inset 0 -8px 16px rgba(0,0,0,.22),0 0 26px rgba(130,160,255,.22)}
-#chatFab .fab-logo{position:absolute;inset:0;background:url('logo.png') center/72% no-repeat;opacity:.32;filter:saturate(1.3) brightness(1.12);pointer-events:none}
-#chatFab .fab-ic{position:relative;z-index:1;width:30px;height:30px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.65))}
+  border:1px solid rgba(77,157,255,.28); /* v9.5.1: header glass — dark circle, thin edge, logo only */
+  background:rgba(6,9,22,.72);
+  backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.14),0 12px 32px rgba(0,0,0,.6),0 0 44px rgba(28,77,255,.2)}
+#chatFab .fab-logo{position:absolute;inset:0;background:url('logo.png') center/68% no-repeat;opacity:.95;filter:saturate(1.25);pointer-events:none}
 #chatFab .chat-dot{position:absolute;z-index:2;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#9dffb9,#22c55e 58%,#15803d);border:2px solid #070b18;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(34,197,94,.9);animation:fabdot 2.4s ease-in-out infinite} /* v9.5.0: sits OUTSIDE the circle, always visible + animated */
 #chatFab .chat-dot svg{width:12px;height:12px;fill:#052b12}
 #chatFab .chat-dot.hide{display:none}
@@ -705,18 +704,19 @@ section{overflow-x:clip}
   .menu-veil{display:block;position:fixed;inset:0;z-index:998;background:rgba(3,6,14,.52);backdrop-filter:blur(30px) saturate(1.4);-webkit-backdrop-filter:blur(30px) saturate(1.4);opacity:0;pointer-events:none;transition:opacity .35s ease} /* v9.4.9: heavier blur — unmistakable on phones */
   .menu-veil.show{opacity:1;pointer-events:auto}
   .mobile-menu{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-18px) scale(.98);width:min(92%,400px);z-index:999;
-    border:1px solid transparent;border-radius:28px; /* v9.5.0: Apple-style liquid glass — thin luminous outline, true frosted center */
-    background:linear-gradient(rgba(14,20,48,.30),rgba(14,20,48,.30)) padding-box,linear-gradient(165deg,rgba(255,255,255,.95),rgba(150,175,255,.5) 38%,rgba(255,150,205,.5) 62%,rgba(255,255,255,.95)) border-box;
-    backdrop-filter:blur(34px) saturate(1.7);-webkit-backdrop-filter:blur(34px) saturate(1.7);
+    border:1px solid rgba(77,157,255,.22);border-radius:28px; /* v9.5.1: same glass as the header — dark, subtle, no white frost */
+    background:rgba(6,9,22,.66);
+    backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);
     padding:14px;flex-direction:column;gap:8px;opacity:0;pointer-events:none;
     transition:opacity .32s ease,transform .32s cubic-bezier(.2,.9,.3,1.2);
-    box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.6),0 0 34px rgba(130,160,255,.16)}
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 80px rgba(0,0,0,.6),0 0 90px rgba(28,77,255,.14)}
+  .mobile-menu::before{content:"";position:absolute;top:1px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);pointer-events:none} /* header's top sheen */
   .mobile-menu.show{display:flex;opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
   .mobile-menu a{display:block;text-decoration:none;text-align:center;padding:15px 18px;border-radius:18px;font-weight:700;font-size:15.5px;letter-spacing:.01em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55);
-    border:1px solid transparent; /* Apple liquid glass: thin luminous outline, frosted center, white label */
-    background:linear-gradient(rgba(16,22,52,.30),rgba(16,22,52,.30)) padding-box,linear-gradient(135deg,rgba(255,255,255,.95),rgba(150,175,255,.5) 38%,rgba(255,150,205,.5) 62%,rgba(255,255,255,.95)) border-box;
-    backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -10px 20px rgba(0,0,0,.25),0 10px 26px rgba(0,0,0,.35),0 0 26px rgba(130,160,255,.18);
+    border:1px solid rgba(77,157,255,.20); /* v9.5.1: header-glass pill — dark, thin blue edge */
+    background:rgba(10,14,32,.6);
+    backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 22px rgba(0,0,0,.4);
     transition:transform .15s ease,filter .2s ease}
   .mobile-menu a span{color:#fff}
   .mobile-menu a:active{transform:scale(.96);filter:brightness(1.25)}
@@ -810,10 +810,10 @@ section{overflow-x:clip}
   .pm-media img{position:relative;inset:auto;display:block;width:100%;height:250px;object-fit:cover}
   .pm-thumbs{display:none} /* strip removed on phones: it crowded the description */
   .pm-arrow{position:absolute;top:92px;z-index:3;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;padding:0;
-    border:1px solid transparent; /* v9.5.0: Apple liquid glass chevrons — thin luminous outline */
-    background:linear-gradient(rgba(14,20,48,.32),rgba(14,20,48,.32)) padding-box,linear-gradient(135deg,rgba(255,255,255,.95),rgba(150,175,255,.55) 40%,rgba(255,150,205,.55) 60%,rgba(255,255,255,.95)) border-box;
-    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 6px 18px rgba(0,0,0,.45);transition:transform .15s ease}
+    border:1px solid rgba(77,157,255,.28); /* v9.5.1: header glass chevrons */
+    background:rgba(6,9,22,.66);
+    backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 18px rgba(0,0,0,.5);transition:transform .15s ease}
   .pm-arrow:active{transform:scale(.9)}
   .pm-arrow.prev{left:12px}
   .pm-arrow.next{right:12px}
@@ -823,9 +823,10 @@ section{overflow-x:clip}
     background:rgba(5,8,20,.28);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);
     border-top:1px solid rgba(255,255,255,.16)} /* frosted glass band over the photo */
   .pm-expand button{display:flex;align-items:center;gap:9px;padding:10px 22px;border-radius:999px;cursor:pointer;font-weight:700;font-size:13.5px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);
-    border:1px solid transparent; /* v9.5.0: outlined CTA — thin luminous outline, frosted center */
-    background:linear-gradient(rgba(14,20,48,.34),rgba(14,20,48,.34)) padding-box,linear-gradient(135deg,rgba(255,255,255,.95),rgba(150,175,255,.55) 40%,rgba(255,150,205,.55) 60%,rgba(255,255,255,.95)) border-box;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 18px rgba(0,0,0,.4);transition:transform .15s ease}
+    border:1px solid rgba(77,157,255,.28); /* v9.5.1: header glass CTA */
+    background:rgba(6,9,22,.66);
+    backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 18px rgba(0,0,0,.5);transition:transform .15s ease}
   .pm-expand button:active{transform:scale(.96)}
   .pm-expand svg{width:17px;height:17px}
   .pm-body{flex:1 1 auto}
@@ -2527,7 +2528,7 @@ console.log("Visualet Designs site v9.4.7");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
-<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-glass"><span class="fab-logo" aria-hidden="true"></span><svg class="fab-ic" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="5" width="34" height="30" rx="10" opacity=".42"/><path d="M22 24h26a9 9 0 0 1 9 9v9a9 9 0 0 1-9 9H36l-9 8v-8h-4a9 9 0 0 1-9-9v-9a9 9 0 0 1 9-9z"/></svg></span><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
+<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-glass"><span class="fab-logo" aria-hidden="true"></span></span><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
 <div id="chatPanel" role="dialog" aria-label="Ask Visualet chat" aria-hidden="true">
   <div class="chat-head">
     <span class="chat-ava"><img src="logo.png" alt="Visualet Designs logo"></span>
