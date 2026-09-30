@@ -782,7 +782,7 @@ section{overflow-x:clip}
   .pdots{gap:10px}
   .pdots button::after{content:"";position:absolute;inset:-10px}
   .pdots button{position:relative}
-  .fan-dots{gap:10px}
+  .fan-dots{gap:10px;bottom:14px}
   .fan-dots button{position:relative}
   .fan-dots button::after{content:"";position:absolute;inset:-10px}
   /* 16px+ inputs stop iOS Safari auto-zooming on focus (zoom is locked via viewport too) */
@@ -1844,7 +1844,7 @@ async function placeOrder(){
       const j=await postBackend(backend,{action:"createOrder",order});
       if(j&&j.number){order.number=j.number;backendOk=true;}
       else{orderError=(j&&j.error)||"the order server didn't accept the order";}
-      /* v9.5.8: only upload artwork once the order itself exists server-side */
+      /* v9.5.9: only upload artwork once the order itself exists server-side */
       if(backendOk&&coData.artFiles.length){
         btn.textContent="Uploading artwork…";
         const files=[];
@@ -1855,7 +1855,7 @@ async function placeOrder(){
       }
     }catch(e){backendOk=false;orderError=(e&&e.message)||"network error";}
   }
-  /* v9.5.8 cart preservation — finalize only when the order actually reached the server.
+  /* v9.5.9 cart preservation — finalize only when the order actually reached the server.
      On failure the cart, uploads, and order number are left untouched so the customer can retry. */
   if(backendOk||!backend){
     if(backendOk&&!artOk)order.artWarn=true;
