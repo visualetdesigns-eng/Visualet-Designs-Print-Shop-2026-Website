@@ -1844,7 +1844,7 @@ async function placeOrder(){
       const j=await postBackend(backend,{action:"createOrder",order});
       if(j&&j.number){order.number=j.number;backendOk=true;}
       else{orderError=(j&&j.error)||"the order server didn't accept the order";}
-      /* v9.5.7: only upload artwork once the order itself exists server-side */
+      /* v9.5.8: only upload artwork once the order itself exists server-side */
       if(backendOk&&coData.artFiles.length){
         btn.textContent="Uploading artwork…";
         const files=[];
@@ -1855,7 +1855,7 @@ async function placeOrder(){
       }
     }catch(e){backendOk=false;orderError=(e&&e.message)||"network error";}
   }
-  /* v9.5.7 cart preservation — finalize only when the order actually reached the server.
+  /* v9.5.8 cart preservation — finalize only when the order actually reached the server.
      On failure the cart, uploads, and order number are left untouched so the customer can retry. */
   if(backendOk||!backend){
     if(backendOk&&!artOk)order.artWarn=true;
@@ -2226,25 +2226,28 @@ async function checkBackendVersion(){
   }catch(e){return {version:"",match:false}}
 }
 async function pullSync(){
-  try{
-    const backend=load(LS.backend,DEFAULT_BACKEND);
-    if(!backend) return;
-    if(load(LS_SYNC.dirty,0)) return;
-    const r=await fetch(backend+"?action=sync");
-    const j=await r.json();
-    const live=j&&j.ok&&j.state;
-    if(!live||!Array.isArray(live.products)||!live.products.length) return;
-    if((+live.updated||0)>load(LS_SYNC.updated,0)){
-      products=live.products;persistProducts();
-      if(Array.isArray(live.deletedIds)) save(LS.deleted,live.deletedIds);
-      if(live.payments){paySettings=Object.assign({},DEFAULT_PAY,live.payments);savePay()}
-      if(Array.isArray(live.covers)&&live.covers.length===3){heroCovers=live.covers;saveCovers()}
-      if(typeof live.headshot==="string") save(LS2.headshot,live.headshot);
-      if(typeof live.chat==="string"){save(LS2.chat,live.chat);try{renderChatPromo()}catch(e){}}
-      save(LS_SYNC.updated,+live.updated||Date.now());
-      renderGrid();renderTiers();renderBundles();renderHeroCovers();renderHeadshot();
-    }
-  }catch(e){}
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const backend=load(LS.backend,DEFAULT_BACKEND);
+      if(!backend) return;
+      if(load(LS_SYNC.dirty,0)) return;
+      const r=await fetch(backend+"?action=sync");
+      const j=await r.json();
+      const live=j&&j.ok&&j.state;
+      if(!live||!Array.isArray(live.products)||!live.products.length) return;
+      if((+live.updated||0)>load(LS_SYNC.updated,0)){
+        products=live.products;persistProducts();
+        if(Array.isArray(live.deletedIds)) save(LS.deleted,live.deletedIds);
+        if(live.payments){paySettings=Object.assign({},DEFAULT_PAY,live.payments);savePay()}
+        if(Array.isArray(live.covers)&&live.covers.length===3){heroCovers=live.covers;saveCovers()}
+        if(typeof live.headshot==="string") save(LS2.headshot,live.headshot);
+        if(typeof live.chat==="string"){save(LS2.chat,live.chat);try{renderChatPromo()}catch(e){}}
+        save(LS_SYNC.updated,+live.updated||Date.now());
+        renderGrid();renderTiers();renderBundles();renderHeroCovers();renderHeadshot();
+      }
+      return;
+    }catch(e){ if(attempt<2) await new Promise(r=>setTimeout(r,1500*(attempt+1))); }
+  }
 }
 setTimeout(pullSync,1200);
 
