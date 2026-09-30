@@ -5478,59 +5478,115 @@ $("#chatMsgs").addEventListener("click",e=>{
   if(a){closeChat();
     const t=$("#track");if(t)t.scrollIntoView({behavior:"smooth"});}
 });
-  <!-- ===== VISUALET v9.5.6 PATCH — paste this block BELOW the v9.5.5 patch, still before </body> ===== -->
+ <!-- ===== VISUALET v9.5.5 PATCH — paste this whole block just before </body> (after the last </script>) ===== -->
 <style>
-/* angle variable so the gradient outlines can truly rotate */
-@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
-@keyframes carspin{to{--a:360deg}}
-@keyframes expandpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+/* ---------- iPhone full-screen: edge-to-edge + safe areas ---------- */
+body{min-height:100vh;min-height:100dvh}
+.bg{height:100lvh;bottom:auto}
+.hero{min-height:100vh;min-height:100dvh}
+nav{top:calc(16px + env(safe-area-inset-top,0px))}
+.mobile-menu{top:calc(112px + env(safe-area-inset-top,0px))}
+.toast{bottom:calc(26px + env(safe-area-inset-bottom,0px))}
+.drawer{padding-top:env(safe-area-inset-top,0px)}
+.drawer-foot{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 
-/* ---------- Product photo panel: less blur, lighter tint so the photo stays visible ---------- */
-.pm-media::before{filter:blur(12px) saturate(1.2) brightness(.95);transform:scale(1.08);inset:-24px}
-.pm-media::after{background:linear-gradient(135deg,rgba(28,77,255,.26),rgba(123,59,255,.16) 50%,rgba(255,47,156,.24)),rgba(6,9,22,.10)}
+/* ---------- Product photo panel: frosted gradient glass + centered CTA ---------- */
+.pm-media{isolation:isolate;background:#050814;cursor:zoom-in}
+.pm-media::before{content:"";position:absolute;inset:-40px;z-index:0;pointer-events:none;
+  background:var(--pmbg) center/cover no-repeat;filter:blur(28px) saturate(1.3) brightness(.85);transform:scale(1.15)}
+.pm-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(135deg,rgba(28,77,255,.42),rgba(123,59,255,.30) 50%,rgba(255,47,156,.38)),rgba(6,9,22,.28);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.06)}
+#pModal .pm-media img{opacity:0;pointer-events:none}   /* photo itself is hidden; the lightbox shows it uncropped */
+.pm-thumbs,.pm-arrow,.pm-expand{z-index:4}
 
-/* ---------- Click to Expand: bigger, animated gradient outline ---------- */
-#pModal .pm-expand button{
-  gap:12px;padding:17px 34px;font-size:17px;font-weight:800;letter-spacing:.2px;border:3px solid transparent;
-  background:linear-gradient(rgba(6,9,22,.74),rgba(6,9,22,.74)) padding-box,
-             conic-gradient(from var(--a),#3d7bff,#a43df0,#ff2f9c,#3d7bff) border-box;
-  animation:carspin 3.5s linear infinite,expandpulse 2.4s ease-in-out infinite;
-  box-shadow:0 8px 24px rgba(0,0,0,.5)}
-#pModal .pm-expand svg{width:23px;height:23px}
-@media(max-width:860px){#pModal .pm-expand button{padding:15px 28px;font-size:16px}}
+/* ---------- Gradient scroll indicator (works on iPhone, where native bars are hidden) ---------- */
+#pModal .pm-grid{scrollbar-width:none;-ms-overflow-style:none}
+#pModal .pm-grid::-webkit-scrollbar{display:none}
+.pm-scroll{position:absolute;right:5px;top:calc(66px + env(safe-area-inset-top,0px));bottom:100px;width:5px;border-radius:5px;
+  background:rgba(77,157,255,.14);z-index:7;opacity:0;transition:opacity .3s;pointer-events:none}
+.pm-scroll.can{opacity:.55}.pm-scroll.on{opacity:1}
+.pm-scroll i{position:absolute;left:0;right:0;top:0;height:40px;border-radius:5px;background:linear-gradient(180deg,#4d9dff,#7b3bff 50%,#ff2f9c)}
+
+/* ---------- Desktop: keep the glass panel + button in view even when the listing is long ---------- */
+@media(min-width:1021px){
+  #pModal .pm-grid{align-items:start}
+  #pModal .pm-media{position:sticky;top:0;align-self:start;height:min(calc(92svh - 96px),640px);min-height:340px}
+}
 
 /* ---------- Mobile ---------- */
 @media(max-width:860px){
-  /* carousel: rotating gradient outline on the active card (no glow, no blur) */
-  .car-card.pos-1{
-    border:3px solid transparent;
-    background:linear-gradient(135deg,#182350 0%,#0b1230 55%,#150f33 100%) padding-box,
-               conic-gradient(from var(--a),#3d7bff,#a43df0,#ff2f9c,#3d7bff) border-box;
-    background-size:auto,auto;
-    animation:carspin 3.5s linear infinite!important}
-  @media(prefers-reduced-motion:reduce){.car-card.pos-1{animation:carspin 3.5s linear infinite!important}}
+  .hero{padding-top:calc(130px + env(safe-area-inset-top,0px))}
 
-  /* checkout / listings / cart: smooth, contained scrolling */
-  .sheet,#pModal .pm-grid,.drawer-items,.chat-msgs{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-  #pModal .sheet,#coModal .sheet,#adminPanel .sheet{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,10,22,.985)}
-  .overlay{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(3,6,14,.82)}
+  /* carousel: gradient outline only — no blur, no glow, no shadow boxes */
+  .hero-orb,.hero-glow,.car-floor,.car-blur{display:none!important}
+  .car-card,.car-card.pos-0,.car-card.pos-1,.car-card.pos-2{box-shadow:none!important;isolation:isolate}
+  .car-card::before,.car-card::after{display:none}
+  @media(prefers-reduced-motion:reduce){.car-card.pos-1{animation:carline 5s linear infinite!important}}
+
+  /* listings + checkout + admin fill the whole screen */
+  #pModal.modal,#coModal.modal,#adminPanel.modal{padding:0}
+  #pModal .sheet,#coModal .sheet,#adminPanel .sheet{max-width:none!important;width:100%;height:100vh;height:100dvh;max-height:100dvh;border-radius:0;border-left:0;border-right:0}
+  #pModal .x,#coModal .x,#adminPanel .x{top:calc(14px + env(safe-area-inset-top,0px))}
+  #pModal .pm-media img{height:calc(260px + env(safe-area-inset-top,0px))}
+  #pModal .pm-expand{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+  #pModal .pm-arrow{top:calc(50% - 22px + (env(safe-area-inset-top,0px) / 2))}
+  .pm-foot{border-radius:0;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+  .co-body{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+  .pm-scroll{right:3px;width:6px}
 }
-/* no stuck "hover" jumps on touch screens (payment cards, quantity rows) */
-@media(hover:none){.paycard:hover,.rung:hover{transform:none;box-shadow:none}}
-/* page behind can't scroll while a modal/cart is open */
-html:has(.modal.show),html:has(.drawer.show){overflow:hidden;overscroll-behavior:none}
 </style>
 <script>
 (function(){
-  /* checkout: each step (and each fresh checkout) starts at the top instead of keeping the old scroll position */
-  var coSheet=document.querySelector("#coModal .sheet");
-  var _step=setCoStep;
-  setCoStep=function(n){_step(n);coSheet.scrollTop=0;requestAnimationFrame(function(){coSheet.scrollTop=0})};
-  var _start=startCheckout;
-  startCheckout=function(){_start();coSheet.scrollTop=0};
+  /* --- iPhone: allow true full-screen when saved to the Home Screen --- */
+  [["apple-mobile-web-app-capable","yes"],["mobile-web-app-capable","yes"],["apple-mobile-web-app-status-bar-style","black-translucent"]].forEach(function(a){
+    if(!document.querySelector('meta[name="'+a[0]+'"]')){var m=document.createElement("meta");m.name=a[0];m.content=a[1];document.head.appendChild(m)}
+  });
+
+  /* --- Reload always starts at the very top (mobile + desktop) --- */
+  try{history.scrollRestoration="manual"}catch(e){}
+  if(location.hash){try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
+  function toTop(){var h=document.documentElement,p=h.style.scrollBehavior;h.style.scrollBehavior="auto";window.scrollTo(0,0);h.style.scrollBehavior=p}
+  toTop();
+  addEventListener("DOMContentLoaded",toTop);
+  addEventListener("load",toTop);
+  addEventListener("pageshow",toTop);
+
+  /* --- Product listing: gradient scroll indicator --- */
+  var sheet=document.querySelector("#pModal .sheet"),grid=document.querySelector("#pModal .pm-grid"),foot=document.querySelector("#pModal .pm-foot");
+  var ind=document.createElement("div");ind.className="pm-scroll";ind.innerHTML="<i></i>";sheet.appendChild(ind);
+  var hideT;
+  function pmScrollUpdate(){
+    var ch=grid.clientHeight,sh=grid.scrollHeight;
+    if(sh<=ch+2){ind.classList.remove("can","on");return}
+    ind.classList.add("can");
+    ind.style.bottom=((foot?foot.offsetHeight:0)+12)+"px";
+    var tr=ind.clientHeight,th=Math.max(38,tr*ch/sh),t=(grid.scrollTop/(sh-ch))*(tr-th);
+    var i=ind.firstElementChild;i.style.height=th+"px";i.style.transform="translateY("+t+"px)";
+  }
+  grid.addEventListener("scroll",function(){pmScrollUpdate();ind.classList.add("on");clearTimeout(hideT);hideT=setTimeout(function(){ind.classList.remove("on")},900)},{passive:true});
+  addEventListener("resize",pmScrollUpdate);
+  new MutationObserver(pmScrollUpdate).observe(grid,{childList:true,subtree:true});
+
+  /* --- Whole photo panel opens the viewer; label reads "Click to Expand" --- */
+  var media=document.querySelector("#pModal .pm-media");
+  var btn=document.querySelector("#pmExpand button");
+  if(btn&&btn.lastChild&&btn.lastChild.nodeType===3) btn.lastChild.textContent="Click to Expand";
+  media.addEventListener("click",function(e){
+    if(e.target.closest("#pmExpand,.pm-arrow,.pm-thumbs"))return;
+    document.getElementById("pmExpand").click();
+  });
+
+  /* --- Opening a listing always starts at its top --- */
+  var _open=openProduct;
+  openProduct=function(id){
+    _open(id);
+    var reset=function(){grid.scrollTop=0;sheet.scrollTop=0;pmScrollUpdate()};
+    reset();requestAnimationFrame(reset);setTimeout(reset,60);setTimeout(reset,350);
+  };
 })();
 </script>
-<!-- ===== END v9.5.6 PATCH ===== -->
+<!-- ===== END v9.5.5 PATCH ===== -->
 
 
 </script>
