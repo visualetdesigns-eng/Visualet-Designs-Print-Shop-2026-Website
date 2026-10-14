@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-<!-- Visualet Designs site v9.6.0 (2026-10-05) — phone number corrected to 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.6.1 (2026-10-13) — admin cover slots accept image URLs; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -855,18 +854,6 @@ section{overflow-x:clip}
   .pm-body{flex:1 1 auto}
 }
 </style>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Visualet Designs",
-  "url": "https://visualetdesigns.com/",
-  "logo": "https://visualetdesigns.com/logo.png",
-  "description": "Visualet Designs is an online print shop offering custom business cards, event canopies, banners, yard signs, door hangers, signage, marketing materials, and design services.",
-  "telephone": "+1-951-806-1586",
-  "email": "visualetdesigns@gmail.com"
-}
-</script>
 </head>
 <body>
 <a href="#shop" class="skip">Skip to shop</a>
@@ -2466,12 +2453,18 @@ function renderAdminSettings(){
   const renderCoverSlots=()=>{
     $("#coverSlots").innerHTML=heroCovers.map((c,i)=>`<div class="coverslot"><img id="covImg${i}" src="${esc(c.img)}" alt="Cover photo ${i+1}">
       <input type="text" id="covTag${i}" value="${esc(c.tag)}" placeholder="Caption (e.g. Cards from $75)" aria-label="Cover ${i+1} caption">
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="file" id="covFile${i}" accept="image/*" style="display:none"><button class="mini" id="covUp${i}">Upload photo</button></div></div>`).join("");
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="file" id="covFile${i}" accept="image/*" style="display:none"><button class="mini" id="covUp${i}">Upload photo</button></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input type="text" id="covUrl${i}" placeholder="…or paste image URL" value="${/^https?:/.test(c.img)?esc(c.img):''}" aria-label="Cover ${i+1} image URL" style="flex:1;min-width:140px;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:999px;padding:8px 16px;color:var(--ink);font-size:13px"><button class="mini" id="covUrlGo${i}">Use URL</button></div></div>`).join("");
     heroCovers.forEach((c,i)=>{
       $("#covUp"+i).onclick=()=>$("#covFile"+i).click();
       $("#covFile"+i).onchange=e=>{const f=e.target.files[0];if(!f)return;
         compressImage(f,1200,url=>{heroCovers[i].img=url;saveCovers();$("#covImg"+i).src=url;renderHeroCovers();pushSync().then(live=>syncToast(live,"Cover photo updated — live for everyone"))});e.target.value=""};
       $("#covTag"+i).onchange=e=>{heroCovers[i].tag=e.target.value;saveCovers();renderHeroCovers();pushSync().then(live=>syncToast(live,"Caption updated — live for everyone"))};
+      const applyCovUrl=()=>{const v=$("#covUrl"+i).value.trim();if(!v){toast("Paste an image URL first");return}
+        heroCovers[i].img=v;saveCovers();$("#covImg"+i).src=v;renderHeroCovers();
+        pushSync().then(live=>syncToast(live,"Cover photo updated — live for everyone"))};
+      $("#covUrlGo"+i).onclick=applyCovUrl;
+      $("#covUrl"+i).addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();applyCovUrl()}});
     });
   };
   renderCoverSlots();
@@ -2577,7 +2570,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.5.4");
+console.log("Visualet Designs site v9.6.1");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
