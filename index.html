@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.6.1 (2026-10-13) — admin cover slots accept image URLs; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.6.2 (2026-10-19) — fast fresh carousel: defaults mirror live covers, stale-cover migration, instant no-store sync, deferred blur preloads; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -12,6 +12,8 @@
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://visualetdesigns.com">
+<link rel="preload" as="image" href="https://visualetdesigns.com/canopy.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============ VISUALET PRINT SHOP — LIQUID GLASS SYSTEM ============ */
@@ -1370,12 +1372,26 @@ products.forEach(p=>{
   delete p.gallery;
 });
 save(LS.products,products);
+/* v9.6.2: defaults mirror the live site covers (synced 2026-10-15) so the first
+   paint shows the current photos even before the backend sync answers */
 const DEFAULT_COVERS=[
-  {img:"images/canopy-10x10.jpg",tag:"10'×10' Canopy — $600"},
-  {img:"images/business-cards-gsweets.jpg",tag:"Cards from $75"},
-  {img:"images/yard-signs.jpg",tag:"Yard Signs — $85"}];
+  {img:"https://visualetdesigns.com/canopy.jpg",tag:"10'×10' Canopy — $600"},
+  {img:"https://visualetdesigns.com/dd.jpg",tag:"Business Cards from $75"},
+  {img:"https://visualetdesigns.com/vdcar2.jpg",tag:"Custom Car Magnets — 24” × 18”- $120"}];
 let heroCovers=load(LS2.covers,null);
 if(!Array.isArray(heroCovers)||heroCovers.length!==3||!heroCovers.every(c=>c&&c.img)) heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));
+/* v9.6.2: one-time stale-cover migration — devices still holding the pre-9.6.2
+   fallback photos (old local images/… files) jump straight to the live covers
+   instead of flashing them until the sync arrives */
+(function(){
+  const STALE=["images/canopy-10x10.jpg","images/business-cards-gsweets.jpg","images/yard-signs.jpg"];
+  try{
+    if(Array.isArray(heroCovers)&&heroCovers.length===3&&heroCovers.every(c=>c&&STALE.indexOf(c.img)>-1)){
+      heroCovers=JSON.parse(JSON.stringify(DEFAULT_COVERS));
+      save(LS2.covers,heroCovers);
+    }
+  }catch(e){}
+})();
 function saveCovers(){save(LS2.covers,heroCovers)}
 const DEFAULT_PAY={enabled:true,square_link:"https://square.link/u/bPcUC2Wh",cashapp_tag:"",zelle_number:"951-806-1586"};
 let paySettings=Object.assign({},DEFAULT_PAY,load(LS2.pay,{}));
@@ -1985,14 +2001,22 @@ function renderHeroCovers(){
   stage.innerHTML=fanCards.map((c,i)=>{
     const mono=(c.tag||"VD").trim().replace(/[^A-Za-z0-9&'’\- ]/g," ").split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"VD";
     const blurSrc=/^data:/.test(c.img)?"":c.img.replace(/(\.[a-z0-9]+)$/i,"-blur$1");
-    return `<div class="car-card pos-${i}" data-pos="${i}" role="button" tabindex="0" aria-label="${esc(c.tag)} — featured cover ${i+1} of ${fanCards.length}"><span class="car-mono" aria-hidden="true">${esc(mono)}</span><span class="car-blur" aria-hidden="true" style="background-image:url('${esc(c.img)}')"${blurSrc?` data-blur="${esc(blurSrc)}"`:""}></span><img src="${esc(c.img)}" alt="${esc(c.tag)}"${i>0?' loading="lazy"':""} onerror="this.style.display='none';if(this.previousElementSibling)this.previousElementSibling.style.display='none'"><span class="tag">${esc(c.tag)}</span></div>`
+    /* v9.6.2: first cover is the LCP image — eager + high priority; the rest lazy */
+    const imgAttrs=i===0
+      ? `loading="eager" fetchpriority="high" decoding="async"`
+      : `loading="lazy" decoding="async"`;
+    return `<div class="car-card pos-${i}" data-pos="${i}" role="button" tabindex="0" aria-label="${esc(c.tag)} — featured cover ${i+1} of ${fanCards.length}"><span class="car-mono" aria-hidden="true">${esc(mono)}</span><span class="car-blur" aria-hidden="true" style="background-image:url('${esc(c.img)}')"${blurSrc?` data-blur="${esc(blurSrc)}"`:""}></span><img src="${esc(c.img)}" alt="${esc(c.tag)}" ${imgAttrs} onerror="this.style.display='none';if(this.previousElementSibling)this.previousElementSibling.style.display='none'"><span class="tag">${esc(c.tag)}</span></div>`
   }).join("");
-  /* perf: swap in pre-blurred backdrops when available (no per-frame CSS blur cost);
-     admin-uploaded covers keep the live CSS blur fallback */
-  stage.querySelectorAll(".car-blur[data-blur]").forEach(sp=>{
-    const t=new Image();
-    t.onload=()=>{sp.style.backgroundImage=`url('${sp.dataset.blur}')`;sp.classList.add("noblur")};
-    t.src=sp.dataset.blur;
+  /* v9.6.2 perf: pre-blurred backdrops load only when the browser is idle, so
+     they never compete with the visible cover images; the live CSS blur
+     fallback stays in place until (and if) a -blur file arrives */
+  const queueBlur=window.requestIdleCallback||(function(fn){return setTimeout(fn,2500)});
+  queueBlur(function(){
+    stage.querySelectorAll(".car-blur[data-blur]").forEach(sp=>{
+      const t=new Image();
+      t.onload=()=>{sp.style.backgroundImage=`url('${sp.dataset.blur}')`;sp.classList.add("noblur")};
+      t.src=sp.dataset.blur;
+    });
   });
   stage.querySelectorAll(".car-card").forEach(card=>{
     card.addEventListener("click",()=>{const p=+card.dataset.pos;if(p!==1)fanGo(p<1?"prev":"next");});
@@ -2232,25 +2256,39 @@ async function pullSync(){
       const backend=load(LS.backend,DEFAULT_BACKEND);
       if(!backend) return;
       if(load(LS_SYNC.dirty,0)) return;
-      const r=await fetch(backend+"?action=sync");
-      const j=await r.json();
+      /* v9.6.2: no-store + cache-buster so a cached sync can never paint stale
+         covers; 20s timeout so a hung Apps Script can't stall the page */
+      const ctrl=new AbortController();
+      const to=setTimeout(()=>{try{ctrl.abort()}catch(e){}},20000);
+      let j=null;
+      try{
+        const r=await fetch(backend+"?action=sync&_="+Date.now(),{cache:"no-store",signal:ctrl.signal});
+        j=await r.json();
+      }finally{clearTimeout(to)}
       const live=j&&j.ok&&j.state;
       if(!live||!Array.isArray(live.products)||!live.products.length) return;
       if((+live.updated||0)>load(LS_SYNC.updated,0)){
         products=live.products;persistProducts();
         if(Array.isArray(live.deletedIds)) save(LS.deleted,live.deletedIds);
         if(live.payments){paySettings=Object.assign({},DEFAULT_PAY,live.payments);savePay()}
-        if(Array.isArray(live.covers)&&live.covers.length===3){heroCovers=live.covers;saveCovers()}
+        /* v9.6.2: only re-render the carousel when the covers actually changed —
+           no more visible flash/re-layout when the sync agrees with the screen */
+        let coversChanged=false;
+        if(Array.isArray(live.covers)&&live.covers.length===3){
+          coversChanged=JSON.stringify(live.covers)!==JSON.stringify(heroCovers);
+          heroCovers=live.covers;saveCovers();
+        }
         if(typeof live.headshot==="string") save(LS2.headshot,live.headshot);
         if(typeof live.chat==="string"){save(LS2.chat,live.chat);try{renderChatPromo()}catch(e){}}
         save(LS_SYNC.updated,+live.updated||Date.now());
-        renderGrid();renderTiers();renderBundles();renderHeroCovers();renderHeadshot();
+        renderGrid();renderTiers();renderBundles();renderHeadshot();
+        if(coversChanged) renderHeroCovers();
       }
       return;
-    }catch(e){ if(attempt<2) await new Promise(r=>setTimeout(r,1500*(attempt+1))); }
+    }catch(e){ if(attempt<2) await new Promise(r=>setTimeout(r,1200)); }
   }
 }
-setTimeout(pullSync,1200);
+pullSync(); /* v9.6.2: start immediately — the old 1200ms delay is gone */
 
 /* --- admin: orders — live from the Google Sheet + this-device fallback --- */
 let liveOrders=[], liveOrdersAt=0, liveOrdersTimer=null, liveOrdersErr="";
@@ -2570,7 +2608,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.6.1");
+console.log("Visualet Designs site v9.6.2");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
