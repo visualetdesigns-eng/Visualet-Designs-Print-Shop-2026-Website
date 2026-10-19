@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.6.2 (2026-10-19) — fast fresh carousel: defaults mirror live covers, stale-cover migration, instant no-store sync, deferred blur preloads; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.6.4 (2026-10-19) — square favicon (V mark) so Google/search previews stop stretching the wide logo.png; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="description" content="Visualet Designs online print shop — custom business cards, event canopies, banners, yard signs, door hangers & more. Design, print & ship in one package. Order online.">
 <meta name="theme-color" content="#040711">
 <meta name="google-site-verification" content="TEhvUjnO27kjJdpo7oGizk7CeqyIi4PGJQtCUDdDUfo" />
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://visualetdesigns.com">
@@ -102,6 +102,10 @@ nav::before{content:"";position:absolute;top:1px;left:12%;right:12%;height:1px;b
 .btn.small{padding:10px 22px;font-size:13.5px}
 .btn.block{width:100%}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+/* v9.6.3: order/checkout loading spinner — animated so a slow save never looks frozen */
+.btn .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:vdspin .7s linear infinite;flex:none}
+@keyframes vdspin{to{transform:rotate(360deg)}}
+.btn.loading{opacity:1;pointer-events:none}
 .btn:focus-visible,.addbtn:focus-visible,.pill:focus-visible,.icon-btn:focus-visible,.mini:focus-visible,.atab:focus-visible,.seg button:focus-visible{outline:2px solid var(--blue-bright);outline-offset:3px}
 
 /* ============ LAYOUT ============ */
@@ -1836,10 +1840,22 @@ function renderCheckout(){
   }
   $$("#coBody [data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
 }
+/* v9.6.3: button loading state — spinner + staged label so a slow save never
+   looks frozen; the button stays bright (not dimmed) while working */
+function setPlacing(btn,label){
+  btn.disabled=true;
+  btn.classList.add("loading");
+  btn.innerHTML='<span class="spin" aria-hidden="true"></span>'+esc(label);
+}
+function resetPlacing(btn){
+  btn.disabled=false;
+  btn.classList.remove("loading");
+  btn.textContent="Place Order — "+money(cartSubtotal());
+}
 async function placeOrder(){
   /* v9.4.7: design-image acknowledgment is mandatory for every order */
   if(!coData.driveOk){toast("Please confirm the design-images step before placing your order.");if(coStep!==3)setCoStep(3);const el=$("#f_drive");if(el)el.scrollIntoView({behavior:"smooth",block:"center"});return}
-  const btn=$("#placeOrder"); btn.disabled=true; btn.textContent="Placing order…";
+  const btn=$("#placeOrder"); setPlacing(btn,"Placing order…");
   const items=cart.map(c=>{const p=products.find(x=>x.id===c.pid);const r=p.rungs[c.rung]||p.rungs[0];const disc=c.disc||0;
     return {pid:c.pid,name:p.name,rung:r.qty,opts:c.opts,qty:c.qty,discount:disc,unit:Math.max(0,r.price-disc),line:Math.max(0,r.price-disc)*c.qty}});
   const pmKey=coData.payMethod||"later";
@@ -1854,23 +1870,32 @@ async function placeOrder(){
   }
   // try backend
   const backend=load(LS.backend,DEFAULT_BACKEND);
-  let backendOk=false, artOk=true, orderError="";
+  let backendOk=false, artOk=true, orderError="", timedOut=false;
   if(backend){
     try{
-      btn.textContent="Saving order…";
-      const j=await postBackend(backend,{action:"createOrder",order});
+      setPlacing(btn,"Saving order…");
+      /* v9.6.3: 45s cap on the order save — it can never hang forever on
+         flaky wifi; a timeout is not retried (duplicate-order risk) */
+      const j=await postBackend(backend,{action:"createOrder",order},45000);
       if(j&&j.number){order.number=j.number;backendOk=true;}
       else{orderError=(j&&j.error)||"the order server didn't accept the order";}
       /* v9.5.9: only upload artwork once the order itself exists server-side */
       if(backendOk&&coData.artFiles.length){
-        btn.textContent="Uploading artwork…";
+        setPlacing(btn,"Uploading artwork…");
         const files=[];
         for(const f of coData.artFiles){const file=f.file||(f.url?await dataURLtoFile(f.url,f.name):null);if(!file)continue;files.push({name:f.name,type:f.type||"application/octet-stream",data:await fileToDataURL(file)})}
-        const uj=await postBackend(backend,{action:"uploadArtwork",orderNumber:order.number,files});
+        const uj=await postBackend(backend,{action:"uploadArtwork",orderNumber:order.number,files},120000);
         if(uj&&Array.isArray(uj.urls)&&uj.urls.length){uj.urls.forEach((u,i)=>{if(order.artwork[i]&&u)order.artwork[i].url=u});}
         else{artOk=false;}
       }
-    }catch(e){backendOk=false;orderError=(e&&e.message)||"network error";}
+    }catch(e){
+      backendOk=false;
+      /* v9.6.3: on timeout the order may still have gone through — say so */
+      orderError=(e&&e.name==="AbortError")
+        ? "the order server is taking too long to respond"
+        : ((e&&e.message)||"network error");
+      timedOut=(e&&e.name==="AbortError");
+    }
   }
   /* v9.5.9 cart preservation — finalize only when the order actually reached the server.
      On failure the cart, uploads, and order number are left untouched so the customer can retry. */
@@ -1882,10 +1907,10 @@ async function placeOrder(){
     toast("Order placed — "+order.number+((backendOk&&!artOk)?" — heads up: your design images didn't upload. Send them to the studio with your order number.":""));
     return;
   }
-  btn.disabled=false; btn.textContent="Place Order — "+money(cartSubtotal());
+  resetPlacing(btn);
   const eb=$("#coErr");
-  if(eb){eb.style.display="block";eb.innerHTML="⚠️ <b>Order not placed.</b> We couldn't reach the order server"+(orderError?": "+esc(orderError):"")+". Your cart and uploads are untouched — check your connection and tap <b>Place Order</b> again. If it keeps failing, contact the studio.";eb.scrollIntoView({behavior:"smooth",block:"center"});}
-  toast("Order not placed — couldn't reach the order server. Your cart is saved; try again.");
+  if(eb){eb.style.display="block";eb.innerHTML="⚠️ <b>Order not placed.</b> We couldn't reach the order server"+(orderError?": "+esc(orderError):"")+"."+(timedOut?" Your order may still have gone through — check your email for a receipt before tapping <b>Place Order</b> again.":" Your cart and uploads are untouched — check your connection and tap <b>Place Order</b> again.")+" If it keeps failing, contact the studio.";eb.scrollIntoView({behavior:"smooth",block:"center"});}
+  toast(timedOut?"Order save timed out — check your email for a receipt before retrying.":"Order not placed — couldn't reach the order server. Your cart is saved; try again.");
 }
 </script>
 <script>
@@ -2149,17 +2174,27 @@ function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringif
 function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
 function lastSyncError(){try{const r=JSON.parse(localStorage.getItem(LS_SYNC.err)||"null");return r&&r.msg?r:null}catch(e){return null}}
 /* Plain POST to the /exec URL. Verified 2026-09-28 in real Chrome: the request
-   reaches doPost and the JSON body arrives intact. One retry on network failure. */
-async function postBackend(backend,payload){
+   reaches doPost and the JSON body arrives intact. One retry on network failure.
+   v9.6.3: timeoutMs aborts a hung request so a slow save can't spin forever.
+   A timed-out request is NEVER auto-retried — the first attempt may have
+   reached the server, and retrying createOrder would create a duplicate order.
+   Fast network errors (offline, DNS) still get one retry. */
+async function postBackend(backend,payload,timeoutMs){
   const body=JSON.stringify(payload);
-  const opts={method:"POST",headers:{"Content-Type":"text/plain"},body};
+  const attempt=async()=>{
+    const ctrl=new AbortController();
+    const to=timeoutMs?setTimeout(()=>{try{ctrl.abort()}catch(e){}},timeoutMs):null;
+    try{
+      const r=await fetch(backend,{method:"POST",headers:{"Content-Type":"text/plain"},body,signal:ctrl.signal});
+      return await r.json();
+    }finally{if(to)clearTimeout(to)}
+  };
   try{
-    const r=await fetch(backend,opts);
-    return await r.json();
+    return await attempt();
   }catch(e){
+    if(e&&e.name==="AbortError") throw e;
     await new Promise(res=>setTimeout(res,2500));
-    const r2=await fetch(backend,opts);
-    return await r2.json();
+    return await attempt();
   }
 }
 async function uploadSyncPhoto(dataUrl,name){
@@ -2608,7 +2643,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.6.2");
+console.log("Visualet Designs site v9.6.4");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
