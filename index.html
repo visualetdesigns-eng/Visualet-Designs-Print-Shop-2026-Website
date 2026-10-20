@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.6.4 (2026-10-19) — square favicon (V mark) so Google/search previews stop stretching the wide logo.png; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.6.5 (2026-10-20) — admin Orders: Delete button wired (it was rendered but never connected) + one-tap "Clear device orders" for a fresh start; product photo click now opens the product like the rest of the card; hero center cover tap scrolls to the shop; admin rows wrap cleanly on phones; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -656,7 +656,7 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 /* ============ V2: PRODUCT CARD DOTS / QA ============ */
 .pcard{display:flex;flex-direction:column}
 .pbody{flex:1;display:flex;flex-direction:column}
-.pimg{cursor:zoom-in}
+.pimg{cursor:pointer}
 .pdots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:7px;justify-content:center;z-index:2}
 .pdots button{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(10,16,34,.5);backdrop-filter:blur(4px);cursor:pointer;padding:0;transition:.25s}
 .pdots button.on{background:#fff;transform:scale(1.4);box-shadow:0 0 12px rgba(77,157,255,.9)}
@@ -763,6 +763,11 @@ section{overflow-x:clip}
   .car-card{border-radius:20px}
   .co-labels{font-size:9.5px;letter-spacing:.5px}
   .pm-foot{flex-direction:column;align-items:stretch;text-align:center}
+  /* v9.6.5: admin rows on phones — buttons wrap as a tidy block, long text never stretches a row */
+  .arow .abtns{flex-wrap:wrap}
+  .arow .ai{min-width:0}
+  .arow small{overflow-wrap:anywhere}
+  .ord-detail div span:last-child{overflow-wrap:anywhere;text-align:right}
   .shop-bar{flex-direction:column;align-items:stretch} /* v9.5.4: search always gets a clean full-width row on phones */
   .search input{width:100%;max-width:100%}.search{width:100%;min-width:0}
   .co-nav{flex-direction:column-reverse}
@@ -1468,7 +1473,11 @@ function renderGrid(){
     const setIdx=i=>{card.dataset.gi=i;if(imgEl&&imgs[i])imgEl.src=imgs[i];dots.forEach((d,j)=>d.classList.toggle("on",j===i))};
     dots.forEach(d=>d.addEventListener("click",e=>{e.stopPropagation();setIdx(+d.dataset.dot)}));
     const pimg=card.querySelector("[data-pimg]");
-    if(pimg) pimg.addEventListener("click",e=>{if(e.target.closest(".pdots"))return;openLightbox(imgs,+(card.dataset.gi||0),p.name)});
+    /* v9.6.5: the whole card now opens the product — before, the photo opened the
+       lightbox while the title opened the product, which felt like a click bug.
+       The lightbox is still one tap away inside the product (Click to Expand);
+       the card dots still swap photos without opening anything. */
+    if(pimg) pimg.addEventListener("click",e=>{if(e.target.closest(".pdots"))return;openProduct(card.dataset.id)});
     const open=()=>openProduct(card.dataset.id);
     card.addEventListener("click",e=>{if(!e.target.closest("[data-view]")&&!e.target.closest("[data-pimg]"))open()});
     card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
@@ -2044,8 +2053,11 @@ function renderHeroCovers(){
     });
   });
   stage.querySelectorAll(".car-card").forEach(card=>{
-    card.addEventListener("click",()=>{const p=+card.dataset.pos;if(p!==1)fanGo(p<1?"prev":"next");});
-    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();const p=+card.dataset.pos;if(p!==1)fanGo(p<1?"prev":"next");}});
+    /* v9.6.5: tapping the CENTER cover used to do nothing (felt like a dead
+       click) — it now scrolls to the shop; side covers still rotate the fan */
+    const cardTap=()=>{const p=+card.dataset.pos;if(p!==1)fanGo(p<1?"prev":"next");else{const sh=document.querySelector("#shop");if(sh)sh.scrollIntoView({behavior:"smooth"})}};
+    card.addEventListener("click",cardTap);
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();cardTap()}});
   });
   renderFanDots();fanLayout(true);restartFan();
 }
@@ -2360,9 +2372,9 @@ function renderAdminOrders(){
   const list=mergedOrders();
   $("#ordBadge").textContent=list.filter(o=>o.status==="Received").length||"";
   const upd=liveOrdersAt?("Live from sheet • updated "+new Date(liveOrdersAt).toLocaleTimeString()):"not connected to sheet yet";
-  let html=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Orders (${list.length})</h3><div style="display:flex;gap:8px;align-items:center"><span style="font-size:12px;color:var(--ink-faint)">${upd}</span><button class="mini go" id="ordRefresh">Refresh</button></div></div>`;
+  let html=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Orders (${list.length})</h3><div style="display:flex;gap:8px;align-items:center"><span style="font-size:12px;color:var(--ink-faint)">${upd}</span><button class="mini go" id="ordRefresh">Refresh</button>${orders.length?`<button class="mini danger" id="ordClearLocal">Clear device orders (${orders.length})</button>`:""}</div></div>`;
   if(liveOrdersErr) html+=`<p class="hint" style="color:#ffb020;margin-bottom:14px">${esc(liveOrdersErr)}</p>`;
-  if(!list.length){box.innerHTML=html+`<div class="cart-empty">No orders yet.<br>Orders placed on this device will appear here.</div>`;$("#ordRefresh").onclick=()=>loadLiveOrders();return}
+  if(!list.length){box.innerHTML=html+`<div class="cart-empty">No orders yet.<br>Orders placed on this device will appear here.</div>`;bindOrdHeader();return}
   html+=list.map((o,ri)=>{
     const num=esc(o.number);
     const liveTag=o._localOnly?` <span class="paybadge wait">this device only</span>`:(o.live?` <span class="paybadge paid">live</span>`:"");
@@ -2381,11 +2393,13 @@ function renderAdminOrders(){
     <div style="display:block;margin-top:8px"><b>Items</b><div><span>${itemsLine||"—"}</span></div></div></div></div>`;
   }).join("");
   box.innerHTML=html;
-  $("#ordRefresh").onclick=()=>loadLiveOrders();
+  bindOrdHeader();
   $$("#ap-orders [data-stat]").forEach(s=>s.onchange=()=>setOrderStatus(s.dataset.stat,s.value));
   $$("#ap-orders [data-odetail]").forEach(b=>b.onclick=()=>$("#od-"+b.dataset.odetail).classList.toggle("show"));
   $$("#ap-orders [data-paid]").forEach(b=>b.onclick=()=>setOrderPaid(b.dataset.paid));
   $$("#ap-orders [data-odrive]").forEach(b=>b.onclick=()=>openOrderDrive(b.dataset.odrive,b));
+  /* v9.6.5: the Delete button was rendered but never wired — connect it */
+  $$("#ap-orders [data-odel]").forEach(b=>b.onclick=()=>deleteLiveOrder(b.dataset.odel));
 }
 async function openOrderDrive(num,btn){
   const backend=load(LS.backend,DEFAULT_BACKEND);
@@ -2423,6 +2437,19 @@ async function setOrderPaid(num){
   }
   applyLocal();renderAdminOrders();toast("Order "+num+" marked as paid");
 }
+/* v9.6.5: header buttons for the Orders tab (Refresh + fresh-start clear) */
+function bindOrdHeader(){
+  const r=$("#ordRefresh"); if(r) r.onclick=()=>loadLiveOrders();
+  const c=$("#ordClearLocal"); if(c) c.onclick=clearLocalOrders;
+}
+/* v9.6.5: start fresh — wipe the orders saved in THIS browser only.
+   Anything still on the Google Sheet is untouched and keeps showing as live. */
+function clearLocalOrders(){
+  if(!orders.length) return;
+  if(!confirm("Remove this device's saved orders ("+orders.length+")?\n\nOrders still on your Google Sheet are not affected — they'll keep showing here as live orders.")) return;
+  orders=[]; save(LS.orders,orders); renderAdminOrders();
+  toast("Device orders cleared — fresh start");
+}
 async function deleteLiveOrder(num){
   if(!confirm("Delete this order?"))return;
   const o=findOrd(num), backend=load(LS.backend,DEFAULT_BACKEND);
@@ -2433,6 +2460,7 @@ async function deleteLiveOrder(num){
     }catch(e){toast("Couldn't delete: connection failed");return}
   }
   const li=orders.findIndex(x=>String(x.number)===String(num));if(li>=0)orders.splice(li,1);save(LS.orders,orders);
+  renderAdminOrders();
   loadLiveOrders();
 }
 
@@ -2643,7 +2671,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.6.4");
+console.log("Visualet Designs site v9.6.5");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
