@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.6.5 (2026-10-20) — admin Orders: Delete button wired (it was rendered but never connected) + one-tap "Clear device orders" for a fresh start; product photo click now opens the product like the rest of the card; hero center cover tap scrolls to the shop; admin rows wrap cleanly on phones; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.6.7 (2026-10-23) — checkout "Preferred contact method" buttons: the review-box row rule flattened the Design Contact grid (cards shrank to content width, pinned to opposite ends); rule now targets direct children only and the contact grid keeps its own layout; v9.6.6 (2026-10-20) — admin Orders: ghost rows (blank sheet rows with no order #) are filtered out of the live list; an "unknown action" delete failure now explains itself (stale backend URL/code); v9.6.5: Delete wired + Clear device orders, card photo opens the product, hero center cover tap scrolls to shop, admin rows wrap cleanly on phones; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -509,7 +509,10 @@ footer img{height:58px;margin:0 auto 16px;opacity:.98;filter:drop-shadow(0 0 18p
 .review-box{border-radius:18px;border:1px solid rgba(77,157,255,.15);overflow:hidden;margin-bottom:18px}
 .review-box .rh{padding:14px 20px;background:rgba(77,157,255,.07);font-weight:700;font-size:14px;font-family:'Space Grotesk'}
 .review-box .rb{padding:16px 20px;font-size:14px;color:var(--ink-soft)}
-.review-box .rb div{display:flex;justify-content:space-between;padding:5px 0;gap:12px}
+.review-box .rb>div{display:flex;justify-content:space-between;padding:5px 0;gap:12px} /* v9.6.7: direct children ONLY — the old .rb div rule flattened the Design Contact paygrid (cards shrank to content width, pinned to opposite ends, padding stripped) */
+/* v9.6.7: nested layout containers inside a review box keep their own layout */
+.review-box .rb>.paygrid{display:grid;justify-content:stretch;padding:0}
+.review-box .rb .artlist{display:block;padding:0}
 .confirm{text-align:center;padding:20px 0}
 .confirm .big-check{width:96px;height:96px;margin:0 auto 24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));box-shadow:0 20px 60px rgba(28,77,255,.55);animation:pop .55s cubic-bezier(.2,1.4,.4,1)}
@@ -2353,7 +2356,7 @@ async function loadLiveOrders(){
   try{
     const r=await fetch(backend+"?action=orders&secret="+encodeURIComponent(secret));
     const j=await r.json();
-    if(j&&j.ok&&Array.isArray(j.orders)){liveOrders=j.orders;liveOrdersAt=Date.now();liveOrdersErr="";renderAdminOrders();return true}
+    if(j&&j.ok&&Array.isArray(j.orders)){liveOrders=j.orders.filter(o=>o&&String(o.number||"").trim());liveOrdersAt=Date.now();liveOrdersErr="";renderAdminOrders();return true}
     liveOrders=[];liveOrdersErr="Sheet said: "+((j&&j.error)||"unknown error");renderAdminOrders();return false;
   }catch(e){liveOrders=[];liveOrdersErr="Couldn't reach the backend — check the URL in Settings and your connection.";renderAdminOrders();return false}
 }
@@ -2456,7 +2459,13 @@ async function deleteLiveOrder(num){
   if(o&&o.live&&!o._localOnly){
     try{
       const j=await postBackend(backend,{action:"deleteOrder",secret:syncPassphrase(),number:num});
-      if(!(j&&j.ok)){toast("Couldn't delete: "+((j&&j.error)||"unknown error"));return}
+      if(!(j&&j.ok)){
+        /* v9.6.6: "unknown action" means the backend answering this browser
+           predates the delete feature — name the fix instead of the raw error */
+        if(j&&j.error==="unknown action") toast("Delete isn't supported by the backend this browser is using — in Settings, tap \"Reset URL to default\", then try again");
+        else toast("Couldn't delete: "+((j&&j.error)||"unknown error"));
+        return;
+      }
     }catch(e){toast("Couldn't delete: connection failed");return}
   }
   const li=orders.findIndex(x=>String(x.number)===String(num));if(li>=0)orders.splice(li,1);save(LS.orders,orders);
@@ -2671,7 +2680,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.6.5");
+console.log("Visualet Designs site v9.6.7");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
