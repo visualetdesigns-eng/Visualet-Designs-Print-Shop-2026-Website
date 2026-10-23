@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.6.7 (2026-10-23) — checkout "Preferred contact method" buttons: the review-box row rule flattened the Design Contact grid (cards shrank to content width, pinned to opposite ends); rule now targets direct children only and the contact grid keeps its own layout; v9.6.6 (2026-10-20) — admin Orders: ghost rows (blank sheet rows with no order #) are filtered out of the live list; an "unknown action" delete failure now explains itself (stale backend URL/code); v9.6.5: Delete wired + Clear device orders, card photo opens the product, hero center cover tap scrolls to shop, admin rows wrap cleanly on phones; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.6.10 (2026-10-23) — Canopies section polish per owner: emojis replaced with the site's standard icons (green checks in What's Included + specs, truck/clock icons on the shipping/turnaround line) and the spec now reads "Custom design service included"; v9.6.9 (2026-10-23) — NEW Custom Canopies showcase section (#canopies, right after Shop, linked from desktop + mobile nav): embedded promo video (canopy-promo.mp4, poster canopy-poster.jpg, preload=none so it never slows the page; swap either file by name to update), $785 10x15 full print package, specs, what's included, Request a Quote + Text Us CTAs; v9.6.8 — the Email/Text preferred-contact choice now shows on EVERY order at checkout Review (was logo packages only), saved on every order + noted on the confirmation screen; v9.6.7 — checkout contact-button sizing fix (review-box row rule scoped to direct children); v9.6.6 — admin ghost-order filter + self-explaining delete errors; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -117,6 +117,27 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 .sec-title .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .sec-sub{color:var(--ink-faint);max-width:680px;font-size:16.5px;margin-bottom:8px}
 .accent{width:104px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--blue-electric),var(--blue-bright),var(--magenta-neon));box-shadow:0 0 26px rgba(28,77,255,.7);margin:20px 0 44px;position:relative;overflow:hidden}
+/* ---- v9.6.9 Custom Canopies showcase ---- */
+.canopy-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:46px;align-items:center}
+.canopy-frame{position:relative;border-radius:26px;padding:2px;background:linear-gradient(140deg,rgba(77,157,255,.6),rgba(255,47,156,.5));box-shadow:0 30px 80px rgba(2,6,20,.65),0 0 60px rgba(28,77,255,.25)}
+.canopy-video{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:24px;background:#000}
+.canopy-cap{margin:14px 4px 0;font-size:13px;color:var(--ink-faint);line-height:1.55}
+.canopy-price{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.cp-amount{font-family:'Space Grotesk';font-size:56px;font-weight:700;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cp-meta{display:flex;flex-direction:column;gap:3px}
+.cp-meta b{font-size:16.5px}
+.cp-meta small{color:var(--ink-faint);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cp-ic{width:15px;height:15px;flex:none;color:var(--blue-bright)}
+.canopy-desc{color:var(--ink-soft);line-height:1.65;font-size:15.5px;margin-bottom:22px}
+.spec-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:11px 18px;margin:0 0 22px;padding:0}
+.spec-list li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;color:var(--ink)}
+.spec-list .ic{width:19px;height:19px;flex:none;color:#7dffb0}
+.canopy-includes{border:1px solid rgba(77,157,255,.16);background:rgba(77,157,255,.045);border-radius:16px;padding:16px 18px;margin-bottom:24px}
+.canopy-includes b{display:block;font-family:'Space Grotesk';font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--blue-bright);margin-bottom:9px}
+.canopy-includes span{display:inline-flex;align-items:center;gap:8px;margin:0 14px 6px 0;font-size:14px;color:var(--ink-soft);font-weight:600}
+.canopy-includes .ic{width:17px;height:17px;flex:none;color:#7dffb0}
+.canopy-cta{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){.canopy-grid{grid-template-columns:1fr;gap:30px}.spec-list{grid-template-columns:1fr}.cp-amount{font-size:46px}.canopy-cta .btn{flex:1;justify-content:center}}
 .accent::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-110%);animation:accshimmer 5s ease-in-out infinite}
 @keyframes accshimmer{0%,55%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
 .center{text-align:center}.center .accent{margin-left:auto;margin-right:auto}.center .sec-sub{margin-left:auto;margin-right:auto}
@@ -911,6 +932,7 @@ section{overflow-x:clip}
   <a class="brand" href="#home"><img src="logo.png" alt="Visualet Designs logo"></a>
   <div class="nav-links">
     <a href="#shop">Shop</a>
+    <a href="#canopies">Canopies</a>
     <a href="#how">How It Works</a>
     <a href="#bundles">Bundles</a>
     <a href="#design">Design</a>
@@ -926,7 +948,7 @@ section{overflow-x:clip}
 </nav>
 <div class="menu-veil" id="menuVeil" aria-hidden="true"></div>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#shop"><span>Shop</span></a><a href="#how"><span>How It Works</span></a><a href="#bundles"><span>Bundles</span></a>
+  <a href="#shop"><span>Shop</span></a><a href="#canopies"><span>Canopies</span></a><a href="#how"><span>How It Works</span></a><a href="#bundles"><span>Bundles</span></a>
   <a href="#design"><span>Design</span></a><a href="#track"><span>Track Order</span></a><a href="#reviews"><span>Reviews</span></a><a href="#contact"><span>Contact</span></a>
 </div>
 
@@ -992,6 +1014,47 @@ section{overflow-x:clip}
       <div class="search"><svg class="ic"><use href="#i-search"/></svg><input id="searchInput" type="search" placeholder="Search products…" aria-label="Search products"></div>
     </div>
     <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- CUSTOM CANOPIES (v9.6.9) — featured showcase. To swap the promo video, replace the file canopy-promo.mp4 (keep the same name) and, if you like, canopy-poster.jpg. Nothing else needs to change. -->
+<section id="canopies" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal"><div class="eyebrow"><span class="dot"></span>Featured Build — Custom Canopies</div></div>
+    <h2 class="sec-title reveal">Your Team Brings the Goals. <span class="grad">We Bring the Setup.</span></h2>
+    <p class="sec-sub reveal">Our custom 10′ × 15′ soccer canopy package — designed, printed, and built to make your team look like the home team everywhere you play.</p>
+    <div class="accent reveal"></div>
+    <div class="canopy-grid">
+      <div class="reveal">
+        <div class="canopy-frame">
+          <video class="canopy-video" controls playsinline preload="none" poster="canopy-poster.jpg" aria-label="Visualet Designs custom soccer canopy promotional video">
+            <source src="canopy-promo.mp4" type="video/mp4">
+            Your browser doesn't support video playback — <a href="canopy-promo.mp4">watch the canopy video here</a>.
+          </video>
+        </div>
+        <p class="canopy-cap">Cruz Azul San Jacinto — a custom 10′ × 15′ soccer canopy designed &amp; printed by Visualet Designs. Press play to see it in action.</p>
+      </div>
+      <div class="reveal">
+        <div class="canopy-price"><span class="cp-amount">$785</span><span class="cp-meta"><b>10′ × 15′ Full Print Package</b><small><svg class="ic cp-ic"><use href="#i-truck"/></svg>FREE shipping &nbsp;•&nbsp; <svg class="ic cp-ic"><use href="#i-clock"/></svg>Turnaround: 3–7 business days</small></span></div>
+        <p class="canopy-desc">A custom canopy that looks professional, feels premium, and is built for outdoor use. From the canopy fabric and sturdy aluminum frame to the fire-retardant material, custom design service, and professional full-color printing — every detail matters. Give your team a setup that stands out at games, tournaments, and team events.</p>
+        <ul class="spec-list">
+          <li><svg class="ic"><use href="#i-check"/></svg>4000D Oxford canopy fabric</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Professional full-color custom printing</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Slight water resistance</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Fire-retardant fabric</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>40mm hexagonal aluminum frame</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Custom design service included</li>
+        </ul>
+        <div class="canopy-includes">
+          <b>What's Included</b>
+          <span><svg class="ic"><use href="#i-check"/></svg>Custom 10′ × 15′ printed canopy</span><span><svg class="ic"><use href="#i-check"/></svg>Aluminum frame</span><span><svg class="ic"><use href="#i-check"/></svg>Wheel carry bag</span>
+        </div>
+        <div class="canopy-cta">
+          <a class="btn solid" href="#contact">Request a Quote</a>
+          <a class="btn ghost" href="sms:+19518061586?body=Hi!%20I%27d%20like%20a%20quote%20on%20the%2010x15%20custom%20soccer%20canopy%20(%24785).">Text Us — 951-806-1586</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1755,12 +1818,13 @@ function renderCheckout(){
       const o=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(", ");
       return `<div><span>${c.qty} × ${esc(p.name)}<br><small style="color:var(--ink-faint)">${esc(r.qty)}${o?", "+esc(o):""}${disc?` <b style="color:#7dffb0">−${money(disc)} reward</b>`:""}</small></span><b>${money(Math.max(0,r.price-disc)*c.qty)}</b></div>`}).join("");
     const payLabel=PAY_LABELS[coData.payMethod]||PAY_LABELS.later;
-    /* v9.4.7: logo packages only — show contact info + preferred contact method */
-    let contactBox="";
-    if(cartHasLogo()){
-      if(!coData.contactPref) coData.contactPref="text";
-      const cp=coData.contactPref;
-      contactBox=`<div class="review-box"><div class="rh">Design Contact 🎨</div><div class="rb">
+    /* v9.6.8: EVERY order gets the contact box + preferred contact method
+       (v9.4.7 originally showed it for logo packages only). Header + hint
+       copy adapt: logo orders talk to the design team, other orders to the team. */
+    if(!coData.contactPref) coData.contactPref="text";
+    const cp=coData.contactPref;
+    const isLogoOrder=cartHasLogo();
+    const contactBox=`<div class="review-box"><div class="rh">${isLogoOrder?"Design Contact 🎨":"Order Contact"}</div><div class="rb">
       <div><span>Name</span><b>${esc(coData.name)}</b></div>
       <div><span>Email</span><b>${esc(coData.email)}</b></div>
       <div><span>Phone</span><b>${esc(coData.phone)}</b></div>
@@ -1769,9 +1833,8 @@ function renderCheckout(){
         <div class="paycard${cp==="email"?" on":""}" data-cpref="email" role="button" tabindex="0" aria-label="Contact by email"><span class="radio"></span><span class="ptxt"><b>📧 Email</b><p>We'll email you</p></span></div>
         <div class="paycard${cp==="text"?" on":""}" data-cpref="text" role="button" tabindex="0" aria-label="Contact by text"><span class="radio"></span><span class="ptxt"><b>💬 Text</b><p>We'll text you</p></span></div>
       </div>
-      <p class="hint" style="margin:8px 0 0">Once payment is complete, our design team will reach out by ${cp==="email"?"<b>email</b>":"<b>text</b>"} to confirm details.</p>
+      <p class="hint" style="margin:8px 0 0">Once payment is complete, ${isLogoOrder?"our design team":"our team"} will reach out by ${cp==="email"?"<b>email</b>":"<b>text</b>"} to confirm ${isLogoOrder?"details":"your order details"}.</p>
       </div></div>`;
-    }
     const artRow=coData.artFiles.length
       ? `<div><span>Artwork (${coData.artFiles.length})</span><b style="text-align:right;max-width:58%">${esc(coData.artFiles.map(f=>f.name).join(", "))}</b></div>`
       : `<div><span>Artwork</span><b>None — design service / email later</b></div>`;
@@ -1832,9 +1895,12 @@ function renderCheckout(){
     }
     const artNote=(!load(LS.backend,DEFAULT_BACKEND)&&o.artwork&&o.artwork.length)
       ? `<p>Please email your ${o.artwork.length} art file(s) to <b>visualetdesigns@gmail.com</b> with the subject <b>"Artwork — ${esc(o.number)}"</b>.</p>` : "";
-    /* v9.4.7: logo packages only — design team reaches out after payment */
+    /* v9.4.7: logo packages only — design team reaches out after payment.
+       v9.6.8: every order — the note now follows the saved contact preference. */
     const hasLogo=(o.items||[]).some(it=>it.pid==="logo-pack"||/logo/i.test(it.name||""));
-    const logoNote=hasLogo?`<p class="hint">🎨 <b>Logo package:</b> once payment is complete, our design team will reach out to you by ${o.contactPref==="email"?"<b>email</b>":"<b>text</b>"} to confirm details.</p>`:"";
+    const logoNote=o.contactPref?(hasLogo
+      ? `<p class="hint">🎨 <b>Logo package:</b> once payment is complete, our design team will reach out to you by ${o.contactPref==="email"?"<b>email</b>":"<b>text</b>"} to confirm details.</p>`
+      : `<p class="hint"><b>Order contact:</b> we'll reach out to you by ${o.contactPref==="email"?"<b>email</b>":"<b>text</b>"} to confirm your order details.</p>`):"";
     box.innerHTML=`<div class="confirm"><div class="big-check"><svg class="ic"><use href="#i-check"/></svg></div>
     <h2>Order Received!</h2><p>Thanks ${esc(coData.name.split(" ")[0])} — your order is in the studio queue.</p>
     <div class="order-num">${esc(o.number)}</div>
@@ -1874,8 +1940,9 @@ async function placeOrder(){
   const order={number:coData.orderNumber,date:new Date().toISOString(),name:coData.name,email:coData.email.toLowerCase(),phone:coData.phone,co:coData.co,addr:`${coData.addr}, ${coData.city} ${coData.zip}`,notes:coData.notes,design:coData.design,items,total:cartSubtotal(),status:"Received",
     paymentMethod:PAY_LABELS[pmKey]||PAY_LABELS.later,paymentMethodKey:pmKey,paid:false,awaitingPayment:pmKey!=="later",
     artwork:coData.artFiles.map(f=>({name:f.name,size:f.size,type:f.type}))};
-  /* v9.4.7: logo-package contact preference rides on the order + in Notes so the sheet shows it */
-  if(cartHasLogo()&&coData.contactPref){
+  /* v9.6.8: the contact preference now rides on EVERY order + in Notes so the
+     sheet shows it (v9.4.7 did this for logo packages only) */
+  if(coData.contactPref){
     order.contactPref=coData.contactPref;
     const tag="[Preferred contact: "+(coData.contactPref==="email"?"Email":"Text")+"]";
     order.notes=((order.notes||"")+" "+tag).trim();
@@ -2654,7 +2721,7 @@ function initTilt(){
   const obs=new IntersectionObserver(es=>es.forEach(e=>{
     if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}
   }),{rootMargin:"-40% 0px -55% 0px"});
-  ["shop","how","bundles","design","track","reviews","contact"].forEach(id=>{const s=document.getElementById(id);if(s)obs.observe(s)});
+  ["shop","canopies","how","bundles","design","track","reviews","contact"].forEach(id=>{const s=document.getElementById(id);if(s)obs.observe(s)});
 })();
 /* hero parallax */
 (function(){
@@ -2680,7 +2747,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.6.7");
+console.log("Visualet Designs site v9.6.10");
 (function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
 </script>
 <!-- ASK VISUALET CHAT -->
