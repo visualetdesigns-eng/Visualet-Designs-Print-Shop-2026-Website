@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-12-A — unchanged); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-12-A — unchanged); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://visualetdesigns.com">
 <link rel="preload" as="image" href="https://visualetdesigns.com/canopy.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://js.stripe.com/dahlia/stripe.js"></script><!-- v9.7.0: Stripe.js (Dahlia) for Embedded Checkout — loaded from Stripe, never bundled or self-hosted (PCI) -->
+<script defer src="https://js.stripe.com/dahlia/stripe.js"></script><!-- v9.7.0: Stripe.js (Dahlia) for Embedded Checkout — loaded from Stripe, never bundled or self-hosted (PCI) -->
 <style>
 /* ============ VISUALET PRINT SHOP — LIQUID GLASS SYSTEM ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -1392,6 +1392,7 @@ const money0 = n => "$" + Number(n).toLocaleString("en-US");
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function load(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function persistProducts(){save(LS.products,products)} /* v9.7.5: was defined in block 3 but called in block 1 (line ~1455) — the reload-break root cause */
 let toastT;
 function toast(msg){$("#toastMsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2600)}
 function openModal(id){$("#overlay").classList.add("show");$("#"+id).classList.add("show");document.body.style.overflow="hidden";try{closeChat()}catch(e){}syncChatFab()}
@@ -2351,7 +2352,6 @@ function renderPForm(){
   };
   w.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-function persistProducts(){save(LS.products,products)}
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
 const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
@@ -2880,7 +2880,8 @@ $$("[data-close]").forEach(b=>{if(!b.closest("#coBody"))b.addEventListener("clic
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
-renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
+/* v9.7.5: each renderer guarded — one failing section must never blank the page again */
+[renderPills,renderGrid,renderTiers,renderBundles,renderCart,renderHeroCovers,renderHeadshot,initReveals].forEach(fn=>{try{fn()}catch(e){console.error("boot render failed:",fn.name,e)}});
 console.log("Visualet Designs site v9.7.2");
     const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay securely by card, Apple Pay or Google Pay, and track your order from anywhere."
 </script>
