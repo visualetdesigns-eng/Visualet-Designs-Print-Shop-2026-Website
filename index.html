@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-12-A — unchanged); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-12-A — unchanged); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -370,18 +370,23 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatFab .chat-dot.hide{display:none}
 #chatFab .chat-dot.plain svg{display:none} /* v9.5.2: after the chat is closed once, the dot returns as a plain green online dot */
 @keyframes fabdot{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
-#chatPanel{position:fixed;right:calc(22px + env(safe-area-inset-right,0px));bottom:calc(94px + env(safe-area-inset-bottom,0px));z-index:1500;width:min(400px,calc(100vw - 32px));height:auto;max-height:min(560px,calc(100dvh - 150px));min-height:0;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;overscroll-behavior:contain;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
+#chatPanel{position:fixed;right:calc(22px + env(safe-area-inset-right,0px));bottom:calc(94px + env(safe-area-inset-bottom,0px));z-index:1500;width:min(400px,calc(100vw - 32px));height:auto;max-height:min(560px,calc(100dvh - 150px));min-height:400px;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;overscroll-behavior:contain;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
 #chatPanel.show{transform:none;opacity:1;pointer-events:auto}
 /* v9.7.1: Ask Visualet — bigger by default, draggable + resizable on desktop, taller sheet on phones */
 .chat-head{cursor:grab;user-select:none}
 .chat-head:active{cursor:grabbing}
-#chatExpand{background:none;border:none;color:var(--ink-soft);font-size:19px;cursor:pointer;line-height:1;padding:6px 8px;display:none}
+#chatExpand{background:none;border:none;color:var(--ink-soft);font-size:19px;cursor:pointer;line-height:1;padding:6px 8px;display:block} /* v9.7.2: expand toggle is on desktop too — was mobile-only in v9.7.1 */
 #chatExpand:hover{color:var(--ink)}
 #chatResize{position:absolute;right:2px;bottom:2px;width:22px;height:22px;cursor:nwse-resize;z-index:5;touch-action:none}
 #chatResize::after{content:"";position:absolute;right:4px;bottom:4px;width:12px;height:12px;border-right:2px solid rgba(255,255,255,.45);border-bottom:2px solid rgba(255,255,255,.45);border-bottom-right-radius:3px}
 #chatResize::before{content:"";position:absolute;right:8px;bottom:8px;width:7px;height:7px;border-right:2px solid rgba(255,255,255,.3);border-bottom:2px solid rgba(255,255,255,.3)}
 #chatSheetGrip{display:none;flex:none;padding:9px 0 3px;cursor:grab;touch-action:none}
 #chatSheetGrip span{display:block;width:44px;height:5px;border-radius:99px;background:rgba(255,255,255,.35);margin:0 auto}
+/* v9.7.2: no blue text-selection overlay while dragging the chat (desktop header / corner handle, mobile sheet grip) */
+#chatPanel{user-select:none;-webkit-user-select:none}
+#chatPanel input{user-select:text;-webkit-user-select:text}
+.chat-head{touch-action:none}
+body.chat-dragging,body.chat-dragging *{user-select:none!important;-webkit-user-select:none!important}
 .chat-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(120deg,rgba(28,77,255,.28),rgba(255,47,156,.22));border-bottom:1px solid rgba(255,255,255,.08);flex:none}
 .chat-ava{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.25);background:#0a1030;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
 .chat-ava img{width:100%;height:100%;object-fit:contain;padding:5px}
@@ -422,6 +427,8 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
   #chatResize{display:none} /* corner resize is desktop-only — phones use the top grip */
   #chatSheetGrip{display:block}
   #chatExpand{display:block}
+  #chatPanel.chat-full{position:fixed!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;box-sizing:border-box!important;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} /* v9.7.2: TRUE full-screen on phones — edge to edge, content clears the notch/home indicator */
+  body.chat-fullscreen #chatFab{visibility:hidden!important} /* v9.7.2: FAB stays hidden while the chat is full-screen */
   .chat-head{cursor:default}
   .chat-inputrow input{font-size:16px} /* v9.4.7: stops iOS auto-zoom on focus */
   .cmsg{font-size:14.5px}
@@ -2780,6 +2787,25 @@ function initReveals(){
   if(!revealObs) revealObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");revealObs.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
   $$(".reveal:not(.in)").forEach(el=>revealObs.observe(el));
 }
+/* v9.7.3 LOAD FIX: the reveal animation must never leave the page looking
+   blank or broken. If the observer hasn't fired (slow load, fast scroll,
+   a tab restored in the background), a timed pass reveals anything near the
+   viewport, and a 4s catch-all reveals everything still hidden. The fade
+   animation still plays — content just can't get stuck invisible. */
+function revealSafety(){
+  const near=innerHeight*1.25;
+  $$(".reveal:not(.in)").forEach(el=>{if(el.getBoundingClientRect().top<near) el.classList.add("in")});
+}
+let _revealT0=null;
+function revealSafetyArm(){
+  revealSafety();
+  if(_revealT0) return; _revealT0=1;
+  setTimeout(revealSafety,1200);
+  setTimeout(()=>{$$(".reveal:not(.in)").forEach(el=>el.classList.add("in"))},4000); /* hard catch-all */
+}
+addEventListener("load",()=>setTimeout(revealSafety,300));
+addEventListener("scroll",()=>{if(!revealSafety._t) revealSafety._t=setTimeout(()=>{revealSafety._t=0;revealSafety()},160)},{passive:true});
+revealSafetyArm();
 function initTilt(){
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fineHover=matchMedia("(hover: hover)").matches;
@@ -2855,7 +2881,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.7.1");
+console.log("Visualet Designs site v9.7.2");
     const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay securely by card, Apple Pay or Google Pay, and track your order from anywhere."
 </script>
 <!-- ASK VISUALET CHAT -->
@@ -2906,11 +2932,16 @@ function chatTyping(){
   d.innerHTML="<i></i><i></i><i></i>";$("#chatMsgs").appendChild(d);chatScroll();return d;
 }
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+/* v9.7.3: botSay takes one bubble OR an array of short bubbles — a human
+   sends a couple of short messages, not one wall of text. */
 async function botSay(html,thinkMs){
   markChatRead();
-  const t=chatTyping();
-  await sleep(thinkMs!=null?thinkMs:650+Math.random()*650);
-  t.remove();chatAdd(html,"bot");
+  const parts=Array.isArray(html)?html:[html];
+  for(let i=0;i<parts.length;i++){
+    const t=chatTyping();
+    await sleep(i===0?(thinkMs!=null?thinkMs:650+Math.random()*650):550+Math.random()*500);
+    t.remove();chatAdd(parts[i],"bot");
+  }
 }
 const SMS_LINK='sms:+19518061586?body=Hi!%20I%27d%20like%20to%20ask%20about%20a%20print%20order%20from%20Visualet%20Designs.'; /* v9.4.7: live-agent text line */
 /* Reassurance button shown whenever the bot can't deliver an answer */
@@ -2986,48 +3017,173 @@ function chatPaymentAnswer(){
   const dep=chatDepositLines();
   return card+'<br><br>Prefer to pay with Zelle? Simply place your order and text us your order number to receive Zelle payment instructions.<br><br>Or choose <b>pay later</b> \u2014 pay after you approve your proof.'+(dep?`<br><br><b>Deposits:</b><br>${dep}`:"");
 }
+/* v9.7.3 ASK VISUALET 2.0 — a human-feeling bot. It remembers the customer's
+   name and the last product talked about (per-device, localStorage), understands
+   follow-ups ("how much is it?", "and the turnaround?"), varies its phrasing so
+   it never sounds canned, and asks a clarifying question instead of dead-ending.
+   Every fact still comes from the live page data — nothing is invented. */
+const CHAT_MEM_KEY="vd_chat_mem_v1";
+let chatMem={name:null,lastProduct:null,lastTopic:null,turns:0};
+try{const m=load(CHAT_MEM_KEY,null);if(m&&typeof m==="object") chatMem=Object.assign(chatMem,m)}catch(e){}
+function chatMemSave(){try{save(CHAT_MEM_KEY,{name:chatMem.name,lastProduct:chatMem.lastProduct,lastTopic:chatMem.lastTopic,turns:chatMem.turns})}catch(e){}}
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const firstName=()=>chatMem.name?`, ${esc(chatMem.name)}`:"";
+/* common typos / shorthand, so "busines cards" still lands */
+const CHAT_TYPO={busines:"business",bussiness:"business",busness:"business",canopie:"canopy",canopey:"canopy",baner:"banner",bannar:"banner",flyer:"flyers",poster:"posters",signs:"sign",yard:"yard sign",magnet:"magnets",tshirt:"t-shirt",tee:"t-shirt",stickers:"sticker"};
+function chatNorm(s){
+  let t=" "+s.toLowerCase().replace(/[^a-z0-9'\s]/g," ").replace(/\s+/g," ").trim()+" ";
+  for(const k in CHAT_TYPO) t=t.split(" "+k+" ").join(" "+CHAT_TYPO[k]+" ");
+  return t.trim();
+}
 function chatBrain(input){
-  const s=input.toLowerCase();
-  if(/^(hi|hey|hello|yo|sup|good (morning|afternoon|evening))\b/.test(s)&&s.length<24)
-    return "Hey! \uD83D\uDC4B I'm <b>Ask Visualet</b>. Ask me about <b>pricing</b>, <b>turnaround</b>, <b>tracking your order</b>, or how ordering works.";
-  if(/track|status of|where.*(my |the )?order|order.*(status|where|arrive)/.test(s)) return {flow:"track"};
-  /* v9.7.1: the 10x15 soccer canopy package lives in the Canopies section, not the shop grid — answer from that section */
-  if(/10\s?[x\u00D7]\s?15|soccer|10x15/.test(s))
-    return `<b>10\u2032 \u00D7 15\u2032 Full Print Canopy Package \u2014 $785</b><br><span style="opacity:.85">Your team brings the goals, we bring the setup.</span><br><br>\u2713 Custom 10\u2032 \u00D7 15\u2032 printed canopy<br>\u2713 Aluminum frame<br>\u2713 Wheel carry bag<br>\u2713 Custom design service included<br><br>\uD83D\uDE9A <b>Free shipping</b> &nbsp;\u2022&nbsp; \u23F1 <b>3\u20137 business days</b> turnaround<br><br>Want one? Tap <a href="#canopies"><b>Request a Quote</b></a> or <a href="${SMS_LINK}"><b>text us 951-806-1586</b></a>.`;
-  /* v9.7.1: turnaround for a named product comes from that product's own data */
+  const raw=input, s=chatNorm(input);
+  chatMem.turns=(chatMem.turns||0)+1;
+  /* --- name capture: "my name is Alex" / "I'm Alex" / "call me Alex" --- */
+  let nm=raw.match(/(?:my name is|call me|i'?m|i am)\s+([A-Z][a-z]+)/i);
+  if(nm&&!/^(here|just|looking|trying|interested|ready|good|fine|ok|okay|great|not|really|so|very)$/i.test(nm[1])){
+    chatMem.name=nm[1];chatMemSave();
+    return pick([
+      `Nice to meet you, ${esc(nm[1])}! I'm Ask Visualet — I can help with pricing, turnaround, or tracking an order. What are you working on?`,
+      `Love it — ${esc(nm[1])} it is. So, what can I help you print today?`,
+    ]);
+  }
+  const greet=/^(hi|hey|hello|yo|sup|hiya|howdy|good (morning|afternoon|evening)|what'?s up|whats up)\b/.test(s);
+  if(greet&&s.length<30){
+    const g=pick(["Hey","Hi","Hello"]);
+    if(chatMem.name) return `${g}, ${esc(chatMem.name)}! Good to see you back. What are we printing today?`;
+    return pick([
+      `${g}! I'm Ask Visualet — real answers, right from the shop. What are you looking for today?`,
+      `${g} there! Ask me about pricing, how long things take, or tracking an order — or just tell me what you're dreaming up.`,
+    ]);
+  }
+  if(/how are you|how'?s it going|how is it going|how do you feel/.test(s))
+    return pick([
+      "Doing great — the printers are humming and I'm here all day. More importantly, how's your project coming along?",
+      "All good on my end! What's on your mind — pricing, timing, or something you're designing?",
+    ]);
+  if(/who are you|what are you|are you (a )?robot|are you human|are you ai|are you real/.test(s))
+    return "I'm Ask Visualet — the shop's own assistant. I'm not a person, but I know our products, prices, and turnaround by heart, and I can pull in a real human any time you want one. Just say the word.";
+  if(/thank|thanks|thx|appreciate/.test(s))
+    return pick([
+      `Anytime${firstName()}! That's what I'm here for. Anything else?`,
+      "Of course! Happy to help. What else can I do for you?",
+      "You got it! Let me know if anything else comes up.",
+    ]);
+  if(/bye|goodbye|good night|see you|that'?s all|that is all|i'?m done|later/.test(s))
+    return pick([
+      `See you soon${firstName()}! Your prints are in good hands.`,
+      "Take care — and when you're ready, the shop's right here. 👋",
+    ]);
+  if(/^(cool|awesome|nice|great|perfect|love it|sweet|ok|okay|got it|understood|makes sense)\b/.test(s)&&s.length<22)
+    return pick(["Glad that helps! Want me to look up a price or a turnaround time for you?","Awesome — anything else you'd like to know?","Perfect. I'm here if you need anything else!"]);
+  if(/lol|haha|funny/.test(s)) return "Ha! I'll take that as a compliment. So — what are we printing?";
+  /* --- track order --- */
+  if(/track|status of|where.*(my |the )?order|order.*(status|where|arrive|shipped)/.test(s)) return {flow:"track"};
+  /* --- follow-ups resolve to the last product talked about --- */
+  const lastP=chatMem.lastProduct?((typeof products!=="undefined"?products:[])||[]).find(p=>p.id===chatMem.lastProduct&&p.active!==false):null;
+  const followPrice=/^(how much|what'?s the price|price|cost|how much is it|how much is that|what does it cost|and (the )?price|what about (the )?price)/.test(s);
+  const followTime=/how long|turnaround|how fast|when.*(ready|done|ship)|delivery time|rush|how long (does|will|would) (it|that) take|and (the )?turnaround/.test(s);
+  const followShip=/ship|deliver|free ship/.test(s)&&/it|that|this|them/.test(s);
+  if(lastP&&(followPrice||followTime||followShip)){
+    const rungs=(lastP.rungs||[]).filter(r=>r&&r.price!=null);
+    const from=rungs.length?Math.min(...rungs.map(r=>+r.price)):null;
+    if(followPrice){
+      chatMem.lastTopic="price";chatMemSave();
+      return pick([
+        `The <b>${esc(lastP.name)}</b> starts at <b>${money0(from)}</b> — and it goes ${rungs.length>1?`up to ${money0(Math.max(...rungs.map(r=>+r.price)))} for the biggest pack`:"from there"}. Free shipping, design included. Want the full quantity list?`,
+        `For the <b>${esc(lastP.name)}</b>: from <b>${money0(from)}</b>${rungs.length>1?`, with ${rungs.length} quantity options`:""}. What quantity were you thinking?`,
+      ]);
+    }
+    if(followTime){
+      chatMem.lastTopic="turnaround";chatMemSave();
+      return `The <b>${esc(lastP.name)}</b> takes <b>${esc(lastP.turnaround||"2–7 business days")}</b> — and nothing prints until you approve your digital proof, so you're never surprised. 🚚 Free shipping on top of that.`;
+    }
+    if(followShip){
+      chatMem.lastTopic="shipping";chatMemSave();
+      return `Good news — the <b>${esc(lastP.name)}</b> ships <b>free</b>. No minimum, no surprise fees at checkout.`;
+    }
+  }
+  if(/^(it|that|this|them|those|the one)\b/.test(s)&&lastP&&/tell me more|more info|more about|details|what'?s included/.test(s)){
+    const inc=(lastP.includes||[]).map(i=>`✓ ${esc(i)}`).join("<br>");
+    return `<b>${esc(lastP.name)}</b> — here's what's in the box:<br><br>${inc||"Custom design service included"}<br><br>Want me to show it in the shop?`;
+  }
+  /* --- canopy package (lives in the Canopies section, not the grid) --- */
+  if(/10\s?[x\u00d7]\s?15|soccer|10x15|canopy/.test(s)){
+    chatMem.lastTopic="canopy";chatMemSave();
+    return [`<b>10′ × 15′ Full Print Canopy Package — $785</b><br><span style="opacity:.85">Your team brings the goals, we bring the setup.</span>`,
+      `✓ Custom 10′ × 15′ printed canopy<br>✓ Aluminum frame<br>✓ Wheel carry bag<br>✓ Custom design service included<br><br>🚚 <b>Free shipping</b> &nbsp;•&nbsp; ⏱ <b>3–7 business days</b>`,
+      `Want one? Tap <a href="#canopies"><b>Request a Quote</b></a> or <a href="${SMS_LINK}"><b>text us 951-806-1586</b></a> and we'll get it started.`];
+  }
+  /* --- cheapest / best deal --- */
+  if(/cheapest|lowest price|best deal|most affordable|budget|least expensive/.test(s)){
+    const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false&&(p.rungs||[]).length);
+    const cheapest=act.map(p=>({p,from:Math.min(...p.rungs.map(r=>+r.price))})).sort((a,b)=>a.from-b.from)[0];
+    if(cheapest) return [`If budget's the thing, our cheapest start is the <b>${esc(cheapest.p.name)}</b> at <b>${money0(cheapest.from)}</b>.`,`And honestly, the best value is usually the bigger pack — the per-piece price drops fast. Want me to compare a couple for you?`];
+  }
+  /* --- turnaround --- */
   if(/how long|turnaround|how fast|when.*(ready|done|ship)|delivery time|rush/.test(s)){
     const p=chatFindProduct(s);
-    if(p&&p.turnaround) return `<b>${esc(p.name)}</b> takes <b>${esc(p.turnaround)}</b> \u2014 and nothing prints until you approve your digital proof. \uD83D\uDE9A Free shipping included.`;
-    return 'Most jobs are done in <b>2\u20137 business days</b> \u2014 each product shows its exact turnaround on its page. Every order includes a digital proof for your approval before anything prints.';
+    if(p&&p.turnaround){chatMem.lastProduct=p.id;chatMem.lastTopic="turnaround";chatMemSave();
+      return `The <b>${esc(p.name)}</b> takes <b>${esc(p.turnaround)}</b> — and nothing prints until you approve your digital proof. 🚚 Free shipping included.`;}
+    return ['Most jobs are done in <b>2–7 business days</b> — each product page shows its exact turnaround.','And every order gets a digital proof for your approval before anything prints, so the timing is never a surprise.'];
   }
-  const pm=chatProductMatch(s); /* v9.4.9: product questions get a summary + how to buy */
-  if(pm) return pm;
-  if(/price|cost|how much|pricing|expensive|cheap/.test(s))
-    return 'Business cards start at <b>$75 for 250</b>, logo packages from <b>$50</b> \u2014 and every product page lists exact quantity pricing. Tap <a href="#shop"><b>Shop</b></a> to browse. \uD83D\uDCB3';
-  /* v9.7.1: free shipping, checked against the live product data */
+  /* --- product match (the detailed answer) --- */
+  const pm=chatProductMatch(s);
+  if(pm){
+    const p=chatFindProduct(s);
+    if(p){chatMem.lastProduct=p.id;chatMem.lastTopic="product";chatMemSave();}
+    return [pm, pick([
+      "Want the turnaround on that one, or should I show you where to grab it in the shop?",
+      "Any questions on it — sizes, quantities, design help? I'm all ears.",
+      "That's one of our most popular. Want me to check the turnaround or shipping for you?",
+    ])];
+  }
+  /* --- price (no product named) --- */
+  if(/price|cost|how much|pricing|expensive|cheap/.test(s)){
+    chatMem.lastTopic="price";chatMemSave();
+    return ['Business cards start at <b>$75 for 250</b>, logo packages from <b>$50</b> — every product page lists exact quantity pricing.','Which product were you thinking of? I can pull the exact prices in a second.'];
+  }
+  /* --- shipping --- */
   if(/free ship|shipping.*(free|cost|price|charge)|do you ship|ship(ping)? to/.test(s)){
     const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false);
     const shippable=act.filter(p=>p.cat!=="Design Services");
     const allFree=shippable.length&&shippable.every(p=>(p.includes||[]).some(i=>/free shipping|shipped/i.test(i)));
-    if(allFree) return 'Yes \u2014 <b>free shipping on every order</b>, including the canopy packages. No minimum, no surprise fees at checkout. \uD83D\uDE9A';
-    return 'Most orders ship <b>free</b> \u2014 every product page lists its shipping. Want me to check a specific product?';
+    if(allFree) return ['Yes — <b>free shipping on every order</b>, including the canopy packages. No minimum, no surprise fees at checkout. 🚚','Where are you shipping to? I can double-check timing for your area.'];
+    return 'Most orders ship <b>free</b> — every product page lists its shipping. Want me to check a specific product?';
   }
-  /* v9.7.1: payment methods + deposits, from paySettings and the live catalog */
-  if(/pay|payment|stripe|zelle|deposit|square|cash app|apple pay|google pay|credit cards?|debit cards?/.test(s))
-    return chatPaymentAnswer();
+  /* --- payment --- */
+  if(/pay|payment|stripe|zelle|deposit|square|cash app|apple pay|google pay|credit cards?|debit cards?/.test(s)){
+    chatMem.lastTopic="payment";chatMemSave();
+    return [chatPaymentAnswer(), "Want to pay a deposit instead of the full amount? The canopy and the roofing bundle both offer 50% down — the rest after you approve your proof."];
+  }
+  /* --- how ordering works --- */
   if(/how.*(order|work)|process|start.*order|get started|steps/.test(s))
-    return '<b>1.</b> Pick a product &amp; check out online (2 minutes)<br><b>2.</b> Approve your digital proof \u2014 nothing prints until you say go<br><b>3.</b> We print &amp; ship free, and you track it all right here \uD83D\uDE9A';
-  if(/art|artwork|design|logo|file|upload|pdf/.test(s))
-    return 'Upload your print-ready art at checkout, or <b>we design it for you</b> \u2014 every package includes a custom design. Upload both sides of business-card art and get <b>$20 off</b> instantly. \u2728';
+    return ['Super simple, three steps:','<b>1.</b> Pick a product &amp; check out online (about 2 minutes)<br><b>2.</b> Approve your digital proof — nothing prints until you say go<br><b>3.</b> We print &amp; ship free, and you track it right here 🚚'];
+  /* --- artwork / design --- */
+  if(/art|artwork|design|logo|file|upload|pdf/.test(s)){
+    chatMem.lastTopic="design";chatMemSave();
+    return ['You can upload your print-ready art at checkout — or <b>we design it for you</b>. Every package includes a custom design.','Fun fact: upload both sides of business-card art and you get <b>$20 off</b> instantly. ✨','Do you already have a logo, or do you need one designed from scratch?'];
+  }
+  /* --- deals --- */
   if(/bundle|deal|discount|promo|sale|coupon|save/.test(s))
-    return 'Check out <a href="#bundles"><b>Bundle &amp; Save</b></a> \u2014 your whole street-level marketing handled: designed, printed, and shipped in one package.';
-  if(/human|person|real|contact|text|call|phone|talk|speak/.test(s))
-    return `You got it \u2014 <a href="${SMS_LINK}"><b>text us at 951-806-1586</b></a> and we'll pick it up from there. \uD83D\uDCF1`;
-  if(/thank|thanks|thx/.test(s)) return "Anytime! \uD83D\uDE4C Anything else I can help with?";
+    return 'Check out <a href="#bundles"><b>Bundle &amp; Save</b></a> — your whole street-level marketing handled: designed, printed, and shipped in one package. Want me to find the best bundle for what you need?';
+  /* --- human --- */
+  if(/human|person|real|contact|text|call|phone|talk|speak|agent|someone/.test(s))
+    return [`Of course — a real person is the fastest way for the tricky stuff.`,`<a href="${SMS_LINK}"><b>Text us at 951-806-1586</b></a> and we'll pick it up from there. 📱 Just tell us your order number if you have one, and what you need.`];
+  /* --- hours / location --- */
   if(/hour|open|close|location|where are you|address/.test(s))
-    return `The shop runs online <b>24/7</b> \u2014 order anytime. For a human, <a href="${SMS_LINK}"><b>text 951-806-1586</b></a>.`;
-  if(/bye|goodbye|see you/.test(s)) return "See you soon! \uD83D\uDC4B Your prints are in good hands.";
-  return 'I can help with <b>pricing</b>, <b>turnaround</b>, <b>tracking</b>, or <b>how ordering works</b> \u2014 or connect with a human:'+AGENT_BTN;
+    return `The shop runs online <b>24/7</b> — order anytime. And I'm here around the clock too. For a human, <a href="${SMS_LINK}"><b>text 951-806-1586</b></a>.`;
+  /* --- vague / open-ended: ask, don't dead-end --- */
+  if(/^(i need|i want|i'?m looking for|looking for|i need help|help|help me|can you help|what can you do|what do you do)\b/.test(s)||s.length<40&&/need|want|looking|help/.test(s))
+    return pick([
+      "Happy to help! Are you after <b>pricing</b>, <b>turnaround</b>, <b>tracking an order</b> — or something you're designing? Give me a hint and I'll take it from there.",
+      "Let's figure it out together — what are you trying to get printed? Business cards, a banner, a canopy, something else?",
+    ]);
+  /* --- fallback: clarify, never a wall --- */
+  return pick([
+    "Hmm, I want to make sure I get this right — is that about <b>pricing</b>, <b>turnaround</b>, or <b>tracking an order</b>? Or tell me a bit more and I'll dig in.",
+    "I'm not 100% sure I caught that one — was it about a product, an order, or payments? Give me one more detail and I'll sort it out.",
+  ])+AGENT_BTN;
 }
 /* Shared order lookup: this browser's orders first, then the live sheet. */
 async function lookupOrder(num,email){
@@ -3047,9 +3203,17 @@ function chatOrderCard(o){
   return `<b>Order ${esc(o.number)}</b> — ${esc(o.status)}<br><span style="font-size:13px;opacity:.8">Placed ${d} • ${money(o.total)} • ${pay}</span><br><a href="#track" data-gotrack><b>See the full timeline →</b></a>`;
 }
 const CHAT_QUICK=["Track my order","Pricing","Turnaround","Text us"];
-function renderChatQuick(){
-  $("#chatQuick").innerHTML=CHAT_QUICK.map(q=>`<button class="cchip">${esc(q)}</button>`).join("");
+function renderChatQuick(list){
+  const items=list||CHAT_QUICK;
+  $("#chatQuick").innerHTML=items.map(q=>`<button class="cchip">${esc(q)}</button>`).join("");
   $$("#chatQuick .cchip").forEach(c=>c.onclick=()=>chatSend(c.textContent));
+}
+/* v9.7.3: after a product answer, the quick replies follow the conversation */
+function chatQuickFor(topic){
+  if(topic==="product") renderChatQuick(["How long does it take?","How much is it?","See it in the shop","Text us"]);
+  else if(topic==="price") renderChatQuick(["How long does it take?","Track my order","Text us"]);
+  else if(topic==="turnaround") renderChatQuick(["How much is it?","Track my order","Text us"]);
+  else renderChatQuick();
 }
 async function chatSend(raw){
   const text=(raw!=null?raw:$("#chatText").value).trim();
@@ -3071,28 +3235,30 @@ async function chatSend(raw){
     else chatAdd(`Hmm, I couldn't find <b>${esc(chatTmp.num)}</b> with that email. Double-check both from your confirmation — or connect with a human and we'll look it up together. 🔍${AGENT_BTN}`,"bot");
     chatScroll();return;
   }
-  const r=chatBrain(text);
+  const r=chatBrain(text); /* v9.7.3: brain normalizes typos itself; raw text kept for name capture */
   if(r&&r.flow==="track"){
     chatState="awaitNum";chatTmp={};
     await botSay("Sure — what's your <b>order number</b>? It's on your confirmation (looks like VD-8K2P4Q).");
   }else{
     await botSay(r);
+    try{chatQuickFor(chatMem.lastTopic)}catch(e){}
   }
 }
 function openChat(){
   const p=$("#chatPanel"),was=p.classList.contains("show");
+  if(!was&&window.__applyChatGeom) try{window.__applyChatGeom()}catch(e){} /* v9.7.3: always open at the size/position it was left */
   p.classList.toggle("show",!was);p.setAttribute("aria-hidden",was?"true":"false");
   $("#chatFab").classList.toggle("hidefab",!was); /* v9.4.9: lock — bubble tucks away while panel is open */
   if(!was){
     $("#chatDot").classList.add("hide");
     if(!chatOpened){chatOpened=true;
       renderChatPromo();renderChatQuick();
-      botSay("Hey! 👋 I'm <b>Ask Visualet</b> — ask me about pricing, turnaround, or tracking your order.",900);
+      botSay(chatMem.name?`Hey, ${esc(chatMem.name)}! 👋 Good to see you back — what are we printing today?`:"Hey! 👋 I'm <b>Ask Visualet</b> — ask me about pricing, turnaround, or tracking your order. What's on your mind?",900);
     }
   }
 }
 $("#chatFab").onclick=openChat;
-function closeChat(){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");$("#chatFab").classList.remove("hidefab");const d=$("#chatDot");d.classList.remove("hide");d.classList.add("plain")} /* v9.5.2: dot comes back as plain green after close */
+function closeChat(){const _p=$("#chatPanel");_p.classList.remove("show");_p.setAttribute("aria-hidden","true");$("#chatFab").classList.remove("hidefab");const d=$("#chatDot");d.classList.remove("hide");d.classList.add("plain");_p.classList.remove("chat-full");document.body.classList.remove("chat-fullscreen"); /* v9.7.4: do NOT wipe inline left/top/width/height here — that erased the saved expanded size, so the panel always re-opened small (D4). Mobile full-screen pins are cleared by setMobileFull(false) below, not by blanking geometry. */ if(window.matchMedia("(max-width:560px)").matches){_p.style.left="";_p.style.top="";_p.style.right="";_p.style.bottom="";_p.style.width="";_p.style.height="";_p.style.maxHeight="";} const _ce=$("#chatExpand");if(_ce){const _m=window.matchMedia("(max-width:560px)").matches;_ce.textContent="\u2922";_ce.setAttribute("aria-label","Expand chat");_ce.setAttribute("title","Expand chat");}} /* v9.5.2: dot comes back as plain green after close; v9.7.2: closing also exits mobile full-screen */
 $("#chatClose").onclick=closeChat;
 /* v9.7.0: the chat bubble never floats over a modal, the cart drawer, the
    lightbox or the mobile menu — it hides while any of them is open */
@@ -3104,7 +3270,30 @@ function syncChatFab(){try{const busy=document.querySelector(".modal.show")||doc
         grip=$("#chatSheetGrip"),rz=$("#chatResize"),exp=$("#chatExpand");
   const isMobile=()=>window.matchMedia("(max-width:560px)").matches;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  /* v9.7.2: desktop expand — near-full-screen panel; toggling back restores the saved size/position.
+     dragCls + preventDefault (below) kill the blue text-selection overlay during drags. */
+  const MAX_KEY="vd_chat_max_v1";
+  let maxed=false;
+  try{maxed=!!load(MAX_KEY,0)}catch(e){}
+  const dragCls=on=>document.body.classList.toggle("chat-dragging",!!on);
+  function setMaxIcon(){exp.textContent=maxed?"\u2921":"\u2922";exp.setAttribute("aria-label",maxed?"Collapse chat":"Expand chat");exp.setAttribute("title",maxed?"Collapse chat":"Expand chat");}
+  function applyMaxGeom(){
+    const w=Math.min(680,innerWidth-48),h=Math.min(Math.round(innerHeight*0.88),760);
+    const r=panel.getBoundingClientRect();
+    panel.style.width=w+"px";panel.style.height=h+"px";panel.style.maxHeight="none";
+    panel.style.left=clamp(r.left,8,Math.max(8,innerWidth-w-8))+"px";
+    panel.style.top=clamp(r.top,8,Math.max(8,innerHeight-h-8))+"px";
+    panel.style.right="auto";panel.style.bottom="auto";
+  }
+  function setMax(on){
+    maxed=!!on;
+    setMaxIcon();
+    save(MAX_KEY,maxed?1:0);
+    if(maxed){applyMaxGeom();save("vd_chat_size_v1",{w:Math.round(parseFloat(panel.style.width)||680),h:Math.round(parseFloat(panel.style.height)||700)});} /* v9.7.4: expanded size is saved at toggle time, so a reload re-opens expanded even before any drag/resize */
+    else applySaved();
+  }
   function applySaved(){
+    if(panel.classList.contains("chat-full")) return; /* v9.7.3: never strip full-screen mid-use (resize/keyboard events) */
     if(isMobile()){
       panel.style.left="";panel.style.top="";panel.style.right="";panel.style.bottom="";
       panel.style.width="";panel.style.maxHeight="";
@@ -3112,25 +3301,31 @@ function syncChatFab(){try{const busy=document.querySelector(".modal.show")||doc
       if(h&&h>=45&&h<=88&&h!==62) panel.style.height=h+"dvh"; else panel.style.height="";
       return;
     }
-    panel.style.height="";
+    panel.style.height="";panel.style.maxHeight="";
+    panel.classList.remove("chat-full");document.body.classList.remove("chat-fullscreen");setMaxIcon(); /* v9.7.2: full-screen is mobile-only — clear it if the viewport grew past the breakpoint; keep the expand icon in sync */
     const pos=load("vd_chat_pos_v1",null);
     if(pos&&isFinite(pos.left)&&isFinite(pos.top)){
       panel.style.left=clamp(pos.left,8,Math.max(8,innerWidth-120))+"px";
       panel.style.top=clamp(pos.top,8,Math.max(8,innerHeight-120))+"px";
       panel.style.right="auto";panel.style.bottom="auto";
     }
+    if(maxed){setMaxIcon();applyMaxGeom();return;} /* v9.7.4: expanded state wins — do NOT fall through to the 320-560px clamp below, which shrank the panel back to ~560px on every open (D4) */
     const sz=load("vd_chat_size_v1",null);
     if(sz&&isFinite(sz.w)&&isFinite(sz.h)){
-      panel.style.width=clamp(sz.w,320,560)+"px";
-      panel.style.height=clamp(sz.h,380,720)+"px";
+      panel.style.width=clamp(sz.w,320,680)+"px";
+      panel.style.height=clamp(sz.h,380,760)+"px";
+    }else{
+      panel.style.width=""; /* v9.7.2: collapsing from expanded must drop the 680px inline width — no saved size means the CSS default */
     }
   }
-  function resetChatGeom(){try{localStorage.removeItem("vd_chat_pos_v1");localStorage.removeItem("vd_chat_size_v1");localStorage.removeItem("vd_chat_sheet_h_v1")}catch(e){}
+  function resetChatGeom(){try{localStorage.removeItem("vd_chat_pos_v1");localStorage.removeItem("vd_chat_size_v1");localStorage.removeItem("vd_chat_sheet_h_v1");localStorage.removeItem(MAX_KEY)}catch(e){}
+    maxed=false;setMaxIcon();
     panel.style.left="";panel.style.top="";panel.style.right="";panel.style.bottom="";
     panel.style.width="";panel.style.height="";panel.style.maxHeight="";}
   /* desktop drag — the header is the handle (buttons inside it still work) */
   head.addEventListener("pointerdown",e=>{
     if(isMobile()||e.target.closest("button")) return;
+    e.preventDefault();dragCls(true); /* v9.7.2: no blue text-selection overlay while dragging */
     const r=panel.getBoundingClientRect(),ox=e.clientX-r.left,oy=e.clientY-r.top;
     let moved=false;
     try{head.setPointerCapture(e.pointerId)}catch(err){}
@@ -3140,6 +3335,7 @@ function syncChatFab(){try{const busy=document.querySelector(".modal.show")||doc
       moved=true;
     };
     const up=()=>{
+      dragCls(false);
       head.removeEventListener("pointermove",mv);head.removeEventListener("pointerup",up);head.removeEventListener("pointercancel",up);
       if(moved) save("vd_chat_pos_v1",{left:Math.round(parseFloat(panel.style.left)||0),top:Math.round(parseFloat(panel.style.top)||0)});
     };
@@ -3149,7 +3345,8 @@ function syncChatFab(){try{const busy=document.querySelector(".modal.show")||doc
   /* desktop resize — bottom-right corner handle */
   rz.addEventListener("pointerdown",e=>{
     if(isMobile()) return;
-    e.preventDefault();
+    e.preventDefault();dragCls(true); /* v9.7.2: no selection overlay while resizing */
+    if(maxed) setMax(false); /* v9.7.2: resizing from expanded snaps back to the saved size first, then resizes within the normal 320-560 x 380-720 bounds */
     const r=panel.getBoundingClientRect(),sx=e.clientX,sy=e.clientY,sw=r.width,sh=r.height;
     const maxW=Math.max(320,Math.min(560,innerWidth-r.left-8));
     const maxH=Math.max(380,Math.min(720,innerHeight-r.top-8));
@@ -3159,6 +3356,7 @@ function syncChatFab(){try{const busy=document.querySelector(".modal.show")||doc
       panel.style.height=clamp(sh+ev.clientY-sy,380,maxH)+"px";
     };
     const up=()=>{
+      dragCls(false);
       rz.removeEventListener("pointermove",mv);rz.removeEventListener("pointerup",up);rz.removeEventListener("pointercancel",up);
       save("vd_chat_size_v1",{w:Math.round(parseFloat(panel.style.width)||sw),h:Math.round(parseFloat(panel.style.height)||sh)});
     };
@@ -3166,29 +3364,50 @@ function syncChatFab(){try{const busy=document.querySelector(".modal.show")||doc
   });
   /* mobile sheet — drag the top grip taller/shorter (45–88dvh) */
   grip.addEventListener("pointerdown",e=>{
-    if(!isMobile()) return;
-    e.preventDefault();
+    if(!isMobile()||panel.classList.contains("chat-full")) return; /* v9.7.2: no grip drag while full-screen */
+    e.preventDefault();dragCls(true); /* v9.7.2: no selection overlay while dragging the sheet */
     const sy=e.clientY,sh=panel.getBoundingClientRect().height,vh=innerHeight;
     try{grip.setPointerCapture(e.pointerId)}catch(err){}
     const mv=ev=>{
       panel.style.height=clamp((sh+(sy-ev.clientY))/vh*100,45,88).toFixed(1)+"dvh";
     };
     const up=()=>{
+      dragCls(false);
       grip.removeEventListener("pointermove",mv);grip.removeEventListener("pointerup",up);grip.removeEventListener("pointercancel",up);
       save("vd_chat_sheet_h_v1",Math.round(parseFloat(panel.style.height)||62));
     };
     grip.addEventListener("pointermove",mv);grip.addEventListener("pointerup",up);grip.addEventListener("pointercancel",up);
   });
-  /* mobile expand button — toggle near-full height (88dvh) and back */
+  /* v9.7.3: mobile full-screen — the .chat-full class does the layout, AND the
+     geometry is pinned inline, so a keyboard pop, a rotation, or a resize event
+     can never knock the panel out of full-screen while it is active. Collapsing
+     clears the pins and restores the saved sheet height. */
+  function setMobileFull(on){
+    if(on){
+      panel.classList.add("chat-full");document.body.classList.add("chat-fullscreen");
+      panel.style.left="0px";panel.style.top="0px";panel.style.right="0px";panel.style.bottom="0px";
+      panel.style.width="100vw";panel.style.height="100dvh";panel.style.maxHeight="none";
+      exp.textContent="\u2921";exp.setAttribute("aria-label","Collapse chat");exp.setAttribute("title","Collapse chat");
+    }else{
+      panel.classList.remove("chat-full");document.body.classList.remove("chat-fullscreen");
+      panel.style.left="";panel.style.top="";panel.style.right="";panel.style.bottom="";
+      panel.style.width="";panel.style.maxHeight="";
+      const h=load("vd_chat_sheet_h_v1",null);
+      panel.style.height=(h&&h>=45&&h<=88&&h!==62)?h+"dvh":"";
+      exp.textContent="\u2922";exp.setAttribute("aria-label","Expand chat");exp.setAttribute("title","Expand chat");
+    }
+  }
+  /* v9.7.2: expand button — on phones it toggles TRUE full-screen; on desktop it toggles the near-full-screen panel */
   exp.addEventListener("click",()=>{
-    if(!isMobile()) return;
-    const cur=parseFloat(panel.style.height)||62;
-    const next=cur>=80?62:88;
-    if(next===62) panel.style.height=""; else panel.style.height=next+"dvh";
-    save("vd_chat_sheet_h_v1",next);
+    if(isMobile()){
+      setMobileFull(!panel.classList.contains("chat-full"));
+      return;
+    }
+    setMax(!maxed);
   });
   addEventListener("resize",()=>applySaved());
   applySaved();
+  window.__applyChatGeom=applySaved; /* v9.7.3: openChat re-applies saved size/position on every open */
 })();
 $("#chatSend").onclick=()=>chatSend();
 $("#chatText").addEventListener("keydown",e=>{if(e.key==="Enter")chatSend()});
