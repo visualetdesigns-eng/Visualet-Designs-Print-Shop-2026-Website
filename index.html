@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.6.10 (2026-10-23) — Canopies section polish per owner: emojis replaced with the site's standard icons (green checks in What's Included + specs, truck/clock icons on the shipping/turnaround line) and the spec now reads "Custom design service included"; v9.6.9 (2026-10-23) — NEW Custom Canopies showcase section (#canopies, right after Shop, linked from desktop + mobile nav): embedded promo video (canopy-promo.mp4, poster canopy-poster.jpg, preload=none so it never slows the page; swap either file by name to update), $785 10x15 full print package, specs, what's included, Request a Quote + Text Us CTAs; v9.6.8 — the Email/Text preferred-contact choice now shows on EVERY order at checkout Review (was logo packages only), saved on every order + noted on the confirmation screen; v9.6.7 — checkout contact-button sizing fix (review-box row rule scoped to direct children); v9.6.6 — admin ghost-order filter + self-explaining delete errors; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://visualetdesigns.com">
 <link rel="preload" as="image" href="https://visualetdesigns.com/canopy.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/dahlia/stripe.js"></script><!-- v9.7.0: Stripe.js (Dahlia) for Embedded Checkout — loaded from Stripe, never bundled or self-hosted (PCI) -->
 <style>
 /* ============ VISUALET PRINT SHOP — LIQUID GLASS SYSTEM ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -354,7 +355,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 @keyframes btnspin{to{transform:rotate(360deg)}}
 
 /* ============ ASK VISUALET CHAT ============ */
-#chatFab{position:fixed;right:22px;bottom:22px;z-index:1500;width:62px;height:62px;border-radius:50%;border:none;background:none;padding:0;cursor:pointer;overflow:visible;display:block;transition:transform .22s ease,opacity .25s ease} /* v9.5.0: wrapper stays overflow:visible so the Online dot is never cropped */
+#chatFab{position:fixed;right:calc(22px + env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:1500;width:62px;height:62px;border-radius:50%;border:none;background:none;padding:0;cursor:pointer;overflow:visible;display:block;transition:transform .22s ease,opacity .25s ease} /* v9.5.0: wrapper stays overflow:visible so the Online dot is never cropped */
 #chatFab:hover{transform:scale(1.07)}
 #chatFab:active{transform:scale(.94)}
 #chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* bubble tucks away while the panel is open */
@@ -369,7 +370,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatFab .chat-dot.hide{display:none}
 #chatFab .chat-dot.plain svg{display:none} /* v9.5.2: after the chat is closed once, the dot returns as a plain green online dot */
 @keyframes fabdot{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
-#chatPanel{position:fixed;right:22px;bottom:94px;z-index:1500;width:min(382px,calc(100vw - 32px));height:min(560px,calc(100dvh - 140px));min-height:380px;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;overscroll-behavior:contain;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
+#chatPanel{position:fixed;right:calc(22px + env(safe-area-inset-right,0px));bottom:calc(94px + env(safe-area-inset-bottom,0px));z-index:1500;width:min(360px,calc(100vw - 32px));height:auto;max-height:min(520px,calc(100dvh - 170px));min-height:0;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(9,13,30,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-brd);box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transform-origin:bottom right;opacity:0;pointer-events:none;overscroll-behavior:contain;transition:opacity .28s cubic-bezier(.2,.8,.3,1),transform .28s cubic-bezier(.2,.8,.3,1)}
 #chatPanel.show{transform:none;opacity:1;pointer-events:auto}
 .chat-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(120deg,rgba(28,77,255,.28),rgba(255,47,156,.22));border-bottom:1px solid rgba(255,255,255,.08);flex:none}
 .chat-ava{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.25);background:#0a1030;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
@@ -382,7 +383,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatClose{background:none;border:none;color:var(--ink-soft);font-size:24px;cursor:pointer;line-height:1;padding:4px 8px}
 .chat-promo{flex:none;margin:12px 12px 0;padding:10px 14px;border-radius:14px;background:linear-gradient(120deg,rgba(28,77,255,.22),rgba(255,47,156,.18));border:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--ink);display:none}
 .chat-promo.show{display:block}
-.chat-msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
+.chat-msgs{flex:1;min-height:120px;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
 .cmsg{max-width:82%;padding:11px 15px;border-radius:18px;font-size:14px;line-height:1.5;animation:fadeUp .3s ease}
 .cmsg.bot{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-bottom-left-radius:6px;color:var(--ink)}
 .cmsg.user{align-self:flex-end;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-bottom-right-radius:6px}
@@ -406,8 +407,8 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatSend{flex:none;width:46px;height:46px;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;display:flex;align-items:center;justify-content:center}
 #chatSend .ic{width:19px;height:19px}
 @media(max-width:560px){
-  #chatFab{right:16px;bottom:16px}
-  #chatPanel{right:16px;left:16px;width:auto;bottom:88px;top:102px;height:auto;min-height:0} /* v9.4.9: locked between the site bar and the bubble — can never ride over the nav */
+  #chatFab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px}
+  #chatPanel{right:12px;left:12px;width:auto;bottom:calc(84px + env(safe-area-inset-bottom,0px));top:auto;height:min(62dvh,520px);max-height:none;min-height:0;border-radius:20px} /* v9.7.0: bottom-sheet on phones — never covers the nav or the full screen, clears the home indicator */
   .chat-inputrow input{font-size:16px} /* v9.4.7: stops iOS auto-zoom on focus */
   .cmsg{font-size:14.5px}
 }
@@ -674,6 +675,10 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 .pay-panel{border-radius:20px;padding:26px 24px;margin:18px 0;background:rgba(77,157,255,.06);border:1px solid rgba(77,157,255,.2);text-align:center}
 .pay-panel h3{font-size:19px;margin-bottom:10px}
 .pay-panel p{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
+#checkout-form{min-height:220px;margin:6px 0 4px;text-align:left}
+.zelle-note{font-size:13px;color:var(--ink-faint);line-height:1.55;margin:12px 0 0;padding:10px 12px;border:1px dashed rgba(77,157,255,.3);border-radius:12px}
+.stripe-box{text-align:left}
+.stripe-box h3,.stripe-box>p{text-align:center}
 .copyrow{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
 .copyval{font-family:'Space Grotesk';font-size:22px;font-weight:700;letter-spacing:.5px;padding:12px 24px;border-radius:14px;background:rgba(4,7,17,.7);border:1px dashed rgba(77,157,255,.5);color:var(--blue-bright)}
 
@@ -918,9 +923,9 @@ section{overflow-x:clip}
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 <symbol id="i-square" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="9.2" y="9.2" width="5.6" height="5.6" rx="1.2" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.5 9.5h19" stroke="currentColor" stroke-width="2"/><path d="M6 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 <symbol id="i-zelle" viewBox="0 0 24 24"><path d="M4.5 5.5h15v3.4l-9.9 9.6h9.9v3H4.5v-3.4l9.9-9.6H4.5V5.5z" fill="currentColor"/></symbol>
 <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4m0 0L7 9m5-5l5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-<symbol id="i-cashapp" viewBox="0 0 24 24"><path d="M12 2.6v18.8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M16.9 7.3C16.1 5.5 14.3 4.5 12 4.5c-2.9 0-4.8 1.4-4.8 3.5 0 4.7 9.9 2.4 9.9 7.3 0 2.1-1.9 3.5-4.7 3.5-2.3 0-4.1-1-4.9-2.8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></symbol>
 </defs>
 </svg>
 
@@ -1079,7 +1084,7 @@ section{overflow-x:clip}
       <div class="phone-copy">
         <div class="eyebrow"><span class="dot"></span>Mobile Ready</div>
         <h2 class="sec-title">Order Right <span class="grad">From Your Phone</span></h2>
-        <p class="sec-sub" style="margin-left:0;max-width:480px" id="phonePayCopy">The full print shop fits in your pocket — browse products, upload art, pay with Square or Zelle, and track your order from anywhere.</p>
+        <p class="sec-sub" style="margin-left:0;max-width:480px" id="phonePayCopy">The full print shop fits in your pocket — browse products, upload art, pay securely by card, Apple Pay or Google Pay, and track your order from anywhere.</p>
         <div class="phone-feats">
           <span><svg class="ic"><use href="#i-check"/></svg>Upload art on the go</span>
           <span><svg class="ic"><use href="#i-check"/></svg>Pay your way</span>
@@ -1220,7 +1225,7 @@ section{overflow-x:clip}
 <div class="modal" id="coModal" role="dialog" aria-modal="true" aria-label="Checkout"><div class="sheet" style="max-width:760px">
   <button class="x" data-close="coModal" aria-label="Close">✕</button>
   <div class="co-steps"><div class="co-dot on" id="coD1"></div><div class="co-dot" id="coD2"></div><div class="co-dot" id="coD3"></div><div class="co-dot" id="coD4"></div></div>
-  <div class="co-labels"><span class="on" id="coL1">Details</span><span id="coL2">Artwork &amp; Payment</span><span id="coL3">Review</span><span id="coL4">Done</span></div>
+  <div class="co-labels"><span class="on" id="coL1">Details</span><span id="coL2">Artwork &amp; Payment</span><span id="coL3">Review</span><span id="coL4">Payment</span></div>
   <div class="co-body" id="coBody"></div>
 </div></div>
 
@@ -1303,7 +1308,7 @@ const DEFAULT_PRODUCTS = [
  includes:["Double-sided full-color print","UV gloss finish front & back","Custom design service","Digital PDF design file included","Free shipping"],
  rungs:[{qty:"750 hangers",price:150},{qty:"1,000 hangers",price:180,tag:"Best Deal"}],
  options:[]},
-{id:"canopy",name:"10' × 10' Event Canopy",cat:"Event & Trade Show",img:"images/canopy-10x10.jpg",badge:"Sale",was:750,turnaround:"3–7 business days",active:true,
+{id:"canopy",name:"10' × 10' Event Canopy",cat:"Event & Trade Show",img:"images/canopy-10x10.jpg",badge:"Sale",was:750,turnaround:"3–7 business days",active:true,depositPct:50,
  desc:"Complete design + print package. Your brand on a full-color canopy — ready for your next event.",
  includes:["Full custom design service","10' × 10' heavy-duty aluminum frame","Weather-resistant full-color print","Professional file preparation","Free shipping"],
  rungs:[{qty:"1 canopy package",price:600}],
@@ -1338,7 +1343,7 @@ const DEFAULT_PRODUCTS = [
  includes:["18\" × 24\" 30mil thick magnets","Full-color custom design","Weather & car-wash resistant","Free shipping"],
  rungs:[{qty:"1 magnet",price:85}],
  options:[]},
-{id:"roofing-bundle",name:"Roofing Marketing Bundle",cat:"Bundle & Save",img:"images/roofing-bundle.jpg",badge:"Best Value",turnaround:"5–7 business days",active:true,
+{id:"roofing-bundle",name:"Roofing Marketing Bundle",cat:"Bundle & Save",img:"images/roofing-bundle.jpg",badge:"Best Value",turnaround:"5–7 business days",active:true,depositPct:50,
  desc:"500 flyers + 4 yard signs + 1,000 business cards + 1,000 door hangers. Your entire street marketing, handled.",
  includes:["500 custom flyers","4 custom yard signs + stakes","1,000 full-color business cards","1,000 double-sided door hangers","Everything designed, printed & shipped"],
  rungs:[{qty:"1 complete bundle",price:585}],
@@ -1368,9 +1373,9 @@ function load(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let toastT;
 function toast(msg){$("#toastMsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2600)}
-function openModal(id){$("#overlay").classList.add("show");$("#"+id).classList.add("show");document.body.style.overflow="hidden"}
-function closeModal(id){$("#"+id).classList.remove("show");if(id==="adminPanel"){try{stopLiveOrdersPolling()}catch(e){}}if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")&&!$("#lightbox").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}}
-function closeAll(){$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show")}
+function openModal(id){$("#overlay").classList.add("show");$("#"+id).classList.add("show");document.body.style.overflow="hidden";try{closeChat()}catch(e){}syncChatFab()}
+function closeModal(id){$("#"+id).classList.remove("show");if(id==="adminPanel"){try{stopLiveOrdersPolling()}catch(e){}}if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")&&!$("#lightbox").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}syncChatFab()}
+function closeAll(){$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show");syncChatFab()}
 const fmtSize=b=>{if(b==null||isNaN(b))return"";const kb=b/1024;return kb>=1024?(kb/1024).toFixed(1)+" MB":Math.max(1,Math.round(kb))+" KB"};
 function copyText(t,msg){
   const done=()=>toast(msg||"Copied to clipboard");
@@ -1416,6 +1421,7 @@ function healProducts(saved){
       dp.rungs.forEach(r=>{ if(r && r.tag) dTags[r.qty]=r.tag; });
       p.rungs.forEach(r=>{ if(r && !r.tag && dTags[r.qty]){ r.tag=dTags[r.qty]; changed++; } });
     }
+    if(dp.depositPct&&!p.depositPct){p.depositPct=dp.depositPct;changed++}
   });
   const ids = new Set(saved.map(p=>p && p.id));
   DEFAULT_PRODUCTS.forEach(dp=>{
@@ -1468,24 +1474,78 @@ if(!Array.isArray(heroCovers)||heroCovers.length!==3||!heroCovers.every(c=>c&&c.
   }catch(e){}
 })();
 function saveCovers(){save(LS2.covers,heroCovers)}
-const DEFAULT_PAY={enabled:true,square_link:"https://square.link/u/bPcUC2Wh",cashapp_tag:"",zelle_number:"951-806-1586"};
+const DEFAULT_PAY={enabled:true,stripe_pk:"",zelle_number:"951-806-1586"}; /* v9.7.0: Stripe is the only integrated checkout — Square link + Cash App retired */
 let paySettings=Object.assign({},DEFAULT_PAY,load(LS2.pay,{}));
-if(!paySettings.square_link) paySettings.square_link=DEFAULT_PAY.square_link;
+/* v9.7.0: drop retired Square / Cash App settings saved by older versions */
+delete paySettings.square_link;delete paySettings.cashapp_tag;if(typeof paySettings.stripe_pk!=="string")paySettings.stripe_pk="";
 function savePay(){save(LS2.pay,paySettings)}
-const PAY_LABELS={square:"Square — card online",zelle:"Zelle",cashapp:"Cash App",later:"Pay later / proof-first"};
-function openSquareCheckout(url){
+const PAY_LABELS={stripe:"Stripe — card, Apple Pay, Google Pay","stripe-deposit":"Stripe — deposit",zelle:"Zelle",later:"Pay later / proof-first"};
+/* v9.7.0 — STRIPE EMBEDDED CHECKOUT (Dahlia form SDK, ui_mode "form").
+   Only the PUBLISHABLE key (pk_...) is stored here — it is safe in public
+   HTML and is set in Admin -> Settings -> Stripe publishable key. The SECRET
+   key lives in the Apps Script backend's Script Properties and never touches
+   this file. No card data ever touches our servers. */
+const STRIPE_APPEARANCE={theme:"night",labels:"auto",inputs:"spaced",variables:{borderRadius:"16px",colorBackground:"#0b1226",colorDanger:"#ff6b81",colorPrimary:"#4d9dff",colorSuccess:"#37e08b",colorText:"#f2f5ff",fontFamily:"Inter,'Segoe UI',Arial,sans-serif",fontSizeBase:"16px",spacingUnit:"4px"}};
+const ZELLE_NOTE="Prefer to pay with Zelle? Simply place your order and text us your order number to receive Zelle payment instructions.";
+function stripePk(){return (paySettings.stripe_pk||"").trim()}
+function stripeReady(){return stripePk().indexOf("pk_")===0}
+/* Deposit split for the cart: deposit-eligible products (depositPct) pay that
+   % today; everything else is due in full today. Balance = total - due. */
+function cartDepositSplit(){let due=0,bal=0;cart.forEach(c=>{const p=products.find(x=>x.id===c.pid);if(!p)return;const r=p.rungs[c.rung]||p.rungs[0];const line=Math.max(0,r.price-(c.disc||0))*c.qty;const pct=Number(p.depositPct)||0;if(pct>0){due+=line*pct/100;bal+=line*(1-pct/100)}else{due+=line}});return{due:Math.round(due*100)/100,balance:Math.round(bal*100)/100}}
+function dueTodayFor(pm){if(pm==="stripe")return cartSubtotal();if(pm==="stripe-deposit")return cartDepositSplit().due;return 0}
+let stripeForm=null,stripeMounting=false;
+/* Mount the Stripe embedded form for the saved order (step 4). The backend
+   creates the session and returns the client secret — the secret key never
+   leaves the backend. Idempotency-Key on the backend means retrying a
+   session create for the same order + amount returns the same session. */
+async function mountStripeForm(force){
+  const host=$("#checkout-form");if(!host)return;
+  const o=coData.order;if(!o||o.paid||!o.number)return;
+  if(stripeForm&&!force)return;
+  if(stripeMounting)return;stripeMounting=true;
+  const msg=$("#stripeMsg"),retry=$("#stripeRetry");
+  const showMsg=t=>{if(msg){msg.style.display=t?"block":"none";msg.innerHTML=t||""}};
+  const showRetry=()=>{if(retry)retry.style.display=""};
   try{
-    const topW=window.top||window;
-    const dsl=topW.screenLeft!==undefined?topW.screenLeft:topW.screenX;
-    const dst=topW.screenTop!==undefined?topW.screenTop:topW.screenY;
-    const vw=topW.innerWidth||document.documentElement.clientWidth||screen.width;
-    const vh=topW.innerHeight||document.documentElement.clientHeight||screen.height;
-    const w=520,h=Math.round(vh*0.8),zoom=vw/((topW.screen&&topW.screen.availWidth)||vw)||1;
-    const left=(vw-w)/2/zoom+dsl,top=(vh-h)/2/zoom+dst;
-    const win=window.open(url,"Square Payment Links","scrollbars=yes,width="+Math.round(w/zoom)+",height="+Math.round(h/zoom)+",top="+Math.round(top)+",left="+Math.round(left));
-    if(win){if(win.focus)win.focus();return;}
-  }catch(e){}
-  window.open(url,"_blank","noopener");
+    if(force){stripeForm=null;host.innerHTML=""}
+    if(!stripeReady()){showMsg("Online card payment isn't set up yet — your order <b>"+esc(o.number)+"</b> is saved as awaiting payment. We'll text you a secure payment link, or pay by Zelle using the instructions below.");return}
+    if(typeof Stripe==="undefined"){showMsg("The secure payment form couldn't load — check your connection and tap Retry payment.");showRetry();return}
+    showMsg("Loading secure payment…");
+    const backend=load(LS.backend,DEFAULT_BACKEND);
+    const j=await postBackend(backend,{action:"createStripeSession",orderNumber:o.number,payChoice:o.payChoice||"full",items:o.items.map(it=>({pid:it.pid,rung:it.rung,qty:it.qty,discount:it.discount||0})),dueCents:Math.round((o.dueToday||o.total)*100)},30000);
+    if(!j||!j.ok||!j.client_secret){showMsg("We couldn't start secure payment"+(j&&j.error?": "+esc(j.error):"")+". Your order <b>"+esc(o.number)+"</b> is saved — tap Retry payment, or pay by Zelle using the instructions below.");showRetry();return}
+    coData.stripeSessionId=j.session_id;o.dueToday=j.dueCents/100;if(j.balanceCents!=null)o.balanceDue=j.balanceCents/100;
+    const stripe=Stripe(stripePk());
+    const checkout=await stripe.initCheckoutFormSdk({clientSecret:j.client_secret,appearance:STRIPE_APPEARANCE});
+    const form=checkout.createForm({layout:"expanded"});
+    form.mount("#checkout-form");stripeForm={checkout,form};
+    showMsg("");
+    form.on("confirm",async(event)=>{
+      try{
+        const actions=await checkout.loadActions();
+        await actions.confirm({formConfirmEvent:event});
+        await finalizeStripePayment();
+      }catch(e){showMsg("Payment didn't go through: "+esc((e&&e.message)||"card declined or incomplete")+". Check your details and try again — a failed attempt doesn't charge you.")}
+    });
+  }catch(e){showMsg("Secure payment couldn't start: "+esc((e&&e.message)||"network error")+". Your order is saved — tap Retry payment.");showRetry()}
+  finally{stripeMounting=false}
+}
+/* After the form confirms, verify with OUR backend (it re-checks the session
+   with Stripe) before calling the order paid — the webhook is the backup. */
+async function finalizeStripePayment(){
+  const o=coData.order;const msg=$("#stripeMsg");
+  const unverified="Your card was accepted, but we couldn't confirm it on our side yet — please don't pay again. We'll verify it and email your receipt. Order <b>"+esc(o.number)+"</b>.";
+  try{
+    const backend=load(LS.backend,DEFAULT_BACKEND);
+    const j=await postBackend(backend,{action:"confirmStripePayment",orderNumber:o.number,sessionId:coData.stripeSessionId},30000);
+    if(j&&j.ok&&j.paid){
+      o.paid=true;o.awaitingPayment=false;
+      const li=orders.findIndex(x=>x.number===o.number);
+      if(li>=0){orders[li].paid=true;orders[li].awaitingPayment=false;save(LS.orders,orders)}
+      stripeForm=null;renderCheckout();toast("Payment received — "+o.number);return;
+    }
+    if(msg){msg.style.display="block";msg.innerHTML=unverified}
+  }catch(e){if(msg){msg.style.display="block";msg.innerHTML=unverified}}
 }
 const ART_EXT=/\.(pdf|ai|eps|png|jpe?g|tiff?|svg)$/i;
 const ART_MAX=25*1024*1024, ART_MAX_COUNT=10;
@@ -1740,7 +1800,10 @@ let coStep=1, coData={};
 function startCheckout(){coStep=1;coData={orderNumber:genOrderNum(),payMethod:null,artFiles:[]};
   cart.forEach(c=>{if(c.art){const p=products.find(x=>x.id===c.pid);["front","back"].forEach(s=>{const f=c.art[s];
     if(f&&f.url)coData.artFiles.push({name:`${p?p.name:"artwork"}-${s}-${f.name}`,size:0,type:f.kind==="pdf"?"application/pdf":"image/jpeg",url:f.url,file:null})})}});
-  renderCheckout();openModal("coModal")}
+  renderCheckout();openModal("coModal");
+  /* v9.6.11: warm the order server up while the customer fills in the form —
+     Apps Script cold starts made the first save of the day the slowest one */
+  try{const bk=load(LS.backend,DEFAULT_BACKEND);if(bk)postBackend(bk,{action:"ping"},9000).catch(()=>{})}catch(e){}}
 function genOrderNum(){return "VD-"+Date.now().toString(36).toUpperCase().slice(-6).padStart(6,"0")}
 function setCoStep(n){coStep=n;[1,2,3,4].forEach(i=>{const d=$("#coD"+i);if(d)d.classList.toggle("on",i<=n);const l=$("#coL"+i);if(l)l.classList.toggle("on",i===n)});renderCheckout()}
 /* v9.4.7: logo packages get a design-contact preference (email or text) */
@@ -1773,10 +1836,11 @@ function renderCheckout(){
   }
   if(coStep===2){
     const pay=paySettings;
+    const dep=cartDepositSplit();
     const methods=[];
-    if(pay.enabled&&pay.square_link) methods.push({id:"square",icon:"i-square",cls:"sq",img:"images/pay-square.png",t:"Pay by Card — Square",d:"Secure online card payment through Square. Payment processing fee: 3.9% applies."});
-    if(pay.enabled&&pay.zelle_number) methods.push({id:"zelle",icon:"i-zelle",cls:"ze",img:"images/pay-zelle.jpg",t:"Zelle",d:"Send from your bank app to "+pay.zelle_number+" (Nathan Salamanca)."});
-    if(pay.enabled&&pay.cashapp_tag) methods.push({id:"cashapp",icon:"i-cashapp",cls:"ca",t:"Cash App",d:"Send to "+pay.cashapp_tag+"."});
+    if(pay.enabled&&stripeReady()) methods.push({id:"stripe",icon:"i-card",cls:"sq",t:"Pay by Card — Stripe",d:"Visa, Mastercard, Amex, Discover, debit, Apple Pay, Google Pay, Stripe Link — securely on this site. No redirects."});
+    if(pay.enabled&&stripeReady()&&dep.balance>0) methods.push({id:"stripe-deposit",icon:"i-card",cls:"sq",t:"Pay Deposit with Stripe",d:"Pay "+money(dep.due)+" today, "+money(dep.balance)+" balance due later."});
+    if(pay.enabled&&pay.zelle_number) methods.push({id:"zelle",icon:"i-zelle",cls:"ze",img:"images/pay-zelle.jpg",t:"Zelle",d:"Place your order, then text us your order number for Zelle payment instructions."});
     methods.push({id:"later",icon:"i-clock",cls:"lt",t:"Pay later — proof first",d:"No payment today. Approve your proof first, then pay."});
     if(!methods.some(m=>m.id===coData.payMethod)) coData.payMethod=methods[0].id;
     box.innerHTML=`<h2>Artwork &amp; Payment</h2><p class="co-sub">Order <b>${esc(coData.orderNumber)}</b> — upload print-ready files and choose how to pay.</p>
@@ -1788,15 +1852,17 @@ function renderCheckout(){
     <div class="artlist" id="artList"></div>
     <div class="opt-label">Payment method</div>
     <div class="paygrid">${methods.map(m=>`<div class="paycard${coData.payMethod===m.id?" on":""}" data-pay="${m.id}" role="button" tabindex="0" aria-label="${esc(m.t)}"><span class="radio"></span>${payIcon(m.icon,m.cls,m.img)}<span class="ptxt"><b>${esc(m.t)}</b><p>${esc(m.d)}</p></span></div>`).join("")}</div>
-    <div class="pay-amt">Total due: ${money(st)}</div>
+    <div class="pay-amt" id="payAmt">Due today: ${money(dueTodayFor(coData.payMethod))}</div>
+    <p class="hint" id="depHint" style="margin-top:0;${coData.payMethod==="stripe-deposit"?"":"display:none"}">Balance due later: <b>${money(dep.balance)}</b> — collected before production. Order total ${money(st)}.</p>
+    <p class="zelle-note">${ZELLE_NOTE}</p>
     <p class="hint" id="payHint"></p>
     <div class="co-nav"><button class="btn ghost" id="back1">← Back</button><button class="btn solid" id="toStep3" style="flex:1">Review Order →</button></div>`;
     const hints={
-      square:`After placing your order you'll get a secure Square checkout — enter <b>${money(st)}</b> as the amount.`,
-      zelle:`After placing your order, send <b>${money(st)}</b> via Zelle to <b>${esc(pay.zelle_number)}</b> — account name <b>Nathan Salamanca</b>. Put order <b>${esc(coData.orderNumber)}</b> in the memo, then text <b>"ZELLE#VD${esc(coData.orderNumber)}"</b> plus your Zelle payment screenshot confirmation to <b>${esc(pay.zelle_number)}</b>.`,
-      cashapp:`After placing your order, send <b>${money(st)}</b> on Cash App to <b>${esc(pay.cashapp_tag)}</b> — put order <b>${esc(coData.orderNumber)}</b> in the note.`,
+      stripe:`Pay ${money(st)} securely with Stripe right after placing your order — card, Apple Pay, Google Pay or Stripe Link.`,
+      "stripe-deposit":`Pay a ${money(dep.due)} deposit with Stripe after placing your order. Balance ${money(dep.balance)} is due before production.`,
+      zelle:`After placing your order, text us your order number and we'll send Zelle payment instructions. Your order stays pending until we verify payment.`,
       later:`No payment due today. After you place your order, you'll get a digital proof to approve — payment is collected once you're 100% satisfied with the design.`};
-    const setHint=()=>{$("#payHint").innerHTML=hints[coData.payMethod]||""};
+    const setHint=()=>{$("#payHint").innerHTML=hints[coData.payMethod]||"";const pa=$("#payAmt");if(pa)pa.textContent="Due today: "+money(dueTodayFor(coData.payMethod));const dh=$("#depHint");if(dh)dh.style.display=coData.payMethod==="stripe-deposit"?"":"none"};
     setHint();
     $$("#coBody .paycard").forEach(c=>{
       const pick=()=>{coData.payMethod=c.dataset.pay;$$("#coBody .paycard").forEach(x=>x.classList.toggle("on",x===c));setHint()};
@@ -1818,6 +1884,8 @@ function renderCheckout(){
       const o=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(", ");
       return `<div><span>${c.qty} × ${esc(p.name)}<br><small style="color:var(--ink-faint)">${esc(r.qty)}${o?", "+esc(o):""}${disc?` <b style="color:#7dffb0">−${money(disc)} reward</b>`:""}</small></span><b>${money(Math.max(0,r.price-disc)*c.qty)}</b></div>`}).join("");
     const payLabel=PAY_LABELS[coData.payMethod]||PAY_LABELS.later;
+    const dep3=cartDepositSplit();const dueToday3=dueTodayFor(coData.payMethod);
+    const reviewHint=coData.payMethod==="later"?"No payment due today — you'll approve a proof first.":coData.payMethod==="stripe-deposit"?("You'll pay a "+money(dep3.due)+" deposit with Stripe right after placing the order — balance "+money(dep3.balance)+" due before production."):coData.payMethod==="zelle"?ZELLE_NOTE:"You'll complete secure payment with Stripe right after placing the order.";
     /* v9.6.8: EVERY order gets the contact box + preferred contact method
        (v9.4.7 originally showed it for logo packages only). Header + hint
        copy adapt: logo orders talk to the design team, other orders to the team. */
@@ -1841,7 +1909,8 @@ function renderCheckout(){
     box.innerHTML=`<h2>Review Order</h2><p class="co-sub">Order <b>${esc(coData.orderNumber)}</b> — one last look before it goes to the studio.</p>
     <div class="review-box"><div class="rh">Items (${cartQty()})</div><div class="rb">${rows}
       <div style="border-top:1px solid rgba(77,157,255,.14);margin-top:8px;padding-top:10px"><span>Shipping</span><b style="color:#7dffb0">FREE</b></div>
-      <div><span><b>Total due</b></span><b style="font-size:18px">${money(st)}</b></div></div></div>
+      <div><span>Order total</span><b>${money(st)}</b></div>
+      ${coData.payMethod==="stripe-deposit"?`<div><span><b>Due today (deposit)</b></span><b style="font-size:18px">${money(dep3.due)}</b></div><div><span>Balance due later</span><b>${money(dep3.balance)}</b></div>`:`<div><span><b>Due today</b></span><b style="font-size:18px">${money(dueToday3)}</b></div>`}</div></div>
     <div class="review-box"><div class="rh">Ship To</div><div class="rb">${esc(coData.name)}${coData.co?" — "+esc(coData.co):""}<br>${esc(coData.addr)}, ${esc(coData.city)} ${esc(coData.zip)}<br>${esc(coData.email)} • ${esc(coData.phone)}${coData.design?'<br><b style="color:var(--blue-bright)">Design service requested</b>':""}${coData.notes?`<br><span style="color:var(--ink-faint)">Notes: ${esc(coData.notes)}</span>`:""}</div></div>
     <div class="review-box"><div class="rh">Payment &amp; Artwork</div><div class="rb">
       <div><span>Payment method</span><b>${esc(payLabel)}</b></div>${artRow}</div></div>
@@ -1855,7 +1924,7 @@ function renderCheckout(){
       <div class="artlist" id="artList3" style="margin-top:10px"></div>
       <label class="checkline" style="margin:10px 0 0"><input type="checkbox" id="f_drive" ${coData.driveOk?"checked":""}><span><b>I've uploaded my design images</b><br>Or I have no images to submit.</span></label>
     </div></div>
-    <p class="hint">${coData.payMethod==="later"?"No payment due today — you'll approve a proof first.":"You'll complete payment right after placing the order."}${coData.artFiles.length?` ${coData.artFiles.length} art file(s) will be attached to your order.`:""}</p>
+    <p class="hint">${reviewHint}${coData.artFiles.length?` ${coData.artFiles.length} art file(s) will be attached to your order.`:""}</p>
     <div class="co-err" id="coErr"></div>
     <div class="co-nav"><button class="btn ghost" id="back2">← Back</button><button class="btn solid" id="placeOrder" style="flex:1">Place Order — ${money(st)}</button></div>`;
     $("#back2").onclick=()=>setCoStep(2);
@@ -1877,19 +1946,20 @@ function renderCheckout(){
   }
   if(coStep===4){
     const o=coData.order, pm=o.paymentMethodKey;
+    const isStripe=pm==="stripe";
     let payPanel="";
-    if(pm==="square"&&paySettings.square_link){
-      payPanel=`<div class="pay-panel"><h3>${payIcon("i-square","sq","images/pay-square.png")}Complete your payment</h3><p>Pay <b>${money(o.total)}</b> securely by card with Square:</p>
-      <button class="btn solid block" id="sqPay">Pay ${money(o.total)} with Square</button>
-      <p class="hint">A secure Square window will open — enter <b>${money(o.total)}</b> as the amount. Add your order # <b>${esc(o.number)}</b> in the payment note if there's a field for it. Your job enters the studio queue as soon as payment is confirmed.</p></div>`;
+    if(o.paid){
+      payPanel=`<div class="pay-panel"><h3 style="justify-content:flex-start">${payIcon("i-check","lt")}Payment received</h3><p>Paid <b>${money(o.dueToday||o.total)}</b> with Stripe.${o.balanceDue>0?` Balance of <b>${money(o.balanceDue)}</b> is due before production — we'll reach out about it.`:" Your order is paid in full."} Your job enters the studio queue as soon as your proof is approved.</p></div>`;
+    }else if(isStripe){
+      payPanel=`<div class="pay-panel stripe-box"><h3>Complete your payment</h3><p>Pay <b>${money(o.dueToday||o.total)}</b> securely with Stripe — card, Apple Pay, Google Pay or Stripe Link.${o.balanceDue>0?` Balance of <b>${money(o.balanceDue)}</b> due later.`:""}</p>
+      <div id="checkout-form"></div>
+      <div class="co-err" id="stripeMsg" style="text-align:left"></div>
+      <button class="btn ghost" id="stripeRetry" style="display:none;margin-top:10px">Retry payment</button>
+      <p class="zelle-note" style="margin-top:14px">${ZELLE_NOTE}</p></div>`;
     }else if(pm==="zelle"&&paySettings.zelle_number){
-      payPanel=`<div class="pay-panel"><h3>${payIcon("i-zelle","ze","images/pay-zelle.jpg")}Complete your payment</h3><p>Send <b>${money(o.total)}</b> via Zelle to <b>Nathan Salamanca</b>:</p>
+      payPanel=`<div class="pay-panel"><h3>${payIcon("i-zelle","ze","images/pay-zelle.jpg")}Pay with Zelle</h3><p>Send <b>${money(o.total)}</b> via Zelle to <b>Nathan Salamanca</b>:</p>
       <div class="copyrow"><span class="copyval">${esc(paySettings.zelle_number)}</span><button class="btn small" id="copyZ">Copy</button></div>
-      <p class="hint">Look for the account name <b>Nathan Salamanca</b> when sending. Then text <b>"ZELLE#VD${esc(o.number)}"</b> plus your Zelle payment screenshot confirmation to <b>${esc(paySettings.zelle_number)}</b>. Your job enters the studio queue as soon as payment is confirmed.</p></div>`;
-    }else if(pm==="cashapp"&&paySettings.cashapp_tag){
-      payPanel=`<div class="pay-panel"><h3>${payIcon("i-cashapp","ca")}Complete your payment</h3><p>Send <b>${money(o.total)}</b> on Cash App to:</p>
-      <div class="copyrow"><span class="copyval">${esc(paySettings.cashapp_tag)}</span><button class="btn small" id="copyC">Copy</button></div>
-      <p class="hint">Put order # <b>${esc(o.number)}</b> in the Cash App note. Your job enters the studio queue as soon as payment arrives.</p></div>`;
+      <p class="hint">Look for the account name <b>Nathan Salamanca</b> when sending. Then text your order number <b>${esc(o.number)}</b> to <b>${esc(paySettings.zelle_number)}</b> and we'll send Zelle payment instructions. Your order stays pending until we verify your payment.</p></div>`;
     }else{
       payPanel=`<div class="pay-panel"><h3 style="justify-content:flex-start">${payIcon("i-clock","lt")}No payment due today</h3><p>${coData.design?"You'll get a design proof by email to approve before printing — payment is collected once you're 100% satisfied with the design.":"Proof-first: we'll confirm your artwork, then collect payment before anything goes to press."}</p></div>`;
     }
@@ -1912,9 +1982,9 @@ function renderCheckout(){
     <p>Save this order number. Track your order anytime below.</p>
     <div class="co-nav" style="justify-content:center"><button class="btn solid" id="goTrack">Track My Order</button><button class="btn ghost" data-close="coModal">Continue Shopping</button></div></div>`;
     const cz=$("#copyZ"); if(cz) cz.onclick=()=>copyText(paySettings.zelle_number,"Zelle number copied");
-    const cc=$("#copyC"); if(cc) cc.onclick=()=>copyText(paySettings.cashapp_tag,"Cash App tag copied");
-    const sqb=$("#sqPay"); if(sqb) sqb.onclick=()=>openSquareCheckout(paySettings.square_link);
+    const sr=$("#stripeRetry"); if(sr) sr.onclick=()=>{sr.style.display="none";mountStripeForm(true)};
     $("#goTrack").onclick=()=>{closeAll();document.querySelector("#track").scrollIntoView({behavior:"smooth"});$("#trackNum").value=o.number;$("#trackEmail").value=o.email;doTrack()};
+    if(isStripe&&!o.paid&&o.number) mountStripeForm();
   }
   $$("#coBody [data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
 }
@@ -1937,8 +2007,14 @@ async function placeOrder(){
   const items=cart.map(c=>{const p=products.find(x=>x.id===c.pid);const r=p.rungs[c.rung]||p.rungs[0];const disc=c.disc||0;
     return {pid:c.pid,name:p.name,rung:r.qty,opts:c.opts,qty:c.qty,discount:disc,unit:Math.max(0,r.price-disc),line:Math.max(0,r.price-disc)*c.qty}});
   const pmKey=coData.payMethod||"later";
+  const dep=cartDepositSplit();
   const order={number:coData.orderNumber,date:new Date().toISOString(),name:coData.name,email:coData.email.toLowerCase(),phone:coData.phone,co:coData.co,addr:`${coData.addr}, ${coData.city} ${coData.zip}`,notes:coData.notes,design:coData.design,items,total:cartSubtotal(),status:"Received",
-    paymentMethod:PAY_LABELS[pmKey]||PAY_LABELS.later,paymentMethodKey:pmKey,paid:false,awaitingPayment:pmKey!=="later",
+    paymentMethod:PAY_LABELS[pmKey]||PAY_LABELS.later,paymentMethodKey:(pmKey==="stripe-deposit"?"stripe":pmKey),
+    payChoice:(pmKey==="stripe"?"full":pmKey==="stripe-deposit"?"deposit":null),
+    dueToday:pmKey==="stripe"?cartSubtotal():pmKey==="stripe-deposit"?dep.due:0,
+    depositPaid:pmKey==="stripe-deposit"?dep.due:0,
+    balanceDue:pmKey==="stripe"?0:pmKey==="stripe-deposit"?dep.balance:cartSubtotal(),
+    paid:false,awaitingPayment:pmKey!=="later",
     artwork:coData.artFiles.map(f=>({name:f.name,size:f.size,type:f.type}))};
   /* v9.6.8: the contact preference now rides on EVERY order + in Notes so the
      sheet shows it (v9.4.7 did this for logo packages only) */
@@ -1958,6 +2034,12 @@ async function placeOrder(){
       const j=await postBackend(backend,{action:"createOrder",order},45000);
       if(j&&j.number){order.number=j.number;backendOk=true;}
       else{orderError=(j&&j.error)||"the order server didn't accept the order";}
+      if(backendOk){
+        /* v9.6.11: the owner alerts + customer confirmation email now run in
+           a separate backend call the customer never waits for — they used
+           to be inside createOrder and made saves take 45-90 seconds */
+        try{postBackend(backend,{action:"notifyOrder",order}).catch(()=>{})}catch(e){}
+      }
       /* v9.5.9: only upload artwork once the order itself exists server-side */
       if(backendOk&&coData.artFiles.length){
         setPlacing(btn,"Uploading artwork…");
@@ -2197,6 +2279,7 @@ function renderPForm(){
     <div class="field"><label>Category *</label><select id="pf_cat">${CATS.filter(c=>c!=="All").map(c=>`<option ${p.cat===c?"selected":""}>${c}</option>`).join("")}</select></div>
     <div class="field"><label>Badge (optional)</label><input id="pf_badge" value="${esc(p.badge||"")}" placeholder="Best Seller, Sale…"></div>
     <div class="field"><label>Turnaround</label><input id="pf_turn" value="${esc(p.turnaround||"")}"></div>
+    <div class="field"><label>Deposit % (optional)</label><input id="pf_deposit" type="number" min="0" max="100" step="5" value="${p.depositPct||""}" placeholder="e.g. 50"><p class="hint">If set, checkout offers "Pay Deposit" — this % of the item price is due today, the rest later. Leave empty for full payment only.</p></div>
     <div class="field full"><label>Description</label><textarea id="pf_desc">${esc(p.desc||"")}</textarea></div>
     <div class="field full"><label>Photos — first photo is the cover</label>
       <div class="ph-grid" id="pf_photos"></div>
@@ -2239,6 +2322,7 @@ function renderPForm(){
     const opts=$("#pf_opts").value.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const i=l.indexOf(":");return i>0?{name:l.slice(0,i).trim(),choices:l.slice(i+1).split(",").map(s=>s.trim()).filter(Boolean)}:null}).filter(Boolean);
     const data={id:p.id,name:$("#pf_name").value.trim(),cat:$("#pf_cat").value,badge:$("#pf_badge").value.trim(),turnaround:$("#pf_turn").value.trim()||"3–7 business days",
       desc:$("#pf_desc").value.trim(),images:pfImages,img:pfImages[0]||"",
+      depositPct:Math.max(0,Math.min(100,parseFloat($("#pf_deposit").value)||0)),
       rungs,options:opts,includes:$("#pf_inc").value.split("\n").map(s=>s.trim()).filter(Boolean),active:p.active!==false};
     if(editingId){const i=products.findIndex(x=>x.id===editingId);products[i]=data}
     else products.push(data);
@@ -2250,7 +2334,7 @@ function persistProducts(){save(LS.products,products)}
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
 const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
-const EXPECTED_BACKEND="2026-09-28-C"; /* WebsiteBackend.gs version this page was built for */
+const EXPECTED_BACKEND="2026-11-12-A"; /* WebsiteBackend.gs version this page was built for */
 function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
 function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringify({msg:String(msg).slice(0,220),at:Date.now()}))}catch(e){}}
 function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
@@ -2555,11 +2639,11 @@ function renderAdminSettings(){
   <h3 style="margin-bottom:16px;font-size:19px">Online Payments</h3>
   <div class="setrow"><label class="checkline" style="margin:0;flex:1;min-width:260px"><input type="checkbox" id="set_pay_enabled" ${paySettings.enabled?"checked":""}><span><b>Accept online payments at checkout</b><br>Uncheck to run proof-first only (no payment options shown).</span></label></div>
   <div class="setrow">
-    <div class="field"><label>Square payment link</label><input id="set_square" placeholder="https://square.link/u/…" value="${esc(paySettings.square_link)}"><p class="hint">Square Dashboard → Payment Links → create a link set to "customer enters the amount". Shown at checkout only when set.</p></div>
-    <div class="field"><label>Cash App tag</label><input id="set_cashapp" placeholder="$YourTag" value="${esc(paySettings.cashapp_tag)}"></div>
+    <div class="field"><label>Stripe publishable key</label><input id="set_stripe_pk" placeholder="pk_test_… / pk_live_…" value="${esc(paySettings.stripe_pk||"")}"><p class="hint">Stripe Dashboard → Developers → API keys → Publishable key. This key is public and safe to store here. Card checkout appears only when it is set. The SECRET key goes in the Apps Script backend's Script Properties, never here.</p></div>
   </div>
+  <div class="setrow"><span class="hint" id="stripeStatusOut" style="align-self:center">Checking Stripe…</span></div>
   <div class="setrow"><div class="field"><label>Zelle number</label><input id="set_zelle" value="${esc(paySettings.zelle_number)}" inputmode="tel"></div><button class="mini go" id="set_savePay">Save Payments</button></div>
-  <p class="hint" style="margin-bottom:26px">Customers pick a method at checkout and pay <b>after</b> placing the order (so their order # goes in the memo). Orders show an "Awaiting payment" badge until you mark them paid in the Orders tab.</p>
+  <p class="hint" style="margin-bottom:26px">Customers pay securely with Stripe right after placing the order — card, Apple Pay, Google Pay or Stripe Link. Zelle and pay-later stay available. Orders show an "Awaiting payment" badge until Stripe confirms payment or you mark them paid in the Orders tab.</p>
   <h3 style="margin-bottom:16px;font-size:19px">Chat Bot</h3>
   <div class="setrow"><div class="field"><label>Promo banner text (top of the Ask Visualet chat)</label><input id="set_chatpromo" placeholder="Leave empty to hide the banner" value="${esc(load(LS2.chat,"")||CHAT_DEFAULT_PROMO)}"></div><button class="mini go" id="set_saveChat">Save</button></div>
   <p class="hint" style="margin-bottom:26px">Shown to every visitor at the top of the chat. Saved on this device and synced live through your backend.</p>
@@ -2617,10 +2701,20 @@ function renderAdminSettings(){
     $("#set_retrySync").onclick=async()=>{box.innerHTML='<span style="opacity:.7">Syncing&#8230;</span>';const ok=await pushSync();await renderSyncStatus();syncToast(ok,"Synced &#8212; live for everyone")};
   }
   renderSyncStatus();
+  async function renderStripeStatus(){
+    const el=$("#stripeStatusOut");if(!el)return;
+    if(!stripeReady()){el.innerHTML='<b style="color:#ffb020">Publishable key not set</b> — paste your Stripe publishable key (pk_test_… / pk_live_…) above. Card checkout stays hidden until then.';return}
+    try{
+      const r=await fetch(load(LS.backend,DEFAULT_BACKEND)+"?action=stripe");const j=await r.json();
+      el.innerHTML=(j&&j.configured)?'<b style="color:#37e08b">Stripe is connected</b> — secret key is set in the backend. Test mode depends on which secret key you pasted (sk_test_… = test, sk_live_… = live).':'<b style="color:#ffb020">Backend Stripe secret missing</b> — set STRIPE_SECRET_KEY in the Apps Script project Script Properties, then redeploy as a new version.';
+    }catch(e){el.innerHTML='<b style="color:#ffb020">Backend unreachable</b> — could not check Stripe status.'}
+  }
+  renderStripeStatus();
   $("#set_savePay").onclick=()=>{
-    paySettings={enabled:$("#set_pay_enabled").checked,square_link:$("#set_square").value.trim(),cashapp_tag:$("#set_cashapp").value.trim(),zelle_number:$("#set_zelle").value.trim()};
+    paySettings={enabled:$("#set_pay_enabled").checked,stripe_pk:$("#set_stripe_pk").value.trim(),zelle_number:$("#set_zelle").value.trim()};
     savePay();pushSync().then(live=>syncToast(live,"Payment settings saved — live for everyone"));
-    const pc=$("#phonePayCopy"); if(pc) pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere.";
+    const pc=$("#phonePayCopy"); if(pc) pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay securely by card, Apple Pay or Google Pay, and track your order from anywhere.";
+    renderStripeStatus();
   };
   $("#set_saveChat").onclick=()=>{
     save(LS2.chat,$("#set_chatpromo").value.trim());
@@ -2747,8 +2841,8 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
 
 /* ================= INIT ================= */
 renderPills(); renderGrid(); renderTiers(); renderBundles(); renderCart(); renderHeroCovers(); renderHeadshot(); initReveals();
-console.log("Visualet Designs site v9.6.10");
-(function(){const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay with "+(paySettings.cashapp_tag?"Square, Zelle, or Cash App":"Square or Zelle")+", and track your order from anywhere."})();
+console.log("Visualet Designs site v9.7.0");
+    const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay securely by card, Apple Pay or Google Pay, and track your order from anywhere."
 </script>
 <!-- ASK VISUALET CHAT -->
 <button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-glass"><span class="fab-logo" aria-hidden="true"></span></span><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
@@ -2853,8 +2947,8 @@ function chatBrain(input){
     return 'Most jobs are done in <b>2–7 days</b> — each product shows its exact turnaround on the page. Every order includes a digital proof for your approval before anything prints.';
   if(/how.*(order|work)|process|start.*order|get started|steps/.test(s))
     return '<b>1.</b> Pick a product &amp; check out online (2 minutes)<br><b>2.</b> Approve your digital proof — nothing prints until you say go<br><b>3.</b> We print &amp; ship free, and you track it all right here 🚚';
-  if(/pay|square|zelle|cash app|deposit|card/.test(s))
-    return 'We take <b>Square</b> (card), <b>Zelle</b>, and <b>Cash App</b> — or choose <b>pay later</b> at checkout and pay after you approve your proof.';
+  if(/pay|square|stripe|zelle|cash app|deposit|card/.test(s))
+    return 'We take <b>Visa, Mastercard, Amex, Discover</b>, debit, <b>Apple Pay</b>, <b>Google Pay</b> and <b>Stripe Link</b> — all securely on our site at checkout. Prefer Zelle? Place your order and text us your order number for Zelle instructions. Or choose <b>pay later</b> and pay after you approve your proof.';
   if(/art|artwork|design|logo|file|upload|pdf/.test(s))
     return 'Upload your print-ready art at checkout, or <b>we design it for you</b> — every package includes a custom design. Upload both sides of business-card art and get <b>$20 off</b> instantly. ✨';
   if(/bundle|deal|discount|promo|sale|coupon|save/.test(s))
@@ -2932,6 +3026,9 @@ function openChat(){
 $("#chatFab").onclick=openChat;
 function closeChat(){$("#chatPanel").classList.remove("show");$("#chatPanel").setAttribute("aria-hidden","true");$("#chatFab").classList.remove("hidefab");const d=$("#chatDot");d.classList.remove("hide");d.classList.add("plain")} /* v9.5.2: dot comes back as plain green after close */
 $("#chatClose").onclick=closeChat;
+/* v9.7.0: the chat bubble never floats over a modal, the cart drawer, the
+   lightbox or the mobile menu — it hides while any of them is open */
+function syncChatFab(){try{const busy=document.querySelector(".modal.show")||document.querySelector("#cartDrawer.show")||document.querySelector("#lightbox.show")||document.querySelector("#mobileMenu.show");const f=$("#chatFab");if(f)f.style.visibility=busy?"hidden":""}catch(e){}}
 $("#chatSend").onclick=()=>chatSend();
 $("#chatText").addEventListener("keydown",e=>{if(e.key==="Enter")chatSend()});
 $("#chatMsgs").addEventListener("click",e=>{
