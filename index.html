@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.6 (2026-11-18) — CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-12-A — unchanged); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.7 (2026-11-18) — CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-12-A — unchanged; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-12-A — unchanged); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -726,6 +726,25 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 .oc-next .ic{width:20px;height:20px;color:var(--blue-bright);display:block;margin:0 auto 6px}
 .oc-next b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
 @media(max-width:560px){.review-box .rb>.oc-next{grid-template-columns:repeat(2,1fr)}}
+/* v9.7.7: animated Payment completed popup — shown ONLY after
+   finalizeStripePayment() verifies the payment with our backend */
+.paid-pop{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(3,6,14,.72);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);opacity:0;pointer-events:none;transition:opacity .3s ease}
+.paid-pop.show{opacity:1;pointer-events:auto}
+.paid-pop-card{position:relative;width:min(430px,calc(100vw - 36px));text-align:center;padding:38px 28px 30px;border-radius:28px;background:rgba(7,10,22,.94);border:1px solid rgba(77,157,255,.22);box-shadow:0 40px 110px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.1);transform:scale(.92) translateY(14px);transition:transform .42s cubic-bezier(.2,.7,.25,1)}
+.paid-pop.show .paid-pop-card{transform:scale(1) translateY(0)}
+.paid-pop-x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--glass-brd);background:rgba(6,9,22,.6);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.22s}
+.paid-pop-x:hover{background:var(--magenta-neon);transform:rotate(90deg)}
+.paid-pop-x svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
+.paid-pop-check{position:relative;width:104px;height:104px;margin:2px auto 18px}
+.paid-pop-glow{position:absolute;inset:-16px;border-radius:50%;background:conic-gradient(from 0deg,#1c4dff,#7b3bff,#ff2f9c,#1c4dff);filter:blur(22px);opacity:.5;animation:stripeGlowSpin 9s linear infinite,stripeGlowPulse 3.4s ease-in-out infinite}
+.paid-pop-check svg{position:relative;width:104px;height:104px;display:block}
+.pp-ring{fill:rgba(47,227,107,.08);stroke:#2fe36b;stroke-width:4;stroke-dasharray:201;stroke-dashoffset:201;animation:ppDraw .7s .1s cubic-bezier(.2,.7,.25,1) forwards}
+.pp-tick{fill:none;stroke:#7dffb0;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:42;stroke-dashoffset:42;animation:ppDraw .45s .65s cubic-bezier(.2,.7,.25,1) forwards}
+@keyframes ppDraw{to{stroke-dashoffset:0}}
+.paid-pop-card h2{font-family:'Space Grotesk';font-size:27px;margin:0 0 8px}
+.paid-pop-card p{color:var(--ink-soft);margin:0 0 6px;line-height:1.55}
+.paid-pop-num{font-family:'Space Grotesk';font-size:20px;font-weight:700;letter-spacing:.5px;color:var(--blue-bright);margin:14px 0 20px}
+@media(max-width:560px){.paid-pop-card{padding:32px 20px 26px}.paid-pop-card h2{font-size:24px}.paid-pop-check,.paid-pop-check svg{width:88px;height:88px}}
 
 .copyrow{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
 .copyval{font-family:'Space Grotesk';font-size:22px;font-weight:700;letter-spacing:.5px;padding:12px 24px;border-radius:14px;background:rgba(4,7,17,.7);border:1px dashed rgba(77,157,255,.5);color:var(--blue-bright)}
@@ -1425,8 +1444,8 @@ function persistProducts(){save(LS.products,products)} /* v9.7.5: was defined in
 let toastT;
 function toast(msg){$("#toastMsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2600)}
 function openModal(id){$("#overlay").classList.add("show");$("#"+id).classList.add("show");document.body.style.overflow="hidden";try{closeChat()}catch(e){}syncChatFab()}
-function closeModal(id){$("#"+id).classList.remove("show");if(id==="adminPanel"){try{stopLiveOrdersPolling()}catch(e){}}if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")&&!$("#lightbox").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}syncChatFab()}
-function closeAll(){$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show");syncChatFab()}
+function closeModal(id){hidePaidPopup();$("#"+id).classList.remove("show");if(id==="adminPanel"){try{stopLiveOrdersPolling()}catch(e){}}if(!$(".modal.show")&&!$("#cartDrawer").classList.contains("show")&&!$("#lightbox").classList.contains("show")){$("#overlay").classList.remove("show");document.body.style.overflow=""}syncChatFab()}
+function closeAll(){hidePaidPopup();$$(".modal.show").forEach(m=>m.classList.remove("show"));$("#cartDrawer").classList.remove("show");$("#lightbox").classList.remove("show");$("#overlay").classList.remove("show");document.body.style.overflow="";$("#mobileMenu").classList.remove("show");$("#menuVeil").classList.remove("show");syncChatFab()}
 const fmtSize=b=>{if(b==null||isNaN(b))return"";const kb=b/1024;return kb>=1024?(kb/1024).toFixed(1)+" MB":Math.max(1,Math.round(kb))+" KB"};
 function copyText(t,msg){
   const done=()=>toast(msg||"Copied to clipboard");
@@ -1586,10 +1605,16 @@ async function mountStripeForm(force){
     const form=checkout.createForm({layout:"expanded"});
     stripeLoadClear();form.mount("#checkout-form");stripeForm={checkout,form};
     showMsg("");
+    /* v9.7.7: loadActions() returns an ENVELOPE {type, actions|error} —
+       NOT the actions object. The old direct shape (actions.confirm)
+       broke the live retry with "actions.confirm is not a function".
+       redirect:"if_required" keeps card payments on-page (no return_url
+       on the session) so the confirmation popup can show. */
     form.on("confirm",async(event)=>{
       try{
-        const actions=await checkout.loadActions();
-        await actions.confirm({formConfirmEvent:event});
+        const result=await checkout.loadActions();
+        if(!result||result.type!=="success")throw new Error((result&&result.error&&result.error.message)||"Could not load payment actions");
+        await result.actions.confirm({formConfirmEvent:event,redirect:"if_required"});
         await finalizeStripePayment();
       }catch(e){showMsg("Payment didn't go through: "+esc((e&&e.message)||"card declined or incomplete")+". Check your details and try again — a failed attempt doesn't charge you.")}
     });
@@ -1608,11 +1633,35 @@ async function finalizeStripePayment(){
       o.paid=true;o.awaitingPayment=false;
       const li=orders.findIndex(x=>x.number===o.number);
       if(li>=0){orders[li].paid=true;orders[li].awaitingPayment=false;save(LS.orders,orders)}
-      stripeForm=null;coData.confirmed=true;renderCheckout();toast("Payment received — "+o.number);return;
+      stripeForm=null;coData.confirmed=true;renderCheckout();toast("Payment received — "+o.number);showPaidPopup(o);return;
     }
     if(msg){msg.style.display="block";msg.innerHTML=unverified}
   }catch(e){if(msg){msg.style.display="block";msg.innerHTML=unverified}}
 }
+/* v9.7.7: animated Payment completed popup — shown ONLY after
+   finalizeStripePayment() verifies the payment with our backend
+   (never on actions.confirm alone, never when finalize is unverified).
+   "View order details" / X / tap-outside dismisses it to reveal the
+   full confirmation screen already rendered underneath. */
+function showPaidPopup(o){
+  let pop=document.querySelector("#paidPop");
+  if(!pop){
+    pop=document.createElement("div");
+    pop.id="paidPop";pop.className="paid-pop";pop.setAttribute("role","dialog");pop.setAttribute("aria-label","Payment completed");
+    document.body.appendChild(pop);
+    pop.addEventListener("click",e=>{if(e.target===pop)hidePaidPopup()});
+  }
+  pop.innerHTML=`<div class="paid-pop-card"><button class="paid-pop-x" id="ppClose" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+    <div class="paid-pop-check"><div class="paid-pop-glow"></div><svg viewBox="0 0 72 72" aria-hidden="true"><circle class="pp-ring" cx="36" cy="36" r="32"/><path class="pp-tick" d="M22 37l10 10 18-20"/></svg></div>
+    <h2>Payment completed</h2><p>Your order has been confirmed</p>
+    <div class="paid-pop-num">${esc(o.number)}</div>
+    <button class="btn solid" id="ppDetails" style="width:100%">View order details</button></div>`;
+  pop.classList.add("show");
+  const done=()=>hidePaidPopup();
+  pop.querySelector("#ppClose").onclick=done;
+  pop.querySelector("#ppDetails").onclick=done;
+}
+function hidePaidPopup(){const p=document.querySelector("#paidPop");if(p)p.classList.remove("show")}
 const ART_EXT=/\.(pdf|ai|eps|png|jpe?g|tiff?|svg)$/i;
 const ART_MAX=25*1024*1024, ART_MAX_COUNT=10;
 
