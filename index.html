@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.8 (2026-11-18) — PROMO CODES: admin-managed codes (percent or fixed $ off, full catalog or selected products), applied in the cart, animated confirmation, server-validated; CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-B; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-C; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -696,6 +696,8 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 .promo-box input{flex:1;min-width:0;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:999px;padding:9px 14px;color:var(--ink);font-size:13.5px;text-transform:uppercase}
 .promo-box input::placeholder{text-transform:none}
 .promo-err{display:none;margin:8px 2px 0;font-size:12.5px;color:#ff8fa8}
+.promo-note{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;padding:9px 12px;border-radius:12px;background:rgba(255,176,32,.1);border:1px solid rgba(255,176,32,.45);color:#ffcf7d;font-size:12.5px;font-weight:600}
+.promo-note button{background:none;border:none;color:#ffcf7d;font-size:15px;cursor:pointer;padding:2px 6px;line-height:1}
 .promo-applied{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;background:rgba(47,227,107,.1);border:1px solid rgba(47,227,107,.35);color:#7dffb0;font-size:13.5px;font-weight:600}
 .promo-applied button{background:none;border:none;color:#7dffb0;font-size:16px;cursor:pointer;padding:2px 6px;line-height:1}
 .trow.promo-line{color:#7dffb0;font-weight:600}
@@ -1534,6 +1536,7 @@ let cart = load(LS.cart, []);
 let promos = load("vd_promos_v1", []);
 if(!Array.isArray(promos)) promos=[];
 let appliedPromoCode = load("vd_promo_applied_v1", "") || "";
+let promoDropNote="";
 let orders = load(LS.orders, []);
 let activeCat = "All", searchQ = "";
 let pmState = null; // {product, rungIdx, opts:{}, gi:0}
@@ -1594,7 +1597,25 @@ function stripeReady(){return stripePk().indexOf("pk_")===0}
 function cartDepositSplit(){const pc=promoCalc();const lines=promoLineCents();let dueC=0,balC=0;cart.forEach((c,i)=>{const p=products.find(x=>x.id===c.pid);if(!p)return;const dl=Math.max(0,lines[i]-(pc.shares[i]||0));const pct=Number(p.depositPct)||0;if(pct>0){const d=Math.round(dl*pct/100);dueC+=d;balC+=dl-d}else{dueC+=dl}});return{due:dueC/100,balance:balC/100}}
 function dueTodayFor(pm){if(pm==="stripe")return cartDiscountedTotal();if(pm==="stripe-deposit")return cartDepositSplit().due;return 0}
 /* ================= v9.7.8: PROMO CODES ================= */
-/* A promo: {code, type:"percent"|"fixed", value, scope:"all"|"products", products:[ids], active:true, expires:"" (YYYY-MM-DD or "")} */
+/* v9.7.9: a promo applies to ONE product at ONE quantity rung:
+   {code, type:"percent"|"fixed", value, pid, rung (qty label, e.g. "1,000 cards"),
+   active:true, expires:"" (YYYY-MM-DD or "")}. A cart line matches when its
+   product id AND its rung qty label both match. Legacy v9.7.8 promos
+   (scope:"all"/"products", no pid/rung) can never match — re-create them
+   with a product + quantity. */
+function promoLineMatches(promo,c){
+  if(!promo||!promo.pid||!promo.rung) return false;
+  if(c.pid!==promo.pid) return false;
+  const pr=products.find(x=>x.id===c.pid); if(!pr) return false;
+  const r=pr.rungs[c.rung]||pr.rungs[0];
+  return String(r.qty)===String(promo.rung);
+}
+function promoScopeLabel(p){
+  if(!p||!p.pid||!p.rung) return "";
+  const pr=products.find(x=>x.id===p.pid);
+  return (pr?pr.name:p.pid)+" — "+p.rung;
+}
+function promoScopeSuffix(code){const pp=promoFind(code);const sl=pp?promoScopeLabel(pp):"";return sl?` (${sl})`:""}
 function promoFind(code){const c=String(code||"").trim().toUpperCase();return promos.find(p=>String(p.code||"").toUpperCase()===c)||null}
 function promoIsExpired(p){if(!p||!p.expires)return false;const t=new Date();const today=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,"0")}-${String(t.getDate()).padStart(2,"0")}`;return String(p.expires)<today}
 function promoStatus(p){if(!p)return "";if(p.active===false)return "Inactive";if(promoIsExpired(p))return "Expired";return "Active"}
@@ -1603,7 +1624,7 @@ function promoValidate(code){
   if(!p)return{ok:false,reason:"not found"};
   if(p.active===false)return{ok:false,reason:"inactive"};
   if(promoIsExpired(p))return{ok:false,reason:"expired"};
-  if(p.scope==="products"&&Array.isArray(p.products)&&p.products.length&&!cart.some(c=>p.products.includes(c.pid)))return{ok:false,reason:"no items in scope"};
+  if(!cart.some(c=>promoLineMatches(p,c)))return{ok:false,reason:"no items in scope"};
   return{ok:true,promo:p};
 }
 function promoLineCents(){return cart.map(c=>{const p=products.find(x=>x.id===c.pid);if(!p)return 0;const r=p.rungs[c.rung]||p.rungs[0];return Math.round(Math.max(0,r.price-(c.disc||0))*100)*c.qty})}
@@ -1619,7 +1640,7 @@ function promoCalc(){
   const v=promoValidate(appliedPromoCode);
   if(!v.ok)return{...none,code:String(appliedPromoCode).toUpperCase(),reason:v.reason};
   const p=v.promo,lines=promoLineCents(),totalCents=lines.reduce((a,b)=>a+b,0);
-  const eligIdx=lines.map((lc,i)=>{if(lc<=0)return -1;if(p.scope==="products"&&Array.isArray(p.products)&&p.products.length&&!p.products.includes(cart[i].pid))return -1;return i}).filter(i=>i>=0);
+  const eligIdx=lines.map((lc,i)=>{if(lc<=0)return -1;if(!promoLineMatches(p,cart[i]))return -1;return i}).filter(i=>i>=0);
   const eligCents=eligIdx.reduce((a,i)=>a+lines[i],0);
   if(eligCents<=0)return{...none,code:p.code,reason:"no items in scope"};
   let promoCents=p.type==="percent"?Math.round(eligCents*Math.max(0,Math.min(100,Number(p.value)||0))/100):Math.min(Math.round(Number(p.value||0)*100),eligCents);
@@ -2035,12 +2056,17 @@ function renderCart(){
   $$("#cartItems [data-dec]").forEach(b=>b.onclick=()=>{const c=cart[+b.dataset.dec];c.qty--;if(c.qty<1)cart.splice(+b.dataset.dec,1);save(LS.cart,cart);renderCart()});
   $$("#cartItems [data-rm]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.rm,1);save(LS.cart,cart);renderCart()});
   const st=cartSubtotal();
-  const pc=promoCalc();
+  let pc=promoCalc();
+  /* v9.7.9: if the cart no longer has a line matching the applied code
+     (quantity changed, item removed), the promo drops off with a note —
+     a discount must NEVER apply to a non-matching line. */
+  if(!cart.length&&appliedPromoCode){appliedPromoCode="";saveAppliedPromo();pc=promoCalc()}
+  else if(appliedPromoCode&&!pc.valid&&pc.reason==="no items in scope"){promoDropNote=appliedPromoCode;appliedPromoCode="";saveAppliedPromo();pc=promoCalc()}
   const discTotal=Math.max(0,st-pc.discountCents/100);
   renderPromoSlot(pc);
   $("#cartSub").textContent=money(st); $("#cartTotal").textContent=money(discTotal);
   const pr=$("#promoRow");
-  if(pr){const show=pc.valid&&pc.discountCents>0;pr.style.display=show?"":"none";if(show){$("#promoRowLabel").textContent="Promo "+pc.code;$("#promoRowAmt").textContent="−"+money(pc.discountCents/100)}}
+  if(pr){const show=pc.valid&&pc.discountCents>0;pr.style.display=show?"":"none";if(show){$("#promoRowLabel").textContent="Promo "+pc.code+" ("+promoScopeLabel(pc.promo)+")";$("#promoRowAmt").textContent="−"+money(pc.discountCents/100)}}
   $("#checkoutBtn").disabled=!cart.length;
 }
 /* v9.7.8: promo entry lives in the CART only (quantities are chosen here).
@@ -2048,18 +2074,21 @@ function renderCart(){
 function renderPromoSlot(pc){
   const slot=$("#promoSlot"); if(!slot) return;
   if(!cart.length){slot.innerHTML="";return}
+  const note=promoDropNote?`<div class="promo-note" id="promoNote"><span>Promo ${esc(promoDropNote)} no longer applies to the items in your cart — it was removed.</span><button id="promoNoteX" aria-label="Dismiss">✕</button></div>`:"";
   if(pc.valid&&pc.discountCents>0){
-    slot.innerHTML=`<div class="promo-applied"><span>Promo ${esc(pc.code)} applied</span><span style="display:flex;align-items:center;gap:2px">−${money(pc.discountCents/100)}<button id="promoRemove" aria-label="Remove promo code">✕</button></span></div>`;
+    slot.innerHTML=note+`<div class="promo-applied"><span>Promo ${esc(pc.code)} applied</span><span style="display:flex;align-items:center;gap:2px">−${money(pc.discountCents/100)}<button id="promoRemove" aria-label="Remove promo code">✕</button></span></div>`;
     $("#promoRemove").onclick=()=>{removePromo()};
   }else{
-    slot.innerHTML=`<div class="promo-box"><div class="promo-row"><input id="promoInput" placeholder="Promo code" autocomplete="off" maxlength="24" aria-label="Promo code"><button class="mini go" id="promoApply" style="padding:9px 18px">Apply</button></div><div class="promo-err" id="promoErr"></div></div>`;
+    slot.innerHTML=note+`<div class="promo-box"><div class="promo-row"><input id="promoInput" placeholder="Promo code" autocomplete="off" maxlength="24" aria-label="Promo code"><button class="mini go" id="promoApply" style="padding:9px 18px">Apply</button></div><div class="promo-err" id="promoErr"></div></div>`;
     $("#promoApply").onclick=applyPromoFromCart;
     $("#promoInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();applyPromoFromCart()}});
   }
+  const nx=$("#promoNoteX"); if(nx)nx.onclick=()=>{promoDropNote="";renderCart()};
 }
 function bumpTotals(){const t=$("#cartTotal");if(t){t.classList.remove("total-bump");void t.offsetWidth;t.classList.add("total-bump")}}
 function applyPromoFromCart(){
   const inp=$("#promoInput"); if(!inp) return;
+  promoDropNote="";
   const code=inp.value.trim().toUpperCase();
   const err=$("#promoErr");
   const showErr=m=>{if(err){err.textContent=m;err.style.display=m?"block":"none"}};
@@ -2071,13 +2100,13 @@ function applyPromoFromCart(){
   if(!calc.valid||calc.discountCents<=0){appliedPromoCode="";showErr("That code doesn't apply to the items in your cart.");renderCart();return}
   saveAppliedPromo();renderCart();bumpTotals();showPromoPop(v.promo,calc.discountCents/100);
 }
-function removePromo(){appliedPromoCode="";saveAppliedPromo();renderCart();bumpTotals()}
+function removePromo(){appliedPromoCode="";promoDropNote="";saveAppliedPromo();renderCart();bumpTotals()}
 let promoTimer=null;
 function showPromoPop(promo,savedAmt){
   const pop=$("#promoPop"),card=$("#promoCard"); if(!pop) return;
   $("#promoBadge").textContent="−"+money(savedAmt);
   $("#promoTitle").textContent="Promo Applied!";
-  $("#promoText").innerHTML=`<b>${esc(promo.code)} applied</b> — you saved ${money(savedAmt)} on this order.`;
+  $("#promoText").innerHTML=`<b>${esc(promo.code)} applied</b> — you saved ${money(savedAmt)} on ${esc(promoScopeLabel(promo)||"this order")}.`;
   card.querySelectorAll(".reward-spark").forEach(s=>s.remove());
   for(let i=0;i<14;i++){const s=document.createElement("span");s.className="reward-spark";const ang=Math.random()*Math.PI*2,d=90+Math.random()*130;s.style.setProperty("--sx",Math.cos(ang)*d+"px");s.style.setProperty("--sy",Math.sin(ang)*d+"px");s.style.left="50%";s.style.top="38%";card.appendChild(s)}
   pop.classList.add("show");
@@ -2128,7 +2157,7 @@ function confirmHTML(o){
   <div class="order-num">${esc(o.number)}</div><br>${status}
   <div style="text-align:left;margin-top:22px">
   <div class="review-box"><div class="rh">Your order</div><div class="rb">${items}
-    ${o.promoCode&&o.promoDiscount>0?`<div><span>Promo ${esc(o.promoCode)}</span><b style="color:#7dffb0">−${money(o.promoDiscount)}</b></div>`:""}
+    ${o.promoCode&&o.promoDiscount>0?`<div><span>Promo ${esc(o.promoCode)}${esc(promoScopeSuffix(o.promoCode))}</span><b style="color:#7dffb0">−${money(o.promoDiscount)}</b></div>`:""}
     <div style="border-top:1px solid rgba(77,157,255,.14);margin-top:8px;padding-top:10px"><span>Order total</span><b>${money(o.total)}</b></div>
     ${dep?`<div><span>Paid today (deposit)</span><b style="color:#7dffb0">${money(o.dueToday||0)}</b></div><div><span>Balance due before production</span><b>${money(o.balanceDue)}</b></div>`:`<div><span>Payment</span><b style="color:#7dffb0">Paid in full</b></div>`}</div></div>
   <div class="review-box"><div class="rh">Ship to</div><div class="rb">${esc(o.name)}<br>${esc(o.addr)}<br>${esc(o.email)} • ${esc(o.phone)}</div></div>
@@ -2240,7 +2269,7 @@ function renderCheckout(){
     box.innerHTML=`<h2>Review Order</h2><p class="co-sub">Order <b>${esc(coData.orderNumber)}</b> — one last look before it goes to the studio.</p>
     <div class="review-box"><div class="rh">Items (${cartQty()})</div><div class="rb">${rows}
       <div style="border-top:1px solid rgba(77,157,255,.14);margin-top:8px;padding-top:10px"><span>Shipping</span><b style="color:#7dffb0">FREE</b></div>
-      ${pc3.valid&&pc3.discountCents>0?`<div><span>Promo ${esc(pc3.code)}</span><b style="color:#7dffb0">−${money(pc3.discountCents/100)}</b></div>`:""}
+      ${pc3.valid&&pc3.discountCents>0?`<div><span>Promo ${esc(pc3.code)}${esc(promoScopeSuffix(pc3.code))}</span><b style="color:#7dffb0">−${money(pc3.discountCents/100)}</b></div>`:""}
       <div><span>Order total</span><b>${money(stDisc)}</b></div>
       ${coData.payMethod==="stripe-deposit"?`<div><span><b>Due today (deposit)</b></span><b style="font-size:18px">${money(dep3.due)}</b></div><div><span>Balance due later</span><b>${money(dep3.balance)}</b></div>`:`<div><span><b>Due today</b></span><b style="font-size:18px">${money(dueToday3)}</b></div>`}</div></div>
     <div class="review-box"><div class="rh">Ship To</div><div class="rb">${esc(coData.name)}${coData.co?" — "+esc(coData.co):""}<br>${esc(coData.addr)}, ${esc(coData.city)} ${esc(coData.zip)}<br>${esc(coData.email)} • ${esc(coData.phone)}${coData.design?'<br><b style="color:var(--blue-bright)">Design service requested</b>':""}${coData.notes?`<br><span style="color:var(--ink-faint)">Notes: ${esc(coData.notes)}</span>`:""}</div></div>
@@ -2366,7 +2395,7 @@ async function placeOrder(){
      if the sheet has no Promo Code / Discount columns yet. */
   const pcOrder=promoCalc();
   if(pcOrder.valid&&pcOrder.discountCents>0){
-    order.notes=((order.notes||"")+" [Promo "+pcOrder.code+": −"+money(pcOrder.discountCents/100)+"]").trim();
+    order.notes=((order.notes||"")+" [Promo "+pcOrder.code+": −"+money(pcOrder.discountCents/100)+" on "+promoScopeLabel(pcOrder.promo)+"]").trim();
   }
   // try backend
   const backend=load(LS.backend,DEFAULT_BACKEND);
@@ -2622,12 +2651,12 @@ function renderAdminPromos(){
   const rows=promos.map(p=>{
     const st=promoStatus(p);
     const badgeCls=st==="Active"?"paid":st==="Expired"?"later":"wait";
-    const scopeTxt=p.scope==="products"?("Selected products ("+((p.products||[]).length)+")"):"Full catalog";
+    const scopeTxt=promoScopeLabel(p)||"Legacy scope \u2014 edit to set a product + quantity";
     const valTxt=p.type==="percent"?p.value+"% off":"$"+Number(p.value).toFixed(2)+" off";
     return `<div class="arow"><div class="ai"><div><b>${esc(p.code)}</b> <span class="paybadge ${badgeCls}">${st}</span><small>${valTxt} \u2022 ${scopeTxt}${p.expires?` \u2022 Expires ${esc(p.expires)}`:" \u2022 No expiry"}</small></div></div>
     <div class="abtns"><button class="mini" data-pedit="${esc(p.code)}">Edit</button><button class="mini" data-ptoggle="${esc(p.code)}">${p.active===false?"Activate":"Deactivate"}</button><button class="mini danger" data-pdel="${esc(p.code)}">Delete</button></div></div>`}).join("");
   box.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Promo Codes (${promos.length})</h3><button class="mini go" id="newPromo">+ Add Promo Code</button></div>
-  <p class="hint" style="margin-bottom:16px">Codes apply in the cart and sync live to every visitor. A promo never takes an order below $1.00 \u2014 if the discount would, it is capped so the order total stays at $1.00 (Stripe cannot create a $0 payment session).</p>
+  <p class="hint" style="margin-bottom:16px">Each code applies to ONE product at ONE quantity \u2014 e.g. 10% off 1,000 Business Cards. It only works when the cart has that exact product and quantity; other quantities of the same product pay full price. Codes apply in the cart and sync live to every visitor. A promo never takes an order below $1.00 \u2014 if the discount would, it is capped so the order total stays at $1.00 (Stripe cannot create a $0 payment session).</p>
   ${rows||'<p class="hint">No promo codes yet \u2014 add your first one above.</p>'}<div id="promoFormWrap"></div>`;
   $("#newPromo").onclick=()=>{promoEditing=null;renderPromoForm()};
   $$("#ap-promos [data-pedit]").forEach(b=>b.onclick=()=>{promoEditing=b.dataset.pedit;renderPromoForm()});
@@ -2635,27 +2664,23 @@ function renderAdminPromos(){
   $$("#ap-promos [data-pdel]").forEach(b=>b.onclick=()=>{if(confirm("Delete promo code "+b.dataset.pdel+"?")){promos=promos.filter(x=>String(x.code).toUpperCase()!==String(b.dataset.pdel).toUpperCase());if(appliedPromoCode&&appliedPromoCode.toUpperCase()===String(b.dataset.pdel).toUpperCase()){appliedPromoCode="";saveAppliedPromo();renderCart()}savePromos();renderAdminPromos();pushSync().then(live=>syncToast(live,"Promo code deleted \u2014 live for everyone"))}});
 }
 function renderPromoForm(){
-  const p=promoEditing?promoFind(promoEditing):{code:"",type:"percent",value:10,scope:"all",products:[],active:true,expires:""};
+  const p=promoEditing?promoFind(promoEditing):{code:"",type:"percent",value:10,pid:"",rung:"",active:true,expires:""};
   const w=$("#promoFormWrap"); if(!w) return;
-  const scopeAll=p.scope!=="products";
+  const fillPromoRungs=(selPid,selRung)=>{const pr=products.find(x=>x.id===selPid)||products[0];const rs=$("#pf_rung");if(!rs||!pr)return;rs.innerHTML=pr.rungs.map(r=>`<option value="${esc(r.qty)}" ${(selRung||"")===r.qty?"selected":""}>${esc(r.qty)} \u2014 ${money(r.price)}</option>`).join("")};
   w.innerHTML=`<div style="margin-top:20px;padding:24px;border-radius:20px;background:rgba(4,7,17,.6);border:1px solid rgba(77,157,255,.2)">
   <h3 style="margin-bottom:18px">${promoEditing?"Edit":"New"} Promo Code</h3>
   <div class="pform">
     <div class="field"><label>Code *</label><input id="pf_code" value="${esc(p.code)}" placeholder="e.g. SAVE10" style="text-transform:uppercase" ${promoEditing?"disabled":""}><p class="hint">Letters and numbers only \u2014 customers type it in the cart.</p></div>
     <div class="field"><label>Type *</label><select id="pf_type"><option value="percent" ${p.type==="percent"?"selected":""}>Percent off</option><option value="fixed" ${p.type==="fixed"?"selected":""}>Fixed $ off</option></select></div>
-    <div class="field"><label>Value *</label><input id="pf_value" type="number" min="1" step="any" value="${esc(p.value)}"><p class="hint">Percent: 1\u2013100. Fixed: dollars off the order.</p></div>
+    <div class="field"><label>Value *</label><input id="pf_value" type="number" min="1" step="any" value="${esc(p.value)}"><p class="hint">Percent: 1\u2013100. Fixed: dollars off that product and quantity.</p></div>
     <div class="field"><label>Active</label><select id="pf_active"><option value="1" ${p.active!==false?"selected":""}>Active</option><option value="0" ${p.active===false?"selected":""}>Inactive</option></select></div>
     <div class="field"><label>Expiry date (optional)</label><input id="pf_expires" type="date" value="${esc(p.expires||"")}"><p class="hint">Leave empty for no expiry. The code stops working after this date.</p></div>
-    <div class="field full"><label>Applies to</label>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px">
-        <label class="checkline" style="margin:0"><input type="radio" name="pf_scope" value="all" ${scopeAll?"checked":""}><span>Full catalog \u2014 all products</span></label>
-        <label class="checkline" style="margin:0"><input type="radio" name="pf_scope" value="products" ${!scopeAll?"checked":""}><span>Selected products</span></label>
-      </div>
-      <div id="pf_scopeList" style="display:${scopeAll?"none":"block"}">${products.map(pr=>`<label class="checkline" style="margin:0 0 6px"><input type="checkbox" data-pfpid="${pr.id}" ${((p.products||[]).includes(pr.id))?"checked":""}><span>${esc(pr.name)}</span></label>`).join("")}</div>
-    </div>
+    <div class="field"><label>Product *</label><select id="pf_pid">${products.map(pr=>`<option value="${pr.id}" ${p.pid===pr.id?"selected":""}>${esc(pr.name)}</option>`).join("")}</select><p class="hint">The code only works on this product.</p></div>
+    <div class="field"><label>Quantity *</label><select id="pf_rung"></select><p class="hint">The exact quantity the code applies to \u2014 e.g. 1,000 cards. Other quantities of the same product pay full price.</p></div>
   </div>
   <div class="co-nav"><button class="mini go" id="pf_save" style="padding:12px 30px;font-size:14px">Save Promo Code</button><button class="mini" id="pf_cancel">Cancel</button></div></div>`;
-  $$("input[name=pf_scope]").forEach(r=>r.onchange=()=>{$("#pf_scopeList").style.display=document.querySelector("input[name=pf_scope]:checked").value==="products"?"block":"none"});
+  $("#pf_pid").onchange=()=>fillPromoRungs($("#pf_pid").value,"");
+  fillPromoRungs(p.pid||(products[0]&&products[0].id)||"",p.rung||"");
   $("#pf_cancel").onclick=()=>{w.innerHTML=""};
   $("#pf_save").onclick=()=>{
     const code=(promoEditing||$("#pf_code").value.trim().toUpperCase());
@@ -2664,10 +2689,12 @@ function renderPromoForm(){
     const type=$("#pf_type").value;
     const value=Number($("#pf_value").value);
     if(!(value>0)||(type==="percent"&&value>100)){toast(type==="percent"?"Percent must be 1\u2013100":"Value must be more than 0");return}
-    const scope=document.querySelector("input[name=pf_scope]:checked").value;
-    const sel=scope==="products"?$$("#pf_scopeList [data-pfpid]:checked").map(c=>c.dataset.pfpid):[];
-    if(scope==="products"&&!sel.length){toast("Pick at least one product, or choose Full catalog");return}
-    const rec={code,type,value,scope,products:sel,active:$("#pf_active").value==="1",expires:$("#pf_expires").value||""};
+    const pid=$("#pf_pid").value;
+    const pr=products.find(x=>x.id===pid);
+    if(!pr){toast("Pick a product");return}
+    const rung=$("#pf_rung").value;
+    if(!rung||!pr.rungs.some(r=>String(r.qty)===rung)){toast("Pick a quantity");return}
+    const rec={code,type,value,pid,rung,active:$("#pf_active").value==="1",expires:$("#pf_expires").value||""};
     if(promoEditing){const i=promos.findIndex(x=>String(x.code).toUpperCase()===String(promoEditing).toUpperCase());if(i>=0)promos[i]=rec;}
     else promos.push(rec);
     promoEditing=null;savePromos();renderAdminPromos();pushSync().then(live=>syncToast(live,"Promo code saved \u2014 live for everyone"));
@@ -2736,7 +2763,7 @@ function renderPForm(){
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
 const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
-const EXPECTED_BACKEND="2026-11-18-B"; /* WebsiteBackend.gs version this page was built for */
+const EXPECTED_BACKEND="2026-11-18-C"; /* WebsiteBackend.gs version this page was built for */
 function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
 function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringify({msg:String(msg).slice(0,220),at:Date.now()}))}catch(e){}}
 function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
