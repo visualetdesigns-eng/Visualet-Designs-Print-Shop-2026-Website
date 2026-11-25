@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-C; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -690,12 +690,29 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 .reward-card h3{font-size:23px;margin-bottom:10px;background:linear-gradient(120deg,#5cf79a,#2fe36b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .reward-card p{color:var(--ink-soft);font-size:14.5px;line-height:1.55}
 .reward-card p b{color:#5cf79a}
+/* v9.7.10: promo popup — staged reveal (badge pop -> check draw -> headline
+   -> savings -> policy line), spring easing, breathing glow. Scoped to
+   #promoCard so the reward popup keeps its own animation. */
+#promoCard .promo-policy{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--ink-soft);line-height:1.5}
+#promoPop.show #promoCard{animation:promocard .55s cubic-bezier(.2,1.5,.3,1) backwards,promoglow 2.4s ease-in-out 1.2s infinite}
+@keyframes promocard{from{transform:scale(.55) rotate(-5deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+@keyframes promoglow{0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.06),0 30px 90px rgba(0,0,0,.7),0 0 60px rgba(47,227,107,.22),0 0 90px rgba(28,77,255,.14)}50%{box-shadow:0 0 0 1px rgba(255,255,255,.06),0 30px 90px rgba(0,0,0,.7),0 0 90px rgba(47,227,107,.35),0 0 130px rgba(28,77,255,.22)}}
+#promoPop.show #promoCard .reward-badge{animation:promobadge .5s cubic-bezier(.2,1.8,.35,1) .05s backwards,rewardbob 2.2s ease-in-out 1s infinite backwards}
+@keyframes promobadge{from{transform:translateX(-50%) scale(0) rotate(-8deg);opacity:0}to{transform:translateX(-50%) scale(1) rotate(-2deg);opacity:1}}
+#promoPop.show #promoCard .reward-check{animation:rewardpop .45s cubic-bezier(.2,1.8,.35,1) .3s backwards}
+#promoPop.show #promoCard .reward-check svg path{stroke-dasharray:24;stroke-dashoffset:24;animation:checkdraw .45s ease-out .55s forwards}
+@keyframes checkdraw{to{stroke-dashoffset:0}}
+#promoPop.show #promoCard h3{animation:promofade .45s ease .75s backwards}
+#promoPop.show #promoCard #promoText{animation:promofade .45s ease .9s backwards}
+#promoPop.show #promoCard .promo-policy{animation:promofade .5s ease 1.05s backwards}
+@keyframes promofade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 /* v9.7.8: promo codes — cart entry + applied line + totals bump */
 .promo-box{margin:2px 0 12px;padding:12px;border-radius:14px;background:rgba(77,157,255,.06);border:1px dashed rgba(77,157,255,.35)}
 .promo-box .promo-row{display:flex;gap:8px}
 .promo-box input{flex:1;min-width:0;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:999px;padding:9px 14px;color:var(--ink);font-size:13.5px;text-transform:uppercase}
 .promo-box input::placeholder{text-transform:none}
 .promo-err{display:none;margin:8px 2px 0;font-size:12.5px;color:#ff8fa8}
+.promo-hint{margin:8px 2px 0;font-size:12px;color:var(--ink-faint);line-height:1.45}
 .promo-note{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;padding:9px 12px;border-radius:12px;background:rgba(255,176,32,.1);border:1px solid rgba(255,176,32,.45);color:#ffcf7d;font-size:12.5px;font-weight:600}
 .promo-note button{background:none;border:none;color:#ffcf7d;font-size:15px;cursor:pointer;padding:2px 6px;line-height:1}
 .promo-applied{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;background:rgba(47,227,107,.1);border:1px solid rgba(47,227,107,.35);color:#7dffb0;font-size:13.5px;font-weight:600}
@@ -1362,6 +1379,7 @@ section{overflow-x:clip}
   <div class="reward-check"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></svg></div>
   <h3 id="promoTitle">Promo Applied!</h3>
   <p id="promoText"></p>
+  <p id="promoPolicy" class="promo-policy"></p>
 </div></div>
 
 <!-- LIGHTBOX -->
@@ -1537,6 +1555,7 @@ let promos = load("vd_promos_v1", []);
 if(!Array.isArray(promos)) promos=[];
 let appliedPromoCode = load("vd_promo_applied_v1", "") || "";
 let promoDropNote="";
+let rewardDropNote=""; // v9.7.10: shown when a promo strips the artwork reward
 let orders = load(LS.orders, []);
 let activeCat = "All", searchQ = "";
 let pmState = null; // {product, rungIdx, opts:{}, gi:0}
@@ -1629,8 +1648,9 @@ function promoValidate(code){
 }
 function promoLineCents(){return cart.map(c=>{const p=products.find(x=>x.id===c.pid);if(!p)return 0;const r=p.rungs[c.rung]||p.rungs[0];return Math.round(Math.max(0,r.price-(c.disc||0))*100)*c.qty})}
 /* The promo math — MUST match the backend's validatePromo_/computeStripeDue_ exactly:
-   reward discounts apply first (already inside the line cents); the promo then
-   applies to the remaining eligible subtotal (percent = % of it, fixed = $ off it),
+   v9.7.10 no-stack: reward discounts are stripped from the lines BEFORE this
+   runs (see stripArtworkRewards), so the promo applies to the full eligible
+   subtotal (percent = % of it, fixed = $ off it),
    and never takes an order below $1.00 total. The discount is spread across the
    eligible lines proportionally (round per line, last eligible line takes the
    remainder) so the deposit split can run on discounted lines. */
@@ -1652,6 +1672,11 @@ function promoCalc(){
 function cartDiscountedTotal(){return Math.max(0,Math.round(cartSubtotal()*100)-promoCalc().discountCents)/100}
 function saveAppliedPromo(){save("vd_promo_applied_v1",appliedPromoCode||"")}
 function savePromos(){save("vd_promos_v1",promos)}
+/* v9.7.10: the $20 print-ready artwork discount and a promo code never
+   combine (order-level rule). A promo is active when a code is applied
+   and still valid for the current cart. */
+function promoActive(){return !!appliedPromoCode&&promoCalc().valid}
+function stripArtworkRewards(){let removed=false;cart.forEach(c=>{if((c.disc||0)>0){c.disc=0;removed=true}});if(removed)save(LS.cart,cart);return removed}
 let stripeForm=null,stripeMounting=false;
 /* Mount the Stripe embedded form for the saved order (step 4). The backend
    creates the session and returns the client secret — the secret key never
@@ -1979,6 +2004,10 @@ function renderPmArt(){
   const box=$("#pmArt"); if(!box) return;
   const p=pmState.product;
   if(!isBizCard(p)){box.innerHTML="";return}
+  /* v9.7.10: while a promo code is active the artwork reward option is
+     REMOVED entirely (not greyed out) — the customer never sees it.
+     Removing the promo brings it back. */
+  if(promoActive()){box.innerHTML="";return}
   const a=pmState.art;
   const slot=s=>{
     const f=a[s];
@@ -2002,7 +2031,7 @@ function renderPmArt(){
 }
 function checkArtReward(){
   const a=pmState.art;
-  if(a.front&&a.back&&!pmState.reward){pmState.reward=true;updatePmPrice();showRewardPop()}
+  if(a.front&&a.back&&!pmState.reward&&!promoActive()){pmState.reward=true;updatePmPrice();showRewardPop()}
   else updatePmPrice();
 }
 let rewardTimer=null;
@@ -2018,7 +2047,7 @@ function showRewardPop(){
   if(rewardTimer)clearTimeout(rewardTimer);
   rewardTimer=setTimeout(()=>pop.classList.remove("show"),3400);
 }
-$("#pmAdd").onclick=()=>{ const s=pmState; const base=s.product.rungs[s.rungIdx].price; const disc=s.reward?Math.min(20,base):0;
+$("#pmAdd").onclick=()=>{ const s=pmState; const base=s.product.rungs[s.rungIdx].price; const disc=(s.reward&&!promoActive())?Math.min(20,base):0;
   addToCart(s.product.id, s.rungIdx, {...s.opts}, 1, disc, s.reward?{front:s.art.front,back:s.art.back}:null);
   closeModal("pModal"); openCart(); };
 </script>
@@ -2047,7 +2076,7 @@ function renderCart(){
     const optStr=Object.entries(c.opts||{}).map(([k,v])=>`${k}: ${v}`).join(" • ");
     return `<div class="citem"><img src="${esc(p.img)}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div><div class="cn">${esc(p.name)}</div><div class="cd">${esc(r.qty)}${optStr?" • "+esc(optStr):""}</div>
-      ${c.disc?`<div class="cd" style="color:#7dffb0">✓ Print-ready art attached — ${money(c.disc)} reward</div>`:""}
+      ${c.art?`<div class="cd" style="color:#7dffb0">✓ Print-ready art attached${c.disc?` — ${money(c.disc)} reward`:""}</div>`:""}
       <div class="cr"><span class="qty"><button data-dec="${i}" aria-label="Decrease">−</button><b>${c.qty}</b><button data-inc="${i}" aria-label="Increase">+</button></span>
       <span class="cp">${money(Math.max(0,r.price-(c.disc||0))*c.qty)}</span></div>
       <button class="rm" data-rm="${i}">Remove</button></div></div>`;
@@ -2055,6 +2084,11 @@ function renderCart(){
   $$("#cartItems [data-inc]").forEach(b=>b.onclick=()=>{cart[+b.dataset.inc].qty++;save(LS.cart,cart);renderCart()});
   $$("#cartItems [data-dec]").forEach(b=>b.onclick=()=>{const c=cart[+b.dataset.dec];c.qty--;if(c.qty<1)cart.splice(+b.dataset.dec,1);save(LS.cart,cart);renderCart()});
   $$("#cartItems [data-rm]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.rm,1);save(LS.cart,cart);renderCart()});
+  /* v9.7.10: promo + artwork reward never stack — a valid promo strips the
+     reward from every cart line (artwork files stay attached for production).
+     Silent here (boot/sync state); the user-facing note is set by
+     applyPromoFromCart when the customer applies the code. */
+  if(appliedPromoCode){const pv=promoValidate(appliedPromoCode);if(pv.ok)stripArtworkRewards()}
   const st=cartSubtotal();
   let pc=promoCalc();
   /* v9.7.9: if the cart no longer has a line matching the applied code
@@ -2075,20 +2109,22 @@ function renderPromoSlot(pc){
   const slot=$("#promoSlot"); if(!slot) return;
   if(!cart.length){slot.innerHTML="";return}
   const note=promoDropNote?`<div class="promo-note" id="promoNote"><span>Promo ${esc(promoDropNote)} no longer applies to the items in your cart — it was removed.</span><button id="promoNoteX" aria-label="Dismiss">✕</button></div>`:"";
+  const rnote=rewardDropNote?`<div class="promo-note" id="rewardNote"><span>The $20 print-ready artwork discount doesn't apply with a promo code — it was removed.</span><button id="rewardNoteX" aria-label="Dismiss">✕</button></div>`:"";
   if(pc.valid&&pc.discountCents>0){
-    slot.innerHTML=note+`<div class="promo-applied"><span>Promo ${esc(pc.code)} applied</span><span style="display:flex;align-items:center;gap:2px">−${money(pc.discountCents/100)}<button id="promoRemove" aria-label="Remove promo code">✕</button></span></div>`;
+    slot.innerHTML=note+rnote+`<div class="promo-applied"><span>Promo ${esc(pc.code)} applied</span><span style="display:flex;align-items:center;gap:2px">−${money(pc.discountCents/100)}<button id="promoRemove" aria-label="Remove promo code">✕</button></span></div><div class="promo-hint" id="promoAppliedHint">One promo code per order — remove this code to use a different one.</div>`;
     $("#promoRemove").onclick=()=>{removePromo()};
   }else{
-    slot.innerHTML=note+`<div class="promo-box"><div class="promo-row"><input id="promoInput" placeholder="Promo code" autocomplete="off" maxlength="24" aria-label="Promo code"><button class="mini go" id="promoApply" style="padding:9px 18px">Apply</button></div><div class="promo-err" id="promoErr"></div></div>`;
+    slot.innerHTML=note+rnote+`<div class="promo-box"><div class="promo-row"><input id="promoInput" placeholder="Promo code" autocomplete="off" maxlength="24" aria-label="Promo code"><button class="mini go" id="promoApply" style="padding:9px 18px">Apply</button></div><div class="promo-err" id="promoErr"></div><div class="promo-hint" id="promoHint">One promo code per order. Print-ready discount is not eligible with a promo code.</div></div>`;
     $("#promoApply").onclick=applyPromoFromCart;
     $("#promoInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();applyPromoFromCart()}});
   }
   const nx=$("#promoNoteX"); if(nx)nx.onclick=()=>{promoDropNote="";renderCart()};
+  const rx=$("#rewardNoteX"); if(rx)rx.onclick=()=>{rewardDropNote="";renderCart()};
 }
 function bumpTotals(){const t=$("#cartTotal");if(t){t.classList.remove("total-bump");void t.offsetWidth;t.classList.add("total-bump")}}
 function applyPromoFromCart(){
   const inp=$("#promoInput"); if(!inp) return;
-  promoDropNote="";
+  promoDropNote=""; rewardDropNote="";
   const code=inp.value.trim().toUpperCase();
   const err=$("#promoErr");
   const showErr=m=>{if(err){err.textContent=m;err.style.display=m?"block":"none"}};
@@ -2096,23 +2132,34 @@ function applyPromoFromCart(){
   const v=promoValidate(code);
   if(!v.ok){showErr(v.reason==="expired"?"That code has expired.":v.reason==="inactive"?"That code isn't active right now.":v.reason==="no items in scope"?"That code doesn't apply to the items in your cart.":"That code isn't valid.");return}
   appliedPromoCode=v.promo.code;
+  /* v9.7.10: applying a promo strips the artwork reward from every line —
+     the two discounts never stack. Snapshot first so a failed apply can
+     restore the rewards. */
+  const discSnap=cart.map(c=>c.disc||0);
+  const hadReward=stripArtworkRewards();
   const calc=promoCalc();
-  if(!calc.valid||calc.discountCents<=0){appliedPromoCode="";showErr("That code doesn't apply to the items in your cart.");renderCart();return}
-  saveAppliedPromo();renderCart();bumpTotals();showPromoPop(v.promo,calc.discountCents/100);
+  if(!calc.valid||calc.discountCents<=0){appliedPromoCode="";cart.forEach((c,i)=>{c.disc=discSnap[i]});save(LS.cart,cart);saveAppliedPromo();showErr("That code doesn't apply to the items in your cart.");renderCart();return}
+  if(hadReward)rewardDropNote=appliedPromoCode;
+  saveAppliedPromo();renderCart();bumpTotals();showPromoPop(v.promo,calc.discountCents/100,hadReward);
 }
-function removePromo(){appliedPromoCode="";promoDropNote="";saveAppliedPromo();renderCart();bumpTotals()}
+function removePromo(){appliedPromoCode="";promoDropNote="";rewardDropNote="";saveAppliedPromo();renderCart();bumpTotals()}
 let promoTimer=null;
-function showPromoPop(promo,savedAmt){
+function showPromoPop(promo,savedAmt,rewardRemoved){
   const pop=$("#promoPop"),card=$("#promoCard"); if(!pop) return;
   $("#promoBadge").textContent="−"+money(savedAmt);
   $("#promoTitle").textContent="Promo Applied!";
   $("#promoText").innerHTML=`<b>${esc(promo.code)} applied</b> — you saved ${money(savedAmt)} on ${esc(promoScopeLabel(promo)||"this order")}.`;
+  /* v9.7.11: the popup states BOTH promo rules plainly, every time —
+     one code per order, and no combining with the artwork discount. */
+  $("#promoPolicy").textContent=rewardRemoved?"Your $20 print-ready artwork discount was removed — print-ready discount is not eligible with a promo code. Only one promo code can be used per order.":"Only one promo code can be used per order. Print-ready discount is not eligible with a promo code.";
   card.querySelectorAll(".reward-spark").forEach(s=>s.remove());
   for(let i=0;i<14;i++){const s=document.createElement("span");s.className="reward-spark";const ang=Math.random()*Math.PI*2,d=90+Math.random()*130;s.style.setProperty("--sx",Math.cos(ang)*d+"px");s.style.setProperty("--sy",Math.sin(ang)*d+"px");s.style.left="50%";s.style.top="38%";card.appendChild(s)}
+  /* v9.7.10: restart the staged reveal on every show (remove + reflow + add). */
+  pop.classList.remove("show");void pop.offsetWidth;
   pop.classList.add("show");
   pop.onclick=()=>{pop.classList.remove("show");if(promoTimer){clearTimeout(promoTimer);promoTimer=null}};
   if(promoTimer)clearTimeout(promoTimer);
-  promoTimer=setTimeout(()=>pop.classList.remove("show"),3400);
+  promoTimer=setTimeout(()=>pop.classList.remove("show"),5000); /* v9.7.11: 5s (was 4.2s) — the policy area now carries both rules */
 }
 function openCart(){closeAll();$("#overlay").classList.add("show");$("#cartDrawer").classList.add("show");document.body.style.overflow="hidden"}
 $("#cartBtn").onclick=openCart;
@@ -2763,7 +2810,7 @@ function renderPForm(){
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
 const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
-const EXPECTED_BACKEND="2026-11-18-C"; /* WebsiteBackend.gs version this page was built for */
+const EXPECTED_BACKEND="2026-11-18-D"; /* WebsiteBackend.gs version this page was built for */
 function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
 function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringify({msg:String(msg).slice(0,220),at:Date.now()}))}catch(e){}}
 function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
