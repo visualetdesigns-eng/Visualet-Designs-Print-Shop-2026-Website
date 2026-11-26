@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.14 (2026-11-25) — iOS BLUR GLITCH FIX (CSS only, no JS logic or math changed): live backdrop blur removed from every large/scrolling/full-screen surface (modal sheet, cart drawer, chat panel, mobile menu + veil, lightbox, reward/paid popups, modal overlay) and replaced with near-opaque solid glass at the same darkness; checkout steps header fully opaque so scrolled content can never ghost through it; scrollbars locked inside popup bounds (scrollbar-track margins clear the corner curves at every scroll position); small static glass (header bar, chat FAB, badges, pills) keeps its blur; behavior unchanged from v9.7.13; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.13 (2026-11-25) — POSITIONING + POLISH + PERFORMANCE (CSS/layout only, no JS logic or math changed): checkout steps header sticky while the form scrolls with clear space so the close button never overlaps the progress track; modal/drawer/chat scrollbars restyled to the site glass design (WebKit + Firefox, thumb inset from rounded corners); modal max-height fallback; full positioning sweep (no horizontal overflow, 44px tap targets); behavior unchanged from v9.7.12; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.16 (2026-11-25) — ASK VISUALET SMARTER BOT (no AI — rule-based, answers from the live catalog): product questions answered about THAT product with real rung prices; quantity follow-ups ("how much for 500?", "the bigger one?") resolve against the last product/rung discussed; short 1–3 sentence replies, no canned walls; name + last product remembered in-session; honest text-us fallback (951-806-1586) instead of guessing — never invents prices or policies; test/temp products never quoted; hero "Print Products" stat now counts the live catalog; checkout/promo/deposit/confirmation logic untouched from v9.7.15; pairs with WebsiteBackend 2026-11-18-E (unchanged); v9.7.15 (2026-11-25) — POST-PAYMENT CONFIRMATION FIX: payment verification now polls with retries (Apple Pay/wallet confirms resolve before Stripe's session payment_status flips — the old single-shot check stranded paid customers on the "couldn't confirm" fallback); confirm() result inspected (declines no longer misreported as accepted); "Payment confirmed" popup auto-advances to a full thank-you screen (order number at top, order details, Track Your Order, Download Invoice, email-sent note); unverified fallback is a real next-steps screen, never a dead end; pairs with WebsiteBackend 2026-11-18-E ($1-floor amount parity fix so a paid session can never fail verification on amount); v9.7.14 (2026-11-25) — iOS BLUR GLITCH FIX (CSS only, no JS logic or math changed): live backdrop blur removed from every large/scrolling/full-screen surface (modal sheet, cart drawer, chat panel, mobile menu + veil, lightbox, reward/paid popups, modal overlay) and replaced with near-opaque solid glass at the same darkness; checkout steps header fully opaque so scrolled content can never ghost through it; scrollbars locked inside popup bounds (scrollbar-track margins clear the corner curves at every scroll position); small static glass (header bar, chat FAB, badges, pills) keeps its blur; behavior unchanged from v9.7.13; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.13 (2026-11-25) — POSITIONING + POLISH + PERFORMANCE (CSS/layout only, no JS logic or math changed): checkout steps header sticky while the form scrolls with clear space so the close button never overlaps the progress track; modal/drawer/chat scrollbars restyled to the site glass design (WebKit + Firefox, thumb inset from rounded corners); modal max-height fallback; full positioning sweep (no horizontal overflow, 44px tap targets); behavior unchanged from v9.7.12; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -778,6 +778,11 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 .paid-pop-card h2{font-family:'Space Grotesk';font-size:27px;margin:0 0 8px}
 .paid-pop-card p{color:var(--ink-soft);margin:0 0 6px;line-height:1.55}
 .paid-pop-num{font-family:'Space Grotesk';font-size:20px;font-weight:700;letter-spacing:.5px;color:var(--blue-bright);margin:14px 0 20px}
+/* v9.7.15: invoice overlay (popup-blocked fallback for Download Invoice) */
+.inv-overlay{position:fixed;inset:0;z-index:3100;display:none;flex-direction:column;background:rgba(3,6,14,.92);padding:14px}
+.inv-overlay.show{display:flex}
+.inv-overlay-bar{display:flex;gap:10px;justify-content:flex-end;margin-bottom:12px}
+.inv-overlay iframe{flex:1;width:100%;border:none;border-radius:14px;background:#eef1f8}
 @media(max-width:560px){.paid-pop-card{padding:32px 20px 26px}.paid-pop-card h2{font-size:24px}.paid-pop-check,.paid-pop-check svg{width:88px;height:88px}}
 
 .copyrow{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
@@ -1089,7 +1094,7 @@ section{overflow-x:clip}
         <a href="#track" class="btn">Track My Order</a>
       </div>
       <div class="hero-stats reveal in">
-        <div class="hstat"><b data-count="13">0</b><span>Print Products</span></div>
+        <div class="hstat"><b id="statProducts" data-count="14">0</b><span>Print Products</span></div>
         <div class="hstat"><b data-count="2500" data-suffix="+">0</b><span>Cards Printed</span></div>
         <div class="hstat"><b data-count="7" data-prefix="~" data-suffix=" days">0</b><span>Max Turnaround</span></div>
       </div>
@@ -1732,33 +1737,95 @@ async function mountStripeForm(force){
        returnUrl". The URL points back here with ?order=<number>&paid=1;
        handlePaidReturn() re-opens the order when the customer lands back. */
     form.on("confirm",async(event)=>{
+      /* v9.7.15: loadActions failing means confirm() never ran — no charge
+         is possible, so the friendly error is safe immediately. Once
+         confirm() itself has run, a charge MAY exist even if it errors or
+         throws (network drop after submission), so the backend is asked
+         before the customer is told anything. */
+      let actions;
       try{
         const result=await checkout.loadActions();
         if(!result||result.type!=="success")throw new Error((result&&result.error&&result.error.message)||"Could not load payment actions");
-        const returnUrl=window.location.origin+window.location.pathname+"?order="+encodeURIComponent(o.number)+"&paid=1";
-        await result.actions.confirm({formConfirmEvent:event,redirect:"if_required",returnUrl});
-        await finalizeStripePayment();
-      }catch(e){console.error("Stripe confirm failed:",e);showMsg("Payment didn't go through: "+friendlyPayError(e))}
+        actions=result.actions;
+      }catch(e){console.error("Stripe confirm failed:",e);showMsg("Payment didn't go through: "+friendlyPayError(e));return}
+      const returnUrl=window.location.origin+window.location.pathname+"?order="+encodeURIComponent(o.number)+"&paid=1";
+      let cr=null, confirmErr=null;
+      try{ cr=await actions.confirm({formConfirmEvent:event,redirect:"if_required",returnUrl}); }
+      catch(e){ confirmErr=e; }
+      /* actions.confirm() RESOLVES with {type:'error'} for declines and
+         validation problems — it does not throw (Stripe Dahlia form SDK;
+         the form also shows its own localized message). Inspect the
+         result: an error means the payment did not complete, so verify
+         once with the backend (in case the charge landed anyway) before
+         showing the friendly error. */
+      if(confirmErr||(cr&&cr.type==="error")){
+        const errObj=confirmErr||cr.error;
+        console.error("Stripe confirm error:",errObj);
+        stripeConfirming();
+        const paidAnyway=await verifyPaidWithRetry(o.number,coData.stripeSessionId,o.email,10000);
+        if(paidAnyway){paymentConfirmedUI(o);return}
+        stripeLoadClear();
+        showMsg("Payment didn't go through: "+friendlyPayError(errObj));
+        return;
+      }
+      await finalizeStripePayment();
     });
   }catch(e){stripeLoadClear();console.error("mountStripeForm failed:",e);showMsg("Secure payment couldn't start. Your order is saved — tap Retry payment.");showRetry()}
   finally{stripeMounting=false}
 }
+/* v9.7.15: "Confirming your payment…" state shown while the backend
+   verification poll runs — lives in #stripeLoad like the other Stripe
+   loading UI (never mixed with the #stripeMsg error box). */
+function stripeConfirming(){
+  const host=$("#stripeLoad");if(!host)return;
+  const cf=$("#checkout-form");if(cf)cf.style.display="none";
+  host.innerHTML=`<div class="stripe-load"><div class="stripe-load-logo"><div class="stripe-glow"></div><img class="stripe-load-img" src="images/stripe-logo.png" alt="Stripe — secure payments" onerror="this.style.display='none'"></div><p class="stripe-load-status">Confirming your payment…</p><p class="stripe-load-sub">Your payment was submitted — we're verifying it with Stripe. Please don't pay again.</p><div class="stripe-load-bar"><i></i></div></div>`;
+  host.style.display="block";
+}
+/* v9.7.15: verify a payment with OUR backend — WITH RETRIES. Wallet
+   confirms (Apple Pay / Google Pay) resolve the moment payment is
+   submitted, but Stripe's session payment_status can lag a beat behind,
+   so the old single check landed paid customers on the "couldn't
+   confirm" fallback (live failure 2026-11-25). Poll every 2s until the
+   budget runs out; the track lookup is checked too because the webhook
+   may mark the order paid first. Returns true only when the backend
+   confirms PAID. */
+async function verifyPaidWithRetry(orderNumber,sessionId,email,budgetMs){
+  const backend=load(LS.backend,DEFAULT_BACKEND);
+  if(!backend||!orderNumber) return false;
+  const deadline=Date.now()+(budgetMs||45000);
+  while(true){
+    try{
+      const j=await postBackend(backend,{action:"confirmStripePayment",orderNumber,sessionId},12000);
+      if(j&&j.ok&&j.paid) return true;
+    }catch(e){}
+    try{
+      const r=await fetch(backend+"?action=track&number="+encodeURIComponent(orderNumber)+"&email="+encodeURIComponent(String(email||"").toLowerCase()));
+      const tj=await r.json();
+      if(tj&&tj.order&&tj.order.paid) return true;
+    }catch(e){}
+    if(Date.now()>=deadline) return false;
+    await new Promise(res=>setTimeout(res,2000));
+  }
+}
+/* Single success path: mark paid locally, render the thank-you screen,
+   and play the Payment confirmed popup over it. */
+function paymentConfirmedUI(o){
+  o.paid=true;o.awaitingPayment=false;
+  const li=orders.findIndex(x=>x.number===o.number);
+  if(li>=0){orders[li].paid=true;orders[li].awaitingPayment=false;save(LS.orders,orders)}
+  stripeForm=null;coData.confirmed=true;renderCheckout();toast("Payment received — "+o.number);showPaidPopup(o);
+}
 /* After the form confirms, verify with OUR backend (it re-checks the session
-   with Stripe) before calling the order paid — the webhook is the backup. */
+   with Stripe) before calling the order paid — the webhook is the backup.
+   v9.7.15: polls with retries (see verifyPaidWithRetry); the fallback is a
+   proper next-steps screen, shown only after every retry fails. */
 async function finalizeStripePayment(){
-  const o=coData.order;const msg=$("#stripeMsg");
-  const unverified="Your card was accepted, but we couldn't confirm it on our side yet — please don't pay again. We'll verify it and email your receipt. Order <b>"+esc(o.number)+"</b>.";
-  try{
-    const backend=load(LS.backend,DEFAULT_BACKEND);
-    const j=await postBackend(backend,{action:"confirmStripePayment",orderNumber:o.number,sessionId:coData.stripeSessionId},30000);
-    if(j&&j.ok&&j.paid){
-      o.paid=true;o.awaitingPayment=false;
-      const li=orders.findIndex(x=>x.number===o.number);
-      if(li>=0){orders[li].paid=true;orders[li].awaitingPayment=false;save(LS.orders,orders)}
-      stripeForm=null;coData.confirmed=true;renderCheckout();toast("Payment received — "+o.number);showPaidPopup(o);return;
-    }
-    if(msg){msg.style.display="block";msg.innerHTML=unverified}
-  }catch(e){if(msg){msg.style.display="block";msg.innerHTML=unverified}}
+  const o=coData.order;
+  stripeConfirming();
+  const paid=await verifyPaidWithRetry(o.number,coData.stripeSessionId,o.email,45000);
+  if(paid){paymentConfirmedUI(o);return}
+  coData.payUnverified=true;renderCheckout();
 }
 /* v9.7.8: customer-facing payment errors — the raw SDK/backend message goes
    to console.error only, never to the screen. */
@@ -1794,17 +1861,16 @@ async function handlePaidReturn(){
           const so=j.order;
           order=Object.assign({},order,{paid:!!so.paid,awaitingPayment:!!so.awaitingPayment,status:so.status||order.status,stripeSession:so.stripeSession||"",balanceDue:Number(so.balanceDue)||order.balanceDue||0});
           /* If the sheet still says unpaid but Stripe holds a session,
-             re-verify once directly (the webhook can lag the redirect) so
-             the customer is not asked to pay twice. */
+             re-verify directly — with retries (v9.7.15; the webhook and
+             Stripe's payment_status can both lag the redirect) so the
+             customer is not asked to pay twice. */
           if(!order.paid&&order.stripeSession){
-            try{
-              const vj=await postBackend(backend,{action:"confirmStripePayment",orderNumber:num,sessionId:order.stripeSession},30000);
-              if(vj&&vj.ok&&vj.paid){
-                order.paid=true;order.awaitingPayment=false;
-                const li=orders.findIndex(x=>String(x.number).toUpperCase()===num);
-                if(li>=0){orders[li].paid=true;orders[li].awaitingPayment=false;save(LS.orders,orders)}
-              }
-            }catch(e){}
+            const vPaid=await verifyPaidWithRetry(num,order.stripeSession,order.email,20000);
+            if(vPaid){
+              order.paid=true;order.awaitingPayment=false;
+              const li=orders.findIndex(x=>String(x.number).toUpperCase()===num);
+              if(li>=0){orders[li].paid=true;orders[li].awaitingPayment=false;save(LS.orders,orders)}
+            }
           }
         }
       }catch(e){}
@@ -1824,26 +1890,32 @@ else handlePaidReturn();
    finalizeStripePayment() verifies the payment with our backend
    (never on actions.confirm alone, never when finalize is unverified).
    "View order details" / X / tap-outside dismisses it to reveal the
-   full confirmation screen already rendered underneath. */
+   full confirmation screen already rendered underneath.
+   v9.7.15: heading is "Payment confirmed" and the popup auto-advances
+   to the thank-you screen after ~3s (manual dismiss still works). If
+   the customer closed the checkout modal while verification was
+   running, "View order details" re-opens it on the thank-you screen. */
+let ppTimer=null;
 function showPaidPopup(o){
   let pop=document.querySelector("#paidPop");
   if(!pop){
     pop=document.createElement("div");
-    pop.id="paidPop";pop.className="paid-pop";pop.setAttribute("role","dialog");pop.setAttribute("aria-label","Payment completed");
+    pop.id="paidPop";pop.className="paid-pop";pop.setAttribute("role","dialog");pop.setAttribute("aria-label","Payment confirmed");
     document.body.appendChild(pop);
     pop.addEventListener("click",e=>{if(e.target===pop)hidePaidPopup()});
   }
   pop.innerHTML=`<div class="paid-pop-card"><button class="paid-pop-x" id="ppClose" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
     <div class="paid-pop-check"><div class="paid-pop-glow"></div><svg viewBox="0 0 72 72" aria-hidden="true"><circle class="pp-ring" cx="36" cy="36" r="32"/><path class="pp-tick" d="M22 37l10 10 18-20"/></svg></div>
-    <h2>Payment completed</h2><p>Your order has been confirmed</p>
+    <h2>Payment confirmed</h2><p>Your order has been confirmed</p>
     <div class="paid-pop-num">${esc(o.number)}</div>
     <button class="btn solid" id="ppDetails" style="width:100%">View order details</button></div>`;
   pop.classList.add("show");
-  const done=()=>hidePaidPopup();
-  pop.querySelector("#ppClose").onclick=done;
-  pop.querySelector("#ppDetails").onclick=done;
+  if(ppTimer)clearTimeout(ppTimer);
+  ppTimer=setTimeout(()=>hidePaidPopup(),3500);
+  pop.querySelector("#ppClose").onclick=()=>hidePaidPopup();
+  pop.querySelector("#ppDetails").onclick=()=>{hidePaidPopup();const m=$("#coModal");if(m&&!m.classList.contains("show"))openModal("coModal")};
 }
-function hidePaidPopup(){const p=document.querySelector("#paidPop");if(p)p.classList.remove("show")}
+function hidePaidPopup(){if(ppTimer){clearTimeout(ppTimer);ppTimer=null}const p=document.querySelector("#paidPop");if(p)p.classList.remove("show")}
 const ART_EXT=/\.(pdf|ai|eps|png|jpe?g|tiff?|svg)$/i;
 const ART_MAX=25*1024*1024, ART_MAX_COUNT=10;
 
@@ -1882,6 +1954,17 @@ function productCard(p){
       <button class="addbtn" data-view="${p.id}"><svg class="ic"><use href="#i-eye"/></svg>Customize</button></div>
     </div></article>`;
 }
+/* v9.7.16: hero "Print Products" stat counts the LIVE catalog (was hardcoded 13) */
+function syncHeroStat(){
+  try{
+    const el=document.getElementById("statProducts"); if(!el) return;
+    const n=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false).length;
+    if(!n) return;
+    el.dataset.count=String(n);
+    const cur=parseInt(String(el.textContent).replace(/[^0-9]/g,""),10);
+    if(!isNaN(cur)&&cur>0) el.textContent=String(n); /* counter already ran — keep the number true */
+  }catch(e){}
+}
 function renderGrid(){
   const list = products.filter(p=>p.active!==false)
     .filter(p=>activeCat==="All"||p.cat===activeCat)
@@ -1906,7 +1989,7 @@ function renderGrid(){
     card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
     const vb=card.querySelector("[data-view]"); if(vb) vb.addEventListener("click",e=>{e.stopPropagation();openProduct(vb.dataset.view)});
   });
-  initReveals(); initTilt();
+  initReveals(); initTilt(); syncHeroStat();
 }
 $("#searchInput").addEventListener("input",e=>{searchQ=e.target.value.trim().toLowerCase();renderGrid()});
 
@@ -2191,26 +2274,32 @@ function cartHasLogo(){try{return cart.some(c=>{const p=products.find(x=>x.id===
 function artItemHTML(f,i){return `<div class="artitem"><svg class="ic"><use href="#i-box"/></svg><span class="an">${esc(f.name)}</span><small>${fmtSize(f.size)}</small><button class="rm" data-rmart="${i}" aria-label="Remove ${esc(f.name)}">✕</button></div>`}
 function addArtFiles(list){for(const f of list){if(!ART_EXT.test(f.name)){toast(`"${f.name}" isn't a supported file type`);continue}if(f.size>ART_MAX){toast(`"${f.name}" is over 25MB — please compress it and try again`);continue}if(coData.artFiles.length>=ART_MAX_COUNT){toast(`Up to ${ART_MAX_COUNT} files per order`);break}if(coData.artFiles.some(x=>x.name===f.name&&x.size===f.size))continue;coData.artFiles.push({file:f,name:f.name,size:f.size,type:f.type})}}
 
-/* v9.7.6: dedicated post-payment confirmation screen — a customer-facing
-   order summary, NOT an invoice or payment receipt. Shown automatically
+/* v9.7.6: dedicated post-payment confirmation screen. Shown automatically
    after finalizeStripePayment() succeeds; the step-4 "Order Received!"
-   view underneath stays as the fallback state. */
+   view underneath stays as the fallback state.
+   v9.7.15 (user's exact spec): order number prominent at the TOP, then
+   "Your order has been successfully placed." / "Thank you. Your order has
+   been received.", full order details, Track Your Order + Download Invoice
+   buttons, and the confirmation-email note. This screen renders ONLY for
+   a backend-confirmed PAID order, so the email note is always truthful
+   (markPaidOnce_ sends it when the order is marked paid). */
 function confirmHTML(o){
-  const first=(coData.name||o.name||"").split(" ")[0]||"there";
   const items=(o.items||[]).map(it=>`<div><span>${it.qty} × ${esc(it.name)}<br><small style="color:var(--ink-faint)">${esc(it.rung||"")}${it.opts?Object.entries(it.opts).map(([k,v])=>`, ${esc(k)}: ${esc(v)}`).join(""):""}</small></span><b>${money(it.line)}</b></div>`).join("");
   const dep=o.balanceDue>0;
   const status=dep
     ?`<span class="oc-status"><svg class="ic"><use href="#i-check"/></svg>Deposit paid — ${money(o.dueToday||0)}</span>`
     :`<span class="oc-status"><svg class="ic"><use href="#i-check"/></svg>Paid in full — ${money(o.dueToday||o.total)}</span>`;
   return `<div class="confirm"><div class="big-check"><svg class="ic"><use href="#i-check"/></svg></div>
-  <h2>Thank you, ${esc(first)}!</h2>
-  <p>Your payment went through and your order is with the studio. We will be in touch about your design proof.</p>
-  <div class="order-num">${esc(o.number)}</div><br>${status}
+  <div class="order-num">${esc(o.number)}</div>
+  <h2>Your order has been successfully placed.</h2>
+  <p>Thank you. Your order has been received.</p>
+  ${status}
   <div style="text-align:left;margin-top:22px">
   <div class="review-box"><div class="rh">Your order</div><div class="rb">${items}
     ${o.promoCode&&o.promoDiscount>0?`<div><span>Promo ${esc(o.promoCode)}${esc(promoScopeSuffix(o.promoCode))}</span><b style="color:#7dffb0">−${money(o.promoDiscount)}</b></div>`:""}
     <div style="border-top:1px solid rgba(77,157,255,.14);margin-top:8px;padding-top:10px"><span>Order total</span><b>${money(o.total)}</b></div>
-    ${dep?`<div><span>Paid today (deposit)</span><b style="color:#7dffb0">${money(o.dueToday||0)}</b></div><div><span>Balance due before production</span><b>${money(o.balanceDue)}</b></div>`:`<div><span>Payment</span><b style="color:#7dffb0">Paid in full</b></div>`}</div></div>
+    ${dep?`<div><span>Paid today (deposit)</span><b style="color:#7dffb0">${money(o.dueToday||0)}</b></div><div><span>Balance due before production</span><b>${money(o.balanceDue)}</b></div>`:`<div><span>Payment</span><b style="color:#7dffb0">Paid in full</b></div>`}
+    <div><span>Payment method</span><b>Stripe — secure card payment</b></div></div></div>
   <div class="review-box"><div class="rh">Ship to</div><div class="rb">${esc(o.name)}<br>${esc(o.addr)}<br>${esc(o.email)} • ${esc(o.phone)}</div></div>
   <div class="review-box"><div class="rh">What happens next</div><div class="rb"><div class="oc-next">
     <div><svg class="ic"><use href="#i-design"/></svg><b>Design proof</b>We prepare your artwork</div>
@@ -2218,9 +2307,80 @@ function confirmHTML(o){
     <div><svg class="ic"><use href="#i-print"/></svg><b>Production</b>Your job goes on the press</div>
     <div><svg class="ic"><use href="#i-truck"/></svg><b>Shipping</b>Free shipping, tracked to you</div>
   </div></div></div>
-  <p class="hint">Save your order number <b>${esc(o.number)}</b> — you can track your order anytime. Questions? Text us at <b>951-806-1586</b>.</p>
+  <p class="hint"><svg class="ic"><use href="#i-mail"/></svg> A confirmation email has been sent to <b>${esc(o.email)}</b> with your order details. Save your order number <b>${esc(o.number)}</b> — you can track your order anytime. Questions? Text us at <b>951-806-1586</b>.</p>
   </div>
-  <div class="co-nav" style="justify-content:center"><button class="btn solid" id="ocTrack">Track My Order</button><button class="btn ghost" data-close="coModal">Continue Shopping</button></div></div>`;
+  <div class="co-nav" style="justify-content:center"><button class="btn solid" id="ocTrack">Track Your Order</button><button class="btn ghost" id="ocInvoice">Download Invoice</button><button class="btn ghost" data-close="coModal">Continue Shopping</button></div></div>`;
+}
+/* v9.7.15: client-side printable invoice, generated from the order data
+   (no backend dependency). Opens a print-ready invoice in a new window
+   with a Print / Save PDF button; if the popup is blocked, the same
+   invoice renders in an on-page overlay instead. */
+function invoiceHTML(o){
+  const d=o.date?new Date(o.date):new Date();
+  const dateStr=isNaN(d)?"":d.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+  const rows=(o.items||[]).map(it=>`<tr><td>${it.qty} × ${esc(it.name)}${it.rung?` <span style="color:#5b6478">(${esc(it.rung)})</span>`:""}</td><td style="text-align:right;white-space:nowrap">${money(it.line)}</td></tr>`).join("");
+  const dep=o.balanceDue>0;
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Invoice ${esc(o.number)} — Visualet Designs</title>
+<style>
+  *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#141a2e;background:#eef1f8;padding:24px 12px}
+  .inv{max-width:680px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(10,16,40,.18)}
+  .inv-head{background:#070a16;color:#fff;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .inv-head img{width:190px;max-width:60%;height:auto;display:block}
+  .inv-head .tag{font-size:11px;letter-spacing:3px;color:#9db4e8;margin-top:6px}
+  .inv-title{text-align:right}.inv-title h1{margin:0;font-size:26px;letter-spacing:2px}.inv-title p{margin:4px 0 0;color:#c6d4f5;font-size:13px}
+  .inv-body{padding:24px 28px}
+  .inv-meta{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:18px;font-size:14px;line-height:1.6}
+  .inv-meta h3{margin:0 0 4px;font-size:11px;letter-spacing:2px;color:#5b6478;text-transform:uppercase}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{text-align:left;font-size:11px;letter-spacing:2px;color:#5b6478;text-transform:uppercase;padding:8px 0;border-bottom:2px solid #141a2e}
+  td{padding:10px 0;border-bottom:1px solid #e3e8f4}
+  .tot td{border-bottom:none;padding:5px 0}.tot .grand td{border-top:2px solid #141a2e;font-size:17px;font-weight:700;padding-top:10px}
+  .paid{color:#0a8a3d;font-weight:700}
+  .inv-foot{padding:16px 28px;background:#f4f6fc;font-size:12.5px;color:#5b6478;line-height:1.6;text-align:center}
+  .printbar{max-width:680px;margin:0 auto 14px;text-align:right}
+  .printbar button{background:#1c4dff;color:#fff;border:none;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer}
+  @media print{body{background:#fff;padding:0}.inv{box-shadow:none;border-radius:0;max-width:none}.printbar{display:none}}
+</style></head><body>
+<div class="printbar"><button onclick="window.print()">Print / Save PDF</button></div>
+<div class="inv">
+  <div class="inv-head"><div><img src="https://visualetdesigns.com/logo.png" alt="Visualet Designs" onerror="this.style.display='none'"><div class="tag">DESIGN • PRINT • BRANDING</div></div>
+  <div class="inv-title"><h1>INVOICE</h1><p>Order ${esc(o.number)}${dateStr?`<br>${esc(dateStr)}`:""}</p></div></div>
+  <div class="inv-body">
+    <div class="inv-meta">
+      <div><h3>Billed to</h3>${esc(o.name)}<br>${esc(o.email)}<br>${esc(o.phone)}</div>
+      <div><h3>Ship to</h3>${esc(o.name)}<br>${esc(o.addr)}</div>
+      <div><h3>Payment</h3>Stripe — secure card payment<br><span class="paid">${dep?"Deposit paid":"Paid in full"}</span></div>
+    </div>
+    <table><tr><th>Item</th><th style="text-align:right">Amount</th></tr>${rows}
+    ${o.promoCode&&o.promoDiscount>0?`<tr class="tot"><td>Promo ${esc(o.promoCode)}</td><td style="text-align:right">−${money(o.promoDiscount)}</td></tr>`:""}
+    <tr class="tot"><td>Shipping</td><td style="text-align:right">FREE</td></tr>
+    <tr class="tot grand"><td>Order total</td><td style="text-align:right">${money(o.total)}</td></tr>
+    ${dep?`<tr class="tot"><td>Paid today (deposit)</td><td style="text-align:right" class="paid">${money(o.dueToday||0)}</td></tr><tr class="tot"><td>Balance due before production</td><td style="text-align:right">${money(o.balanceDue)}</td></tr>`:`<tr class="tot"><td>Paid today</td><td style="text-align:right" class="paid">${money(o.dueToday||o.total)}</td></tr>`}
+    </table>
+  </div>
+  <div class="inv-foot">Thank you for your order — Visualet Designs • visualetdesigns.com • Call or text 951-806-1586<br>Track your order anytime at visualetdesigns.com with order number ${esc(o.number)}.</div>
+</div>
+<script>setTimeout(function(){try{window.print()}catch(e){}},500);<\/script>
+</body></html>`;
+}
+function downloadInvoice(o){
+  const html=invoiceHTML(o);
+  let w=null;
+  try{ w=window.open("","_blank"); }catch(e){}
+  if(w){ try{ w.document.open(); w.document.write(html); w.document.close(); return; }catch(e){} }
+  /* Popup blocked — same invoice in an on-page overlay. */
+  let ov=document.querySelector("#invOverlay");
+  if(!ov){
+    ov=document.createElement("div");
+    ov.id="invOverlay";ov.className="inv-overlay";
+    ov.innerHTML=`<div class="inv-overlay-bar"><button class="btn solid" id="invPrint">Print / Save PDF</button><button class="btn ghost" id="invClose">Close</button></div><iframe id="invFrame" title="Invoice"></iframe>`;
+    document.body.appendChild(ov);
+    ov.querySelector("#invClose").onclick=()=>ov.classList.remove("show");
+    ov.querySelector("#invPrint").onclick=()=>{const f=ov.querySelector("#invFrame");try{f.contentWindow.focus();f.contentWindow.print()}catch(e){}};
+    ov.addEventListener("click",e=>{if(e.target===ov)ov.classList.remove("show")});
+  }
+  ov.querySelector("#invFrame").srcdoc=html;
+  ov.classList.add("show");
 }
 function renderCheckout(){
   const box=$("#coBody"), st=cartSubtotal(), stDisc=cartDiscountedTotal(), pc3=promoCalc();
@@ -2361,6 +2521,21 @@ function renderCheckout(){
     if(coData.confirmed&&o&&o.paid){
       box.innerHTML=confirmHTML(o);
       const oct=$("#ocTrack");if(oct)oct.onclick=()=>{closeAll();document.querySelector("#track").scrollIntoView({behavior:"smooth"});$("#trackNum").value=o.number;$("#trackEmail").value=o.email;doTrack()};
+      const oci=$("#ocInvoice");if(oci)oci.onclick=()=>downloadInvoice(o);
+      $$("#coBody [data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+      return;
+    }
+    /* v9.7.15: last-resort screen after every verification retry failed —
+       order number up top, clear next steps, working Track button. The
+       Stripe form is NOT remounted here (no double-pay risk). */
+    if(coData.payUnverified&&o&&!o.paid){
+      box.innerHTML=`<div class="confirm"><div class="big-check"><svg class="ic"><use href="#i-clock"/></svg></div>
+      <div class="order-num">${esc(o.number)}</div>
+      <h2>Payment received — confirming</h2>
+      <p>Your card was accepted, but we couldn't confirm it on our side yet — please don't pay again. We'll verify it and email your receipt.</p>
+      <div class="pay-panel"><h3 style="justify-content:flex-start">${payIcon("i-check","lt")}What happens next</h3><p>We verify every payment with Stripe before production. Once yours is verified — usually within a few minutes — your confirmation email goes out and your job enters the studio queue. Questions? Text us at <b>951-806-1586</b> with your order number <b>${esc(o.number)}</b>.</p></div>
+      <div class="co-nav" style="justify-content:center"><button class="btn solid" id="goTrack">Track My Order</button><button class="btn ghost" data-close="coModal">Continue Shopping</button></div></div>`;
+      $("#goTrack").onclick=()=>{closeAll();document.querySelector("#track").scrollIntoView({behavior:"smooth"});$("#trackNum").value=o.number;$("#trackEmail").value=o.email;doTrack()};
       $$("#coBody [data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
       return;
     }
@@ -2814,7 +2989,7 @@ function renderPForm(){
 
 /* ============ LIVE SYNC — admin edits go live for every visitor ============ */
 const LS_SYNC={updated:"vd_sync_updated_v1",dirty:"vd_sync_dirty_v1",err:"vd_sync_error_v1",pass:"vd_sync_pass_v1"};
-const EXPECTED_BACKEND="2026-11-18-D"; /* WebsiteBackend.gs version this page was built for */
+const EXPECTED_BACKEND="2026-11-18-E"; /* WebsiteBackend.gs version this page was built for */
 function markSyncDirty(){try{localStorage.setItem(LS_SYNC.dirty,"1")}catch(e){}}
 function recordSyncError(msg){try{localStorage.setItem(LS_SYNC.err,JSON.stringify({msg:String(msg).slice(0,220),at:Date.now()}))}catch(e){}}
 function clearSyncError(){try{localStorage.removeItem(LS_SYNC.err)}catch(e){}}
@@ -3303,9 +3478,9 @@ function initTilt(){
 (function(){
   const obs=new IntersectionObserver(es=>es.forEach(e=>{
     if(!e.isIntersecting)return; obs.unobserve(e.target);
-    const el=e.target,target=+el.dataset.count,pre=el.dataset.prefix||"",suf=el.dataset.suffix||"";
+    const el=e.target,pre=el.dataset.prefix||"",suf=el.dataset.suffix||"";
     const t0=performance.now(),dur=1400;
-    (function tick(t){const p=Math.min((t-t0)/dur,1),v=Math.round(target*(1-Math.pow(1-p,3)));
+    (function tick(t){const target=+el.dataset.count||0; /* v9.7.16: re-read so the products stat can follow the live catalog */ const p=Math.min((t-t0)/dur,1),v=Math.round(target*(1-Math.pow(1-p,3)));
       el.textContent=pre+v.toLocaleString()+suf; if(p<1)requestAnimationFrame(tick)})(t0);
   }),{threshold:.5});
   $$("[data-count]").forEach(el=>obs.observe(el));
@@ -3408,14 +3583,23 @@ async function botSay(html,thinkMs){
 const SMS_LINK='sms:+19518061586?body=Hi!%20I%27d%20like%20to%20ask%20about%20a%20print%20order%20from%20Visualet%20Designs.'; /* v9.4.7: live-agent text line */
 /* Reassurance button shown whenever the bot can't deliver an answer */
 const AGENT_BTN=`<br><a class="cagent" href="${SMS_LINK}">💬 Connect with a live agent — text 951-806-1586</a>`;
-/* v9.4.9: product-aware answers — the bot recognizes what we sell and explains the purchase */
-function chatProductMatch(s){
-  if(/upload|send|attach|artwork|\bfile\b|files/.test(s)) return null; /* artwork intent belongs to the art branch */
+/* v9.7.16: smarter, more accurate Ask Visualet — still 100% rule-based (no AI).
+   Every price/turnaround below is read from the LIVE catalog at answer time;
+   nothing is invented, and anything outside the bot's knowledge hands off to
+   a human by text. Replies are short (1–3 sentences) and answer the actual
+   question — quantity follow-ups ("how much for 500?", "the bigger one?")
+   resolve against the last product/rung discussed. Test/temp products are
+   never quoted to customers. */
+function chatProducts(){
+  return ((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false&&!/\b(temp|test)\b/i.test(String(p.name||"")));
+}
+function chatFindProduct(s){
+  if(/upload|attach|artwork|\bfile\b|files/.test(s)) return null; /* artwork intent belongs to the art branch */
   if(/human|real person|talk to|speak to|call me|contact/.test(s)) return null; /* human intent belongs to the agent branch */
-  const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false);
+  const act=chatProducts();
   if(!act.length) return null;
   const ALIAS={tent:"canopy",tents:"canopy",tablecloth:"table cover",tablecloths:"table cover",aframe:"a-frame",sandwich:"a-frame"};
-  let m=s; for(const k in ALIAS){ if(s.includes(k)) m+=" "+ALIAS[k]; } /* v9.4.9: speak the customer's words */
+  let m=s; for(const k in ALIAS){ if(s.includes(k)) m+=" "+ALIAS[k]; }
   const STOP=new Set(["with","and","the","for","from","standard","custom","premium","deluxe","design","package","packages","service","services"]);
   let best=null,bs=0;
   for(const p of act){
@@ -3427,57 +3611,80 @@ function chatProductMatch(s){
     keys.forEach(k=>{if(m.includes(k)) sc+=2});
     if(sc>bs){bs=sc;best=p}
   }
-  if(!best||bs<2) return null;
-  const rungs=(best.rungs||[]).filter(r=>r&&r.price!=null);
-  if(!rungs.length) return null;
-  const from=Math.min(...rungs.map(r=>+r.price));
-  const wasLine=best.was&&+best.was>+from?` <s style="opacity:.55">${money0(+best.was)}</s> <span style="color:#7dffb0">sale</span>`:"";
-  const lines=rungs.slice(0,4).map(r=>{
-    const tag=r.tag?` <span style="color:#7dffb0">• ${esc(r.tag)}</span>`:"";
-    return `${esc(r.qty)} — <b>${money0(+r.price)}</b>${tag}`;
-  }).join("<br>");
-  const inc=(best.includes||[]).map(i=>`✓ ${esc(i)}`).join("<br>"); /* v9.4.9: full includes list, word-for-word */
-  const badge=best.badge?`<br><span style="color:#ff9ecf">★ ${esc(best.badge)}</span>`:"";
-  return `<b>${esc(best.name)}</b>${badge}${wasLine?`<br><span style="font-size:13px">Now <b>${money0(from)}</b>${wasLine}</span>`:""}<br><span style="opacity:.85">${esc(best.desc||"")}</span><br><br>${lines}`+
-    (inc?`<br><br><span style="font-size:13px"><b>What's included:</b><br>${inc}</span>`:"")+
-    `<br><br><span style="font-size:13px;opacity:.78">${esc(best.cat||"")} • ${esc(best.turnaround||"2–7 days")} turnaround • custom design included</span><br><br>`+
-    `🚚 <b>Free shipping</b> on every order &nbsp;•&nbsp; ✅ <b>Nothing prints until you approve your proof</b> — you see exactly what you're getting first<br><br>`+
-    `Here's how you get it:<br><b>1.</b> Tap it in the <a href="#shop"><b>shop</b></a> &nbsp;<b>2.</b> Pick your quantity → <b>Add to Cart</b> &nbsp;<b>3.</b> Check out — our design team takes it from there 🎨`;
-}
-/* v9.7.1: smart-brain helpers — every answer below comes from the live page data (products, paySettings); nothing is invented, and anything unanswered hands off to a live agent */
-function chatFindProduct(s){
-  const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false);
-  if(!act.length) return null;
-  const ALIAS={tent:"canopy",tents:"canopy",tablecloth:"table cover",tablecloths:"table cover",aframe:"a-frame",sandwich:"a-frame"};
-  let m=s; for(const k in ALIAS){ if(s.includes(k)) m+=" "+ALIAS[k]; }
-  const STOP=new Set(["with","and","the","for","from","standard","custom","premium","deluxe","design","package","packages","service","services"]);
-  let best=null,bs=0;
-  for(const p of act){
-    const name=String(p.name||"").toLowerCase(),cat=String(p.cat||"").toLowerCase();
-    let sc=0;
-    const base=name.split("\u2014")[0].trim();
-    if(base.length>4&&m.includes(base)) sc+=6;
-    const keys=new Set((name+" "+cat).replace(/\u2014/g," ").split(/[^a-z0-9'\/]+/).filter(w=>w.length>3&&!STOP.has(w)));
-    keys.forEach(k=>{if(m.includes(k)) sc+=2});
-    if(sc>bs){bs=sc;best=p}
-  }
   return (best&&bs>=2)?best:null;
 }
-function chatDepositLines(){
-  const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false&&(Number(p.depositPct)||0)>0);
-  if(!act.length) return "";
-  return act.map(p=>{
-    const r=(p.rungs||[])[0];
-    const dep=r?Math.round(+r.price*Number(p.depositPct)/100):null;
-    return `${esc(p.name)} \u2014 pay <b>${Number(p.depositPct)}%${r?` (${money0(dep)} of ${money0(+r.price)})`:""} today</b>, the rest after you approve your proof`;
-  }).join("<br>");
+function chatRungs(p){ return (p.rungs||[]).filter(r=>r&&r.price!=null); }
+function chatFrom(p){ const r=chatRungs(p); return r.length?Math.min(...r.map(x=>+x.price)):null; }
+function chatRungNum(r){ const m=String(r.qty||"").replace(/,/g,"").match(/^\s*(\d+)/); return m?+m[1]:null; }
+function chatQtyFrom(raw){
+  const t=String(raw||"").toLowerCase().replace(/,/g,"");
+  let m=t.match(/(\d+(?:\.\d+)?)\s*k\b/);
+  if(m) return Math.round(parseFloat(m[1])*1000);
+  m=t.match(/\b(\d{2,6})\b/);
+  return m?+m[1]:null;
+}
+function chatSetProduct(p,rungIdx){
+  chatMem.lastProduct=p.id;
+  if(rungIdx!=null&&rungIdx>=0) chatMem.lastRung=rungIdx;
+  chatMemSave();
+}
+function chatQtyAnswer(p,qty){
+  const rungs=chatRungs(p);
+  if(!rungs.length) return null;
+  const idx=rungs.findIndex(r=>chatRungNum(r)===qty);
+  if(idx>=0){ chatSetProduct(p,idx); chatMem.lastTopic="price"; chatMemSave();
+    return `${esc(rungs[idx].qty)} of <b>${esc(p.name)}</b> is <b>${money0(+rungs[idx].price)}</b> — free shipping, custom design included.`; }
+  const nums=rungs.map((r,i)=>({i,n:chatRungNum(r)})).filter(x=>x.n!=null);
+  if(nums.length){
+    const above=nums.filter(x=>x.n>=qty).sort((a,b)=>a.n-b.n)[0]||nums.slice().sort((a,b)=>b.n-a.n)[0];
+    const r=rungs[above.i]; chatSetProduct(p,above.i); chatMem.lastTopic="price"; chatMemSave();
+    return `Closest pack to ${qty.toLocaleString()} is <b>${esc(r.qty)}</b> at <b>${money0(+r.price)}</b> for the <b>${esc(p.name)}</b>. Want a different quantity priced?`;
+  }
+  return null;
+}
+function chatPriceAnswer(p){
+  const rungs=chatRungs(p), from=chatFrom(p);
+  if(from==null) return null;
+  chatSetProduct(p, rungs.findIndex(r=>+r.price===from));
+  chatMem.lastTopic="price"; chatMemSave();
+  const top=rungs.length>1?Math.max(...rungs.map(r=>+r.price)):null;
+  return pick([
+    `<b>${esc(p.name)}</b> starts at <b>${money0(from)}</b>${top&&top>from?` and goes up to ${money0(top)} for the biggest pack`:""} — free shipping, design included. What quantity were you thinking?`,
+    `For <b>${esc(p.name)}</b>: from <b>${money0(from)}</b>${rungs.length>1?` (${rungs.length} quantity options)`:""}. Tell me a quantity and I'll give you the exact price.`,
+  ]);
+}
+function chatProductAnswer(p){
+  const from=chatFrom(p);
+  chatSetProduct(p, chatRungs(p).findIndex(r=>+r.price===from));
+  chatMem.lastTopic="product"; chatMemSave();
+  const inc=(p.includes||[]).slice(0,3).map(i=>esc(i)).join(", ");
+  return `<b>${esc(p.name)}</b>${from!=null?` — from <b>${money0(from)}</b>`:""}. ${esc(p.turnaround||"")} turnaround, free shipping${inc?`; includes ${inc}`:""}. <a href="#shop">See it in the shop</a> — or ask me a quantity for an exact price.`;
+}
+function chatTurnaroundAnswer(p){
+  chatMem.lastTopic="turnaround"; if(p) chatSetProduct(p); chatMemSave();
+  if(p&&p.turnaround) return `The <b>${esc(p.name)}</b> takes <b>${esc(p.turnaround)}</b> — and nothing prints until you approve your digital proof.`;
+  const nums=chatProducts().flatMap(x=>String(x.turnaround||"").match(/\d+/g)||[]).map(Number);
+  const lo=nums.length?Math.min(...nums):2, hi=nums.length?Math.max(...nums):7;
+  return `Most jobs run <b>${lo}–${hi} business days</b> depending on the product — each product page shows its exact turnaround, and nothing prints until you approve your proof. Which product did you have in mind?`;
+}
+function chatDepositAnswer(p){
+  const act=chatProducts().filter(x=>(Number(x.depositPct)||0)>0);
+  if(p&&(Number(p.depositPct)||0)>0){
+    const r=chatRungs(p)[0]; const dep=r?Math.round(+r.price*Number(p.depositPct)/100):null;
+    chatSetProduct(p,0); chatMem.lastTopic="payment"; chatMemSave();
+    return `Yes — the <b>${esc(p.name)}</b> is <b>${Number(p.depositPct)}% down${dep!=null?` (${money0(dep)} of ${money0(+r.price)})`:""}</b> today, and the rest after you approve your proof.`;
+  }
+  if(p){ chatSetProduct(p); chatMem.lastTopic="payment"; chatMemSave();
+    const names=act.map(x=>esc(x.name)).join(" and ");
+    return `The <b>${esc(p.name)}</b> is paid in full at checkout — or pick <b>pay later</b> and pay after you approve your proof.${names?` Deposits are on the ${names}.`:""}`; }
+  if(act.length) return `Deposits (50% down, rest after proof approval) are on ${act.map(x=>{const r=chatRungs(x)[0];return `the <b>${esc(x.name)}</b>${r?` (${money0(Math.round(+r.price*Number(x.depositPct)/100))} of ${money0(+r.price)})`:""}`}).join(" and ")}. Everything else is paid in full, or pay-later after you approve your proof.`;
+  return `Everything is paid in full at checkout — or choose <b>pay later</b> and pay after you approve your proof.`;
 }
 function chatPaymentAnswer(){
   const card=stripeReady()
-    ? 'Pay securely by <b>card \u2014 Visa, Mastercard, Amex, Discover</b>, debit, <b>Apple Pay</b>, <b>Google Pay</b> and <b>Stripe Link</b> \u2014 right here on our site at checkout.'
-    : 'Pay by <b>card at checkout \u2014 Visa, Mastercard, Amex, Discover</b>, debit, <b>Apple Pay</b> and <b>Google Pay</b>.';
-  const dep=chatDepositLines();
-  return card+'<br><br>Prefer to pay with Zelle? Simply place your order and text us your order number to receive Zelle payment instructions.<br><br>Or choose <b>pay later</b> \u2014 pay after you approve your proof.'+(dep?`<br><br><b>Deposits:</b><br>${dep}`:"");
+    ? 'We take <b>card, Apple Pay, and Google Pay</b> right here at checkout.'
+    : 'We take <b>card at checkout</b>.';
+  return card+' Prefer Zelle? Place your order and text us your order number for instructions — or choose <b>pay later</b> and pay after you approve your proof.';
 }
 /* v9.7.3 ASK VISUALET 2.0 — a human-feeling bot. It remembers the customer's
    name and the last product talked about (per-device, localStorage), understands
@@ -3485,9 +3692,9 @@ function chatPaymentAnswer(){
    it never sounds canned, and asks a clarifying question instead of dead-ending.
    Every fact still comes from the live page data — nothing is invented. */
 const CHAT_MEM_KEY="vd_chat_mem_v1";
-let chatMem={name:null,lastProduct:null,lastTopic:null,turns:0};
+let chatMem={name:null,lastProduct:null,lastTopic:null,lastRung:null,turns:0};
 try{const m=load(CHAT_MEM_KEY,null);if(m&&typeof m==="object") chatMem=Object.assign(chatMem,m)}catch(e){}
-function chatMemSave(){try{save(CHAT_MEM_KEY,{name:chatMem.name,lastProduct:chatMem.lastProduct,lastTopic:chatMem.lastTopic,turns:chatMem.turns})}catch(e){}}
+function chatMemSave(){try{save(CHAT_MEM_KEY,{name:chatMem.name,lastProduct:chatMem.lastProduct,lastTopic:chatMem.lastTopic,lastRung:chatMem.lastRung,turns:chatMem.turns})}catch(e){}}
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const firstName=()=>chatMem.name?`, ${esc(chatMem.name)}`:"";
 /* common typos / shorthand, so "busines cards" still lands */
@@ -3505,147 +3712,135 @@ function chatBrain(input){
   if(nm&&!/^(here|just|looking|trying|interested|ready|good|fine|ok|okay|great|not|really|so|very)$/i.test(nm[1])){
     chatMem.name=nm[1];chatMemSave();
     return pick([
-      `Nice to meet you, ${esc(nm[1])}! I'm Ask Visualet — I can help with pricing, turnaround, or tracking an order. What are you working on?`,
-      `Love it — ${esc(nm[1])} it is. So, what can I help you print today?`,
+      `Nice to meet you, ${esc(nm[1])}! What can I help you print today?`,
+      `Got it, ${esc(nm[1])}. Ask me about pricing, turnaround, or tracking an order.`,
     ]);
   }
   const greet=/^(hi|hey|hello|yo|sup|hiya|howdy|good (morning|afternoon|evening)|what'?s up|whats up)\b/.test(s);
   if(greet&&s.length<30){
     const g=pick(["Hey","Hi","Hello"]);
-    if(chatMem.name) return `${g}, ${esc(chatMem.name)}! Good to see you back. What are we printing today?`;
+    if(chatMem.name) return `${g}, ${esc(chatMem.name)}! What are we printing today?`;
     return pick([
-      `${g}! I'm Ask Visualet — real answers, right from the shop. What are you looking for today?`,
-      `${g} there! Ask me about pricing, how long things take, or tracking an order — or just tell me what you're dreaming up.`,
+      `${g}! I'm Ask Visualet — ask me about pricing, turnaround, or tracking an order.`,
+      `${g} there! What are you looking to print?`,
     ]);
   }
   if(/how are you|how'?s it going|how is it going|how do you feel/.test(s))
-    return pick([
-      "Doing great — the printers are humming and I'm here all day. More importantly, how's your project coming along?",
-      "All good on my end! What's on your mind — pricing, timing, or something you're designing?",
-    ]);
+    return "All good here — the printers are humming. What can I help you with?";
   if(/who are you|what are you|are you (a )?robot|are you human|are you ai|are you real/.test(s))
-    return "I'm Ask Visualet — the shop's own assistant. I'm not a person, but I know our products, prices, and turnaround by heart, and I can pull in a real human any time you want one. Just say the word.";
+    return "I'm Ask Visualet, the shop's own assistant — no AI, just real answers from our live catalog. And I can bring in a human anytime: text 951-806-1586.";
   if(/thank|thanks|thx|appreciate/.test(s))
-    return pick([
-      `Anytime${firstName()}! That's what I'm here for. Anything else?`,
-      "Of course! Happy to help. What else can I do for you?",
-      "You got it! Let me know if anything else comes up.",
-    ]);
+    return pick([`Anytime${firstName()}! Anything else?`,"Of course — happy to help. What else?"]);
   if(/bye|goodbye|good night|see you|that'?s all|that is all|i'?m done|later/.test(s))
-    return pick([
-      `See you soon${firstName()}! Your prints are in good hands.`,
-      "Take care — and when you're ready, the shop's right here. 👋",
-    ]);
+    return `See you soon${firstName()}! The shop's here whenever you're ready.`;
   if(/^(cool|awesome|nice|great|perfect|love it|sweet|ok|okay|got it|understood|makes sense)\b/.test(s)&&s.length<22)
-    return pick(["Glad that helps! Want me to look up a price or a turnaround time for you?","Awesome — anything else you'd like to know?","Perfect. I'm here if you need anything else!"]);
-  if(/lol|haha|funny/.test(s)) return "Ha! I'll take that as a compliment. So — what are we printing?";
+    return pick(["Glad that helps! Want a price or a turnaround on anything?","Perfect — anything else you'd like to know?"]);
+  if(/lol|haha|funny/.test(s)) return "Ha! I'll take that as a compliment. What are we printing?";
   /* --- track order --- */
   if(/track|status of|where.*(my |the )?order|order.*(status|where|arrive|shipped)/.test(s)) return {flow:"track"};
-  /* --- follow-ups resolve to the last product talked about --- */
-  const lastP=chatMem.lastProduct?((typeof products!=="undefined"?products:[])||[]).find(p=>p.id===chatMem.lastProduct&&p.active!==false):null;
-  const followPrice=/^(how much|what'?s the price|price|cost|how much is it|how much is that|what does it cost|and (the )?price|what about (the )?price)/.test(s);
-  const followTime=/how long|turnaround|how fast|when.*(ready|done|ship)|delivery time|rush|how long (does|will|would) (it|that) take|and (the )?turnaround/.test(s);
-  const followShip=/ship|deliver|free ship/.test(s)&&/it|that|this|them/.test(s);
-  if(lastP&&(followPrice||followTime||followShip)){
-    const rungs=(lastP.rungs||[]).filter(r=>r&&r.price!=null);
-    const from=rungs.length?Math.min(...rungs.map(r=>+r.price)):null;
-    if(followPrice){
-      chatMem.lastTopic="price";chatMemSave();
-      return pick([
-        `The <b>${esc(lastP.name)}</b> starts at <b>${money0(from)}</b> — and it goes ${rungs.length>1?`up to ${money0(Math.max(...rungs.map(r=>+r.price)))} for the biggest pack`:"from there"}. Free shipping, design included. Want the full quantity list?`,
-        `For the <b>${esc(lastP.name)}</b>: from <b>${money0(from)}</b>${rungs.length>1?`, with ${rungs.length} quantity options`:""}. What quantity were you thinking?`,
-      ]);
-    }
-    if(followTime){
-      chatMem.lastTopic="turnaround";chatMemSave();
-      return `The <b>${esc(lastP.name)}</b> takes <b>${esc(lastP.turnaround||"2–7 business days")}</b> — and nothing prints until you approve your digital proof, so you're never surprised. 🚚 Free shipping on top of that.`;
-    }
-    if(followShip){
-      chatMem.lastTopic="shipping";chatMemSave();
-      return `Good news — the <b>${esc(lastP.name)}</b> ships <b>free</b>. No minimum, no surprise fees at checkout.`;
-    }
+  /* --- artwork upload intent (before product matching, so "upload my logo" isn't a product pitch) --- */
+  if(/upload|attach|send.*(file|art|logo|design)|my (file|artwork|art)\b|how.*(send|submit).*(art|file|design)/.test(s)){
+    chatMem.lastTopic="design";chatMemSave();
+    return `You can upload your files right at checkout — front and back for cards. Upload print-ready art on both sides and you get <b>$20 off</b>. No art yet? Custom design is included with every package.`;
   }
-  if(/^(it|that|this|them|those|the one)\b/.test(s)&&lastP&&/tell me more|more info|more about|details|what'?s included/.test(s)){
-    const inc=(lastP.includes||[]).map(i=>`✓ ${esc(i)}`).join("<br>");
-    return `<b>${esc(lastP.name)}</b> — here's what's in the box:<br><br>${inc||"Custom design service included"}<br><br>Want me to show it in the shop?`;
-  }
-  /* --- canopy package (lives in the Canopies section, not the grid) --- */
-  if(/10\s?[x\u00d7]\s?15|soccer|10x15|canopy/.test(s)){
+  /* --- resolve the product: named in this message wins, else the last one discussed --- */
+  const named=chatFindProduct(s);
+  const lastP=chatMem.lastProduct?chatProducts().find(p=>p.id===chatMem.lastProduct):null;
+  const P=named||lastP;
+  const qty=chatQtyFrom(raw);
+  const priceIntent=/how much|price|cost|pricing|expensive|cheap|quote/.test(s);
+  const timeIntent=/how long|turnaround|how fast|when.*(ready|done|ship|arrive|get)|delivery time|rush/.test(s);
+  const shipIntent=/ship|deliver/.test(s);
+  const depositIntent=/deposit|down payment|pay.*(half|part|later)|installment/.test(s);
+  /* --- 10x15 canopy package (Canopies section — only when asked for by size/team) --- */
+  if(/10\s?[x×]\s?15|10x15|soccer/.test(s)){
     chatMem.lastTopic="canopy";chatMemSave();
-    return [`<b>10′ × 15′ Full Print Canopy Package — $785</b><br><span style="opacity:.85">Your team brings the goals, we bring the setup.</span>`,
-      `✓ Custom 10′ × 15′ printed canopy<br>✓ Aluminum frame<br>✓ Wheel carry bag<br>✓ Custom design service included<br><br>🚚 <b>Free shipping</b> &nbsp;•&nbsp; ⏱ <b>3–7 business days</b>`,
-      `Want one? Tap <a href="#canopies"><b>Request a Quote</b></a> or <a href="${SMS_LINK}"><b>text us 951-806-1586</b></a> and we'll get it started.`];
+    return `<b>10′ × 15′ Full Print Canopy Package — $785</b>: printed canopy, aluminum frame, wheel carry bag, custom design included. Free shipping, 3–7 business days. <a href="#canopies">Request a quote</a> or <a href="${SMS_LINK}">text us 951-806-1586</a>.`;
   }
-  /* --- cheapest / best deal --- */
-  if(/cheapest|lowest price|best deal|most affordable|budget|least expensive/.test(s)){
-    const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false&&(p.rungs||[]).length);
-    const cheapest=act.map(p=>({p,from:Math.min(...p.rungs.map(r=>+r.price))})).sort((a,b)=>a.from-b.from)[0];
-    if(cheapest) return [`If budget's the thing, our cheapest start is the <b>${esc(cheapest.p.name)}</b> at <b>${money0(cheapest.from)}</b>.`,`And honestly, the best value is usually the bigger pack — the per-piece price drops fast. Want me to compare a couple for you?`];
+  /* --- relative size follow-ups: "the bigger one", "next size up" --- */
+  if(P&&/(bigger|larger|next (size|one) up|size up|one up|smaller|one down|size down)/.test(s)){
+    const rungs=chatRungs(P);
+    const numbered=rungs.map((r,i)=>({i,n:chatRungNum(r)})).filter(x=>x.n!=null).sort((a,b)=>a.n-b.n);
+    if(numbered.length>1){
+      const curIdx=chatMem.lastRung!=null?chatMem.lastRung:numbered[0].i;
+      let pos=numbered.findIndex(x=>x.i===curIdx); if(pos<0) pos=0;
+      const up=/bigger|larger|next|up/.test(s);
+      const np=up?Math.min(pos+1,numbered.length-1):Math.max(pos-1,0);
+      const r=rungs[numbered[np].i];
+      chatSetProduct(P,numbered[np].i); chatMem.lastTopic="price"; chatMemSave();
+      if(np===pos) return `That's already the ${up?"biggest":"smallest"} pack for <b>${esc(P.name)}</b>: <b>${esc(r.qty)} — ${money0(+r.price)}</b>.`;
+      return `Next ${up?"up":"down"}: <b>${esc(r.qty)}</b> of <b>${esc(P.name)}</b> is <b>${money0(+r.price)}</b>.`;
+    }
   }
-  /* --- turnaround --- */
-  if(/how long|turnaround|how fast|when.*(ready|done|ship)|delivery time|rush/.test(s)){
-    const p=chatFindProduct(s);
-    if(p&&p.turnaround){chatMem.lastProduct=p.id;chatMem.lastTopic="turnaround";chatMemSave();
-      return `The <b>${esc(p.name)}</b> takes <b>${esc(p.turnaround)}</b> — and nothing prints until you approve your digital proof. 🚚 Free shipping included.`;}
-    return ['Most jobs are done in <b>2–7 business days</b> — each product page shows its exact turnaround.','And every order gets a digital proof for your approval before anything prints, so the timing is never a surprise.'];
+  /* --- "what's included?" follow-up on the last product --- */
+  if(lastP&&!named&&/included|details|tell me more|more about|what'?s in/.test(s)){
+    const inc=(lastP.includes||[]).map(i=>`✓ ${esc(i)}`).join("<br>");
+    chatMem.lastTopic="product";chatMemSave();
+    return `<b>${esc(lastP.name)}</b> includes:<br>${inc||"Custom design service"}.`;
   }
-  /* --- product match (the detailed answer) --- */
-  const pm=chatProductMatch(s);
-  if(pm){
-    const p=chatFindProduct(s);
-    if(p){chatMem.lastProduct=p.id;chatMem.lastTopic="product";chatMemSave();}
-    return [pm, pick([
-      "Want the turnaround on that one, or should I show you where to grab it in the shop?",
-      "Any questions on it — sizes, quantities, design help? I'm all ears.",
-      "That's one of our most popular. Want me to check the turnaround or shipping for you?",
-    ])];
-  }
-  /* --- price (no product named) --- */
-  if(/price|cost|how much|pricing|expensive|cheap/.test(s)){
-    chatMem.lastTopic="price";chatMemSave();
-    return ['Business cards start at <b>$75 for 250</b>, logo packages from <b>$50</b> — every product page lists exact quantity pricing.','Which product were you thinking of? I can pull the exact prices in a second.'];
+  /* --- deposit --- */
+  if(depositIntent) return chatDepositAnswer(P);
+  /* --- turnaround (before quantity, so "how long for 500?" answers time) --- */
+  if(timeIntent&&!priceIntent) return chatTurnaroundAnswer(named||lastP);
+  /* --- quantity price: "how much for 500?" --- */
+  const qtyOk=qty!=null&&(qty>=25||(P&&chatRungs(P).some(r=>chatRungNum(r)===qty)));
+  if(qtyOk&&(priceIntent||named||lastP)){
+    if(P){ const a=chatQtyAnswer(P,qty); if(a) return a; }
+    if(!P) return `Happy to price ${qty.toLocaleString()} — of what? Business cards, banners, signs… tell me the product and I'll give you the exact number.`;
   }
   /* --- shipping --- */
-  if(/free ship|shipping.*(free|cost|price|charge)|do you ship|ship(ping)? to/.test(s)){
-    const act=((typeof products!=="undefined"?products:[])||[]).filter(p=>p.active!==false);
-    const shippable=act.filter(p=>p.cat!=="Design Services");
-    const allFree=shippable.length&&shippable.every(p=>(p.includes||[]).some(i=>/free shipping|shipped/i.test(i)));
-    if(allFree) return ['Yes — <b>free shipping on every order</b>, including the canopy packages. No minimum, no surprise fees at checkout. 🚚','Where are you shipping to? I can double-check timing for your area.'];
-    return 'Most orders ship <b>free</b> — every product page lists its shipping. Want me to check a specific product?';
+  if(shipIntent){
+    chatMem.lastTopic="shipping";chatMemSave();
+    if(P) return `The <b>${esc(P.name)}</b> ships <b>free</b> — every order does, no minimum. Production is ${esc(P.turnaround||"a few business days")}, and nothing prints until you approve your proof.`;
+    return `Shipping is <b>free on every order</b> — no minimum, no surprise fees at checkout. Production time depends on the product; ask me about a specific one and I'll give you its turnaround.`;
+  }
+  /* --- cheapest / best deal (before generic price, so "cheapest" isn't swallowed by "cheap") --- */
+  if(/cheapest|lowest price|best deal|most affordable|budget|least expensive/.test(s)){
+    if(named) return chatPriceAnswer(named);
+    const act=chatProducts().filter(p=>chatRungs(p).length);
+    const cheapest=act.map(p=>({p,from:chatFrom(p)})).sort((a,b)=>a.from-b.from)[0];
+    if(cheapest){ chatSetProduct(cheapest.p); chatMem.lastTopic="price"; chatMemSave();
+      return `Our lowest starting price is <b>${esc(cheapest.p.name)}</b> at <b>${money0(cheapest.from)}</b>. Bigger packs drop the per-piece price fast, though — want me to compare two?`; }
+  }
+  /* --- price --- */
+  if(priceIntent){
+    if(P){ const a=chatPriceAnswer(P); if(a) return a; }
+    return `Which product? Tell me what you're pricing — business cards, a banner, a canopy — and I'll pull the exact numbers.`;
   }
   /* --- payment --- */
-  if(/pay|payment|stripe|zelle|deposit|square|cash app|apple pay|google pay|credit cards?|debit cards?/.test(s)){
+  if(/pay|payment|stripe|zelle|square|cash app|apple pay|google pay|credit cards?|debit cards?|accept/.test(s)){
     chatMem.lastTopic="payment";chatMemSave();
-    return [chatPaymentAnswer(), "Want to pay a deposit instead of the full amount? The canopy and the roofing bundle both offer 50% down — the rest after you approve your proof."];
+    return chatPaymentAnswer();
   }
+  /* --- product info --- */
+  if(named) return chatProductAnswer(named);
   /* --- how ordering works --- */
   if(/how.*(order|work)|process|start.*order|get started|steps/.test(s))
-    return ['Super simple, three steps:','<b>1.</b> Pick a product &amp; check out online (about 2 minutes)<br><b>2.</b> Approve your digital proof — nothing prints until you say go<br><b>3.</b> We print &amp; ship free, and you track it right here 🚚'];
-  /* --- artwork / design --- */
-  if(/art|artwork|design|logo|file|upload|pdf/.test(s)){
+    return `Three steps: <b>1.</b> Pick a product and check out (about 2 minutes). <b>2.</b> Approve your digital proof — nothing prints until you say go. <b>3.</b> We print and ship free; track it right here.`;
+  /* --- proof-first --- */
+  if(/proof|approve|before.*print|see it first|preview/.test(s)){
     chatMem.lastTopic="design";chatMemSave();
-    return ['You can upload your print-ready art at checkout — or <b>we design it for you</b>. Every package includes a custom design.','Fun fact: upload both sides of business-card art and you get <b>$20 off</b> instantly. ✨','Do you already have a logo, or do you need one designed from scratch?'];
+    return `Yes — every order gets a <b>digital proof</b> for your approval before anything prints. You see exactly what you're getting first.`;
+  }
+  /* --- artwork / design --- */
+  if(/art|artwork|design|logo|file|pdf/.test(s)){
+    chatMem.lastTopic="design";chatMemSave();
+    return `You can upload print-ready art at checkout, or <b>we design it for you</b> — custom design is included with every package. Upload both sides of business-card art and you get <b>$20 off</b>.`;
   }
   /* --- deals --- */
-  if(/bundle|deal|discount|promo|sale|coupon|save/.test(s))
-    return 'Check out <a href="#bundles"><b>Bundle &amp; Save</b></a> — your whole street-level marketing handled: designed, printed, and shipped in one package. Want me to find the best bundle for what you need?';
+  if(/bundle|deal|discount|promo|sale|coupon|save|offer/.test(s))
+    return `Check <a href="#bundles">Bundle &amp; Save</a> — designed, printed, and shipped as one package. Promo codes go in the cart at checkout (one per order). Want help picking a bundle?`;
   /* --- human --- */
   if(/human|person|real|contact|text|call|phone|talk|speak|agent|someone/.test(s))
-    return [`Of course — a real person is the fastest way for the tricky stuff.`,`<a href="${SMS_LINK}"><b>Text us at 951-806-1586</b></a> and we'll pick it up from there. 📱 Just tell us your order number if you have one, and what you need.`];
+    return `<a href="${SMS_LINK}"><b>Text us at 951-806-1586</b></a> and a real person will take it from there — include your order number if you have one.`;
   /* --- hours / location --- */
   if(/hour|open|close|location|where are you|address/.test(s))
-    return `The shop runs online <b>24/7</b> — order anytime. And I'm here around the clock too. For a human, <a href="${SMS_LINK}"><b>text 951-806-1586</b></a>.`;
-  /* --- vague / open-ended: ask, don't dead-end --- */
+    return `The shop is online <b>24/7</b> — order anytime. For a human, <a href="${SMS_LINK}">text 951-806-1586</a>.`;
+  /* --- vague: ask one short question --- */
   if(/^(i need|i want|i'?m looking for|looking for|i need help|help|help me|can you help|what can you do|what do you do)\b/.test(s)||s.length<40&&/need|want|looking|help/.test(s))
-    return pick([
-      "Happy to help! Are you after <b>pricing</b>, <b>turnaround</b>, <b>tracking an order</b> — or something you're designing? Give me a hint and I'll take it from there.",
-      "Let's figure it out together — what are you trying to get printed? Business cards, a banner, a canopy, something else?",
-    ]);
-  /* --- fallback: clarify, never a wall --- */
-  return pick([
-    "Hmm, I want to make sure I get this right — is that about <b>pricing</b>, <b>turnaround</b>, or <b>tracking an order</b>? Or tell me a bit more and I'll dig in.",
-    "I'm not 100% sure I caught that one — was it about a product, an order, or payments? Give me one more detail and I'll sort it out.",
-  ])+AGENT_BTN;
+    return `Happy to help! Are you after <b>pricing</b>, <b>turnaround</b>, or <b>tracking an order</b>? Or tell me what you're printing and I'll take it from there.`;
+  /* --- honest fallback: say so, hand off to a human --- */
+  return `I don't have an answer for that one — I'm best with <b>pricing, turnaround, and tracking</b>. For anything else, a human can help right away.`+AGENT_BTN;
 }
 /* Shared order lookup: this browser's orders first, then the live sheet. */
 async function lookupOrder(num,email){
