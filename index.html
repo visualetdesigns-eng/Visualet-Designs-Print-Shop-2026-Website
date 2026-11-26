@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.13 (2026-11-25) — POSITIONING + POLISH + PERFORMANCE (CSS/layout only, no JS logic or math changed): checkout steps header sticky while the form scrolls with clear space so the close button never overlaps the progress track; modal/drawer/chat scrollbars restyled to the site glass design (WebKit + Firefox, thumb inset from rounded corners); modal max-height fallback; full positioning sweep (no horizontal overflow, 44px tap targets); behavior unchanged from v9.7.12; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -398,7 +398,8 @@ body.chat-dragging,body.chat-dragging *{user-select:none!important;-webkit-user-
 #chatClose{background:none;border:none;color:var(--ink-soft);font-size:24px;cursor:pointer;line-height:1;padding:4px 8px}
 .chat-promo{flex:none;margin:12px 12px 0;padding:10px 14px;border-radius:14px;background:linear-gradient(120deg,rgba(28,77,255,.22),rgba(255,47,156,.18));border:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--ink);display:none}
 .chat-promo.show{display:block}
-.chat-msgs{flex:1;min-height:120px;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
+.chat-msgs{flex:1;min-height:120px;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(77,157,255,.35) transparent}
+.chat-msgs::-webkit-scrollbar{width:8px}.chat-msgs::-webkit-scrollbar-track{background:transparent}.chat-msgs::-webkit-scrollbar-thumb{background:rgba(77,157,255,.35);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
 .cmsg{max-width:82%;padding:11px 15px;border-radius:18px;font-size:14px;line-height:1.5;animation:fadeUp .3s ease}
 .cmsg.bot{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-bottom-left-radius:6px;color:var(--ink)}
 .cmsg.user{align-self:flex-end;background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-bottom-right-radius:6px}
@@ -461,14 +462,14 @@ footer img{height:58px;margin:0 auto 16px;opacity:.98;filter:drop-shadow(0 0 18p
 .overlay.show{opacity:1;pointer-events:auto}
 .modal{position:fixed;inset:0;z-index:2100;display:flex;align-items:center;justify-content:center;padding:18px;pointer-events:none}
 .modal.show{pointer-events:auto}
-.sheet{width:100%;max-width:920px;max-height:92svh;overflow-y:auto;border-radius:30px;position:relative;
+.sheet{width:100%;max-width:920px;max-height:92vh;max-height:92svh;overflow-y:auto;border-radius:30px;position:relative;scrollbar-width:thin;scrollbar-color:rgba(77,157,255,.35) transparent;
   background:rgba(7,10,22,.92);border:1px solid rgba(77,157,255,.2);backdrop-filter:blur(30px) saturate(160%);-webkit-backdrop-filter:blur(30px) saturate(160%);
   box-shadow:0 50px 140px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.1);
   opacity:0;transform:translateY(40px) scale(.97);transition:.38s cubic-bezier(.2,.8,.3,1)}
 .modal.show .sheet{opacity:1;transform:none}
 .sheet::before{content:"";position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(130,185,255,.65),transparent);z-index:6;pointer-events:none}
-.sheet::-webkit-scrollbar{width:8px}.sheet::-webkit-scrollbar-thumb{background:rgba(77,157,255,.3);border-radius:8px}
-.x{position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:50%;border:1px solid var(--glass-brd);background:rgba(6,9,22,.6);
+.sheet::-webkit-scrollbar{width:8px}.sheet::-webkit-scrollbar-track{background:transparent}.sheet::-webkit-scrollbar-thumb{background:rgba(77,157,255,.35);border-radius:8px;border:2px solid transparent;background-clip:padding-box} /* v9.7.13: thumb inset so it never hugs the rounded corner */
+.x{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-brd);background:rgba(6,9,22,.6);
   color:#fff;font-size:20px;cursor:pointer;z-index:5;transition:.22s;display:flex;align-items:center;justify-content:center}
 .x:hover{background:var(--magenta-neon);color:#fff;transform:rotate(90deg)}
 
@@ -511,18 +512,20 @@ footer img{height:58px;margin:0 auto 16px;opacity:.98;filter:drop-shadow(0 0 18p
 .drawer.show{transform:none}
 .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:24px 26px;border-bottom:1px solid rgba(77,157,255,.14)}
 .drawer-head h3{font-size:20px}
-.drawer-items{flex:1;overflow-y:auto;padding:20px 26px;display:flex;flex-direction:column;gap:16px}
+.drawer-items{flex:1;overflow-y:auto;padding:20px 26px;display:flex;flex-direction:column;gap:16px;scrollbar-width:thin;scrollbar-color:rgba(77,157,255,.35) transparent}
+.drawer-items::-webkit-scrollbar{width:8px}.drawer-items::-webkit-scrollbar-track{background:transparent}.drawer-items::-webkit-scrollbar-thumb{background:rgba(77,157,255,.35);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
 .citem{display:grid;grid-template-columns:76px 1fr;gap:14px;padding:14px;border-radius:18px;background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.13)}
 .citem img{width:76px;height:76px;object-fit:cover;border-radius:12px}
 .citem .cn{font-size:14px;font-weight:700;font-family:'Space Grotesk';margin-bottom:3px}
 .citem .cd{font-size:12px;color:var(--ink-faint);margin-bottom:8px}
 .citem .cr{display:flex;align-items:center;justify-content:space-between}
 .qty{display:inline-flex;align-items:center;gap:10px;background:rgba(4,7,17,.6);border:1px solid var(--glass-brd);border-radius:999px;padding:4px 10px}
-.qty button{width:26px;height:26px;border-radius:50%;border:none;background:rgba(77,157,255,.14);color:#fff;font-size:15px;cursor:pointer;line-height:1}
+.qty button{width:26px;height:26px;border-radius:50%;border:none;background:rgba(77,157,255,.14);color:#fff;font-size:15px;cursor:pointer;line-height:1;position:relative}
+.qty button::after{content:"";position:absolute;inset:-9px} /* v9.7.13: 44px touch target, visual size unchanged */
 .qty button:hover{background:var(--blue-electric)}
 .qty b{font-size:13.5px;min-width:18px;text-align:center}
 .citem .cp{font-family:'Space Grotesk';font-weight:700}
-.citem .rm{background:none;border:none;color:var(--ink-faint);font-size:12px;cursor:pointer;text-decoration:underline;margin-top:6px}
+.citem .rm{background:none;border:none;color:var(--ink-faint);font-size:12px;cursor:pointer;text-decoration:underline;margin-top:6px;padding:12px 8px;margin:-6px -8px 0} /* v9.7.13: bigger touch target, text position kept */
 .citem .rm:hover{color:var(--magenta-neon)}
 .cart-empty{text-align:center;color:var(--ink-faint);padding:60px 10px;font-size:14.5px}
 .drawer-foot{padding:22px 26px 28px;border-top:1px solid rgba(77,157,255,.14);background:rgba(5,8,18,.7)}
@@ -531,7 +534,8 @@ footer img{height:58px;margin:0 auto 16px;opacity:.98;filter:drop-shadow(0 0 18p
 .trow.grand span:last-child{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ============ CHECKOUT ============ */
-.co-steps{display:flex;gap:8px;margin:26px clamp(26px,4vw,44px) 0}
+.co-head{position:sticky;top:0;z-index:4;background:rgba(7,10,22,.97);padding:26px 74px 14px clamp(26px,4vw,44px);border-radius:30px 30px 0 0} /* v9.7.13: sticky steps header; 74px right padding keeps the track clear of the 44px close button (right:18px) */
+.co-steps{display:flex;gap:8px;margin:0}
 .co-dot{flex:1;height:5px;border-radius:5px;background:rgba(77,157,255,.15);overflow:hidden;position:relative}
 .co-dot.on::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--blue-electric),var(--magenta-neon));animation:fill .5s ease}
 @keyframes fill{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}
@@ -628,7 +632,7 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
   background:rgba(4,7,17,.72);border:1px solid var(--glass-brd);backdrop-filter:blur(8px);color:#fff;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ============ V2: CHECKOUT — ARTWORK + PAYMENT ============ */
-.co-labels{display:flex;gap:8px;margin:10px clamp(26px,4vw,44px) 0;font-size:10.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--ink-faint)}
+.co-labels{display:flex;gap:8px;margin:10px 0 0;font-size:10.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--ink-faint)}
 .co-labels span{flex:1;text-align:center;transition:color .25s}
 .co-labels span.on{color:var(--blue-bright)}
 .drop{border:1.5px dashed rgba(77,157,255,.35);border-radius:18px;padding:26px 20px;text-align:center;cursor:pointer;transition:.2s;background:rgba(77,157,255,.04)}
@@ -1324,9 +1328,9 @@ section{overflow-x:clip}
 
 <!-- CHECKOUT MODAL -->
 <div class="modal" id="coModal" role="dialog" aria-modal="true" aria-label="Checkout"><div class="sheet" style="max-width:760px">
-  <button class="x" data-close="coModal" aria-label="Close">✕</button>
+  <div class="co-head"><button class="x" data-close="coModal" aria-label="Close">✕</button>
   <div class="co-steps"><div class="co-dot on" id="coD1"></div><div class="co-dot" id="coD2"></div><div class="co-dot" id="coD3"></div><div class="co-dot" id="coD4"></div></div>
-  <div class="co-labels"><span class="on" id="coL1">Details</span><span id="coL2">Artwork &amp; Payment</span><span id="coL3">Review</span><span id="coL4">Payment</span></div>
+  <div class="co-labels"><span class="on" id="coL1">Details</span><span id="coL2">Artwork &amp; Payment</span><span id="coL3">Review</span><span id="coL4">Payment</span></div></div>
   <div class="co-body" id="coBody"></div>
 </div></div>
 
@@ -3940,6 +3944,7 @@ html:has(.modal.show),html:has(.drawer.show){overflow:hidden;overscroll-behavior
   #pModal .sheet,#coModal .sheet,#adminPanel .sheet{max-width:none!important;width:100%;height:100vh;height:100dvh;max-height:100dvh;border-radius:0;border-left:0;border-right:0;
     backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,10,22,.985)}
   #pModal .x,#coModal .x,#adminPanel .x{top:calc(14px + env(safe-area-inset-top,0px))}
+  #coModal .co-head{border-radius:0;padding-top:calc(26px + env(safe-area-inset-top,0px))}
   #pModal .pm-media img{height:calc(260px + env(safe-area-inset-top,0px))}
   #pModal .pm-expand{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
   #pModal .pm-expand button{padding:15px 28px;font-size:16px}
