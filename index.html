@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Visualet Designs site v9.7.29 (2026-11-28) — LOGO: header logo a touch larger (54px→62px desktop, 44px→50px mobile) + animated glow behind it (drop-shadow pulse in brand blue/magenta, hugs the transparent artwork; static under prefers-reduced-motion). PRODUCT SCROLL: finger swipes now scroll the product view on iPhone — touch-action:pan-y declared on the product grid (wheel-style scrolls already worked in testing; a real touch swipe is governed by touch-action). v9.7.28 (2026-11-28) — SCROLL SMOOTHNESS (per Nathan: scrolling still took effort after the v9.7.25 touch pass): (1) sections no longer animate filter:blur on scroll-in — fade + rise kept, every static blur untouched (glass, glows, modal backdrop, chat); (2) below-fold sections get content-visibility:auto so the browser skips layout/paint for off-screen sections until you reach them; (3) background glow blobs stop drifting on touch screens — they stay put, still blurred; (4) hero carousel auto-advance pauses while it is scrolled off-screen; (5) every image decodes in the background (decoding="async"). No blur removed, no chat change, no button sizing change, no content change. Chat brain, checkout/backend untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged. v9.7.27 (2026-11-27) — BLURRED MODAL PHOTO RESTORED (per Nathan, confirmed 2026-11-27): the product-modal photo is a blurred preview by design — full resolution shows only on click-to-expand. v9.7.26 wrongly made the modal photo sharp; that one change is reverted here (main img back to opacity:0, clicks pass through to the Click to Expand control, exactly as live v9.7.23 behaved — re-checked live 2026-11-27: blurred photo + Click to Expand + sharp full-res viewer all work). Thumbnails STAY visible (opacity:1) — in v9.7.23 they were invisible/black, which broke switching between views; that is navigation, not blur, and no blur filter is removed anywhere. Everything else from v9.7.26 kept: eager first-4 grid photos, gradient tile placeholder, near-opaque header, heading gap, Chat label, all v9.7.24/25 chat + touch fixes. Chat brain, checkout/backend untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged. v9.7.26 (2026-11-27) — LIVE-SITE FIXES (all from the 2026-11-27 live check of visualetdesigns.com, v9.7.23 live): (1) product modal photo was invisible — the v9.5.6 patch set #pModal .pm-media img{opacity:0}, so only the blurred backdrop showed and the thumbnails were invisible too; the sharp photo and thumbnails are restored; (2) shop-grid photos: first 4 load eager/high-priority instead of lazy, and the photo tile gets a gradient placeholder instead of solid black while loading; (3) header goes near-opaque (rgba .62 -> .94) so page text can no longer ghost through it even if backdrop blur fails; (4) section headings get a guaranteed gap before the gradient word (margin-left on .sec-title .grad) so they can never render run-together; (5) the chat button gets a visible "Chat" label so visitors know it is a chat. NOT fixed in code: the founder photo still shows the logo because no portrait file exists — send a portrait and it can be swapped in; the 3 missing images from v9.7.25 (order-tracking photo, Stripe logo, Zelle image) are still missing from the images folder. Chat brain, checkout/backend untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged. v9.7.25 (2026-11-27) — CHAT SHEET FLOATS + TOUCH RESPONSIVENESS: the open Ask Visualet sheet on phones now floats above the bottom edge (bottom:92px + safe-area, 16px side margins, rounded corners all around) instead of the flush bottom sheet from v9.7.19 — the whole chat no longer sits on the home-indicator edge; the input row drops its inside safe-area padding since the sheet itself now clears it; expand still goes true full-screen. Touch responsiveness — every tap target now gets touch-action:manipulation + no grey tap flash (base rule for all buttons/links/inputs, including dynamically rendered ones the v9.7.24 class list missed), instant :active press feedback on add-to-cart, pills, icon buttons, quick-prompt chips, quantity rungs, payment cards, minis, tabs and product cards (car-cards excluded — their 3D transform must not be overridden), and the hero carousel gets touch-action:pan-y so a horizontal swipe answers immediately instead of the browser debating scroll vs swipe (lightbox + hero swipe already existed); chat brain, scroll-lock, blur, checkout/backend untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged. v9.7.24 (2026-11-27) — MOBILE TOUCH + CHAT FAB POSITION: the Ask Visualet button on phones now sits clear of the iPhone home-indicator swipe zone (bottom:max(30px, 16px + safe-area) — Safari reports env(safe-area-inset-bottom)=0 in normal browsing, so the old 16px put the button in the gesture area where taps got eaten and it looked sunk to the very bottom edge; the open sheet stays flush to bottom:0 by design, v9.7.19); touch pass — chat expand/close buttons, promo dismiss buttons and carousel dots get invisible 44px hit areas (same ::after pattern as the qty buttons), quick-prompt pills get min-height:44px, checkout segment buttons grow to 44px tall, track-order + promo-code inputs join the 16px no-zoom rule on phones, and sticky :hover states are neutralized on touch screens (no more buttons/cards stuck looking pressed after a tap); chat brain, scroll-lock, bottom anchoring, blur, checkout/backend untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged. v9.7.23 (2026-11-26) — OVERFLOW + FLICKER FIX, COPY-TO-SAVE ORDER NUMBER, CHAT RESTYLE: horizontal-overflow root causes fixed (the fixed ambient .blob glows are now contained in a clipped full-viewport wrapper so they can never expand the scrollable area — Safari showed a page-level horizontal scrollbar from them; the header nav switches to the burger menu at 1120px before the links can push the cart/gear buttons off-screen, and the phone header is tightened so nothing crosses the edge at 360px); looping chat animations removed (FAB pulse ring, FAB dot pulse, online-dot glow pulse — the chat is visually stable at rest, one-shot bubble entrances + typing dots kept); the order number on the thank-you screen (and the confirming fallback) is tap-to-copy with "Copied" feedback; Admin Orders email-test buttons are now prominent gradient buttons; Ask Visualet restyled statically — gradient user bubbles with soft glow, frosted bot bubbles with a Visualet avatar chip, glass quick-prompt pills with gradient borders, glow focus ring on the input (brain, scroll-lock, bottom anchoring, blur untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged). v9.7.22 (2026-11-26) — EMAIL PREVIEW + MENU/CHAT POLISH: Admin Orders gains "Preview confirmation email" (renders the dark-mode-proof confirmation email in a modal iframe, sample order VD-TEST01) and "Send test to my email" (sends the sample to the owner email via backend 2026-11-18-G, logged to EmailLog); hamburger button is a neutral glass circle when the menu is closed (no gradient/glow — the glow was sticky :hover on touch) and gradient+glow only while the menu is open, with flex:none so the circle never squishes inside the header pill; Ask Visualet bubbles get a soft entrance (fade+rise+scale), typing dots glow, the closed FAB pulses gently, and the send button glows on press (transform/opacity only, reduced-motion respected). v9.7.21 — CONFIRMATION ELEMENTS GATED TO THE FINAL SCREEN: on the Stripe payment step before payment completes, only the payment panel renders — the "Order Received" chrome (order-contact line, save-order-number text, Track My Order / Continue Shopping buttons) no longer leaks onto the payment step; it appears only on the post-payment thank-you screen (Zelle/pay-later final screens unchanged); pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.20 (2026-11-26) — FROSTED GLASS RESTORED, PERFORMANCE-TUNED: backdrop blur is back on every surface that lost it in v9.7.14 (modal sheet, cart drawer, chat panel + header/promo gradients, product-modal foot bar, overlay + menu veils, mobile menu + pills, lightbox, reward/paid popups) with translucent glass backgrounds at tuned values (12–18px blur, saturate 1.3–1.5; full-viewport veils at 12px) instead of the v9.7.13 originals (up to 30px); checkout steps header is frosted (translucent navy + blur) so scrolled content frosts beneath it instead of ghosting sharply; late mobile overrides that killed blur on sheets/overlay removed so phones get the frosted look too; v9.7.18 scroll-lock + v9.7.19 bottom-anchoring untouched (the lock keeps the backdrop static while overlays are open — the main perf mitigation); pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.19 (2026-11-26) — MOBILE CHAT SHEET ANCHORED + OPAQUE: the phone chat sheet now anchors flush to the bottom edge of the viewport (bottom:0, full width, top-only corners) instead of floating 84px up with page content visible below it; sheet/header/promo backgrounds are fully opaque (solid stops, same rendered colors) so page text can never ghost through; input row carries the safe-area inset as padding inside the sheet; v9.7.18 scroll-lock untouched; pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.18 (2026-11-26) — MOBILE SCROLL-LOCK FIX: iPhone Safari ignores body{overflow:hidden}, so the page kept scrolling behind the Ask Visualet sheet and every modal; the scroll lock is upgraded to the iOS-safe body position:fixed pattern with exact offset restore, driven by one syncScrollLock() decision point covering modal/cart drawer/lightbox/mobile menu + the chat on phones (desktop chat stays non-modal by design); chat message list overscroll contained at all widths and the input row can never be pushed out of the sheet on short viewports; behavior/math/backend unchanged; pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.17 (2026-11-26) — CONFIRMATION-EMAIL VISIBILITY + RESEND: Admin Orders gains a per-order "Resend confirmation" button that re-sends the customer confirmation email and shows the backend's exact outcome (sent / skipped: bad email / error); every confirmation send is now logged server-side (EmailLog) so a missing email is diagnosable; checkout/promo/deposit/chat logic untouched; pairs with WebsiteBackend 2026-11-18-F; v9.7.16 (2026-11-25) — ASK VISUALET SMARTER BOT (no AI — rule-based, answers from the live catalog): product questions answered about THAT product with real rung prices; quantity follow-ups ("how much for 500?", "the bigger one?") resolve against the last product/rung discussed; short 1–3 sentence replies, no canned walls; name + last product remembered in-session; honest text-us fallback (951-806-1586) instead of guessing — never invents prices or policies; test/temp products never quoted; hero "Print Products" stat now counts the live catalog; checkout/promo/deposit/confirmation logic untouched from v9.7.15; pairs with WebsiteBackend 2026-11-18-E (unchanged); v9.7.15 (2026-11-25) — POST-PAYMENT CONFIRMATION FIX: payment verification now polls with retries (Apple Pay/wallet confirms resolve before Stripe's session payment_status flips — the old single-shot check stranded paid customers on the "couldn't confirm" fallback); confirm() result inspected (declines no longer misreported as accepted); "Payment confirmed" popup auto-advances to a full thank-you screen (order number at top, order details, Track Your Order, Download Invoice, email-sent note); unverified fallback is a real next-steps screen, never a dead end; pairs with WebsiteBackend 2026-11-18-E ($1-floor amount parity fix so a paid session can never fail verification on amount); v9.7.14 (2026-11-25) — iOS BLUR GLITCH FIX (CSS only, no JS logic or math changed): live backdrop blur removed from every large/scrolling/full-screen surface (modal sheet, cart drawer, chat panel, mobile menu + veil, lightbox, reward/paid popups, modal overlay) and replaced with near-opaque solid glass at the same darkness; checkout steps header fully opaque so scrolled content can never ghost through it; scrollbars locked inside popup bounds (scrollbar-track margins clear the corner curves at every scroll position); small static glass (header bar, chat FAB, badges, pills) keeps its blur; behavior unchanged from v9.7.13; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.13 (2026-11-25) — POSITIONING + POLISH + PERFORMANCE (CSS/layout only, no JS logic or math changed): checkout steps header sticky while the form scrolls with clear space so the close button never overlaps the progress track; modal/drawer/chat scrollbars restyled to the site glass design (WebKit + Firefox, thumb inset from rounded corners); modal max-height fallback; full positioning sweep (no horizontal overflow, 44px tap targets); behavior unchanged from v9.7.12; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
+<!-- Visualet Designs site v9.7.23 (2026-11-26) — OVERFLOW + FLICKER FIX, COPY-TO-SAVE ORDER NUMBER, CHAT RESTYLE: horizontal-overflow root causes fixed (the fixed ambient .blob glows are now contained in a clipped full-viewport wrapper so they can never expand the scrollable area — Safari showed a page-level horizontal scrollbar from them; the header nav switches to the burger menu at 1120px before the links can push the cart/gear buttons off-screen, and the phone header is tightened so nothing crosses the edge at 360px); looping chat animations removed (FAB pulse ring, FAB dot pulse, online-dot glow pulse — the chat is visually stable at rest, one-shot bubble entrances + typing dots kept); the order number on the thank-you screen (and the confirming fallback) is tap-to-copy with "Copied" feedback; Admin Orders email-test buttons are now prominent gradient buttons; Ask Visualet restyled statically — gradient user bubbles with soft glow, frosted bot bubbles with a Visualet avatar chip, glass quick-prompt pills with gradient borders, glow focus ring on the input (brain, scroll-lock, bottom anchoring, blur untouched; pairs with WebsiteBackend 2026-11-18-G, unchanged). v9.7.22 (2026-11-26) — EMAIL PREVIEW + MENU/CHAT POLISH: Admin Orders gains "Preview confirmation email" (renders the dark-mode-proof confirmation email in a modal iframe, sample order VD-TEST01) and "Send test to my email" (sends the sample to the owner email via backend 2026-11-18-G, logged to EmailLog); hamburger button is a neutral glass circle when the menu is closed (no gradient/glow — the glow was sticky :hover on touch) and gradient+glow only while the menu is open, with flex:none so the circle never squishes inside the header pill; Ask Visualet bubbles get a soft entrance (fade+rise+scale), typing dots glow, the closed FAB pulses gently, and the send button glows on press (transform/opacity only, reduced-motion respected). v9.7.21 — CONFIRMATION ELEMENTS GATED TO THE FINAL SCREEN: on the Stripe payment step before payment completes, only the payment panel renders — the "Order Received" chrome (order-contact line, save-order-number text, Track My Order / Continue Shopping buttons) no longer leaks onto the payment step; it appears only on the post-payment thank-you screen (Zelle/pay-later final screens unchanged); pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.20 (2026-11-26) — FROSTED GLASS RESTORED, PERFORMANCE-TUNED: backdrop blur is back on every surface that lost it in v9.7.14 (modal sheet, cart drawer, chat panel + header/promo gradients, product-modal foot bar, overlay + menu veils, mobile menu + pills, lightbox, reward/paid popups) with translucent glass backgrounds at tuned values (12–18px blur, saturate 1.3–1.5; full-viewport veils at 12px) instead of the v9.7.13 originals (up to 30px); checkout steps header is frosted (translucent navy + blur) so scrolled content frosts beneath it instead of ghosting sharply; late mobile overrides that killed blur on sheets/overlay removed so phones get the frosted look too; v9.7.18 scroll-lock + v9.7.19 bottom-anchoring untouched (the lock keeps the backdrop static while overlays are open — the main perf mitigation); pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.19 (2026-11-26) — MOBILE CHAT SHEET ANCHORED + OPAQUE: the phone chat sheet now anchors flush to the bottom edge of the viewport (bottom:0, full width, top-only corners) instead of floating 84px up with page content visible below it; sheet/header/promo backgrounds are fully opaque (solid stops, same rendered colors) so page text can never ghost through; input row carries the safe-area inset as padding inside the sheet; v9.7.18 scroll-lock untouched; pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.18 (2026-11-26) — MOBILE SCROLL-LOCK FIX: iPhone Safari ignores body{overflow:hidden}, so the page kept scrolling behind the Ask Visualet sheet and every modal; the scroll lock is upgraded to the iOS-safe body position:fixed pattern with exact offset restore, driven by one syncScrollLock() decision point covering modal/cart drawer/lightbox/mobile menu + the chat on phones (desktop chat stays non-modal by design); chat message list overscroll contained at all widths and the input row can never be pushed out of the sheet on short viewports; behavior/math/backend unchanged; pairs with WebsiteBackend 2026-11-18-F (unchanged); v9.7.17 (2026-11-26) — CONFIRMATION-EMAIL VISIBILITY + RESEND: Admin Orders gains a per-order "Resend confirmation" button that re-sends the customer confirmation email and shows the backend's exact outcome (sent / skipped: bad email / error); every confirmation send is now logged server-side (EmailLog) so a missing email is diagnosable; checkout/promo/deposit/chat logic untouched; pairs with WebsiteBackend 2026-11-18-F; v9.7.16 (2026-11-25) — ASK VISUALET SMARTER BOT (no AI — rule-based, answers from the live catalog): product questions answered about THAT product with real rung prices; quantity follow-ups ("how much for 500?", "the bigger one?") resolve against the last product/rung discussed; short 1–3 sentence replies, no canned walls; name + last product remembered in-session; honest text-us fallback (951-806-1586) instead of guessing — never invents prices or policies; test/temp products never quoted; hero "Print Products" stat now counts the live catalog; checkout/promo/deposit/confirmation logic untouched from v9.7.15; pairs with WebsiteBackend 2026-11-18-E (unchanged); v9.7.15 (2026-11-25) — POST-PAYMENT CONFIRMATION FIX: payment verification now polls with retries (Apple Pay/wallet confirms resolve before Stripe's session payment_status flips — the old single-shot check stranded paid customers on the "couldn't confirm" fallback); confirm() result inspected (declines no longer misreported as accepted); "Payment confirmed" popup auto-advances to a full thank-you screen (order number at top, order details, Track Your Order, Download Invoice, email-sent note); unverified fallback is a real next-steps screen, never a dead end; pairs with WebsiteBackend 2026-11-18-E ($1-floor amount parity fix so a paid session can never fail verification on amount); v9.7.14 (2026-11-25) — iOS BLUR GLITCH FIX (CSS only, no JS logic or math changed): live backdrop blur removed from every large/scrolling/full-screen surface (modal sheet, cart drawer, chat panel, mobile menu + veil, lightbox, reward/paid popups, modal overlay) and replaced with near-opaque solid glass at the same darkness; checkout steps header fully opaque so scrolled content can never ghost through it; scrollbars locked inside popup bounds (scrollbar-track margins clear the corner curves at every scroll position); small static glass (header bar, chat FAB, badges, pills) keeps its blur; behavior unchanged from v9.7.13; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.13 (2026-11-25) — POSITIONING + POLISH + PERFORMANCE (CSS/layout only, no JS logic or math changed): checkout steps header sticky while the form scrolls with clear space so the close button never overlaps the progress track; modal/drawer/chat scrollbars restyled to the site glass design (WebKit + Firefox, thumb inset from rounded corners); modal max-height fallback; full positioning sweep (no horizontal overflow, 44px tap targets); behavior unchanged from v9.7.12; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.12 (2026-11-24) — PROMO WORDING (user's exact words): cart promo hint + promo-applied popup policy now say "Print-ready discount is not eligible with a promo code."; behavior unchanged from v9.7.11; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.11 (2026-11-20) — PROMO RULES STATED PLAINLY: the promo-applied popup and the cart now state both promo rules where the customer sees them (only one promo code per order; a promo code can't be combined with the print-ready artwork discount); behavior unchanged from v9.7.10; pairs with WebsiteBackend 2026-11-18-D (unchanged); v9.7.10 (2026-11-18) — NO-STACK RULE: the $20 print-ready artwork discount and a promo code never combine — applying a promo strips the artwork reward from every cart line, the artwork option is removed from the product modal while a promo is active, and the promo-applied popup states the policy with a staged reveal; pairs with WebsiteBackend 2026-11-18-D; v9.7.9 (2026-11-18) — PROMO CODES (per-rung scope): a code applies to ONE product at ONE quantity (e.g. 10% off 1,000 Business Cards only) — NOT the full order or catalog; admin picks the product + quantity rung, cart-only entry, animated confirmation, server-validated; supersedes v9.7.8 (delivered, never installed); CHECKOUT: loadActions() envelope fix (Stripe returns {type:"success",actions} — the old direct shape broke live confirm with "actions.confirm is not a function") + animated "Payment completed" popup after verified payment; CHECKOUT: post-payment confirmation screen; premium Stripe loading with logo + animated gradient glow; faster checkout (Stripe.js preloaded at checkout open); checkout emojis replaced with SVG icons; hero stat 13 products; #shop fragment kept on reload (hash no longer stripped, no forced scroll-to-top when a fragment is present); pairs with WebsiteBackend 2026-11-18-D; v9.7.5 (2026-11-12) — RELOAD FIX (root cause, not a guess): persistProducts() was defined in script block 3 but called during boot in block 1 — whenever the browser-saved catalog needed healing (e.g. live-synced products missing depositPct), block 1 died, activeCat never initialized, and the boot render threw so the page came up blank on reload. persistProducts now lives in block 1 next to save/load; boot renderers are individually guarded so one failure can never blank the page again; Stripe.js now loads with defer so the 1.2MB script no longer blocks first paint; v9.7.4 (2026-11-12) — CHAT GEOMETRY: expanded desktop size PERSISTS across close/reload (closeChat no longer wipes inline geometry; applySaved never clamps an expanded panel back to 560px; expand state saved at toggle time, not only on resize end); STRIPE CHECKOUT verified live — see STRIPE_INTEGRATION_TODO.md; v9.7.3 (2026-11-12) — LOAD FIX: reveal safety net so sections can never sit invisible after a reload; MOBILE FULL-SCREEN hardened (inline geometry pin + applySaved guard — v9.7.1's expand only toggled 62<->88dvh, never true full-screen); DESKTOP chat re-opens at the size/position it was left; ASK VISUALET 2.0: human-feeling bot — remembers name + last product, understands follow-ups, varied natural replies in short bubbles; pairs with WebsiteBackend 2026-11-18-B; v9.7.2 (2026-11-12) — DESKTOP CHAT EXPAND: Ask Visualet panel now has an expand/collapse toggle on desktop (near-full-screen 680px wide, min(88dvh, 760px) tall; state persists); no blue text-selection overlay while dragging the panel or sheet grip; v9.7.1 (2026-11-12) — ASK VISUALET CHAT UPGRADE: bigger panel, draggable + resizable on desktop, drag-to-resize sheet + expand on mobile, smarter local brain answering from live product data (pairs with WebsiteBackend 2026-11-18-B); v9.7.0 (2026-11-12) — STRIPE EMBEDDED CHECKOUT is now the only integrated checkout (Square links + Cash App removed; Zelle stays as a text-us alternative; deposits on the canopy + roofing bundle; Ask Visualet chat repositioned for mobile + desktop; pairs with WebsiteBackend 2026-11-12-A — install this site FIRST, then the backend); v9.6.10 (2026-10-23) — Canopies section polish: standard icons instead of emojis, "Custom design service included"; v9.6.9 — Custom Canopies showcase section (#canopies) with promo video; v9.6.8 — Email/Text contact preference on every order; phone 951-806-1586 everywhere; Google Search Console verified — verify with View Source -->
 <meta charset="UTF-8">
 <title>Visualet Designs — Online Print Shop | Design • Print • Branding</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -39,7 +39,6 @@ h1,h2,h3,.display{font-family:'Space Grotesk','Segoe UI',sans-serif;line-height:
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font-family:inherit}
-button,a,input,select,textarea,label,[role="button"]{touch-action:manipulation;-webkit-tap-highlight-color:transparent} /* v9.7.25: no double-tap zoom delay and no grey tap flash on ANY tap target, including dynamically rendered ones the v9.7.24 class list missed; drag handles keep touch-action:none via their own later rules (#chatResize, .chat-head, #chatSheetGrip, .lb-stage) */
 ::selection{background:rgba(28,77,255,.45)}
 ::-webkit-scrollbar{width:11px}
 ::-webkit-scrollbar-track{background:#05070f}
@@ -69,14 +68,13 @@ button,a,input,select,textarea,label,[role="button"]{touch-action:manipulation;-
 .skip:focus{left:16px;top:16px}
 nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(94%,1340px);z-index:1000;
   display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 14px 10px 22px;border-radius:999px;
-  background:rgba(6,9,22,.94);backdrop-filter:blur(26px) saturate(180%); /* v9.7.26: near-opaque (was .62) — page text ghosted through the header on phones when backdrop blur did not paint; blur kept, opacity now carries it */-webkit-backdrop-filter:blur(26px) saturate(180%);
+  background:rgba(6,9,22,.62);backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);
   border:1px solid var(--glass-brd);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 60px rgba(0,0,0,.6),0 0 90px rgba(28,77,255,.16);
   transition:box-shadow .3s}
 nav::before{content:"";position:absolute;top:1px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent)}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
-.brand img{height:62px;width:auto;filter:drop-shadow(0 0 10px rgba(28,77,255,.55));animation:logoglow 3.4s ease-in-out infinite} /* v9.7.29: logo a touch larger (54px→62px) + animated glow — drop-shadow hugs the transparent artwork */
-@keyframes logoglow{0%,100%{filter:drop-shadow(0 0 8px rgba(28,77,255,.45)) drop-shadow(0 0 16px rgba(255,47,156,.22))}50%{filter:drop-shadow(0 0 14px rgba(28,77,255,.85)) drop-shadow(0 0 30px rgba(255,47,156,.45))}} /* v9.7.29: logo glow pulse, blue core + magenta halo; static under prefers-reduced-motion */
+.brand img{height:54px;width:auto;filter:drop-shadow(0 0 10px rgba(28,77,255,.55))}
 .brand b{font-family:'Space Grotesk';font-size:15px;letter-spacing:.2px;white-space:nowrap}
 .brand b span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:4px;align-items:center}
@@ -118,8 +116,6 @@ body:has(#mobileMenu.show) #burger{background:linear-gradient(120deg,var(--blue-
 @keyframes vdspin{to{transform:rotate(360deg)}}
 .btn.loading{opacity:1;pointer-events:none}
 .btn:focus-visible,.addbtn:focus-visible,.pill:focus-visible,.icon-btn:focus-visible,.mini:focus-visible,.atab:focus-visible,.seg button:focus-visible{outline:2px solid var(--blue-bright);outline-offset:3px}
-.addbtn:active,.pill:active,.icon-btn:active,.cchip:active,.rung:active,.paycard:active,.mini:active,.atab:active,.seg button:active,.pcard:active{transform:scale(.97)} /* v9.7.25: instant press feedback on tap — the control shrinks the moment a finger lands, so taps feel immediate (car-cards excluded: their 3D transform must not be overridden) */
-#chatExpand:active,#chatClose:active{transform:scale(.88)}
 
 /* ============ LAYOUT ============ */
 .wrap{width:min(100%,1340px);margin:0 auto;padding-inline:clamp(20px,4vw,44px)}
@@ -127,7 +123,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--blue-bright);margin-bottom:16px;padding:9px 18px;border-radius:999px;background:rgba(77,157,255,.08);border:1px solid var(--glass-brd);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--magenta-neon);box-shadow:0 0 12px var(--magenta-neon)}
 .sec-title{font-size:clamp(32px,4.8vw,56px);font-weight:700;letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance}
-.sec-title .grad{margin-left:.22em;background:var(--grad); /* v9.7.26: guaranteed gap before the gradient word — headings rendered run-together live ("ShopPrint Products") */-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sec-title .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .sec-sub{color:var(--ink-faint);max-width:680px;font-size:16.5px;margin-bottom:8px}
 .accent{width:104px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--blue-electric),var(--blue-bright),var(--magenta-neon));box-shadow:0 0 26px rgba(28,77,255,.7);margin:20px 0 44px;position:relative;overflow:hidden}
 /* ---- v9.6.9 Custom Canopies showcase ---- */
@@ -157,10 +153,9 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 .wrap .sec-sub.center{text-align:center;margin-inline:auto}
 
 /* reveal on scroll */
-.reveal{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s var(--ease-premium)} /* v9.7.28: no blur animation on scroll-in — animating filter:blur made every section reveal expensive; fade + rise kept, all static blur untouched (phones already had filter:none via the 560px override) */
-.reveal.in{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(36px);filter:blur(8px);transition:opacity .85s ease,transform .85s var(--ease-premium),filter .85s ease}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
-#shop,#canopies,#how,#mobile,#bundles,#design,#track,#reviews,#about,#contact{content-visibility:auto;contain-intrinsic-size:auto 800px} /* v9.7.28: browser skips layout/paint for off-screen sections until you scroll to them — no visual change, scrolling much lighter */
 
 /* ============ HERO ============ */
 .hero{min-height:100svh;display:flex;align-items:center;padding:150px 0 70px;position:relative;overflow:hidden}
@@ -257,7 +252,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
   background:linear-gradient(135deg,rgba(77,157,255,.65),rgba(255,47,156,.5) 60%,rgba(123,59,255,.55));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .pcard:hover::after{opacity:1}
-.pimg{position:relative;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,#1a2547,#0b1226 70%)} /* v9.7.26: gradient placeholder instead of solid black while the photo loads */
+.pimg{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--navy-mid)}
 .pimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
 .pcard:hover .pimg img{transform:scale(1.12);filter:saturate(1.1)}
 .pimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(4,7,17,.55) 72%,rgba(4,7,17,.88));pointer-events:none}
@@ -372,7 +367,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 #chatFab:hover{transform:scale(1.07)}
 #chatFab:active{transform:scale(.94)}
 #chatFab.hidefab{transform:scale(.3);opacity:0;pointer-events:none} /* bubble tucks away while the panel is open */
-#chatFab .fab-label{position:absolute;right:70px;top:50%;transform:translateY(-50%);white-space:nowrap;padding:9px 14px;border-radius:999px;background:rgba(6,9,22,.9);border:1px solid rgba(77,157,255,.35);color:#fff;font-size:13px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 24px rgba(0,0,0,.5)} /* v9.7.26: visible "Chat" label — the logo-only button gave visitors no clue it was a chat */ #chatFab .fab-glass{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;
+#chatFab .fab-glass{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;
   border:1px solid rgba(77,157,255,.28); /* v9.5.1: header glass — dark circle, thin edge, logo only */
   background:rgba(6,9,22,.72);
   backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);
@@ -389,7 +384,7 @@ section{padding:112px 0;position:relative;scroll-margin-top:110px}
 /* v9.7.1: Ask Visualet — bigger by default, draggable + resizable on desktop, taller sheet on phones */
 .chat-head{cursor:grab;user-select:none}
 .chat-head:active{cursor:grabbing}
-#chatExpand{background:none;border:none;color:var(--ink-soft);font-size:19px;cursor:pointer;line-height:1;padding:6px 8px;display:block;position:relative} /* v9.7.2: expand toggle is on desktop too — was mobile-only in v9.7.1; v9.7.24: position:relative for the 44px hit-area below */
+#chatExpand{background:none;border:none;color:var(--ink-soft);font-size:19px;cursor:pointer;line-height:1;padding:6px 8px;display:block} /* v9.7.2: expand toggle is on desktop too — was mobile-only in v9.7.1 */
 #chatExpand:hover{color:var(--ink)}
 #chatResize{position:absolute;right:2px;bottom:2px;width:22px;height:22px;cursor:nwse-resize;z-index:5;touch-action:none}
 #chatResize::after{content:"";position:absolute;right:4px;bottom:4px;width:12px;height:12px;border-right:2px solid rgba(255,255,255,.45);border-bottom:2px solid rgba(255,255,255,.45);border-bottom-right-radius:3px}
@@ -408,8 +403,7 @@ body.chat-dragging,body.chat-dragging *{user-select:none!important;-webkit-user-
 .chat-t b{display:block;font-size:15.5px}
 .chat-t span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft)}
 .online-dot{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84} /* v9.7.23: static glow — the old box-shadow pulse repainted inside the blurred panel (flicker) */
-#chatClose{background:none;border:none;color:var(--ink-soft);font-size:24px;cursor:pointer;line-height:1;padding:4px 8px;position:relative}
-#chatExpand::after,#chatClose::after{content:"";position:absolute;inset:-10px} /* v9.7.24: invisible 44px tap target, visual size unchanged (same ::after pattern as the qty buttons, v9.7.13) */
+#chatClose{background:none;border:none;color:var(--ink-soft);font-size:24px;cursor:pointer;line-height:1;padding:4px 8px}
 .chat-promo{flex:none;margin:12px 12px 0;padding:10px 14px;border-radius:14px;background:linear-gradient(120deg,rgba(28,77,255,.22),rgba(255,47,156,.18));border:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--ink);display:none} /* v9.7.20: original translucent gradient restored */
 .chat-promo.show{display:block}
 .chat-msgs{flex:1;min-height:120px;overflow-y:auto;overscroll-behavior:contain;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(77,157,255,.35) transparent} /* v9.7.18: overscroll contained at every width — touch-scrolling the thread never chains to the page */
@@ -436,7 +430,7 @@ body.chat-dragging,body.chat-dragging *{user-select:none!important;-webkit-user-
 .ctyping i:nth-child(3){animation-delay:.3s}
 @keyframes cbounce{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-5px);opacity:1}}
 .chat-quick{flex:none;display:flex;gap:8px;padding:0 14px 10px;flex-wrap:wrap}
-.cchip{border:1px solid transparent;background:linear-gradient(rgba(10,15,32,.55),rgba(10,15,32,.55)) padding-box,linear-gradient(120deg,var(--blue-electric),var(--magenta-neon)) border-box;color:var(--ink);font-size:12.5px;font-weight:600;padding:12px 16px;min-height:44px;border-radius:999px;cursor:pointer;transition:.2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)} /* v9.7.23: glass pill, gradient lives on the border only; v9.7.24: 44px tall for thumbs */
+.cchip{border:1px solid transparent;background:linear-gradient(rgba(10,15,32,.55),rgba(10,15,32,.55)) padding-box,linear-gradient(120deg,var(--blue-electric),var(--magenta-neon)) border-box;color:var(--ink);font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.2s;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)} /* v9.7.23: glass pill, gradient lives on the border only */
 .cchip:hover{background:linear-gradient(rgba(28,77,255,.28),rgba(28,77,255,.28)) padding-box,linear-gradient(120deg,var(--blue-electric),var(--magenta-neon)) border-box}
 .chat-inputrow{flex:none;display:flex;gap:8px;padding:12px 14px 14px;border-top:1px solid rgba(255,255,255,.08)}
 .chat-inputrow input{flex:1;min-width:0;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:14px;padding:12px 15px;color:var(--ink);font-size:14px;outline:none}
@@ -445,9 +439,9 @@ body.chat-dragging,body.chat-dragging *{user-select:none!important;-webkit-user-
 #chatSend:active{transform:scale(.92);box-shadow:0 0 18px rgba(255,47,156,.55)} /* v9.7.22: glow on press */
 #chatSend .ic{width:19px;height:19px}
 @media(max-width:560px){
-  #chatFab{right:16px;bottom:max(30px,calc(16px + env(safe-area-inset-bottom,0px)));width:56px;height:56px} /* v9.7.24: raised off the home-indicator swipe zone — Safari reports env(safe-area-inset-bottom)=0 in normal browsing, so the old 16px sat in the gesture area (taps eaten by the system swipe, button looked sunk to the very bottom edge); 30px floor guarantees clearance, a real safe-area inset still adds on top */
-  #chatPanel{right:16px;left:16px;width:auto;bottom:calc(92px + env(safe-area-inset-bottom,0px));top:auto;height:min(62dvh,520px);max-height:none;min-height:0;border-radius:24px;transform-origin:bottom center} /* v9.7.25: floats above the bottom edge like the desktop panel (bottom:92px + safe-area, rounded corners all around) — v9.7.19's flush bottom sheet put the whole chat on the home-indicator edge; drag the top grip to resize, expand button still goes full-screen */
-  #chatPanel:not(.chat-full) .chat-inputrow{padding-bottom:14px} /* v9.7.25: the sheet now floats 92px above the bottom edge, so the safe-area inset no longer needs padding inside the sheet (full-screen mode still pads the panel itself) */
+  #chatFab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px}
+  #chatPanel{right:0;left:0;width:auto;bottom:0;top:auto;height:min(62dvh,520px);max-height:none;min-height:0;border-radius:20px 20px 0 0;transform-origin:bottom center} /* v9.7.19: sheet anchored flush to the bottom edge, full width, top-only corners — no floating gap, no page content below it; drag the top grip to resize, expand button goes full-screen */
+  #chatPanel:not(.chat-full) .chat-inputrow{padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))} /* v9.7.19: safe-area inset is padding INSIDE the anchored sheet so the input row always clears the home indicator (full-screen mode already pads the panel itself) */
   #chatResize{display:none} /* corner resize is desktop-only — phones use the top grip */
   #chatSheetGrip{display:block}
   #chatExpand{display:block}
@@ -516,14 +510,14 @@ footer img{height:58px;margin:0 auto 16px;opacity:.98;filter:drop-shadow(0 0 18p
 .rung b{font-family:'Space Grotesk';font-size:17px}
 .rung .save{font-size:11px;font-weight:700;color:#7dffb0;margin-left:8px}
 .seg{display:flex;gap:9px;flex-wrap:wrap}
-.seg button{padding:13px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--ink-soft); /* v9.7.24: 44px tall for thumbs (was 11px padding, ~40px) */
+.seg button{padding:11px 20px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--ink-soft);
   background:rgba(77,157,255,.05);border:1px solid rgba(77,157,255,.16);transition:.2s}
 .seg button.on{background:linear-gradient(120deg,var(--blue-electric),var(--magenta-neon));color:#fff;border-color:transparent}
 .pm-includes{list-style:none;display:grid;gap:8px;margin-top:6px;font-size:13.5px;color:var(--ink-soft)}
 .pm-includes li{display:flex;gap:10px;align-items:flex-start}
 .pm-includes svg{width:15px;height:15px;color:var(--blue-bright);flex-shrink:0;margin-top:4px}
 #pModal .sheet{display:flex;flex-direction:column;overflow:hidden}
-#pModal .pm-grid{flex:1 1 auto;min-height:0;overflow-y:auto;touch-action:pan-y} /* v9.7.29: finger swipes must scroll the product view on iPhone — a real touch swipe is governed by touch-action, so vertical panning is declared explicitly on the scroll container; no visual or tap change */
+#pModal .pm-grid{flex:1 1 auto;min-height:0;overflow-y:auto}
 .pm-foot{position:static;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px clamp(26px,4vw,44px);
   background:rgba(5,8,18,.82);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-top:1px solid rgba(77,157,255,.14);border-radius:0 0 30px 30px} /* v9.7.20: frosted bar restored — grid content frosts beneath it as it scrolls (was blur(20px) in v9.7.13, tuned to 14px) */
 .pm-total small{display:block;font-size:12px;color:var(--ink-faint);font-weight:500}
@@ -749,8 +743,6 @@ svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;strok
 .promo-note button{background:none;border:none;color:#ffcf7d;font-size:15px;cursor:pointer;padding:2px 6px;line-height:1}
 .promo-applied{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;background:rgba(47,227,107,.1);border:1px solid rgba(47,227,107,.35);color:#7dffb0;font-size:13.5px;font-weight:600}
 .promo-applied button{background:none;border:none;color:#7dffb0;font-size:16px;cursor:pointer;padding:2px 6px;line-height:1}
-.promo-note button,.promo-applied button{position:relative}
-.promo-note button::after,.promo-applied button::after{content:"";position:absolute;inset:-14px} /* v9.7.24: the tiny × dismiss buttons get an invisible 44px tap target (same ::after pattern as the qty buttons) */
 .trow.promo-line{color:#7dffb0;font-weight:600}
 @keyframes totalbump{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
 .total-bump{animation:totalbump .45s ease}
@@ -921,7 +913,7 @@ section{overflow-x:clip}
 }
 @media(max-width:560px){
   nav{padding:8px 10px 8px 14px;gap:8px} /* v9.7.23: tighter phone header — at 360px the logo + 3 icon buttons crossed the right edge by 5px */
-  .brand img{height:50px} /* v9.7.29: logo a touch larger on phones too (44px→50px) */
+  .brand img{height:44px}
   .nav-actions{gap:6px}
   .grid{grid-template-columns:1fr}
   .fan{--cw:min(280px,72vw);--fx:.34}
@@ -963,7 +955,7 @@ section{overflow-x:clip}
   .icon-btn,.eyebrow,.hbadge,.pturn,.step,.tier,.track-card,.c-card,.rev,.pdots button{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
   .marquee{background:rgba(6,9,22,.9);backdrop-filter:none;-webkit-backdrop-filter:none}
   /* ---- v9.4.3 tap reliability ---- */
-  .btn,.addbtn,.pill,.pcard,.car-card,.icon-btn,.pdots button,.fan-dots button,.lb-nav,.lb-btn,#chatFab,.cchip,.seg button,.rung,.paycard,#chatSend,#chatExpand,#chatClose{touch-action:manipulation;-webkit-tap-highlight-color:transparent} /* v9.7.24: chat controls, quick-prompt pills, segment buttons, quantity rungs + payment cards join the tap-reliability list (no double-tap zoom delay, no grey flash) */
+  .btn,.addbtn,.pill,.pcard,.car-card,.icon-btn,.pdots button,.fan-dots button,.lb-nav,.lb-btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
   .pdots{gap:10px}
   .pdots button::after{content:"";position:absolute;inset:-10px}
   .pdots button{position:relative}
@@ -971,7 +963,7 @@ section{overflow-x:clip}
   .fan-dots button{position:relative}
   .fan-dots button::after{content:"";position:absolute;inset:-10px}
   /* 16px+ inputs stop iOS Safari auto-zooming on focus (zoom is locked via viewport too) */
-  .field input,.field textarea,.field select,#adminPin,#trackNum,#trackEmail,.search input,.tform input,.promo-box input{font-size:16px} /* v9.7.24: track-order + promo-code inputs join the no-zoom rule — at 15px/13.5px they still triggered iOS auto-zoom on focus */
+  .field input,.field textarea,.field select,#adminPin,#trackNum,#trackEmail,.search input{font-size:16px}
   /* no stray scrollbar lines inside modals/drawers on phones — scroll still works, just invisible */
   #pModal .pm-grid,.sheet,.drawer-items,.mobile-menu{scrollbar-width:none;-ms-overflow-style:none}
   #pModal .pm-grid::-webkit-scrollbar,.sheet::-webkit-scrollbar,.drawer-items::-webkit-scrollbar,.mobile-menu::-webkit-scrollbar{display:none;width:0}
@@ -993,7 +985,6 @@ section{overflow-x:clip}
   .car-blur{display:none} /* v9.4.9: halo removed on phones */
   .car-floor{display:none} /* v9.5.0: blurred glow boxes removed entirely on phones */
   .fan{--cw:min(300px,80vw)} /* v9.5.4: carousel cards use the full phone screen */
-  #heroFan{touch-action:pan-y} /* v9.7.25: horizontal swipes go straight to the swipe handler instead of the browser debating scroll vs swipe — the carousel answers the finger immediately, vertical page scroll still works */
   @keyframes carline{ /* v9.5.4: animated gradient OUTLINE (border) shifting blue→purple→pink — no glow, no blur */
     0%{background-position:0 0,0% 50%}50%{background-position:0 0,100% 50%}100%{background-position:0 0,0% 50%}}
   .car-card.pos-1{ /* v9.5.4: pos-1 IS the active card — gradient border only, neutral drop shadow for depth */
@@ -1081,7 +1072,7 @@ section{overflow-x:clip}
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="brand" href="#home"><img decoding="async" src="logo.png" alt="Visualet Designs logo"></a>
+  <a class="brand" href="#home"><img src="logo.png" alt="Visualet Designs logo"></a>
   <div class="nav-links">
     <a href="#shop">Shop</a>
     <a href="#canopies">Canopies</a>
@@ -1338,7 +1329,7 @@ section{overflow-x:clip}
 <div class="modal" id="pModal" role="dialog" aria-modal="true" aria-label="Product details"><div class="sheet">
   <button class="x" data-close="pModal" aria-label="Close">✕</button>
   <div class="pm-grid">
-    <div class="pm-media"><img decoding="async" id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div><button class="pm-arrow prev" id="pmPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button class="pm-arrow next" id="pmNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><div class="pm-expand" id="pmExpand"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Click to expand images</button></div></div>
+    <div class="pm-media"><img id="pmImg" src="" alt=""><div class="pm-thumbs" id="pmThumbs"></div><button class="pm-arrow prev" id="pmPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button class="pm-arrow next" id="pmNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><div class="pm-expand" id="pmExpand"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Click to expand images</button></div></div>
     <div class="pm-body">
       <div class="pcat" id="pmCat"></div><h2 id="pmName"></h2>
       <p class="pm-desc" id="pmDesc"></p>
@@ -1455,7 +1446,7 @@ section{overflow-x:clip}
   </div>
   <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
   <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">›</button>
-  <div class="lb-stage"><img decoding="async" id="lbImg" src="" alt="Product photo"></div>
+  <div class="lb-stage"><img id="lbImg" src="" alt="Product photo"></div>
   <div class="lb-cap" id="lbCap"></div>
 </div>
 <script>
@@ -1796,7 +1787,7 @@ function stripeLoad(stage){
   const host=$("#stripeLoad");if(!host)return;
   const cf=$("#checkout-form");if(cf)cf.style.display="none"; /* v9.7.6: the empty form box (220px) would push the loader below the fold — hide it while loading; it is restored before the form mounts */
   const s=Math.max(0,Math.min(STRIPE_LOAD_STAGES.length-1,stage||0));
-  host.innerHTML=`<div class="stripe-load"><div class="stripe-load-logo"><div class="stripe-glow"></div><img decoding="async" class="stripe-load-img" src="images/stripe-logo.png" alt="Stripe — secure payments" onerror="this.style.display='none'"></div><p class="stripe-load-status">${STRIPE_LOAD_STAGES[s]}</p><p class="stripe-load-sub">Secured by Stripe — your card details stay with Stripe</p><div class="stripe-load-bar"><i></i></div></div>`;
+  host.innerHTML=`<div class="stripe-load"><div class="stripe-load-logo"><div class="stripe-glow"></div><img class="stripe-load-img" src="images/stripe-logo.png" alt="Stripe — secure payments" onerror="this.style.display='none'"></div><p class="stripe-load-status">${STRIPE_LOAD_STAGES[s]}</p><p class="stripe-load-sub">Secured by Stripe — your card details stay with Stripe</p><div class="stripe-load-bar"><i></i></div></div>`;
   host.style.display="block";
 }
 function stripeLoadClear(){const host=$("#stripeLoad");if(host){host.style.display="none";host.innerHTML=""}const cf=$("#checkout-form");if(cf)cf.style.display=""}
@@ -1875,7 +1866,7 @@ async function mountStripeForm(force){
 function stripeConfirming(){
   const host=$("#stripeLoad");if(!host)return;
   const cf=$("#checkout-form");if(cf)cf.style.display="none";
-  host.innerHTML=`<div class="stripe-load"><div class="stripe-load-logo"><div class="stripe-glow"></div><img decoding="async" class="stripe-load-img" src="images/stripe-logo.png" alt="Stripe — secure payments" onerror="this.style.display='none'"></div><p class="stripe-load-status">Confirming your payment…</p><p class="stripe-load-sub">Your payment was submitted — we're verifying it with Stripe. Please don't pay again.</p><div class="stripe-load-bar"><i></i></div></div>`;
+  host.innerHTML=`<div class="stripe-load"><div class="stripe-load-logo"><div class="stripe-glow"></div><img class="stripe-load-img" src="images/stripe-logo.png" alt="Stripe — secure payments" onerror="this.style.display='none'"></div><p class="stripe-load-status">Confirming your payment…</p><p class="stripe-load-sub">Your payment was submitted — we're verifying it with Stripe. Please don't pay again.</p><div class="stripe-load-bar"><i></i></div></div>`;
   host.style.display="block";
 }
 /* v9.7.15: verify a payment with OUR backend — WITH RETRIES. Wallet
@@ -2021,7 +2012,7 @@ function renderHeadshot(){
   const custom=(load(LS2.headshot,"")||"").trim();
   const src=custom||"logo.png";
   w.classList.toggle("is-logo",!custom);
-  w.innerHTML=`<img decoding="async" src="${esc(src)}" alt="Nathan Salamanca, founder of Visualet Designs" loading="lazy" onerror="this.parentElement.classList.remove('is-logo');this.parentElement.innerHTML='VD'">`;
+  w.innerHTML=`<img src="${esc(src)}" alt="Nathan Salamanca, founder of Visualet Designs" loading="lazy" onerror="this.parentElement.classList.remove('is-logo');this.parentElement.innerHTML='VD'">`;
 }
 
 /* ================= MARQUEE ================= */
@@ -2036,12 +2027,12 @@ function renderPills(){
   $("#catPills").innerHTML = CATS.map(c=>`<button class="pill${c===activeCat?" on":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
   $$("#catPills .pill").forEach(p=>p.onclick=()=>{activeCat=p.dataset.cat;renderPills();renderGrid()});
 }
-function productCard(p,i){ /* v9.7.26: index i from Array.map — first 4 grid photos load eager/high-priority */
+function productCard(p){
   const from = Math.min(...p.rungs.map(r=>r.price));
   const imgs = (p.images&&p.images.length?p.images:[p.img]).filter(Boolean);
   const dots = imgs.length>1 ? `<div class="pdots">${imgs.map((_,i)=>`<button data-dot="${i}" class="${i===0?"on":""}" aria-label="View photo ${i+1} of ${imgs.length}"></button>`).join("")}</div>` : "";
   return `<article class="pcard tilt reveal" data-id="${p.id}" tabindex="0" role="button" aria-label="View ${esc(p.name)}">
-    <div class="pimg" data-pimg="${p.id}"><img src="${esc(imgs[0]||"")}" alt="${esc(p.name)}" loading="${i<4?"eager":"lazy"}" ${i<4?'fetchpriority="high" ':''}decoding="async" onerror="this.style.display='none'">
+    <div class="pimg" data-pimg="${p.id}"><img src="${esc(imgs[0]||"")}" alt="${esc(p.name)}" loading="lazy" decoding="async" onerror="this.style.display='none'">
       ${p.badge?`<span class="pbadge">${esc(p.badge)}</span>`:""}
       <span class="pturn">${esc(p.turnaround)}</span>${dots}</div>
     <div class="pbody"><div class="pcat">${esc(p.cat)}</div><h3 class="pname">${esc(p.name)}</h3>
@@ -2096,7 +2087,7 @@ function renderBundles(){
   g.innerHTML=bs.length?bs.map(p=>{
     const r=(p.rungs&&p.rungs[0])||{price:0};
     return `<div class="spot reveal in"><div class="spot-in">
-      <div class="spot-media"><img decoding="async" src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="spot-media"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none'"></div>
       <div>
         <div class="eyebrow"><span class="dot"></span>${esc(p.badge||"Bundle & Save")}</div>
         <h3 style="font-size:clamp(24px,3vw,34px);margin-bottom:8px">${esc(p.name)}</h3>
@@ -2141,7 +2132,7 @@ function openProduct(id){
   const pmBg=u=>{const m=$("#pmImg").closest(".pm-media");if(m)m.style.setProperty("--pmbg",`url("${u}")`)}; /* v9.5.2: blurred backdrop follows the photo */
   pmBg(p.img);
   const gal=((p.images&&p.images.length?p.images:[p.img])||[]).filter(Boolean);
-  $("#pmThumbs").innerHTML=gal.length>1?gal.map((g,i)=>`<img decoding="async" src="${esc(g)}" data-gi="${i}" class="${i===0?"on":""}" alt="View ${i+1}" loading="eager" /* v9.7.26: thumbs eager — lazy thumbs showed black on open */>`).join(""):"";
+  $("#pmThumbs").innerHTML=gal.length>1?gal.map((g,i)=>`<img src="${esc(g)}" data-gi="${i}" class="${i===0?"on":""}" alt="View ${i+1}" loading="lazy">`).join(""):"";
   pmState.gal=gal;pmState.gi=0;
   const pmGo=i=>{pmState.gi=(i+gal.length)%gal.length;$("#pmImg").src=gal[pmState.gi];pmBg(gal[pmState.gi]);$$("#pmThumbs img").forEach(x=>x.classList.toggle("on",+x.dataset.gi===pmState.gi))};
   $$("#pmThumbs img").forEach(t=>t.onclick=e=>{e.stopPropagation();pmGo(+t.dataset.gi)});
@@ -2195,7 +2186,7 @@ function renderPmArt(){
   const slot=s=>{
     const f=a[s];
     const inner=f
-      ? `${f.kind==="pdf"?`<span class="art-plus" style="font-size:22px">PDF</span>`:`<img decoding="async" src="${f.url}" alt="${s} artwork">`}<span class="art-ok">✓ ${s} attached</span><span class="art-rm" data-unart="${s}">remove</span>`
+      ? `${f.kind==="pdf"?`<span class="art-plus" style="font-size:22px">PDF</span>`:`<img src="${f.url}" alt="${s} artwork">`}<span class="art-ok">✓ ${s} attached</span><span class="art-rm" data-unart="${s}">remove</span>`
       : `<input type="file" accept="image/*,.pdf" data-art="${s}" hidden><span class="art-plus">+</span><span>Upload ${s}</span><small>JPG, PNG or PDF</small>`;
     return `<label class="art-slot${f?" done":""}">${inner}</label>`;
   };
@@ -2439,7 +2430,7 @@ function invoiceHTML(o){
 </style></head><body>
 <div class="printbar"><button onclick="window.print()">Print / Save PDF</button></div>
 <div class="inv">
-  <div class="inv-head"><div><img decoding="async" src="https://visualetdesigns.com/logo.png" alt="Visualet Designs" onerror="this.style.display='none'"><div class="tag">DESIGN • PRINT • BRANDING</div></div>
+  <div class="inv-head"><div><img src="https://visualetdesigns.com/logo.png" alt="Visualet Designs" onerror="this.style.display='none'"><div class="tag">DESIGN • PRINT • BRANDING</div></div>
   <div class="inv-title"><h1>INVOICE</h1><p>Order ${esc(o.number)}${dateStr?`<br>${esc(dateStr)}`:""}</p></div></div>
   <div class="inv-body">
     <div class="inv-meta">
@@ -2640,7 +2631,7 @@ function renderCheckout(){
     if(o.paid){
       payPanel=`<div class="pay-panel"><h3 style="justify-content:flex-start">${payIcon("i-check","lt")}Payment received</h3><p>Paid <b>${money(o.dueToday||o.total)}</b> with Stripe.${o.balanceDue>0?` Balance of <b>${money(o.balanceDue)}</b> is due before production — we'll reach out about it.`:" Your order is paid in full."} Your job enters the studio queue as soon as your proof is approved.</p></div>`;
     }else if(isStripe){
-      payPanel=`<div class="pay-panel stripe-box"><h3>Complete your payment <img decoding="async" class="stripe-mark" src="images/stripe-logo.png" alt="Stripe" onerror="this.style.display='none'"></h3><p>Pay <b>${money(o.dueToday||o.total)}</b> securely with Stripe — card, Apple Pay, Google Pay or Stripe Link.${o.balanceDue>0?` Balance of <b>${money(o.balanceDue)}</b> due later.`:""}</p>
+      payPanel=`<div class="pay-panel stripe-box"><h3>Complete your payment <img class="stripe-mark" src="images/stripe-logo.png" alt="Stripe" onerror="this.style.display='none'"></h3><p>Pay <b>${money(o.dueToday||o.total)}</b> securely with Stripe — card, Apple Pay, Google Pay or Stripe Link.${o.balanceDue>0?` Balance of <b>${money(o.balanceDue)}</b> due later.`:""}</p>
       <div id="checkout-form"></div>
       <div id="stripeLoad" style="display:none" aria-live="polite"></div>
       <div class="co-err" id="stripeMsg" style="text-align:left"></div>
@@ -2883,7 +2874,7 @@ lbEl.addEventListener("click",e=>{if(e.target===lbEl)lbClose()});
 /* ================= HERO 3D FAN CAROUSEL ================= */
 const fanReduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let fanIdx=1,fanTimer=null,fanCards=[];
-function payIcon(id,cls,img){return `<span class="pay-ic ${cls||""}" aria-hidden="true">${img?`<img decoding="async" src="${img}" alt="" loading="lazy" onerror="this.remove()">`:""}<svg viewBox="0 0 24 24"><use href="#${id}"/></svg></span>`}
+function payIcon(id,cls,img){return `<span class="pay-ic ${cls||""}" aria-hidden="true">${img?`<img src="${img}" alt="" loading="lazy" onerror="this.remove()">`:""}<svg viewBox="0 0 24 24"><use href="#${id}"/></svg></span>`}
 function renderHeroCovers(){
   const stage=$("#fanCards"); if(!stage)return;
   fanCards=heroCovers.slice(0,3);
@@ -2894,7 +2885,7 @@ function renderHeroCovers(){
     const imgAttrs=i===0
       ? `loading="eager" fetchpriority="high" decoding="async"`
       : `loading="lazy" decoding="async"`;
-    return `<div class="car-card pos-${i}" data-pos="${i}" role="button" tabindex="0" aria-label="${esc(c.tag)} — featured cover ${i+1} of ${fanCards.length}"><span class="car-mono" aria-hidden="true">${esc(mono)}</span><span class="car-blur" aria-hidden="true" style="background-image:url('${esc(c.img)}')"${blurSrc?` data-blur="${esc(blurSrc)}"`:""}></span><img decoding="async" src="${esc(c.img)}" alt="${esc(c.tag)}" ${imgAttrs} onerror="this.style.display='none';if(this.previousElementSibling)this.previousElementSibling.style.display='none'"><span class="tag">${esc(c.tag)}</span></div>`
+    return `<div class="car-card pos-${i}" data-pos="${i}" role="button" tabindex="0" aria-label="${esc(c.tag)} — featured cover ${i+1} of ${fanCards.length}"><span class="car-mono" aria-hidden="true">${esc(mono)}</span><span class="car-blur" aria-hidden="true" style="background-image:url('${esc(c.img)}')"${blurSrc?` data-blur="${esc(blurSrc)}"`:""}></span><img src="${esc(c.img)}" alt="${esc(c.tag)}" ${imgAttrs} onerror="this.style.display='none';if(this.previousElementSibling)this.previousElementSibling.style.display='none'"><span class="tag">${esc(c.tag)}</span></div>`
   }).join("");
   /* v9.6.2 perf: pre-blurred backdrops load only when the browser is idle, so
      they never compete with the visible cover images; the live CSS blur
@@ -2947,15 +2938,6 @@ function restartFan(){
   fan.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});
   fan.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>34){fanGo(dx<0?"next":"prev");restartFan()}},{passive:true});
 })();
-/* v9.7.28: stop the hero carousel auto-advance while it is scrolled off-screen — the 4.2s timer kept firing and re-laying out the 3D cards while the user scrolled the rest of the page */
-(function(){
-  const fan=$("#heroFan");if(!fan||!("IntersectionObserver" in window))return;
-  let off=false;
-  new IntersectionObserver(es=>{es.forEach(en=>{
-    if(en.isIntersecting){if(off){off=false;restartFan()}}
-    else{off=true;if(fanTimer){clearInterval(fanTimer);fanTimer=null}}
-  })},{rootMargin:"120px"}).observe(fan);
-})();
 
 /* ================= ADMIN ================= */
 const getPin=()=>load(LS.pin,"8675");
@@ -2974,7 +2956,7 @@ $$(".atab").forEach(t=>t.onclick=()=>{$$(".atab").forEach(x=>x.classList.remove(
 let editingId=null;
 function renderAdminProducts(){
   const box=$("#ap-products");
-  const rows=products.map(p=>`<div class="arow"><div class="ai"><img decoding="async" src="${esc(p.img)}" onerror="this.style.display='none'"><div><b>${esc(p.name)} ${p.active===false?'<small style="color:#ff8fa8">(hidden)</small>':""}</b><small>${esc(p.cat)} • from ${money0(Math.min(...p.rungs.map(r=>r.price)))}</small></div></div>
+  const rows=products.map(p=>`<div class="arow"><div class="ai"><img src="${esc(p.img)}" onerror="this.style.display='none'"><div><b>${esc(p.name)} ${p.active===false?'<small style="color:#ff8fa8">(hidden)</small>':""}</b><small>${esc(p.cat)} • from ${money0(Math.min(...p.rungs.map(r=>r.price)))}</small></div></div>
     <div class="abtns"><button class="mini" data-edit="${p.id}">Edit</button><button class="mini" data-toggle="${p.id}">${p.active===false?"Show":"Hide"}</button><button class="mini danger" data-del="${p.id}">Delete</button></div></div>`).join("");
   box.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px"><h3 style="font-size:19px">Products (${products.length})</h3><button class="mini go" id="newProd">+ Add Product</button></div>${rows}<div id="pformWrap"></div>`;
   $("#newProd").onclick=()=>{editingId=null;renderPForm()};
@@ -3063,7 +3045,7 @@ function renderPForm(){
   <div class="co-nav"><button class="mini go" id="pf_save" style="padding:12px 30px;font-size:14px">Save Product</button><button class="mini" id="pf_cancel">Cancel</button></div></div>`;
   let pfImages=(p.images&&p.images.length?p.images.slice():(p.img?[p.img]:[])).filter(Boolean);
   const renderPfPhotos=()=>{
-    $("#pf_photos").innerHTML=pfImages.length?pfImages.map((src,i)=>`<div class="ph"><img decoding="async" src="${esc(src)}" alt="Photo ${i+1}">
+    $("#pf_photos").innerHTML=pfImages.length?pfImages.map((src,i)=>`<div class="ph"><img src="${esc(src)}" alt="Photo ${i+1}">
       ${i===0?'<span class="cover-tag">Cover</span>':""}
       <div class="ph-tools">${i!==0?`<button class="mini" data-ph="cover" data-i="${i}" title="Set as cover">★</button>`:""}${i>0?`<button class="mini" data-ph="left" data-i="${i}" title="Move left">←</button>`:""}${i<pfImages.length-1?`<button class="mini" data-ph="right" data-i="${i}" title="Move right">→</button>`:""}<button class="mini danger" data-ph="del" data-i="${i}" title="Remove">✕</button></div></div>`).join("")
       :'<p class="hint">No photos yet — upload or add a URL.</p>';
@@ -3473,7 +3455,7 @@ function renderAdminSettings(){
   <h3 style="margin-bottom:16px;font-size:19px">Profile Photo</h3>
   <p class="hint" style="margin-bottom:14px">The photo shown in the About section. The site logo is used until you upload a headshot.</p>
   <div class="setrow" style="align-items:center;margin-bottom:26px">
-    <img decoding="async" id="hsPrev" src="${esc(load(LS2.headshot,"")||"logo.png")}" alt="Profile photo preview" style="width:88px;height:88px;object-fit:cover;border-radius:20px;border:1px solid rgba(77,157,255,.25);background:#0a1030">
+    <img id="hsPrev" src="${esc(load(LS2.headshot,"")||"logo.png")}" alt="Profile photo preview" style="width:88px;height:88px;object-fit:cover;border-radius:20px;border:1px solid rgba(77,157,255,.25);background:#0a1030">
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
       <input type="file" id="hsFile" accept="image/*" style="display:none">
       <button class="mini" id="hsUp">Upload photo</button>
@@ -3541,7 +3523,7 @@ function renderAdminSettings(){
     pushSync().then(live=>syncToast(live,"Chat promo saved — live for everyone"));
   };
   const renderCoverSlots=()=>{
-    $("#coverSlots").innerHTML=heroCovers.map((c,i)=>`<div class="coverslot"><img decoding="async" id="covImg${i}" src="${esc(c.img)}" alt="Cover photo ${i+1}">
+    $("#coverSlots").innerHTML=heroCovers.map((c,i)=>`<div class="coverslot"><img id="covImg${i}" src="${esc(c.img)}" alt="Cover photo ${i+1}">
       <input type="text" id="covTag${i}" value="${esc(c.tag)}" placeholder="Caption (e.g. Cards from $75)" aria-label="Cover ${i+1} caption">
       <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="file" id="covFile${i}" accept="image/*" style="display:none"><button class="mini" id="covUp${i}">Upload photo</button></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><input type="text" id="covUrl${i}" placeholder="…or paste image URL" value="${/^https?:/.test(c.img)?esc(c.img):''}" aria-label="Cover ${i+1} image URL" style="flex:1;min-width:140px;background:rgba(4,7,17,.7);border:1px solid var(--glass-brd);border-radius:999px;padding:8px 16px;color:var(--ink);font-size:13px"><button class="mini" id="covUrlGo${i}">Use URL</button></div></div>`).join("");
@@ -3684,11 +3666,11 @@ console.log("Visualet Designs site v9.7.2");
     const pc=$("#phonePayCopy");if(pc)pc.textContent="The full print shop fits in your pocket — browse products, upload art, pay securely by card, Apple Pay or Google Pay, and track your order from anywhere."
 </script>
 <!-- ASK VISUALET CHAT -->
-<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-label">Chat</span><span class="fab-glass"><span class="fab-logo" aria-hidden="true"></span></span><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
+<button id="chatFab" aria-label="Chat with Ask Visualet"><span class="fab-glass"><span class="fab-logo" aria-hidden="true"></span></span><span class="chat-dot" id="chatDot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span></button>
 <div id="chatPanel" role="dialog" aria-label="Ask Visualet chat" aria-hidden="true">
   <div id="chatSheetGrip" aria-hidden="true"><span></span></div>
   <div class="chat-head">
-    <span class="chat-ava"><img decoding="async" src="logo.png" alt="Visualet Designs logo"></span>
+    <span class="chat-ava"><img src="logo.png" alt="Visualet Designs logo"></span>
     <div class="chat-t"><b>Ask Visualet 👋</b><span><span class="online-dot"></span>Online — replies instantly</span></div>
     <button id="chatExpand" aria-label="Expand chat" title="Expand chat">⤢</button>
     <button id="chatClose" aria-label="Close chat">&times;</button>
@@ -3718,7 +3700,7 @@ function chatAdd(html,who){
   if(who==="bot"){
     /* v9.7.23: bot bubbles ride in a row with a small Visualet avatar chip */
     const row=document.createElement("div");row.className="cmsg-row";
-    row.innerHTML='<span class="cmsg-ava" aria-hidden="true"><img decoding="async" src="logo.png" alt=""></span>';
+    row.innerHTML='<span class="cmsg-ava" aria-hidden="true"><img src="logo.png" alt=""></span>';
     row.appendChild(d);
     $("#chatMsgs").appendChild(row);
   }else{
@@ -3737,7 +3719,7 @@ function chatTyping(){
   d.innerHTML="<i></i><i></i><i></i>";
   /* v9.7.23: typing bubble gets the same avatar row as bot messages */
   const row=document.createElement("div");row.className="cmsg-row";
-  row.innerHTML='<span class="cmsg-ava" aria-hidden="true"><img decoding="async" src="logo.png" alt=""></span>';
+  row.innerHTML='<span class="cmsg-ava" aria-hidden="true"><img src="logo.png" alt=""></span>';
   row.appendChild(d);
   $("#chatMsgs").appendChild(row);chatScroll();return row;
 }
@@ -4271,7 +4253,7 @@ nav{top:calc(16px + env(safe-area-inset-top,0px))}
 .pm-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(135deg,rgba(28,77,255,.26),rgba(123,59,255,.16) 50%,rgba(255,47,156,.24)),rgba(6,9,22,.10);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.06)}
-#pModal .pm-media>img{opacity:0;pointer-events:none} #pModal .pm-media .pm-thumbs img{opacity:1;pointer-events:auto} /* v9.7.27: main photo back to blurred preview by design (reverts v9.7.26's sharp photo) — the blurred ::before backdrop shows in the modal, full resolution only on click-to-expand; thumbnails stay visible (v9.7.23 hid them too, which broke view switching). No blur filter removed. */
+#pModal .pm-media img{opacity:0;pointer-events:none}
 .pm-thumbs,.pm-arrow,.pm-expand{z-index:4}
 
 /* Click to Expand */
@@ -4293,7 +4275,7 @@ nav{top:calc(16px + env(safe-area-inset-top,0px))}
   #pModal .pm-grid{align-items:start}
   #pModal .pm-media{position:sticky;top:0;align-self:start;height:min(calc(92svh - 96px),640px);min-height:340px}
 }
-@media(hover:none){.paycard:hover,.rung:hover{transform:none;box-shadow:none}.btn:hover,.addbtn:hover,.car-card:hover,.cchip:hover,.cmsg a.cagent:hover{transform:none;box-shadow:none}.pcard:hover{box-shadow:0 24px 60px rgba(0,0,0,.6);border-color:rgba(77,157,255,.2)}.pcard:hover .pimg img{transform:none;filter:none}.qty button:hover{background:rgba(77,157,255,.14)}#chatFab:hover{transform:none}.blob{animation:none} /* v9.7.28: background glows stop drifting on touch screens — they stay put, still blurred; the infinite drift forced constant repaints while scrolling */} /* v9.7.24: on touch screens a tap leaves :hover stuck until the next tap — buttons/cards no longer sit lifted, glowing or zoomed after one tap (icon-btn already handled at line 97) */
+@media(hover:none){.paycard:hover,.rung:hover{transform:none;box-shadow:none}}
 html:has(.modal.show),html:has(.drawer.show),html:has(#lightbox.show),html:has(.mobile-menu.show){overflow:hidden;overscroll-behavior:none} /* v9.7.18: lightbox + mobile menu join the CSS lock (the JS body-fixed lock is the iOS-proof layer) */
 
 @media(max-width:860px){
